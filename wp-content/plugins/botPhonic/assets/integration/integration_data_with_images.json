@@ -1,0 +1,74 @@
+[
+	{
+		"data-category": "CRM",
+		"data-name": "zoho",
+		"link": "./zoho-integration/",
+		"content_a": "Zoho",
+		"category": "CRM",
+		"image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/chsiteimages/zoho_crm_app_large.png"
+	},
+	{
+		"data-category": "Sales Automation,Productivity",
+		"data-name": "zapier",
+		"link": "./zapier-integration/",
+		"content_a": "Zapier",
+		"category": "Sales Automation",
+		"image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/zapier.jpg"
+	},
+	{
+		"data-category": "CRM,For Sales Teams",
+		"data-name": "hubspot",
+		"link": "./hubspot-integration/",
+		"content_a": "Hubspot",
+		"category": "CRM",
+		"image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/hubspot.jpg"
+	},
+	{
+		"data-category": "Sales Automation,For Sales Teams",
+		"data-name": "salesforce",
+		"link": "./salesforce-integration/",
+		"content_a": "SalesForce",
+		"category": "Sales Automation",
+		"image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/salesforce.jpg"
+	},
+	{
+		"data-category": "CRM",
+		"data-name": "salesforce soap",
+		"link": "./salesforce-soap-integration/",
+		"content_a": "Salesforce Soap",
+		"category": "CRM",
+		"image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/salesforce.jpg"
+	},
+	{
+		"data-category": "Productivity",
+		"data-name": "calendly",
+		"link": "./calendly-integration/",
+		"content_a": "Calendly",
+		"category": "Productivity",
+		"image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Calendly.jpg"
+	},
+	{
+		"data-category": "E-commerce",
+		"data-name": "shopify",
+		"link": "./shopify-integration/",
+		"content_a": "Shopify",
+		"category": "E-commerce",
+		"image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/shopify.jpg"
+	},
+	{
+		"data-category": "Productivity",
+		"data-name": "microsoftteam",
+		"link": "./microsoft-team-integration/",
+		"content_a": "Microsoft Team",
+		"category": "Productivity",
+		"image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/microsoft.jpg"
+	},
+	{
+		"data-category": "CRM,Recruitment and ERP",
+		"data-name": "odoo",
+		"link": "./odoo-integration/",
+		"content_a": "Odoo",
+		"category": "Recruitment and ERP",
+		"image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Odoo.jpg"
+	}
+]

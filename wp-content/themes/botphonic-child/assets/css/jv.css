@@ -1,0 +1,40 @@
+.custom-gradient-text { /* background: linear-gradient(to right, hsl(215, 100%, 47%), hsl(278, 52%, 47%));  */background: linear-gradient(304deg, #FF37DF 21.73%, #6E00FF 56.6%); ; -webkit-background-clip: text; color: transparent; }
+
+.hero-section { max-height: 700px; height: 100%; background: linear-gradient(to bottom right, #eff6ff, #eef2ff, #f5f3ff); }
+.hero-section .custom-bubble { width: 20rem; height: 20rem; border-radius: 50%; mix-blend-mode: multiply; filter: blur(80px); opacity: 0.3; animation: pulse 6s infinite; }
+.hero-section .custom-bubble.blue { background-color: #bfdbfe; top: -10rem; right: -10rem; }
+.hero-section .custom-bubble.indigo { background-color: #c7d2fe; bottom: -10rem; left: -10rem; }
+.hero-section .custom-bubble.purple { background-color: #ddd6fe; opacity: 0.2; z-index: 0; }
+.hero-section .custom-bubble.delay { animation-delay: 2s; }
+.hero-section .custom-bubble.center { z-index: 0; }
+.hero-section .custom-text-gradient { background: linear-gradient(to right, #3b82f6, #8b5cf6, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+.botphonic-liveDemo-section { background-color: hsl(0, 0%, 98%); }
+.botphonic-liveDemo-section .custom-gradient-header { background: linear-gradient(to right, hsl(215, 100%, 47%), hsl(220, 83%, 53%)); }
+
+.affiliate-benefits-section .transition-scale { transition: transform 0.3s ease; }
+.affiliate-benefits-section .transition-scale:hover { transform: scale(1.05); }
+.affiliate-benefits-section .hover-shadow:hover { box-shadow: 0 0.5rem 1.2rem rgba(0, 0, 0, 0.15); }
+
+.custom-text-foreground { color: hsl(222.2, 84%, 4.9%); }
+.custom-backdrop-blur { backdrop-filter: blur(10px); }
+.custom-muted-bg { background-color: hsla(210, 40%, 96.1%, 0.5); }
+.custom-animate-float { animation: float 3s ease-in-out infinite; }
+.custom-animate-bounce { animation: bounce 2s infinite; }
+.delay-1s { animation-delay: 1s; }
+@keyframes pulse {
+    0%,
+    100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.1); opacity: 0.4; }
+}
+@keyframes float {
+    0%,
+    100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes bounce {
+    0%,
+    100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}

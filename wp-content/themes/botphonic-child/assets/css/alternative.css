@@ -1,0 +1,157 @@
+.botphonic-banner-dark { background-color: #0e1d2d; color: #fff; border-radius: 20px; padding: 3rem 2rem; max-width: 850px; margin: 2rem auto; box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); text-align: center; }
+.botphonic-banner-dark .logo-wrapper { margin-bottom: 1.5rem; display: flex; justify-content: center; }
+.botphonic-banner-dark .botphonic-logo { max-width: 220px; width: 100%; height: auto; filter: drop-shadow(0 2px 6px rgba(0, 255, 255, 0.25)); transition: transform 0.3s ease; }
+.botphonic-banner-dark .botphonic-logo:hover { transform: scale(1.05); }
+.botphonic-banner-dark .tagline { font-size: 1.4rem; font-weight: 600; color: #ffffff; margin-bottom: 2rem; }
+.botphonic-banner-dark .features { list-style: none; padding: 0; max-width: 600px; margin: 0 auto 2rem auto; text-align: left; font-size: 1rem; }
+.botphonic-banner-dark .features li { list-style: none; margin: 1rem 0; line-height: 1.6; position: relative; padding-left: 1.5rem; color: #e0f7fa; }
+.botphonic-banner-dark .features li::before { content: "✔"; position: absolute; left: 0; color: #26c6da; font-weight: bold; }
+.botphonic-banner-dark .features li span { font-weight: bold; color: #fff; }
+.botphonic-banner-dark a.theme-btn { display: inline-block; background-color: #007bff; color: #fff; border: 1px solid #007bff; }
+.botphonic-banner-dark a.theme-btn:hover { background-color: #fff; }
+@media screen and (max-width: 768px) {
+	.botphonic-banner-dark { padding: 2rem 1.5rem; }
+	.botphonic-banner-dark .botphonic-logo { max-width: 180px; }
+	.botphonic-banner-dark .tagline { font-size: 1.2rem; }
+	.botphonic-banner-dark .features { font-size: 0.95rem; }
+	.botphonic-banner-dark .theme-btn { padding: 0.75rem 1.5rem; font-size: 0.95rem; }
+}
+
+@media screen and (max-width: 480px) {
+	.botphonic-banner-dark .tagline { font-size: 1.1rem; }
+	.botphonic-banner-dark .features { font-size: 0.9rem; }
+	.botphonic-banner-dark .features li { margin: 0.8rem 0; }
+	.botphonic-banner-dark .theme-btn { width: 100%; max-width: 280px; }
+}
+
+
+
+/* Style for Gutenberg AI Tool TOC */
+.ai-tools-list { counter-reset: item; padding-left: 1.5rem; margin: 2rem 0; }
+.ai-tools-list li { counter-increment: item; font-size: 1rem; position: relative; list-style: none; }
+.ai-tools-list li::before { content: counter(item) "."; position: absolute; left: -1.5rem; font-weight: bold; }
+.ai-tools-list a { text-decoration: none; color: #1e293b; transition: color 0.3s ease; }
+.ai-tools-list a:hover { color: #007bff; }
+
+
+.wp-block-table {  border: none;   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);  overflow: hidden;  border-radius: 12px;}
+
+.wp-block-table table {  width: 100%;  border-collapse: collapse;  background: #fff;   margin-bottom: 0;}
+
+.wp-block-table th,
+.wp-block-table td {   text-align: center;   font-size: 1rem;   border-color: #00000010;   vertical-align: middle; }
+
+.wp-block-table tr:nth-child(1){ border-top:0; }
+.wp-block-table tr:nth-child(1) td {   background: #e5ecfb;   color: var(--primary);   font-weight: bold;   font-size: 1.1rem; }
+.wp-block-table tr td:first-child{border-left:0;}
+.wp-block-table tr td:last-child{border-right:0;}
+.wp-block-table tr:last-child td{ border-bottom: 0; }
+.wp-block-table tr:not(:first-child):hover {  background-color: #f4f7ff;  transition: background 0.3s;}
+.wp-block-table td:first-child {  font-weight: 600;}
+.wp-block-table td:last-child {  font-weight: 700;  color: var(--accent);}
+
+
+.botphonic-banner-dark { background-color: #0e1d2d; color: #fff; border-radius: 20px; padding: 3rem 2rem; max-width: 850px; margin: 2rem auto; box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); text-align: center; }
+.botphonic-banner-dark .logo-wrapper { margin-bottom: 1.5rem; display: flex; justify-content: center; }
+.botphonic-banner-dark .botphonic-logo { max-width: 220px; width: 100%; height: auto; filter: drop-shadow(0 2px 6px rgba(0, 255, 255, 0.25)); transition: transform 0.3s ease; }
+.botphonic-banner-dark .botphonic-logo:hover { transform: scale(1.05); }
+.botphonic-banner-dark .tagline { font-size: 1.4rem; font-weight: 600; color: #ffffff; margin-bottom: 2rem; }
+.botphonic-banner-dark .features { list-style: none; padding: 0; max-width: 600px; margin: 0 auto 2rem auto; text-align: left; font-size: 1rem; }
+.botphonic-banner-dark .features li { list-style: none; margin: 1rem 0; line-height: 1.6; position: relative; padding-left: 1.5rem; color: #e0f7fa; }
+.botphonic-banner-dark .features li::before { content: "✔"; position: absolute; left: 0; color: #26c6da; font-weight: bold; }
+.botphonic-banner-dark .features li span { font-weight: bold; color: #fff; }
+.botphonic-banner-dark .theme-btn { display: inline-block; background-color: #007bff; color: #fff; border: 1px solid #007bff; }
+.botphonic-banner-dark .theme-btn:hover { background-color: #fff; }
+@media screen and (max-width: 600px){
+	.alternative-benefit aside{ text-align: center; }
+	.alternative-benefit aside ul{ padding-left: 20px; }
+	.single-content-inner .alternative-benefit a.wp-block-button__link{ font-size: 14px; }
+}
+
+
+
+/* -------------------------------------------------------------------------------------------------------------------- */
+/* section { padding: 40px 20px; background-color: var(--bg-light); }.container { max-width: 1140px; margin: 0 auto; }
+
+h1,h2 { color: var(--primary); text-align: center; margin-bottom: 20px; }
+h1 { font-size: 36px; }
+*/
+
+.hero-comparison { background: linear-gradient(135deg, #132B3B 0%, #1E4962 100%); padding: 100px 20px; text-align: center; position: relative; overflow: hidden; }
+.hero-comparison .container { max-width: 960px; margin: 0 auto; }
+.hero-comparison .hero-title { font-size: 42px; font-weight: 700; color: var(--white); margin-bottom: 20px; }
+.hero-comparison .hero-description { font-family: var(--text-font); font-size: 18px; color: var(--light-text); line-height: 1.6; margin-bottom: 40px; }
+.hero-comparison .hero-button { display: inline-block; font-family: var(--btn-font); font-weight: 700; padding: 14px 28px; background-color: var(--secondary); color: var(--white); border-radius: 8px; text-decoration: none; transition: background 0.3s ease; }
+.hero-comparison .hero-button:hover { background-color: var(--secondary-hover); color: var(--white); }
+
+.botphonic-compare .sub-title { font-size: 20px; color: var(--accent); text-align: center; margin-bottom: 20px; font-weight: 600; }
+.botphonic-compare table { width: 100%; border-collapse: collapse; background-color: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05); }
+.botphonic-compare th,td { padding: 16px; text-align: center; font-size: 14px; border-bottom: 1px solid #e0e0e0; }
+.botphonic-compare th { background: var(--accent); color: #fff; font-weight: 600; }
+.botphonic-compare td.highlight { background-color: rgba(0, 109, 238, 0.07); font-weight: bold; color: var(--accent); }
+.botphonic-compare .tick::before { content: "✔️"; color: #00c48c; margin-right: 6px; }
+.botphonic-compare .cross::before { content: "❌"; color: #ff5a5a; margin-right: 6px; }
+.botphonic-compare .note { text-align: center; font-size: 13px; margin-top: 20px; color: #7f8c98; }
+.botphonic-compare .cta-btn { margin: 40px auto 0; }
+
+.botphonic-benefits { background-color: #f9f9f9; text-align: center; }
+.botphonic-benefits .container { max-width: 1140px; margin: 0 auto; }
+.botphonic-benefits .benefits-heading { font-size: 36px; font-weight: 700; color: #072032; margin-bottom: 50px; }
+.botphonic-benefits .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+.botphonic-benefits .benefit-card { background: #ffffff; padding: 30px; border-radius: 16px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05); text-align: left; transition: transform 0.3s ease; }
+.botphonic-benefits .benefit-card:hover { transform: translateY(-6px); }
+.botphonic-benefits .benefit-card .icon { font-size: 26px; color: var(--primary); margin-bottom: 16px; }
+.botphonic-benefits .benefit-card h3 { font-size: 20px; color: #072032; margin-bottom: 10px; }
+.botphonic-benefits .benefit-card p { font-family: var(--text-font); font-size: 15px; color: #444; line-height: 1.6; }
+
+.how-it-works { background-color: #ffffff; text-align: center; }
+.how-it-works .container { max-width: 1140px; margin: 0 auto; }
+.how-it-works .section-subtitle { font-size: 18px; margin-bottom: 50px; }
+.how-it-works .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.how-it-works .step-card { background-color: #f9f9f9; padding: 30px; border-radius: 16px; text-align: left; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04); transition: transform 0.3s ease; }
+.how-it-works .step-card:hover { transform: translateY(-6px); }
+.how-it-works .step-card h3 { font-size: 20px; font-weight: 600; color: #072032; margin-bottom: 10px; }
+.how-it-works .step-card h3 span { display: block; font-size: 14px; color: var(--primary); font-weight: 700; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+.how-it-works .step-card p { font-size: 15px; color: #444; line-height: 1.6; margin-bottom: 20px; }
+.how-it-works .step-card img { width: 100%; border-radius: 12px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08); }
+
+.scaling-perks { background: linear-gradient(180deg, #132B3B 0%, #1E4962 100%); color: #ffffff; text-align: center; }
+.scaling-perks .container { max-width: 1140px; margin: 0 auto; }
+.scaling-perks .perks-header h5 { color: #eae1ff; text-transform: uppercase; letter-spacing: 1px; font-size: 14px; margin-bottom: 8px; }
+.scaling-perks .perks-header h2 { font-size: 36px; font-weight: 700; margin-bottom: 10px; }
+.scaling-perks .perks-header p { font-size: 18px; margin-bottom: 20px; }
+.scaling-perks .perks-grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); margin-top: 60px; }
+.scaling-perks .perks-grid .perk-box { background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); padding: 24px; border-radius: 16px; text-align: left; }
+.scaling-perks .perks-grid .perk-box h4 { font-size: 18px; font-weight: 600; margin-bottom: 12px; color: #ffffff; }
+.scaling-perks .perks-grid .perk-box p { margin-bottom: 0; }
+img { max-width: 100%; height: auto; }
+
+@media (max-width: 768px) {
+	.container { padding: 0 15px; }
+
+	h2,
+	.section-title,
+	.benefits-heading,.perks-header h2 { font-size: 24px; }
+	.section-subtitle,.perks-header p { font-size: 16px; }
+
+	.hero-comparison .hero-title { font-size: 28px; }
+	.hero-comparison .hero-description { font-size: 16px; }
+	.hero-comparison .hero-button,
+	.botphonic-compare .cta-btn { font-size: 15px; }
+
+	.botphonic-compare table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+	.botphonic-compare th,
+	.botphonic-compare td { padding: 10px; font-size: 12px; }
+
+	.botphonic-compare,
+	.botphonic-benefits,
+	.how-it-works,
+	.scaling-perks { padding: 40px 15px; }
+
+	.scaling-perks .perks-grid .perk-box { padding: 16px; }
+
+	.botphonic-benefits .benefits-grid,
+	.how-it-works .steps-grid,
+	.scaling-perks .perks-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+}
+/*  */

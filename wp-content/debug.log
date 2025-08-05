@@ -1,0 +1,94 @@
+[18-Jun-2025 13:24:04 UTC] PHP Notice:  Function Elementor\Controls_Manager::add_control_to_stack was called <strong>incorrectly</strong>. Cannot redeclare control with same name "faq_schema". Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 1.0.0.) in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[27-Jun-2025 11:41:17 UTC] PHP Parse error:  syntax error, unexpected token ":", expecting "]" in /var/www/html/botphonic/wp-content/themes/botphonic-child/temp-alternative.php on line 110
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (utm_source) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (utm_medium) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (utm_term) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (utm_content) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (utm_campaign) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (first_utm_source) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (first_utm_medium) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (first_utm_term) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (first_utm_content) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (first_utm_campaign) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (fbclid) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (msclkid) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (gclid) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (handl_original_ref) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (handl_landing_page) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (handl_ip) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (handl_ref) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (handl_url) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (handl_ref_domain) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (handl_url_base) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (gaclientid) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (organic_source) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (organic_source_str) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (user_agent) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (traffic_source) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (first_traffic_source) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (handlID) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:08:44 UTC] PHP Warning:  require_once(/var/www/html/botphonic/wp-content/plugins/botPhonic/widgets/botphonic-alternative.php): Failed to open stream: No such file or directory in /var/www/html/botphonic/wp-content/plugins/botPhonic/botPhonic.php on line 60
+[30-Jun-2025 11:08:44 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/var/www/html/botphonic/wp-content/plugins/botPhonic/widgets/botphonic-alternative.php' (include_path='.:/usr/share/php') in /var/www/html/botphonic/wp-content/plugins/botPhonic/botPhonic.php:60
+Stack trace:
+#0 /var/www/html/botphonic/wp-includes/class-wp-hook.php(324): botphonic_register_widget()
+#1 /var/www/html/botphonic/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters()
+#2 /var/www/html/botphonic/wp-includes/plugin.php(517): WP_Hook->do_action()
+#3 /var/www/html/botphonic/wp-content/plugins/elementor/includes/managers/widgets.php(158): do_action()
+#4 /var/www/html/botphonic/wp-content/plugins/elementor/includes/managers/widgets.php(357): Elementor\Widgets_Manager->init_widgets()
+#5 /var/www/html/botphonic/wp-content/plugins/elementor-pro/modules/global-widget/module.php(53): Elementor\Widgets_Manager->get_widget_types()
+#6 /var/www/html/botphonic/wp-includes/class-wp-hook.php(324): ElementorPro\Modules\GlobalWidget\Module->add_templates_localize_data()
+#7 /var/www/html/botphonic/wp-includes/plugin.php(205): WP_Hook->apply_filters()
+#8 /var/www/html/botphonic/wp-content/plugins/elementor-pro/core/editor/editor.php(80): apply_filters()
+#9 /var/www/html/botphonic/wp-content/plugins/elementor/core/base/base-object.php(143): ElementorPro\Core\Editor\Editor->get_init_settings()
+#10 /var/www/html/botphonic/wp-content/plugins/elementor/core/base/base-object.php(40): Elementor\Core\Base\Base_Object->ensure_settings()
+#11 /var/www/html/botphonic/wp-content/plugins/elementor/core/base/app.php(36): Elementor\Core\Base\Base_Object->get_settings()
+#12 /var/www/html/botphonic/wp-content/plugins/elementor-pro/core/editor/editor.php(112): Elementor\Core\Base\App->print_config()
+#13 /var/www/html/botphonic/wp-includes/class-wp-hook.php(324): ElementorPro\Core\Editor\Editor->enqueue_editor_scripts()
+#14 /var/www/html/botphonic/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters()
+#15 /var/www/html/botphonic/wp-includes/plugin.php(517): WP_Hook->do_action()
+#16 /var/www/html/botphonic/wp-content/plugins/elementor/core/editor/editor.php(359): do_action()
+#17 /var/www/html/botphonic/wp-includes/class-wp-hook.php(324): Elementor\Core\Editor\Editor->enqueue_scripts()
+#18 /var/www/html/botphonic/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters()
+#19 /var/www/html/botphonic/wp-includes/plugin.php(517): WP_Hook->do_action()
+#20 /var/www/html/botphonic/wp-includes/script-loader.php(2299): do_action()
+#21 /var/www/html/botphonic/wp-includes/class-wp-hook.php(324): wp_enqueue_scripts()
+#22 /var/www/html/botphonic/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters()
+#23 /var/www/html/botphonic/wp-includes/plugin.php(517): WP_Hook->do_action()
+#24 /var/www/html/botphonic/wp-includes/general-template.php(3192): do_action()
+#25 /var/www/html/botphonic/wp-content/plugins/elementor/includes/editor-templates/editor-wrapper.php(31): wp_head()
+#26 /var/www/html/botphonic/wp-content/plugins/elementor/core/editor/loader/v2/editor-v2-loader.php(216): include('...')
+#27 /var/www/html/botphonic/wp-content/plugins/elementor/core/editor/editor.php(169): Elementor\Core\Editor\Loader\V2\Editor_V2_Loader->print_root_template()
+#28 /var/www/html/botphonic/wp-includes/class-wp-hook.php(324): Elementor\Core\Editor\Editor->init()
+#29 /var/www/html/botphonic/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters()
+#30 /var/www/html/botphonic/wp-includes/plugin.php(517): WP_Hook->do_action()
+#31 /var/www/html/botphonic/wp-admin/admin.php(420): do_action()
+#32 /var/www/html/botphonic/wp-admin/post.php(12): require_once('...')
+#33 {main}
+  thrown in /var/www/html/botphonic/wp-content/plugins/botPhonic/botPhonic.php on line 60
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (utm_source) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (utm_medium) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (utm_term) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (utm_content) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (utm_campaign) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (first_utm_source) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (first_utm_medium) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (first_utm_term) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (first_utm_content) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (first_utm_campaign) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (fbclid) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (msclkid) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (gclid) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (handl_original_ref) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (handl_landing_page) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (handl_ip) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (handl_ref) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (handl_url) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (handl_ref_domain) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (handl_url_base) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (gaclientid) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (organic_source) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (organic_source_str) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (user_agent) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (traffic_source) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (first_traffic_source) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121
+[30-Jun-2025 11:10:02 UTC] PHP Deprecated:  WPCF7_TagGenerator::add(): Use of tag generator instances older than version 2 is deprecated. Version 1 instance (handlID) detected. in /var/www/html/botphonic/wp-includes/functions.php on line 6121

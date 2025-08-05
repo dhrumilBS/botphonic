@@ -1,0 +1,16 @@
+.choose_data_list .comparison-title { background-color: var(--bg-dark-1); color: #FFF; text-align: center; font-size: 24px; font-weight: 700; padding: 24px; border-radius: 12px 12px 0 0; }
+.comparison-table { border-collapse: collapse; border-radius: 4px; width: 100%; border: 1px solid #00000020; }
+.comparison-table td { text-align: center; padding: 20px; }
+.comparison-table tr td:first-child { text-align: left; }
+.comparison-table .feature-tr { background-color: #F3F4F6; }
+.comparison-table .feature-tr .feature-title { margin: 0; color: var(--accent); font-size: 20px; }
+.comparison-table .feature-tr td.company { border: 1px solid #00000020; margin: 0; color: var(--accent); }
+.comparison-table .feature-tr .other .h3 { color: var(--text); }
+.comparison-table tbody tr td.our { background-color: #00000005; border: 1px solid #00000020; }
+.comparison-table tbody td:not(.our) { border: 1px solid #00000020; border-right: 0; border-left: 0; }
+.comparison-table tbody tr:last-child td { border-bottom-color: #00000020; }
+
+@media(max-width: 576px) {
+    .comparison-table td { padding: 6px; }
+    .comparison-table .feature-tr .feature-title { font-size: 16px; }
+}
