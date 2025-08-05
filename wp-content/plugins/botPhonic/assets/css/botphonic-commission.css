@@ -1,0 +1,33 @@
+.calculator-section { max-width: 1024px; margin: 0 auto; padding: 16px; color: #333; background: #fff; border-radius: 12px; -webkit-box-shadow: 0 3px 15px rgba(0, 0, 0, 0.06); box-shadow: 0 3px 15px rgba(0, 0, 0, 0.06); }
+.commission-header { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; background: #f0f4ff; padding: 0.8rem 1.2rem; border-radius: 8px; font-size: 1rem; font-weight: 500; margin-bottom: 2rem; gap: 8px; }
+.commission-header img { height: 22px; }
+.commission-display { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-pack: distribute; justify-content: space-around; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -ms-flex-wrap: wrap; flex-wrap: wrap; margin-bottom: 2rem; text-align: center; gap: 1.5rem; }
+.commission-amount h1,
+.accounts-count h1 { font-size: 2.5rem; color: var(--accent); margin: 0; }
+.commission-amount p,
+.accounts-count p { font-size: 0.95rem; color: #666; margin: 0.3rem 0 0; }
+.slider-container { margin: 1rem 0 0.5rem; display: -webkit-box; display: -ms-flexbox; display: flex ; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
+.slider-container input[type="range"] { height: 6px; background: #e7ebff; border-radius: 5px; outline: none; -webkit-appearance: none; margin: 0 12px; }
+.slider-container input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); border: 2px solid #fff; cursor: pointer; -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); position: relative; top: -8px; }
+.slider-container input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: var(--accent); border: none; cursor: pointer; }
+.slider-labels-wrapper { width: 100%; margin-top: 1rem; }
+.slider-labels { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; -ms-flex-wrap: nowrap; flex-wrap: nowrap; width: 100%; text-align: center; font-size: 0.85rem; color: #444; }
+.slider-labels span { -webkit-box-flex: 1; -ms-flex: 1; flex: 1; text-align: center; min-width: 0; }
+.slider-title { text-align: center; font-weight: 500; margin-top: 1rem; margin-bottom: 0; color: #444; }
+@media (max-width: 1024px) {
+    .commission-amount h1,
+    .accounts-count h1 { font-size: 2.2rem; }
+    .slider-labels span { font-size: 0.7rem; } 
+}
+
+@media (max-width: 768px) {
+    .commission-display { -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; gap: 1.2rem; }
+    .slider-labels span { font-size: 0.65rem; } 
+    .slider-container input[type="range"] { margin: 0; }
+}
+
+@media (max-width: 480px) {
+    .commission-amount h1,
+    .accounts-count h1 { font-size: 2rem; }
+    .slider-title { font-size: 0.9rem; }
+    .slider-labels span { font-size: 0.6rem; } }

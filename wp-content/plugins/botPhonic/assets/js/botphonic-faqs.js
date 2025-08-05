@@ -20,8 +20,9 @@ function botPhonicFaqs() {
         }
     });
 }
-
-botPhonicFaqs()
+// jQuery(document).ready(function() {
+// 		botPhonicFaqs()
+// 	});
 
 jQuery(window).on('elementor/frontend/init', function () {
     elementorFrontend.hooks.addAction('frontend/element_ready/botphonic-faq.default', botPhonicFaqs

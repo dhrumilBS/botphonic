@@ -1,42 +1,61 @@
 .usecase-section { background: #f9f9ff;  }
 
-.usecases-wrapper .swiper { filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.05)); }
-.usecase-card { background: #fff; border-radius: 20px;  padding: 1.5rem; display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease; } 
-.usecase-card .usecase-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-radius: 16px; color: #fff; font-weight: 600; margin-bottom: 1rem; border: 1px solid #dee2e6; cursor: pointer;transition: border-color 0.3s ease}
+.usecases-wrapper .swiper { -webkit-filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.05)); filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.05)); }
+.usecase-card { display: flex; text-align: center; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease; transition: transform 0.3s ease, box-shadow 0.3s ease } 
+.usecase-card .usecase-header { padding: 1rem; border-radius: 16px; font-weight: 600; border: 1px solid #dee2e6; cursor: pointer; transition: border-color 0.3s ease}
 .usecase-card .usecase-header>* { font-size: 0.85em; }
 .usecase-card .usecase-header.is-active { border-color: var(--color-1); }
 .usecase-card .usecase-header.purple { --color-1:#7f00ff; --color-2: #e100ff; }
 .usecase-card .usecase-header.green { --color-1:#00b09b; --color-2: #96c93d; }
 .usecase-card .usecase-header.blue { --color-1:#2193b0; --color-2: #6dd5ed; }
-.usecase-card .usecase-header .is-soundwaves { background: linear-gradient(135deg, var(--color-1), var(--color-2)); }
-.is-soundwaves { width: 40px; height: 40px; text-align: center; border-radius: 4px; flex-shrink: 0; background-color: #8f6be8 }
-
-.is-soundwaves svg { vertical-align: middle; height: 100%; }
-.is-soundwaves .icon-soundwave [data-id*="line-"] { transform-origin: center; transform-box: fill-box; }
-.is-soundwaves.is-active [data-id="line-1"] { animation: soundwave 1.2s infinite ease-in-out; animation-delay: 0s; }
-.is-soundwaves.is-active [data-id="line-2"] { animation: soundwave 1.2s infinite ease-in-out; animation-delay: 0.1s; }
-.is-soundwaves.is-active [data-id="line-3"] { animation: soundwave 1.2s infinite ease-in-out; animation-delay: 0.2s; }
-.is-soundwaves.is-active [data-id="line-4"] { animation: soundwave 1.2s infinite ease-in-out; animation-delay: 0.3s; }
-.is-soundwaves.is-active [data-id="line-5"] { animation: soundwave 1.2s infinite ease-in-out; animation-delay: 0.4s; }
-@keyframes soundwave {
-    0%,
-    100% { transform: scaleY(0.4); }
-    25% { transform: scaleY(0.8); }
-    50% { transform: scaleY(1.2); }
-    75% { transform: scaleY(0.8); }
-}
-
+.usecase-card .usecase-header .is-soundwaves { background: -o-linear-gradient(315deg, var(--color-1), var(--color-2)); background: linear-gradient(135deg, var(--color-1), var(--color-2)); }
+.usecase-card .usecase-header .is-soundwaves { width: 36px; height: 36px; text-align: center; border-radius: 4px; -ms-flex-negative: 0; flex-shrink: 0; background-color: #8f6be8 }
+.usecase-card .usecase-header .is-soundwaves svg { vertical-align: middle; height: 100%; }
+.usecase-card .usecase-header .is-soundwaves .icon-soundwave [data-id*="line-"] { -webkit-transform-origin: center; -ms-transform-origin: center; transform-origin: center; transform-box: fill-box; }
+.usecase-card .usecase-header .is-soundwaves.is-active [data-id="line-1"] { -webkit-animation: soundwave 1.2s infinite ease-in-out; animation: soundwave 1.2s infinite ease-in-out; -webkit-animation-delay: 0s; animation-delay: 0s; }
+.usecase-card .usecase-header .is-soundwaves.is-active [data-id="line-2"] { -webkit-animation: soundwave 1.2s infinite ease-in-out; animation: soundwave 1.2s infinite ease-in-out; -webkit-animation-delay: 0.1s; animation-delay: 0.1s; }
+.usecase-card .usecase-header .is-soundwaves.is-active [data-id="line-3"] { -webkit-animation: soundwave 1.2s infinite ease-in-out; animation: soundwave 1.2s infinite ease-in-out; -webkit-animation-delay: 0.2s; animation-delay: 0.2s; }
+.usecase-card .usecase-header .is-soundwaves.is-active [data-id="line-4"] { -webkit-animation: soundwave 1.2s infinite ease-in-out; animation: soundwave 1.2s infinite ease-in-out; -webkit-animation-delay: 0.3s; animation-delay: 0.3s; }
+.usecase-card .usecase-header .is-soundwaves.is-active [data-id="line-5"] { -webkit-animation: soundwave 1.2s infinite ease-in-out; animation: soundwave 1.2s infinite ease-in-out; -webkit-animation-delay: 0.4s; animation-delay: 0.4s; }
+.usecase-card .usecase-try-btn { display:-webkit-inline-box; display:-ms-inline-flexbox; display:inline-flex; background: #0B1E2B; border: none; color: #fff; font-size: 0.9rem; padding: 0.4rem 0.8rem; border-radius: 4px; cursor: pointer; -webkit-transition: background 0.2s; -o-transition: background 0.2s; transition: background 0.2s; -ms-flex-negative: 0; flex-shrink: 0; }
+.usecase-card .usecase-try-btn:hover { background: #092D45; }
 .usecase-card .usecase-body .body-title { margin: 0.5rem 0; font-size: 1.2rem; }
 .usecase-card .usecase-body .body-p { font-size: 0.85rem; margin-bottom: 1rem; }
-.usecase-card .usecase-body a { margin-top: auto; color: var(--secondary); font-weight: 500; text-decoration: none; transition: color 0.2s; }
+.usecase-card .usecase-body a { margin-top: auto; color: var(--secondary); font-weight: 500; text-decoration: none; -webkit-transition: color 0.2s; -o-transition: color 0.2s; transition: color 0.2s; }
 .usecase-card .usecase-body a:hover { color: var(--accent); }
 .hidden { display: none; }
 
+@media screen and (max-width:767px){
+	.usecase-card { padding: .75rem;  border-radius: 16px; }
+}
 
+@media screen and (max-width:485px){
+	.usecase-card .usecase-header{ display: block; padding: 0.625rem; border-radius: 12px; margin-bottom: 0.5rem; }
+	.usecase-card .usecase-header .usecase-try-btn{ margin-top: 12px !important; }
+	.usecase-card .usecase-try-btn .usecase-control-icon{ width: 12px; height:12px;  }
+	.usecase-card .usecase-try-btn .usecase-control-icon svg{ width: 100%; height: 100%; vertical-align: middle; }
+}
 
+@-webkit-keyframes soundwave {
+	0%,
+	100% { -webkit-transform: scaleY(0.4); transform: scaleY(0.4); }
+	25% { -webkit-transform: scaleY(0.8); transform: scaleY(0.8); }
+	50% { -webkit-transform: scaleY(1.2); transform: scaleY(1.2); }
+	75% { -webkit-transform: scaleY(0.8); transform: scaleY(0.8); }
+}
+@keyframes soundwave {
+	0%,
+	100% { -webkit-transform: scaleY(0.4); transform: scaleY(0.4); }
+	25% { -webkit-transform: scaleY(0.8); transform: scaleY(0.8); }
+	50% { -webkit-transform: scaleY(1.2); transform: scaleY(1.2); }
+	75% { -webkit-transform: scaleY(0.8); transform: scaleY(0.8); }
+}
 
-
-
-
-.usecase-try-btn { background: #0B1E2B; border: none; color: #fff; font-size: 0.9rem; padding: 0.4rem 0.8rem; border-radius: 4px; cursor: pointer; transition: background 0.2s; flex-shrink: 0; }
-.usecase-try-btn:hover { background: #092D45; }
+.botphonic-features { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 40px; }
+.botphonic-card { flex: 1 1 280px; max-width: 320px; background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(203, 213, 225, 0.6); border-radius: 16px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); }
+.botphonic-card:hover { box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); }
+.botphonic-card-inner { padding: 20px; display: flex; gap: 16px; align-items: flex-start; }
+.botphonic-icon { min-width: 48px; height: 48px; background: hsl(196deg, 100%, 86%, 0.37); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+.botphonic-icon svg { color: var(--accent); width: 24px; height: 24px; }
+.botphonic-content .h3 { margin: 0; font-size: 18px; font-weight: 600; }
+.botphonic-content p { margin: 0; font-size: 14px; color: #475569; }
