@@ -1,7 +1,7 @@
 :root{
     --arrow: url('data:image/svg+xml;utf8,<svg width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.1464 0.146447C10.3417 -0.0488155 10.6582 -0.0488155 10.8535 0.146447C11.0487 0.341712 11.0487 0.658228 10.8535 0.853478L5.85348 5.85348C5.65823 6.04873 5.34171 6.0487 5.14645 5.85348L0.146447 0.853478C-0.0488155 0.658216 -0.0488155 0.341709 0.146447 0.146447C0.341709 -0.0488155 0.658216 -0.0488155 0.853478 0.146447L5.49996 4.79293L10.1464 0.146447Z" fill="black"/></svg>');
 }
-.container { /* max-width: 1600px; */ }
+.container { max-width: 1440px; }
 
 .billing-currency-wrap { position: relative; margin-bottom: 1.25rem; }
 .billing-controls  { padding: 4px; border-radius: 8px; background-color: hsl(210, 17%, 98%); border: 1px solid #cbd5e0; gap: 6px; position: relative;}
@@ -44,7 +44,6 @@
 .recommended .recommended-badge { font-weight: 700; text-align: center; width: calc(100% + 2px); background-color: var(--primary); color: #fff; padding: 8px 12px; position: absolute; bottom: 100%; border-radius: 12px 12px 0 0; margin: -1px; }
 .recommended .plan-card { background: radial-gradient(104% 50% at 50% 35%, hsl(214, 92%, 95%) 0, hsl(213, 93%, 87%) 100%); }
 .recommended .section-header-wrap { color: var(--primary); }
-
 
 @media screen and (min-width: 576px) {
     #planCardsRow .feature-key { visibility: hidden; }
@@ -98,4 +97,4 @@
 .subscribe-btn { background-color: #2563eb; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 0.5rem; font-weight: 600; font-size: 1rem; cursor: pointer; margin-top: 1rem; transition: background-color 0.3s; }
 .subscribe-btn:hover { background-color: #1d4ed8; }
 /* NEW BADGE */
-.discount-badge { position: absolute; top: 0.8rem; right: 0.8rem; background: #f87171; color: white; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 12px; text-transform: uppercase; }
+.discount-badge { position: absolute; top: 8px; right: 8px; background: #f87171; color: white; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 12px; text-transform: uppercase; }

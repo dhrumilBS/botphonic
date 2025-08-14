@@ -1,4 +1,7 @@
+header,
+#wrapper-footer{ display: none !important;}
 .custom-gradient-text { /* background: linear-gradient(to right, hsl(215, 100%, 47%), hsl(278, 52%, 47%));  */background: linear-gradient(304deg, #FF37DF 21.73%, #6E00FF 56.6%); ; -webkit-background-clip: text; color: transparent; }
+.hover-link:hover { color: #0d6efd; text-decoration: underline; }
 
 .hero-section { max-height: 700px; height: 100%; background: linear-gradient(to bottom right, #eff6ff, #eef2ff, #f5f3ff); }
 .hero-section .custom-bubble { width: 20rem; height: 20rem; border-radius: 50%; mix-blend-mode: multiply; filter: blur(80px); opacity: 0.3; animation: pulse 6s infinite; }
@@ -8,9 +11,6 @@
 .hero-section .custom-bubble.delay { animation-delay: 2s; }
 .hero-section .custom-bubble.center { z-index: 0; }
 .hero-section .custom-text-gradient { background: linear-gradient(to right, #3b82f6, #8b5cf6, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-.botphonic-liveDemo-section { background-color: hsl(0, 0%, 98%); }
-.botphonic-liveDemo-section .custom-gradient-header { background: linear-gradient(to right, hsl(215, 100%, 47%), hsl(220, 83%, 53%)); }
 
 .affiliate-benefits-section .transition-scale { transition: transform 0.3s ease; }
 .affiliate-benefits-section .transition-scale:hover { transform: scale(1.05); }
@@ -23,18 +23,24 @@
 .custom-animate-bounce { animation: bounce 2s infinite; }
 .delay-1s { animation-delay: 1s; }
 @keyframes pulse {
-    0%,
-    100% { transform: scale(1); opacity: 0.3; }
-    50% { transform: scale(1.1); opacity: 0.4; }
+	0%,
+	100% { transform: scale(1); opacity: 0.3; }
+	50% { transform: scale(1.1); opacity: 0.4; }
 }
 @keyframes float {
-    0%,
-    100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+	0%,
+	100% { transform: translateY(0); }
+	50% { transform: translateY(-10px); }
 }
 
 @keyframes bounce {
-    0%,
-    100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
+	0%,
+	100% { transform: translateY(0); }
+	50% { transform: translateY(-5px); }
+}
+
+
+@media screen and (max-width: 767px){
+	.bottom-box{left: 40px !important;
+		bottom: -50px !important;}
 }

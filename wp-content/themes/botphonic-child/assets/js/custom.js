@@ -57,3 +57,16 @@ jQuery(document).ready(function ($) {
 	}
 });
 /* End Optimized User Tracking Code */
+document.addEventListener('wpcf7submit', function(event) {
+	const form = event.target;
+	const formWrapper = form.closest('.wpcf7');
+
+	if (!formWrapper || formWrapper.getAttribute('data-wpcf7-id') !== '3104') return;
+
+	const email = form.querySelector('input[name="your-email"]')?.value.trim() || '';
+	const red = form.querySelector('input[name="red"]')?.value.trim() || '';
+	const ref = form.querySelector('input[name="ref"]')?.value.trim() || '';
+
+	const redirectUrl = `https://app.botphonic.ai/register/?red=${encodeURIComponent(red)}&ref=${encodeURIComponent(ref)}&email=${encodeURIComponent(email)}`;
+window.location.href = redirectUrl;
+}, false);

@@ -13,7 +13,7 @@ $sidebar_pos = get_theme_mod( 'understrap_sidebar_position' );
 	<div class="col-md-4 widget-area" id="left-sidebar">
 		<?php endif; ?>
 		<style> 
-			.blog-cta-form-section { background: var(--card-bg); padding: 20px; border-radius: var(--soft-radius); box-shadow: 0 2px 20px #0e0e130d; } 
+			.blog-cta-form-section { background: linear-gradient(to bottom right, #eff6ff, #eef2ff, #f5f3ff); padding: 20px; border-radius: var(--soft-radius); box-shadow: 0 2px 20px #0e0e130d; } 
 			.blog-cta-container .cta-title { color: var(--primary); font-size: 20px; }
 			.blog-cta-container .cta-description { color: var(--p-color); font-size: 14px; }
 			.blog-cta-form-wrapper .wpcf7-form .w-form .w-form-field{ height: 36px; border-radius: 8px; font-size: 14px;  }

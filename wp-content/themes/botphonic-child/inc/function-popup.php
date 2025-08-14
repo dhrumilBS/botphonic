@@ -10,10 +10,10 @@ function add_to_head()
 		$featured_img_srcset = wp_get_attachment_image_srcset($thumb_id);
 		printf('<link rel="preload" as="image" importance="high" href="%s" srcset="%s" />', $featured_img_src, $featured_img_srcset);
 	}
-	
+
 	echo '<meta name="google-site-verification" content="NfdpW5_1t-4uTF5Rx4WNx2QGTDQuZNiDTCN8E5VFiC4" />';
-	
-	
+
+
 	if(is_front_page()){
 		echo '<script type="application/ld+json">
 {
@@ -51,7 +51,7 @@ function add_to_head()
 	echo '<script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
+  "@type": "CreativeWorkSeries",
   "name": "Automate Your Business With Botphonic AI Call Assistant",
   "aggregateRating": {
     "@type": "AggregateRating",
@@ -62,8 +62,8 @@ function add_to_head()
 }
 </script>
 ';
-	
-	
+
+
 	echo "<script>(function(w,d,s,l,i){
  w[l]=w[l]||[];
  w[l].push({ 'gtm.start':new Date().getTime(), event:'gtm.js' });
@@ -77,22 +77,40 @@ function add_to_head()
 // ============================================================================================================================================================
 add_action('wp_footer', 'mobile_validation');
 function mobile_validation(){
-	?>
+?>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  const phoneInput = document.getElementById('your-number');
-  if (phoneInput) {
-    phoneInput.addEventListener('input', function () {
-      // Allow only digits, +, (, )
-      let cleaned = this.value.replace(/[^\d()+\s]/g, '');
-      // Limit to 15 characters total (including symbols and space)
-      this.value = cleaned.slice(0, 15);
-    });
-  }
-});
+	document.addEventListener('DOMContentLoaded', function () {
+		const phoneInput = document.getElementById('your-number');
+		if (phoneInput) {
+			phoneInput.addEventListener('input', function () {
+				// Allow only digits, +, (, )
+				let cleaned = this.value.replace(/[^\d()+\s]/g, '');
+				// Limit to 15 characters total (including symbols and space)
+				this.value = cleaned.slice(0, 15);
+			});
+		}
+	});
 </script>
-
-<?php }
+<?php if(!(is_user_logged_in()) ) { ?> 
+<script type="text/javascript">
+	window.onload = () => {
+		window.lc_id = '431699510458';
+		window.lc_dc = 'botphonic';
+		let v = localStorage.getItem("dmVyc2lvbg==") || Date.now().toString();
+		if (!document.querySelector('app-chat-box')) {
+			var chatWidget = document.createElement('app-chat-box');
+			chatWidget.setAttribute('id', "widget");
+			document.body.insertAdjacentElement('beforeend', chatWidget);
+		}
+		var deskuInstall = document.createElement('script');
+		deskuInstall.src = `https://widget.desku.io/chat-widget.js?v=${v}`;
+		deskuInstall.setAttribute('defer', true);
+		document.body.insertAdjacentElement('beforeend', deskuInstall);
+	}
+</script>
+<?php 
+}
+							}
 // ============================================================================================================================================================
 
 
@@ -118,7 +136,7 @@ function AI_popup(){ ?>
 		.partner-modal .wpcf7-form .w-form .field-wrapper{ margin-bottom: 12px; }
 		.partner-modal .wpcf7-form .w-form .w-textarea { height: 120px; }
 	}
-	
+
 	@keyframes fadeInUp {
 		from { opacity: 0; transform: translateY(30px); }
 		to { opacity: 1; transform: translateY(0); }

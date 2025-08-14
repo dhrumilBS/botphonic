@@ -23,11 +23,11 @@ get_header();
 	<section class="hero-section section-padded dark-bg--bg1">
 		<div class="container">
 			<div class="row justify-content-center">
-				<div class="col-md-8">
+				<div class="col-lg-11 col-md">
 					<div class="text-center">
 						<div class="heading text-center">
 							<span class="pre-title"> Our Blogs </span>
-							<h1 class="title">Discovering the Future of Client Experience With AI </h1>
+							<h1 class="title">Discovering the Future of Client Experience With AI Phone Call Assistant</h1>
 							<p>Learn more about the AI-powered assistant, their characteristics and benefits to industries. Exploring how it will impact potential customers. </p>
 						</div>
 					</div>

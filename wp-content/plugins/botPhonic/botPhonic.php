@@ -13,6 +13,8 @@ require_once('shortcodes/testimonials_shortcode.php');
 require_once('shortcodes/sidetabs_shortcode.php');
 require_once('shortcodes/usecases_shortcode.php');
 require_once('shortcodes/ai-call-assistant-demo-shoertcode.php');	
+require_once('shortcodes/iconbox_shortcode.php');	
+require_once('shortcodes/integration_slider.php');	
 
 function botphonic_enqueue_assets()
 {
@@ -50,6 +52,10 @@ function botphonic_enqueue_assets()
     // Commission Calculator 
     wp_register_style('botphonic-commission', plugin_dir_url(__FILE__) . 'assets/css/botphonic-commission.css', [], rand());
     wp_register_script('botphonic-agent-grid-js', plugin_dir_url(__FILE__) . 'assets/js/botphonic-agent-grid.js', ['jquery'], null, true);
+
+    // Commission Calculator 
+    wp_register_style('botphonic-iconbox', plugin_dir_url(__FILE__) . 'assets/css/botphonic-iconbox.css', [], rand());
+    wp_register_script('botphonic-iconbox', plugin_dir_url(__FILE__) . 'assets/js/botphonic-iconbox.js', ['jquery'], null, true);
 }
 add_action('wp_enqueue_scripts', 'botphonic_enqueue_assets');
 function botphonic_add_custom_widget_category($elements_manager)

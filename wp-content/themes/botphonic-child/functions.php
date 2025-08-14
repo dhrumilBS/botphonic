@@ -30,6 +30,7 @@ function enqueue_child_theme_style()
 
 	wp_register_style('jv', get_stylesheet_directory_uri() . '/assets/css/jv.css', array(), rand());
 
+	
 	wp_register_style('pricing', get_stylesheet_directory_uri() . '/assets/css/pricing.css', array(), rand());
 	wp_register_script('pricing', get_stylesheet_directory_uri() . '/assets/js/pricing.js', array(), rand(), true);
 	wp_register_script('pricingNew', get_stylesheet_directory_uri() . '/assets/js/finalPricing.js', array(), rand(), true);
@@ -121,5 +122,16 @@ function custom_cf7_validation_filter($result, $tag) {
 
 	return $result;
 }
+
+// -----------------------------------------------------------------------------------------
+function force_gravatar_alt_to_author($avatar) {
+    if (strpos($avatar, 'alt=') !== false) {
+        $avatar = preg_replace('/alt=["\'].*?["\']/', 'alt="Author"', $avatar);
+    } else {
+        $avatar = str_replace('<img', '<img alt="Author"', $avatar);
+    }
+    return $avatar;
+}
+add_filter('get_avatar', 'force_gravatar_alt_to_author');
 
 // -----------------------------------------------------------------------------------------

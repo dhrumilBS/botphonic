@@ -38,7 +38,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 				?>
 
 				<main class="site-main" id="main">
-					<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3">
+					<div class="row row-cols-1 row-cols-sm-2">
 						<?php
 						if (have_posts()) {
 							while (have_posts()) {
