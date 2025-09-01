@@ -1,4 +1,5 @@
 /wp-content/uploads/2025/
-/wp-content/plugins/wordfence
-/wp-content/plugins/w3*
-/wp-content/plugins/*-seo
+/wp-content/plugins/*
+!wp-content/plugins/bot*
+!wp-content/plugins/search-log/
+!wp-content/plugins/contact-form-to-any-api
