@@ -26,7 +26,7 @@ wp_enqueue_script('botphonic-faqs-js');
 
 				<div class="single-hero-overlay"></div>
 			</div>
-			<div class="content-container">
+			<div class="content-container d-none">
 				<div class="single-hero-title">
 					<div class="single-hero-meta">
 						<div class="meta-1">
@@ -48,7 +48,7 @@ wp_enqueue_script('botphonic-faqs-js');
 				</div>
 			</div>
 		</div>
-		<div class="content-inner">
+		<div class="content-inner d-none">
 			<div class="single-hero-title p-0 mb-3">
 				<h1 class="title"><?= get_the_title(); ?></h1>
 				<?php if(!empty(get_the_category())) { ?>

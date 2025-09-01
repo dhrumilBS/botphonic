@@ -3,13 +3,10 @@ Theme Name:     BotPhonic - Child Theme
 Template:       botphonic
 Text Domain:    botphonic
 */
-@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap");
-
 :root {
 	--primary: #072032; 
 	--primary-rgb: 7, 32, 50; 
 	--secondary: #FF845E; 
-	--secondary-hover: #e66f4e;
 	--text: #5C6972; 
 	--accent: #006DEE; 
 	--accent-rgb: 0,109,238;
@@ -29,7 +26,7 @@ Text Domain:    botphonic
 	/*For footer areas */
 	--bg-dark-1: #0B1E2B; 
 	--text-light: #E1E8ED; 
-	--bg-light-2: #EDF2F5; 
+	--bg-light-2: #f9f9ff; 
 	--bg-dark-2: #132B3B; 
 	--bg1: #F9FBFC; 
 	--bg2: #EDF2F5; 
@@ -39,11 +36,11 @@ Text Domain:    botphonic
 
 	--arrow: url('data:image/svg+xml;utf8,<svg width="11" height="6" viewBox="0 0 11 6" xmlns="http://www.w3.org/2000/svg"><path d="M10.1464 0.146447C10.3417 -0.0488155 10.6582 -0.0488155 10.8535 0.146447C11.0487 0.341712 11.0487 0.658228 10.8535 0.853478L5.85348 5.85348C5.65823 6.04873 5.34171 6.0487 5.14645 5.85348L0.146447 0.853478C-0.0488155 0.658216 -0.0488155 0.341709 0.146447 0.146447C0.341709 -0.0488155 0.658216 -0.0488155 0.853478 0.146447L5.49996 4.79293L10.1464 0.146447Z" fill="currentColor"/></svg>');
 	--arrow-white: url('data:image/svg+xml;utf8,<svg width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.1464 0.146447C10.3417 -0.0488155 10.6582 -0.0488155 10.8535 0.146447C11.0487 0.341712 11.0487 0.658228 10.8535 0.853478L5.85348 5.85348C5.65823 6.04873 5.34171 6.0487 5.14645 5.85348L0.146447 0.853478C-0.0488155 0.658216 -0.0488155 0.341709 0.146447 0.146447C0.341709 -0.0488155 0.658216 -0.0488155 0.853478 0.146447L5.49996 4.79293L10.1464 0.146447Z" fill="white"/></svg>');
-	--heading-font: "Sora", Sans-serif; 
-	--btn-font: "Sora", Sans-serif; 
+	--heading-font: "Instrument Sans", Sans-serif; 
+	--btn-font: "Instrument Sans", Sans-serif; 
 	--text-font: "DM Sans", Sans-serif; 
 }
- 
+.grecaptcha-badge { visibility: hidden}
 body { font-family: var(--text-font); font-size: 16px; line-height: 1.5; color: var(--text); }
 /* Btn */
 a { text-decoration: dashed; text-decoration-color: rgba(var(--primary-rgb), .4); color: var(--primary); font-weight: 600; transition: all .3s ease-in-out; }
@@ -51,9 +48,9 @@ a:hover { color: rgba(var(--primary-rgb), .8); }
 button,
 .btn,
 .theme-btn,
-a.btn { font-family: var(--btn-font); font-weight: 700; line-height: 1.7; text-transform: capitalize; border-radius: 8px; padding: 12px 24px; color: #fff; background-color: var(--accent); transition: 0.2s all ease-in-out; }
+a.btn { font-family: var(--btn-font); font-weight: 700; line-height: 1.7; text-transform: capitalize; border-radius: 8px; padding: 12px 24px; color: #fff; background-color: var(--accent); transition: 0.2s all ease-in-out; border: 0; }
 .theme-btn:hover{ background-color: #fff; box-shadow: 0 4px 6px -2px hsla(206, 49%, 54%, 0.18), 0 0 0 1px hsla(212, 89%, 75%, 0.3), 0 4px 6px -2px hsla(206, 49%, 54%, 0.18), 0 -4px 1px 0 hsla(212, 89%, 75%, 0.18) inset; color: var(--accent); }
-.elementor-button { border: 0; border-radius: 8px !important; padding: 12px 24px !important; background-color: var(--accent); color: var(--white);	 fill: var(--white); }
+.elementor-button { border: 0; border-radius: 8px !important; padding: 12px 24px !important; background-color: var(--accent); color: var(--white); fill: var(--white); }
 .elementor-button:hover { color: var(--accent); fill: var(--accent); background-color: var(--bg-light-1); border-color: var(--accent); box-shadow: 0 4px 6px -2px hsla(206, 49%, 54%, 0.18), 0 0 0 1px hsla(212, 89%, 75%, 0.3), 0 4px 6px -2px hsla(206, 49%, 54%, 0.18), 0 -4px 1px 0 hsla(212, 89%, 75%, 0.18) inset; }
 
 .demo-btn a{ color: #fff ; background-color: var(--accent); font-weight: 700; border-radius: 8px; box-shadow:  0 0 0 1px transparent; }
@@ -153,7 +150,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .elementor-heading-title {
 
 /* Sign-up form */
 .wpcf7-form .w-form.signup-form-wrapper .wpcf7-form-control-wrap{height: 100%; display: inline-grid; width: 100%; }
-.wpcf7-form .w-form.signup-form-wrapper .form-field{ position: relative; background-color: #fff; border-radius: 12px; overflow: hidden; border: 1px solid #e6eaf7;}
+.wpcf7-form .w-form.signup-form-wrapper .form-field{ position: relative; background-color: #fff; border-radius: 12px; overflow: hidden; }
 .wpcf7-form .w-form.signup-form-wrapper .field-wrapper{ margin: 0; flex-grow:1; }
 .wpcf7-form .w-form.signup-form-wrapper .form-submit-btn { }
 .wpcf7-form .w-form.signup-form-wrapper .form-submit-btn .theme-btn{ padding: 8px 20px; border-radius: 0; height:100%; border:0; }
@@ -197,13 +194,8 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .elementor-heading-title {
 .elementor-counter .elementor-counter-title{ line-height: 1.5; text-align: center; font-weight: 600; font-size: 20px; margin-top: 12px; }
 
 /** .elementor-heading-title span**/
-.elementor-heading-title>span ,
- .custom-gradient-text {
-	/* background: linear-gradient(to right, hsl(215, 100%, 47%), hsl(278, 52%, 47%));  */
-	background: linear-gradient(304deg, #FF37DF 21.73%, #6E00FF 56.6%);
-	-webkit-background-clip: text;
-	color: transparent;
-}
+.elementor-heading-title>span { color: var(--secondary); }
+
 /** elementor-widget-theme-site-logo  **/
 .elementor-widget-theme-site-logo {}
 .elementor-widget-theme-site-logo img { width: auto !important; height: 30px !important; object-fit: contain; }
@@ -245,3 +237,8 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .elementor-heading-title {
 	#mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.signIn-btn > a.mega-menu-link { margin-bottom: 12px; margin-left: 0; }
 	#mega-menu-wrap-primary #mega-menu-primary li.mega-menu-item.mega-menu-megamenu ul.mega-sub-menu li.mega-3-columns > ul.mega-sub-menu { grid-template-columns: repeat(1, minmax(0, 1fr)); }
 }
+
+/* GRADIANT TEXT */
+.custom-gradient-text { background: linear-gradient(304deg, #FF37DF 21.73%, #6E00FF 56.6%); -webkit-background-clip: text; color: transparent; }
+.botphonic-liveDemo-section { background-color: hsl(0, 0%, 98%); }
+.botphonic-liveDemo-section .custom-gradient-header { background: linear-gradient(to right, hsl(215, 100%, 47%), hsl(220, 83%, 53%)); }

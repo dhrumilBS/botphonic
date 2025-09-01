@@ -8,6 +8,7 @@ $sidebar_pos = get_theme_mod( 'understrap_sidebar_position' );
 	.widget_block + .widget_block { margin-top: 24px; }
 
 	.blog-cta-form-wrapper .cta-title { color: #fff; font-size: 24px; font-weight: 700;line-height:1.25; margin-bottom: 10px; }
+	.blog-cta-form-wrapper ul { padding-left: 0; }
 	.blog-cta-form-wrapper li { color: #FFF; margin-bottom: 8px; list-style: none; position: relative; }
 	.blog-cta-form-wrapper li::before { content: "\f00c"; font-family: "Font Awesome 5 Free"; font-weight: 600; margin-right: 8px; }
 	.blog-cta-form-section .blog-cta-form-wrapper .theme-btn { display: block; padding: 8px; text-align: center; color: #202020; background: #fff;  }

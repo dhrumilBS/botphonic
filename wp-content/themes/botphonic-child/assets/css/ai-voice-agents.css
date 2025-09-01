@@ -1,0 +1,34 @@
+.hero-section { max-height: 700px; height: 100%; background: linear-gradient(to bottom right, #eff6ff, #eef2ff, #f5f3ff); }
+.hero-section .custom-bubble { width: 20rem; height: 20rem; border-radius: 50%; mix-blend-mode: multiply; filter: blur(80px); opacity: 0.3; animation: pulse 6s infinite; }
+.hero-section .custom-bubble.blue { background-color: #bfdbfe; top: -10rem; right: -10rem; }
+.hero-section .custom-bubble.indigo { background-color: #c7d2fe; bottom: -10rem; left: -10rem; }
+.hero-section .custom-bubble.purple { background-color: #ddd6fe; opacity: 0.2; z-index: 0; }
+.hero-section .custom-bubble.delay { animation-delay: 2s; }
+.hero-section .custom-bubble.center { z-index: 0; }
+@media screen and (min-width: 992px){
+	.hero-section  { min-height: 26rem; display: flex; align-items: center; }
+}
+
+.marketplace-templates {padding: 40px 0; }
+
+.template-filter-wrap {max-width: 300px; flex-shrink: 0; width: 100%; min-height: 100vh; }
+.template-filter-wrap .template-filter {position: sticky; top: 8px; display: flex; flex-direction: column; gap: 12px; }
+.template-filter-wrap .filter-col {background-color: #f9fafb; padding: 12px; border-radius: 12px; border: 1px solid #08213f20; }
+
+.template-filter-wrap .filter-col .form-check-input:checked {background-color: #006dee; border-color: #006dee; }
+.template-filter-wrap .filter-col .form-check-input:focus {box-shadow: none; }
+.marketplace-templates .template-card {border: 1px solid #e5e7eb; border-radius: 0.75rem; transition: box-shadow 0.2s ease; }
+.marketplace-templates .template-card:hover {box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05); }
+.marketplace-templates .industry-badge { background-color: #f3f4f6; color: #374151; font-size: 12px; padding: 6px 12px; border-radius: 8px; }
+.marketplace-templates .text-content {-webkit-line-clamp: 4; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; }
+.marketplace-templates .tags {flex-wrap: wrap; gap: 4px; }
+.marketplace-templates .hashtag {display: inline-block; background-color: #f9fafb; border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 0.2rem 0.5rem; font-size: 0.75rem; color: #374151; margin-right: 0.25rem; }
+.marketplace-templates .theme-btn {padding: 4px 8px; line-height: 1.5; font-size: 15px; }
+/* Wrapper */
+.actions-wrap {display: flex; flex-wrap: wrap; gap: 8px; }
+/* Each Action */
+.actions-wrap .action {display: inline-flex; align-items: center; gap: 6px; padding: 4px 8px; border-radius: 6px; background: #f3f6f9; font-size: 14px; font-weight: 500; border: 1px solid #e2e6ea; transition: all 0.2s ease; cursor: default; }
+/* Hover Effect */
+.actions-wrap .action:hover {background: #e8f0fe; border-color: #c5d9ff; color: #1a73e8; transform: translateY(-1px); }
+/* Optional SVG icon inside each chip */
+.actions-wrap .action::before {content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%231a73e8" viewBox="0 0 16 16" width="8" height="8"><circle cx="8" cy="8" r="8"/></svg>'); display: inline-block; line-height: 100%; }

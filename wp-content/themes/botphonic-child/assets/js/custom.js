@@ -18,12 +18,22 @@ jQuery(document).ready(function ($) {
 			return false;
 		}
 	};
+	
+	const isBotPhonicLink = (url) => {
+		try {
+			const host = new URL(url).hostname.toLowerCase();
+			return host.includes('botphonic.ai');
+		} catch (_) {
+			return false;
+		}
+	};
+	 
 	const changeParametersForDirect = (encodedParams) => {
-		const selectors = ['header', '.main-wrapper','.wrapper', '.elementor-location-footer'];
+		const selectors = ['header', '.main-wrapper','.wrapper', 'footer', '.elementor-location-footer'];
 		selectors.forEach(selector => {
 			$(selector).find('a').each(function () {
 				let link = $(this).attr('href');
-				if (isUrlValid(link)) {
+				if (isUrlValid(link) && isBotPhonicLink('botphonic.ai')) {
 					if (!link.includes('referer=') && !link.includes('origin_referer=')) {
 						const separator = link.includes('?') ? '&' : '?';
 						$(this).attr('href', link + separator + encodedParams);
@@ -62,6 +72,7 @@ document.addEventListener('wpcf7submit', function(event) {
 	const formWrapper = form.closest('.wpcf7');
 
 	if (!formWrapper || formWrapper.getAttribute('data-wpcf7-id') !== '3104') return;
+	if (event.detail.status !== 'mail_sent') return;
 
 	const email = form.querySelector('input[name="your-email"]')?.value.trim() || '';
 	const red = form.querySelector('input[name="red"]')?.value.trim() || '';

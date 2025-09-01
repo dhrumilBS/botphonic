@@ -1,5 +1,6 @@
-/wp-content/uploads/2025/
-/wp-content/plugins/*
+wp-content/uploads/2025
+wp-content/uploads/2025/
+wp-content/plugins/*
 !wp-content/plugins/bot*
 !wp-content/plugins/search-log/
 !wp-content/plugins/contact-form-to-any-api

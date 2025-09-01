@@ -30,6 +30,10 @@ get_header();
 							<h1 class="title">Discovering the Future of Client Experience With AI Phone Call Assistant</h1>
 							<p>Learn more about the AI-powered assistant, their characteristics and benefits to industries. Exploring how it will impact potential customers. </p>
 						</div>
+						<div class="" style="max-width: 500px; width: 100%; margin:0 auto; ">
+						<?php get_search_form(); ?>
+							
+						</div>
 					</div>
 				</div>
 			</div>

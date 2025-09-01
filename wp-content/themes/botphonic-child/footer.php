@@ -34,6 +34,36 @@ $container = get_theme_mod( 'understrap_container_type' );
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		const phoneInput = document.getElementById('your-number');
+		if (phoneInput) {
+			phoneInput.addEventListener('input', function () {
+				let cleaned = this.value.replace(/[^\d()+\s]/g, '');
+				this.value = cleaned.slice(0, 15);
+			});
+		}
+	});
+</script>
+<?php if(!(is_user_logged_in())) { ?>
+<script type="text/javascript">
+	window.onload = () => {
+		window.lc_id = '431699510458';
+		window.lc_dc = 'botphonic';
+		let v = localStorage.getItem("dmVyc2lvbg==") || Date.now().toString();
+		if (!document.querySelector('app-chat-box')) {
+			var chatWidget = document.createElement('app-chat-box');
+			chatWidget.setAttribute('id', "widget");
+			document.body.insertAdjacentElement('beforeend', chatWidget);
+		}
+		var deskuInstall = document.createElement('script');
+		deskuInstall.src = `https://widget.desku.io/chat-widget.js?v=${v}`;
+		deskuInstall.setAttribute('defer', true);
+		document.body.insertAdjacentElement('beforeend', deskuInstall);
+	}
+</script>
+<?php } ?>
 </body>
 
 </html>

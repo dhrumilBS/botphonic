@@ -3,7 +3,7 @@ define('CUSTOME_STORY_SLUG', 'success-stories');
 
 require_once get_stylesheet_directory() . '/inc/function-cpt.php';
 require_once get_stylesheet_directory() . '/inc/function-admin.php';
-require_once get_stylesheet_directory() . '/inc/function-popup.php';
+require_once get_stylesheet_directory() . '/inc/function-hfe.php';
 
 // ============================================================================================================================================================
 function prioritize_lwptoc_main_css() {
@@ -15,7 +15,7 @@ add_action('wp_enqueue_scripts', 'prioritize_lwptoc_main_css', 1); // Lower numb
 // =========================================================================================
 function enqueue_intl_tel_input_assets()
 {
-	
+
 }
 add_action('wp_enqueue_scripts', 'enqueue_intl_tel_input_assets', -1);
 
@@ -30,7 +30,7 @@ function enqueue_child_theme_style()
 
 	wp_register_style('jv', get_stylesheet_directory_uri() . '/assets/css/jv.css', array(), rand());
 
-	
+
 	wp_register_style('pricing', get_stylesheet_directory_uri() . '/assets/css/pricing.css', array(), rand());
 	wp_register_script('pricing', get_stylesheet_directory_uri() . '/assets/js/pricing.js', array(), rand(), true);
 	wp_register_script('pricingNew', get_stylesheet_directory_uri() . '/assets/js/finalPricing.js', array(), rand(), true);
@@ -38,8 +38,15 @@ function enqueue_child_theme_style()
 	wp_register_style('alternative', get_stylesheet_directory_uri() . '/assets/css/alternative.css', array(), rand());
 	wp_register_script('alternative', get_stylesheet_directory_uri() . '/assets/js/alternative.js', array(), rand(), true);
 
+	if(is_page(6160)){
+		wp_enqueue_style('marketplace', get_stylesheet_directory_uri() . '/assets/css/marketplace.css', array(), rand());
+		wp_enqueue_script('marketplace', get_stylesheet_directory_uri() . '/assets/js/marketplace.js', array(), rand(), true);
+	}
 
-
+	if(is_page(7174)){
+		wp_enqueue_style('ai-voice-agents', get_stylesheet_directory_uri() . '/assets/css/ai-voice-agents.css', array(), rand());
+		wp_enqueue_script('ai-voice-agents', get_stylesheet_directory_uri() . '/assets/js/ai-voice-agents.js', array(), rand(), true);
+	}
 	if (get_post_type() === CUSTOME_STORY_SLUG) {
 		wp_enqueue_style(CUSTOME_STORY_SLUG, get_stylesheet_directory_uri() . '/assets/css/case-study.css', array(), rand());
 	}
@@ -125,12 +132,12 @@ function custom_cf7_validation_filter($result, $tag) {
 
 // -----------------------------------------------------------------------------------------
 function force_gravatar_alt_to_author($avatar) {
-    if (strpos($avatar, 'alt=') !== false) {
-        $avatar = preg_replace('/alt=["\'].*?["\']/', 'alt="Author"', $avatar);
-    } else {
-        $avatar = str_replace('<img', '<img alt="Author"', $avatar);
-    }
-    return $avatar;
+	if (strpos($avatar, 'alt=') !== false) {
+		$avatar = preg_replace('/alt=["\'].*?["\']/', 'alt="Author"', $avatar);
+	} else {
+		$avatar = str_replace('<img', '<img alt="Author"', $avatar);
+	}
+	return $avatar;
 }
 add_filter('get_avatar', 'force_gravatar_alt_to_author');
 
