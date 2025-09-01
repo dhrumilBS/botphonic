@@ -764,11 +764,11 @@
     };
     const typeAttr = acf.escAttr(type);
     const template = function (selection) {
-      return `<span class="acf-${typeAttr}-select-name acf-conditional-select-name">` + acf.escHtml(selection.text) + '</span>';
+      return `<span class="acf-${typeAttr}-select-name acf-conditional-select-name">` + acf.strEscape(selection.text) + '</span>';
     };
     const resultsTemplate = function (results) {
       let classes = results.text.startsWith('- ') ? `acf-${typeAttr}-select-name acf-${typeAttr}-select-sub-item` : `acf-${typeAttr}-select-name`;
-      return '<span class="' + classes + '">' + acf.escHtml(results.text) + '</span>' + `<span class="acf-${typeAttr}-select-id acf-conditional-select-id">` + (results.id ? results.id : '') + '</span>';
+      return '<span class="' + classes + '">' + acf.strEscape(results.text) + '</span>' + `<span class="acf-${typeAttr}-select-id acf-conditional-select-id">` + (results.id ? results.id : '') + '</span>';
     };
     const select2Props = {
       field: false,
@@ -2859,7 +2859,23 @@
       // add date picker
       acf.newDatePicker($inputText, args);
 
-      // action
+      // Check if default to today is enabled and field is empty
+      if ($inputText.data('default-to-today') === 1 && !$input.val()) {
+        // Get current date
+        const currentDate = new Date();
+
+        // Format display date
+        const displayDate = $.datepicker.formatDate(args.dateFormat, currentDate);
+
+        // Set the display input value (what user sees)
+        $inputText.val(`${displayDate}`);
+
+        // Format hidden field date (for database storage)
+        const hiddenDate = $.datepicker.formatDate('yymmdd', currentDate);
+
+        // Set the hidden input value (what gets saved)
+        $input.val(`${hiddenDate}`);
+      }
       acf.doAction('date_picker_init', $inputText, args, this);
     },
     initializeCompatibility: function () {
@@ -3001,6 +3017,34 @@
 
       // add date time picker
       acf.newDateTimePicker($inputText, args);
+
+      // Check if default to today is enabled and field is empty
+      if ($inputText.data('default-to-today') === 1 && !$input.val()) {
+        // Get current date
+        const currentDate = new Date();
+
+        // Format display date and time
+        const displayDate = $.datepicker.formatDate(args.dateFormat, currentDate);
+        const displayTime = $.datepicker.formatTime(args.timeFormat, {
+          hour: currentDate.getHours(),
+          minute: currentDate.getMinutes(),
+          second: currentDate.getSeconds()
+        });
+
+        // Set the display input value (what user sees)
+        $inputText.val(`${displayDate} ${displayTime}`);
+
+        // Format hidden field date and time (for database storage)
+        const hiddenDate = $.datepicker.formatDate('yy-mm-dd', currentDate);
+        const hiddenTime = $.datepicker.formatTime('hh:mm:ss', {
+          hour: currentDate.getHours(),
+          minute: currentDate.getMinutes(),
+          second: currentDate.getSeconds()
+        });
+
+        // Set the hidden input value (what gets saved)
+        $input.val(`${hiddenDate} ${hiddenTime}`);
+      }
 
       // action
       acf.doAction('date_time_picker_init', $inputText, args, this);
@@ -3880,16 +3924,21 @@
       }
     },
     getIconsList(tabName) {
+      let icons;
       if ('dashicons' === tabName) {
         const iconPickeri10n = acf.get('iconPickeri10n') || [];
-        return Object.entries(iconPickeri10n).map(([key, value]) => {
-          return {
-            key,
-            label: value
-          };
-        });
+        icons = Object.entries(iconPickeri10n).map(([key, label]) => ({
+          key,
+          label
+        }));
+      } else {
+        const iconList = this.$(`.acf-icon-list[data-parent-tab="${tabName}"]`);
+        if (iconList.length !== 0) {
+          const iconsData = iconList.data('icons');
+          icons = Array.isArray(iconsData) ? iconsData : [];
+        }
       }
-      return acf.get(`iconPickerIcons_${tabName}`);
+      return icons;
     },
     getIconsBySearch(searchTerm, tabName) {
       const lowercaseSearchTerm = searchTerm.toLowerCase();
@@ -4741,6 +4790,7 @@
         // Add sortable.
         this.$list('values').sortable({
           items: 'li',
+          zIndex: 9999,
           forceHelperSize: true,
           forcePlaceholderSize: true,
           scroll: true,
@@ -8782,12 +8832,7 @@
 
         // Create postbox if doesn't exist.
         if (!postbox) {
-          var wpMinorVersion = parseFloat(acf.get('wp_version'));
-          if (wpMinorVersion >= 5.5) {
-            var postboxHeader = ['<div class="postbox-header">', '<h2 class="hndle ui-sortable-handle">', '<span>' + acf.escHtml(result.title) + '</span>', '</h2>', '<div class="handle-actions hide-if-no-js">', '<button type="button" class="handlediv" aria-expanded="true">', '<span class="screen-reader-text">Toggle panel: ' + acf.escHtml(result.title) + '</span>', '<span class="toggle-indicator" aria-hidden="true"></span>', '</button>', '</div>', '</div>'].join('');
-          } else {
-            var postboxHeader = ['<button type="button" class="handlediv" aria-expanded="true">', '<span class="screen-reader-text">Toggle panel: ' + acf.escHtml(result.title) + '</span>', '<span class="toggle-indicator" aria-hidden="true"></span>', '</button>', '<h2 class="hndle ui-sortable-handle">', '<span>' + acf.escHtml(result.title) + '</span>', '</h2>'].join('');
-          }
+          var postboxHeader = ['<div class="postbox-header">', '<h2 class="hndle ui-sortable-handle">', '<span>' + result.title + '</span>', '</h2>', '<div class="handle-actions hide-if-no-js">', '<button type="button" class="handlediv" aria-expanded="true">', '<span class="screen-reader-text">' + acf.__('Toggle panel') + ': ' + result.title + '</span>', '<span class="toggle-indicator" aria-hidden="true"></span>', '</button>', '</div>', '</div>'].join('');
 
           // Ensure result.classes is set.
           if (!result.classes) result.classes = '';
@@ -8924,10 +8969,7 @@
       acf.unload.disable();
 
       // Refresh metaboxes since WP 5.3.
-      var wpMinorVersion = parseFloat(acf.get('wp_version'));
-      if (wpMinorVersion >= 5.3) {
-        this.addAction('refresh_post_screen', this.onRefreshPostScreen);
-      }
+      this.addAction('refresh_post_screen', this.onRefreshPostScreen);
 
       // Trigger "refresh" after WP has moved metaboxes into place.
       wp.domReady(acf.refresh);

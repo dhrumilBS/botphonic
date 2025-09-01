@@ -1196,7 +1196,7 @@
       // vars
       var $handle = this.$('.handle:first');
       var menu_order = this.prop('menu_order');
-      var label = this.getLabel();
+      var label = acf.strEscape(this.getLabel());
       var name = this.prop('name');
       var type = this.getTypeLabel();
       var key = this.prop('key');
@@ -1417,7 +1417,7 @@
     onChangeLabel: function (e, $el) {
       // set
       const label = $el.val();
-      const safeLabel = acf.encode(label);
+      const safeLabel = acf.strEscape(label);
       this.set('label', safeLabel);
 
       // render name
@@ -2143,6 +2143,7 @@
           }).end();
         },
         handle: '.acf-sortable-handle',
+        zIndex: 9999,
         connectWith: '.acf-field-list',
         start: function (e, ui) {
           var field = acf.getFieldObject(ui.item);
@@ -2755,13 +2756,13 @@
         }
         if (selection.loading || selection.element && selection.element.nodeName === 'OPTGROUP') {
           var $selection = $('<span class="acf-selection"></span>');
-          $selection.html(acf.escHtml(selection.text));
+          $selection.html(acf.strEscape(selection.text));
           return $selection;
         }
         if ('undefined' === typeof selection.human_field_type || 'undefined' === typeof selection.field_type || 'undefined' === typeof selection.this_field) {
           return selection.text;
         }
-        var $selection = $('<i title="' + acf.escHtml(selection.human_field_type) + '" class="field-type-icon field-type-icon-' + acf.escHtml(selection.field_type.replaceAll('_', '-')) + '"></i><span class="acf-selection has-icon">' + acf.escHtml(selection.text) + '</span>');
+        var $selection = $('<i title="' + acf.escAttr(selection.human_field_type) + '" class="field-type-icon field-type-icon-' + acf.strEscape(selection.field_type.replaceAll('_', '-')) + '"></i><span class="acf-selection has-icon">' + acf.strEscape(selection.text) + '</span>');
         if (selection.this_field) {
           $selection.last().append('<span class="acf-select2-default-pill">' + acf.__('This Field') + '</span>');
         }

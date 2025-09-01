@@ -7,7 +7,7 @@ function botphonic_ai_call_assistant_demo()
 <style>
 	.custom-gradient-text { /* background: linear-gradient(to right, hsl(215, 100%, 47%), hsl(278, 52%, 47%));  */background: linear-gradient(304deg, #FF37DF 21.73%, #6E00FF 56.6%); ; -webkit-background-clip: text; color: transparent; }
 
-	.botphonic-liveDemo-section { background-color: hsl(0, 0%, 98%); }
+	.botphonic-liveDemo-section { background-color: #F9F9FF; }
 	.botphonic-liveDemo-section .custom-gradient-header { background: linear-gradient(to right, hsl(215, 100%, 47%), hsl(220, 83%, 53%)); }
 
 </style>

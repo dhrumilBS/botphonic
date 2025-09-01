@@ -1,8 +1,10 @@
 *** Yoast SEO premium Changelog ***
 
 
-2025-07-01 - version 25.4
-* add -  Improves handling the AI Optimize suggestions containing split paragraphs for _paragraph length_ assessment in Classic editor.
-* fix -  Fixes a bug where the AI Optimize Introduction notification would display behind the WordPress admin menu in some screen resolutions.
-* update -  Bumps the minimum required version of Yoast SEO to 25.4.
+2025-08-26 - version 25.8
+* fix -  Fixes a bug where redirect notification would be created when changing the slug on a non public term.
+* fix -  Fixes a bug where redirect notification would not be created when changing the slug on a public term with url arguments in the permalink.
+* fix -  Fixes a bug where redirect notification would be created when changing the slug on a non public term.
+* fix -  Fixes a bug where redirect notification would not be created when changing the slug on a public term with url arguments in the permalink.
+* update -  Bumps the minimum required version of Yoast SEO to 25.8.
 

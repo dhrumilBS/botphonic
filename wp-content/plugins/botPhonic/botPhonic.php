@@ -23,8 +23,8 @@ function botphonic_enqueue_assets()
 
 
 	// Swiper from CDN
-	wp_register_style('botphonic-Swiper', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',[] , rand());
-	wp_register_script('botphonic-Swiper', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', [], null, true);
+	wp_register_style('botphonic-Swiper', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css',[] , rand());
+	wp_register_script('botphonic-Swiper', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js', [], null, true);
 
 	// Usecase
     wp_register_style('botphonic-usecase-css', plugin_dir_url(__FILE__) . 'assets/css/botphonic-usecase.css',[] , rand());
@@ -80,5 +80,7 @@ function botphonic_register_widget($widgets_manager)
     require_once(__DIR__ . '/widgets/botphonic-audio-sample-box.php');
     require_once(__DIR__ . '/widgets/botphonic-commission-calculator.php');
     require_once(__DIR__ . '/widgets/botphonic-available-badge.php');
+    require_once(__DIR__ . '/widgets/botphonic-industry-slidder.php');
+    require_once(__DIR__ . '/widgets/botphonic-audio-agent-grid.php');
 }
 add_action('elementor/widgets/register', 'botphonic_register_widget');

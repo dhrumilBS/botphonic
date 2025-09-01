@@ -6,7 +6,6 @@ function testimonials_shortcode()
 	ob_start();
 ?>
 	<style>
-		.testimonial-section { background: #f8fafc; padding: 80px 20px; }
 		.testimonial-heading { text-align: center; margin-bottom: 60px; }
 		.testimonial-heading h2 { font-size: 36px; color: #0f172a; font-weight: 800; margin-bottom: 12px; }
 		.testimonial-heading p { color: #475569; max-width: 780px; margin: 0 auto; }
@@ -35,7 +34,7 @@ function testimonials_shortcode()
 		}
 	</style>
 
-	<section class="testimonial-section">
+	<section class="testimonial-section section-padded">
 		<div class="testimonial-heading">
 			<h2>Look What Our Customers Say</h2>
 			<p>Explore the incredible experience of Botphonic clients and comprehend our extensive potential. We assist you to attract more clients’ and improve operations speed.</p>

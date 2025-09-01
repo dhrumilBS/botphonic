@@ -11,11 +11,12 @@ class ComposerStaticInit652899b34da171aac8f751a6c639281f
         array (
             'SCF\\Meta\\' => 9,
             'SCF\\Forms\\' => 10,
+            'SCF\\Fields\\FlexibleContent\\' => 27,
         ),
         'A' => 
         array (
             'ACF\\Blocks\\' => 11,
-        ),
+        )
     );
 
     public static $prefixDirsPsr4 = array (
@@ -27,15 +28,20 @@ class ComposerStaticInit652899b34da171aac8f751a6c639281f
         array (
             0 => __DIR__ . '/../..' . '/includes/forms',
         ),
+        'SCF\\Fields\\FlexibleContent\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/includes/fields/FlexibleContent',
+        ),
         'ACF\\Blocks\\' => 
         array (
             0 => __DIR__ . '/../..' . '/includes/Blocks',
-        ),
+        )
     );
 
     public static $classMap = array (
         'ACF\\Blocks\\Bindings' => __DIR__ . '/../..' . '/includes/Blocks/Bindings.php',
-        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'SCF\\Fields\\FlexibleContent\\Layout' => __DIR__ . '/../..' . '/includes/fields/FlexibleContent/Layout.php',
+        'SCF\\Fields\\FlexibleContent\\Render' => __DIR__ . '/../..' . '/includes/fields/FlexibleContent/Render.php',
         'SCF\\Forms\\WC_Order' => __DIR__ . '/../..' . '/includes/forms/WC_Order.php',
         'SCF\\Meta\\Comment' => __DIR__ . '/../..' . '/includes/Meta/Comment.php',
         'SCF\\Meta\\MetaLocation' => __DIR__ . '/../..' . '/includes/Meta/MetaLocation.php',
@@ -43,7 +49,7 @@ class ComposerStaticInit652899b34da171aac8f751a6c639281f
         'SCF\\Meta\\Post' => __DIR__ . '/../..' . '/includes/Meta/Post.php',
         'SCF\\Meta\\Term' => __DIR__ . '/../..' . '/includes/Meta/Term.php',
         'SCF\\Meta\\User' => __DIR__ . '/../..' . '/includes/Meta/User.php',
-        'SCF\\Meta\\WooOrder' => __DIR__ . '/../..' . '/includes/Meta/WooOrder.php',
+        'SCF\\Meta\\WooOrder' => __DIR__ . '/../..' . '/includes/Meta/WooOrder.php'
     );
 
     public static function getInitializer(ClassLoader $loader)

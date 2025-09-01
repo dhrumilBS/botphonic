@@ -47,7 +47,7 @@ function botPhonicTabs() {
 
     // Add hover event listeners for individual list items
     listItems.forEach((item, index) => {
-        item.addEventListener('mouseenter', () => {
+        item.addEventListener('click', () => {
             activeIndex = index;
             updateActiveTab(activeIndex);
         });

@@ -8,5 +8,6 @@ $baseDir = dirname($vendorDir);
 return array(
     'SCF\\Meta\\' => array($baseDir . '/includes/Meta'),
     'SCF\\Forms\\' => array($baseDir . '/includes/forms'),
+    'SCF\\Fields\\FlexibleContent\\' => array($baseDir . '/includes/fields/FlexibleContent'),
     'ACF\\Blocks\\' => array($baseDir . '/includes/Blocks'),
 );

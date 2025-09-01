@@ -8,6 +8,8 @@ $baseDir = dirname($vendorDir);
 return array(
     'ACF\\Blocks\\Bindings' => $baseDir . '/includes/Blocks/Bindings.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'SCF\\Fields\\FlexibleContent\\Layout' => $baseDir . '/includes/fields/FlexibleContent/Layout.php',
+    'SCF\\Fields\\FlexibleContent\\Render' => $baseDir . '/includes/fields/FlexibleContent/Render.php',
     'SCF\\Forms\\WC_Order' => $baseDir . '/includes/forms/WC_Order.php',
     'SCF\\Meta\\Comment' => $baseDir . '/includes/Meta/Comment.php',
     'SCF\\Meta\\MetaLocation' => $baseDir . '/includes/Meta/MetaLocation.php',

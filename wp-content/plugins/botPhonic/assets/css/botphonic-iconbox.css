@@ -1,11 +1,9 @@
 /* Background Gradient */
-.icon-box-section { background: linear-gradient(336deg, #FF80000E 9%, #3770FF0D 88%); color: #1e1e2f; }
+.icon-box-section { color: #1e1e2f; }
 .icon-box-section.dak-bg { background: linear-gradient(135deg, hsl(230, 100%, 10%), hsl(223, 100%, 20%), hsl(230, 100%, 10%)); }
 .icon-box-section .icon-box { background: white; border: 1px solid #eee; border-radius: 16px; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05); transition: all 0.3s ease; }
 .icon-box-section .icon-box:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08); }
 .icon-box-section .icon-box .icon { font-size: 1.5rem; color: #7B5CFF; line-height: 1; }
-
 .icon-box-section .icon-box .icon svg { width: 1em; height: 1em; color: #7B5CFF; }
 .icon-box-section .btn-accent { background: #7B5CFF; color: #fff; border: none; padding: 0.6rem 1.4rem; border-radius: 8px; font-weight: 500; transition: all 0.2s ease-in-out; }
 .icon-box-section .btn-accent:hover { background: #674be1; }
-

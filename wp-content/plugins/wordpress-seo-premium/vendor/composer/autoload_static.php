@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInita8855dd82ab9dc69943632885bc10c1a
+class ComposerStaticInit6b72f0b35fc3f381feb26024c441e5f6
 {
     public static $prefixLengthsPsr4 = array (
         'C' => 
@@ -94,7 +94,7 @@ class ComposerStaticInita8855dd82ab9dc69943632885bc10c1a
         'WPSEO_Redirect_Option' => __DIR__ . '/../..' . '/classes/redirect/redirect-option.php',
         'WPSEO_Redirect_Option_Exporter' => __DIR__ . '/../..' . '/classes/redirect/exporters/redirect-option-exporter.php',
         'WPSEO_Redirect_Page' => __DIR__ . '/../..' . '/classes/redirect/redirect-page.php',
-        'WPSEO_Redirect_Page_Presenter' => __DIR__ . '/../..' . '/classes/redirect/presenters/redirect-page-presenter.php',
+        'WPSEO_Redirect_Page_Presenter' => __DIR__ . '/../..' . '/src/deprecated/classes/redirect/presenters/redirect-page-presenter.php',
         'WPSEO_Redirect_Presence_Validation' => __DIR__ . '/../..' . '/classes/redirect/validation/redirect-presence-validation.php',
         'WPSEO_Redirect_Presenter' => __DIR__ . '/../..' . '/classes/redirect/presenters/redirect-presenter-interface.php',
         'WPSEO_Redirect_Quick_Edit_Presenter' => __DIR__ . '/../..' . '/classes/redirect/presenters/redirect-quick-edit-presenter.php',
@@ -129,15 +129,24 @@ class ComposerStaticInita8855dd82ab9dc69943632885bc10c1a
         'Yoast\\WP\\SEO\\Integrations\\Third_Party\\TranslationsPress' => __DIR__ . '/../..' . '/src/integrations/third-party/translationspress.php',
         'Yoast\\WP\\SEO\\Integrations\\Third_Party\\Wincher_Keyphrases' => __DIR__ . '/../..' . '/src/integrations/third-party/wincher-keyphrases.php',
         'Yoast\\WP\\SEO\\Models\\Prominent_Words' => __DIR__ . '/../..' . '/src/models/prominent-words.php',
-        'Yoast\\WP\\SEO\\Premium\\AI_Suggestions_Postprocessor\\Application\\AI_Suggestions_Serializer' => __DIR__ . '/../..' . '/src/ai-suggestions-postprocessor/application/ai-suggestions-serializer.php',
-        'Yoast\\WP\\SEO\\Premium\\AI_Suggestions_Postprocessor\\Application\\AI_Suggestions_Unifier' => __DIR__ . '/../..' . '/src/ai-suggestions-postprocessor/application/ai-suggestions-unifier.php',
-        'Yoast\\WP\\SEO\\Premium\\AI_Suggestions_Postprocessor\\Application\\Sentence_Processor' => __DIR__ . '/../..' . '/src/ai-suggestions-postprocessor/application/sentence-processor.php',
-        'Yoast\\WP\\SEO\\Premium\\AI_Suggestions_Postprocessor\\Application\\Suggestion_Processor' => __DIR__ . '/../..' . '/src/ai-suggestions-postprocessor/application/suggestion-processor.php',
-        'Yoast\\WP\\SEO\\Premium\\AI_Suggestions_Postprocessor\\Domain\\Suggestion' => __DIR__ . '/../..' . '/src/ai-suggestions-postprocessor/domain/suggestion.php',
-        'Yoast\\WP\\SEO\\Premium\\AI_Suggestions_Postprocessor\\Domain\\Suggestion_Interface' => __DIR__ . '/../..' . '/src/ai-suggestions-postprocessor/domain/suggestion-interface.php',
-        'Yoast\\WP\\SEO\\Premium\\Actions\\AI_Base_Action' => __DIR__ . '/../..' . '/src/actions/ai-base-action.php',
-        'Yoast\\WP\\SEO\\Premium\\Actions\\AI_Generator_Action' => __DIR__ . '/../..' . '/src/actions/ai-generator-action.php',
-        'Yoast\\WP\\SEO\\Premium\\Actions\\AI_Optimizer_Action' => __DIR__ . '/../..' . '/src/actions/ai-optimizer-action.php',
+        'Yoast\\WP\\SEO\\Premium\\AI\\Optimize\\Optimizer\\Application\\Optimizer' => __DIR__ . '/../..' . '/src/ai/optimize/optimizer/application/optimizer.php',
+        'Yoast\\WP\\SEO\\Premium\\AI\\Optimize\\Optimizer\\Domain\\Suggestion' => __DIR__ . '/../..' . '/src/ai/optimize/optimizer/domain/suggestion.php',
+        'Yoast\\WP\\SEO\\Premium\\AI\\Optimize\\Optimizer\\Domain\\Suggestion_Interface' => __DIR__ . '/../..' . '/src/ai/optimize/optimizer/domain/suggestion-interface.php',
+        'Yoast\\WP\\SEO\\Premium\\AI\\Optimize\\Optimizer\\User_Interface\\AI_Optimize_Integration' => __DIR__ . '/../..' . '/src/ai/optimize/optimizer/user-interface/ai-optimize-integration.php',
+        'Yoast\\WP\\SEO\\Premium\\AI\\Optimize\\Optimizer\\User_Interface\\AI_Optimize_Route' => __DIR__ . '/../..' . '/src/ai/optimize/optimizer/user-interface/ai-optimize-route.php',
+        'Yoast\\WP\\SEO\\Premium\\AI\\Optimize\\Suggestions_Postprocessor\\Application\\Sentence_Processor' => __DIR__ . '/../..' . '/src/ai/optimize/suggestions-postprocessor/application/sentence-processor.php',
+        'Yoast\\WP\\SEO\\Premium\\AI\\Optimize\\Suggestions_Postprocessor\\Application\\Suggestion_Processor' => __DIR__ . '/../..' . '/src/ai/optimize/suggestions-postprocessor/application/suggestion-processor.php',
+        'Yoast\\WP\\SEO\\Premium\\AI\\Optimize\\Suggestions_Postprocessor\\Application\\Suggestions_Serializer' => __DIR__ . '/../..' . '/src/ai/optimize/suggestions-postprocessor/application/suggestions-serializer.php',
+        'Yoast\\WP\\SEO\\Premium\\AI\\Optimize\\Suggestions_Postprocessor\\Application\\Suggestions_Unifier' => __DIR__ . '/../..' . '/src/ai/optimize/suggestions-postprocessor/application/suggestions-unifier.php',
+        'Yoast\\WP\\SEO\\Premium\\AI_Suggestions_Postprocessor\\Application\\AI_Suggestions_Serializer' => __DIR__ . '/../..' . '/src/deprecated/ai-suggestions-postprocessor/application/ai-suggestions-serializer.php',
+        'Yoast\\WP\\SEO\\Premium\\AI_Suggestions_Postprocessor\\Application\\AI_Suggestions_Unifier' => __DIR__ . '/../..' . '/src/deprecated/ai-suggestions-postprocessor/application/ai-suggestions-unifier.php',
+        'Yoast\\WP\\SEO\\Premium\\AI_Suggestions_Postprocessor\\Application\\Sentence_Processor' => __DIR__ . '/../..' . '/src/deprecated/ai-suggestions-postprocessor/application/sentence-processor.php',
+        'Yoast\\WP\\SEO\\Premium\\AI_Suggestions_Postprocessor\\Application\\Suggestion_Processor' => __DIR__ . '/../..' . '/src/deprecated/ai-suggestions-postprocessor/application/suggestion-processor.php',
+        'Yoast\\WP\\SEO\\Premium\\AI_Suggestions_Postprocessor\\Domain\\Suggestion' => __DIR__ . '/../..' . '/src/deprecated/ai-suggestions-postprocessor/domain/suggestion.php',
+        'Yoast\\WP\\SEO\\Premium\\AI_Suggestions_Postprocessor\\Domain\\Suggestion_Interface' => __DIR__ . '/../..' . '/src/deprecated/ai-suggestions-postprocessor/domain/suggestion-interface.php',
+        'Yoast\\WP\\SEO\\Premium\\Actions\\AI_Base_Action' => __DIR__ . '/../..' . '/src/deprecated/actions/ai-base-action.php',
+        'Yoast\\WP\\SEO\\Premium\\Actions\\AI_Generator_Action' => __DIR__ . '/../..' . '/src/deprecated/actions/ai-generator-action.php',
+        'Yoast\\WP\\SEO\\Premium\\Actions\\AI_Optimizer_Action' => __DIR__ . '/../..' . '/src/deprecated/actions/ai-optimizer-action.php',
         'Yoast\\WP\\SEO\\Premium\\Actions\\Link_Suggestions_Action' => __DIR__ . '/../..' . '/src/actions/link-suggestions-action.php',
         'Yoast\\WP\\SEO\\Premium\\Actions\\Prominent_Words\\Complete_Action' => __DIR__ . '/../..' . '/src/actions/prominent-words/complete-action.php',
         'Yoast\\WP\\SEO\\Premium\\Actions\\Prominent_Words\\Content_Action' => __DIR__ . '/../..' . '/src/actions/prominent-words/content-action.php',
@@ -158,20 +167,20 @@ class ComposerStaticInita8855dd82ab9dc69943632885bc10c1a
         'Yoast\\WP\\SEO\\Premium\\DOM_Manager\\Application\\Node_Processor' => __DIR__ . '/../..' . '/src/dom-manager/application/node-processor.php',
         'Yoast\\WP\\SEO\\Premium\\Database\\Migration_Runner_Premium' => __DIR__ . '/../..' . '/src/database/migration-runner-premium.php',
         'Yoast\\WP\\SEO\\Premium\\Exceptions\\Forbidden_Property_Mutation_Exception' => __DIR__ . '/../..' . '/src/exceptions/forbidden-property-mutation-exception.php',
-        'Yoast\\WP\\SEO\\Premium\\Exceptions\\Remote_Request\\Bad_Request_Exception' => __DIR__ . '/../..' . '/src/exceptions/remote-request/bad-request-exception.php',
-        'Yoast\\WP\\SEO\\Premium\\Exceptions\\Remote_Request\\Forbidden_Exception' => __DIR__ . '/../..' . '/src/exceptions/remote-request/forbidden-exception.php',
-        'Yoast\\WP\\SEO\\Premium\\Exceptions\\Remote_Request\\Internal_Server_Error_Exception' => __DIR__ . '/../..' . '/src/exceptions/remote-request/internal-server-error-exception.php',
-        'Yoast\\WP\\SEO\\Premium\\Exceptions\\Remote_Request\\Not_Found_Exception' => __DIR__ . '/../..' . '/src/exceptions/remote-request/not-found-exception.php',
-        'Yoast\\WP\\SEO\\Premium\\Exceptions\\Remote_Request\\Payment_Required_Exception' => __DIR__ . '/../..' . '/src/exceptions/remote-request/payment-required-exception.php',
-        'Yoast\\WP\\SEO\\Premium\\Exceptions\\Remote_Request\\Remote_Request_Exception' => __DIR__ . '/../..' . '/src/exceptions/remote-request/remote-request-exception.php',
-        'Yoast\\WP\\SEO\\Premium\\Exceptions\\Remote_Request\\Request_Timeout_Exception' => __DIR__ . '/../..' . '/src/exceptions/remote-request/request-timeout-exception.php',
-        'Yoast\\WP\\SEO\\Premium\\Exceptions\\Remote_Request\\Service_Unavailable_Exception' => __DIR__ . '/../..' . '/src/exceptions/remote-request/service-unavailable-exception.php',
-        'Yoast\\WP\\SEO\\Premium\\Exceptions\\Remote_Request\\Too_Many_Requests_Exception' => __DIR__ . '/../..' . '/src/exceptions/remote-request/too-many-requests-exception.php',
-        'Yoast\\WP\\SEO\\Premium\\Exceptions\\Remote_Request\\Unauthorized_Exception' => __DIR__ . '/../..' . '/src/exceptions/remote-request/unauthorized-exception.php',
-        'Yoast\\WP\\SEO\\Premium\\Exceptions\\Remote_Request\\WP_Request_Exception' => __DIR__ . '/../..' . '/src/exceptions/remote-request/wp-request-exception.php',
+        'Yoast\\WP\\SEO\\Premium\\Exceptions\\Remote_Request\\Bad_Request_Exception' => __DIR__ . '/../..' . '/src/deprecated/exceptions/remote-request/bad-request-exception.php',
+        'Yoast\\WP\\SEO\\Premium\\Exceptions\\Remote_Request\\Forbidden_Exception' => __DIR__ . '/../..' . '/src/deprecated/exceptions/remote-request/forbidden-exception.php',
+        'Yoast\\WP\\SEO\\Premium\\Exceptions\\Remote_Request\\Internal_Server_Error_Exception' => __DIR__ . '/../..' . '/src/deprecated/exceptions/remote-request/internal-server-error-exception.php',
+        'Yoast\\WP\\SEO\\Premium\\Exceptions\\Remote_Request\\Not_Found_Exception' => __DIR__ . '/../..' . '/src/deprecated/exceptions/remote-request/not-found-exception.php',
+        'Yoast\\WP\\SEO\\Premium\\Exceptions\\Remote_Request\\Payment_Required_Exception' => __DIR__ . '/../..' . '/src/deprecated/exceptions/remote-request/payment-required-exception.php',
+        'Yoast\\WP\\SEO\\Premium\\Exceptions\\Remote_Request\\Remote_Request_Exception' => __DIR__ . '/../..' . '/src/deprecated/exceptions/remote-request/remote-request-exception.php',
+        'Yoast\\WP\\SEO\\Premium\\Exceptions\\Remote_Request\\Request_Timeout_Exception' => __DIR__ . '/../..' . '/src/deprecated/exceptions/remote-request/request-timeout-exception.php',
+        'Yoast\\WP\\SEO\\Premium\\Exceptions\\Remote_Request\\Service_Unavailable_Exception' => __DIR__ . '/../..' . '/src/deprecated/exceptions/remote-request/service-unavailable-exception.php',
+        'Yoast\\WP\\SEO\\Premium\\Exceptions\\Remote_Request\\Too_Many_Requests_Exception' => __DIR__ . '/../..' . '/src/deprecated/exceptions/remote-request/too-many-requests-exception.php',
+        'Yoast\\WP\\SEO\\Premium\\Exceptions\\Remote_Request\\Unauthorized_Exception' => __DIR__ . '/../..' . '/src/deprecated/exceptions/remote-request/unauthorized-exception.php',
+        'Yoast\\WP\\SEO\\Premium\\Exceptions\\Remote_Request\\WP_Request_Exception' => __DIR__ . '/../..' . '/src/deprecated/exceptions/remote-request/wp-request-exception.php',
         'Yoast\\WP\\SEO\\Premium\\Generated\\Cached_Container' => __DIR__ . '/../..' . '/src/generated/container.php',
-        'Yoast\\WP\\SEO\\Premium\\Helpers\\AI_Generator_Helper' => __DIR__ . '/../..' . '/src/helpers/ai-generator-helper.php',
-        'Yoast\\WP\\SEO\\Premium\\Helpers\\AI_Optimizer_Helper' => __DIR__ . '/../..' . '/src/helpers/ai-optimizer-helper.php',
+        'Yoast\\WP\\SEO\\Premium\\Helpers\\AI_Generator_Helper' => __DIR__ . '/../..' . '/src/deprecated/helpers/ai-generator-helper.php',
+        'Yoast\\WP\\SEO\\Premium\\Helpers\\AI_Optimizer_Helper' => __DIR__ . '/../..' . '/src/deprecated/helpers/ai-optimizer-helper.php',
         'Yoast\\WP\\SEO\\Premium\\Helpers\\Current_Page_Helper' => __DIR__ . '/../..' . '/src/helpers/current-page-helper.php',
         'Yoast\\WP\\SEO\\Premium\\Helpers\\Prominent_Words_Helper' => __DIR__ . '/../..' . '/src/helpers/prominent-words-helper.php',
         'Yoast\\WP\\SEO\\Premium\\Helpers\\Version_Helper' => __DIR__ . '/../..' . '/src/helpers/version-helper.php',
@@ -182,9 +191,10 @@ class ComposerStaticInita8855dd82ab9dc69943632885bc10c1a
         'Yoast\\WP\\SEO\\Premium\\Initializers\\Woocommerce' => __DIR__ . '/../..' . '/src/initializers/woocommerce.php',
         'Yoast\\WP\\SEO\\Premium\\Initializers\\Wp_Cli_Initializer' => __DIR__ . '/../..' . '/src/initializers/wp-cli-initializer.php',
         'Yoast\\WP\\SEO\\Premium\\Integrations\\Abstract_OpenGraph_Integration' => __DIR__ . '/../..' . '/src/integrations/abstract-opengraph-integration.php',
-        'Yoast\\WP\\SEO\\Premium\\Integrations\\Admin\\Ai_Consent_Integration' => __DIR__ . '/../..' . '/src/integrations/admin/ai-consent-integration.php',
-        'Yoast\\WP\\SEO\\Premium\\Integrations\\Admin\\Ai_Generator_Integration' => __DIR__ . '/../..' . '/src/integrations/admin/ai-generator-integration.php',
-        'Yoast\\WP\\SEO\\Premium\\Integrations\\Admin\\Ai_Optimize_Integration' => __DIR__ . '/../..' . '/src/integrations/admin/ai-optimize-integration.php',
+        'Yoast\\WP\\SEO\\Premium\\Integrations\\Admin\\Ai_Consent_Integration' => __DIR__ . '/../..' . '/src/deprecated/integrations/admin/ai-consent-integration.php',
+        'Yoast\\WP\\SEO\\Premium\\Integrations\\Admin\\Ai_Generator_Integration' => __DIR__ . '/../..' . '/src/deprecated/integrations/admin/ai-generator-integration.php',
+        'Yoast\\WP\\SEO\\Premium\\Integrations\\Admin\\Ai_Optimize_Fallback_Integration' => __DIR__ . '/../..' . '/src/integrations/admin/ai-optimize-fallback-integration.php',
+        'Yoast\\WP\\SEO\\Premium\\Integrations\\Admin\\Ai_Optimize_Integration' => __DIR__ . '/../..' . '/src/deprecated/integrations/admin/ai-optimize-integration.php',
         'Yoast\\WP\\SEO\\Premium\\Integrations\\Admin\\Cornerstone_Column_Integration' => __DIR__ . '/../..' . '/src/integrations/admin/cornerstone-column-integration.php',
         'Yoast\\WP\\SEO\\Premium\\Integrations\\Admin\\Cornerstone_Taxonomy_Column_Integration' => __DIR__ . '/../..' . '/src/integrations/admin/cornerstone-taxonomy-column-integration.php',
         'Yoast\\WP\\SEO\\Premium\\Integrations\\Admin\\Extension_Importer\\Content_Processor' => __DIR__ . '/../..' . '/src/integrations/admin/extension-importer/content-processor.php',
@@ -226,8 +236,8 @@ class ComposerStaticInita8855dd82ab9dc69943632885bc10c1a
         'Yoast\\WP\\SEO\\Premium\\Integrations\\OpenGraph_Term_Archive' => __DIR__ . '/../..' . '/src/integrations/opengraph-term-archive.php',
         'Yoast\\WP\\SEO\\Premium\\Integrations\\Organization_Schema_Integration' => __DIR__ . '/../..' . '/src/integrations/organization-schema-integration.php',
         'Yoast\\WP\\SEO\\Premium\\Integrations\\Publishing_Principles_Schema_Integration' => __DIR__ . '/../..' . '/src/integrations/publishing-principles-schema-integration.php',
-        'Yoast\\WP\\SEO\\Premium\\Integrations\\Routes\\AI_Generator_Route' => __DIR__ . '/../..' . '/src/integrations/routes/ai-generator-route.php',
-        'Yoast\\WP\\SEO\\Premium\\Integrations\\Routes\\AI_Optimizer_Route' => __DIR__ . '/../..' . '/src/integrations/routes/ai-optimizer-route.php',
+        'Yoast\\WP\\SEO\\Premium\\Integrations\\Routes\\AI_Generator_Route' => __DIR__ . '/../..' . '/src/deprecated/integrations/routes/ai-generator-route.php',
+        'Yoast\\WP\\SEO\\Premium\\Integrations\\Routes\\AI_Optimizer_Route' => __DIR__ . '/../..' . '/src/deprecated/integrations/routes/ai-optimizer-route.php',
         'Yoast\\WP\\SEO\\Premium\\Integrations\\Routes\\Workouts_Routes_Integration' => __DIR__ . '/../..' . '/src/integrations/routes/workouts-routes-integration.php',
         'Yoast\\WP\\SEO\\Premium\\Integrations\\Third_Party\\Algolia' => __DIR__ . '/../..' . '/src/integrations/third-party/algolia.php',
         'Yoast\\WP\\SEO\\Premium\\Integrations\\Third_Party\\EDD' => __DIR__ . '/../..' . '/src/integrations/third-party/edd.php',
@@ -259,9 +269,9 @@ class ComposerStaticInita8855dd82ab9dc69943632885bc10c1a
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInita8855dd82ab9dc69943632885bc10c1a::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInita8855dd82ab9dc69943632885bc10c1a::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInita8855dd82ab9dc69943632885bc10c1a::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit6b72f0b35fc3f381feb26024c441e5f6::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit6b72f0b35fc3f381feb26024c441e5f6::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit6b72f0b35fc3f381feb26024c441e5f6::$classMap;
 
         }, null, ClassLoader::class);
     }

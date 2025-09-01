@@ -1,5 +1,3 @@
-.usecase-section { background: #f9f9ff;  }
-
 .usecases-wrapper .swiper { -webkit-filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.05)); filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.05)); }
 .usecase-card { display: flex; text-align: center; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease; transition: transform 0.3s ease, box-shadow 0.3s ease } 
 .usecase-card .usecase-header { padding: 1rem; border-radius: 16px; font-weight: 600; border: 1px solid #dee2e6; cursor: pointer; transition: border-color 0.3s ease}
