@@ -50,7 +50,7 @@
 				  "&ref=" + encodeURIComponent(getValue("ref")) +
 				  "&email=" + encodeURIComponent(getValue("your-email"));
 
-			w.location.href = redirectUrl;
+			w.location.href = w.BotphonicUTM ? w.BotphonicUTM.decorate(redirectUrl) : redirectUrl;
 			});
 
 			/* ========================= DESKU CHAT (only if NOT logged in) ========================== */
