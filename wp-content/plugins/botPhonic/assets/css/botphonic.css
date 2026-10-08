@@ -1,0 +1,13 @@
+/* bf-box */
+.bf-box { transition: all .3s ease; padding: 30px; border-radius: 14px; transition: .3s; background-color: #fff; border: 1px solid #e6e8ec; height: 100%; position: relative; }
+.bf-box::after { content: ''; position: absolute; left: 0; top: 0; width: 0; opacity: 1; height: 2px; background-color: red; transition: width .3s ease; }
+.bf-box:hover { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); }
+.bf-box:hover::after { width: 100%; }
+.bf-inline { display: flex; align-items: center; gap: 8px; }
+.bf-box .bf-icon { margin-bottom: 12px; }
+.bf-box .bf-icon svg { width: 32px; height: 32px; }
+.bf-box .bf-label { font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: #808EA3; margin-bottom: 12px; font-weight: 600; display: inline-flex; padding: 2px 8px; background-color: #e6e8ec50; border-radius: 4px; }
+.bf-box .bf-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+.bf-box .bf-link { color: #2563EB; font-weight: 600; text-decoration: none; }
+.bf-box .bf-arrow { margin-left: 6px; transition: .3s; }
+.bf-box .bf-link:hover .bf-arrow { transform: translateX(5px); }

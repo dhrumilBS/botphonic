@@ -1,0 +1,113 @@
+/**
+ * Botphonic — Alternatives, inside the TinyMCE editor only.
+ */
+
+/* Match the front end's family so line lengths in the editor are honest. */
+body#tinymce.wp-editor {
+	font-family: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	font-size: 15px;
+	line-height: 1.7;
+	color: #41505E;
+}
+
+body#tinymce.wp-editor :is(h2, h3, h4, h5) {
+	font-family: inherit;
+	font-weight: 800;
+	line-height: 1.3;
+	color: #072032;
+}
+
+/* Lead paragraph block */
+body#tinymce .bpg-alt-profile__lead {
+	margin: 0 0 16px;
+	padding-left: 12px;
+	border-left: 3px solid #d8e3f5;
+}
+
+/* Subheading */
+body#tinymce h4.bpg-alt-profile__sub {
+	margin: 22px 0 10px;
+	font-size: 18px;
+	color: #072032;
+}
+
+/* Styled bullet list */
+body#tinymce ul.bpg-alt-profile__points {
+	margin: 0 0 16px;
+	padding: 0 0 0 20px;
+	list-style: none;
+}
+
+body#tinymce ul.bpg-alt-profile__points>li {
+	position: relative;
+	margin-bottom: 10px;
+	padding-left: 16px;
+}
+
+body#tinymce ul.bpg-alt-profile__points>li::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0.62em;
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+	background: #2563EB;
+}
+
+/* "Best for" box */
+body#tinymce .bpg-alt-profile__bestfor {
+	margin: 20px 0;
+	padding: 16px 18px;
+	border: 1px solid rgba(11, 35, 56, 0.12);
+	border-radius: 14px;
+	background: #F4F8FD;
+}
+
+/* Verdict box */
+body#tinymce .bpg-alt-profile__verdict {
+	margin: 20px 0;
+	padding: 16px 20px;
+	border: 1px solid rgba(11, 35, 56, 0.12);
+	border-left: 3px solid #2563EB;
+	border-radius: 0 14px 14px 0;
+	background: #F4F8FD;
+}
+
+body#tinymce :is(.bpg-alt-profile__bestfor, .bpg-alt-profile__verdict)> :first-child {
+	margin-top: 0;
+}
+
+body#tinymce :is(.bpg-alt-profile__bestfor, .bpg-alt-profile__verdict)> :last-child {
+	margin-bottom: 0;
+}
+
+/*
+ * A label on each box, so an applied format is obvious even when the box is
+ * empty. Editor-only: nothing on the front end prints these.
+ */
+body#tinymce :is(.bpg-alt-profile__lead, .bpg-alt-profile__bestfor, .bpg-alt-profile__verdict, ul.bpg-alt-profile__points)::after {
+	display: block;
+	margin-top: 8px;
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: #8A98A6;
+}
+
+body#tinymce .bpg-alt-profile__lead::after {
+	content: "Lead paragraph block";
+}
+
+body#tinymce ul.bpg-alt-profile__points::after {
+	content: "Styled bullet list";
+}
+
+body#tinymce .bpg-alt-profile__bestfor::after {
+	content: "Best-for box";
+}
+
+body#tinymce .bpg-alt-profile__verdict::after {
+	content: "Verdict box";
+}

@@ -1,0 +1,31 @@
+.botphonic-audio-grid .agents-wrapper { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
+
+.botphonic-audio-grid .agent-card { width: 100%; max-width: 370px; padding: 20px; background: #fff; border: 1px solid #dcdcdc40; border-radius: 20px; box-shadow: 0 12px 25px rgba(0, 26, 94, 0.06); transition: transform 0.3s, box-shadow 0.3s; }
+.botphonic-audio-grid .agent-card:hover { transform: translateY(-4px); box-shadow: 0 18px 30px rgba(0, 26, 94, 0.12); }
+.botphonic-audio-grid .agent-card.playing { border-color: #4a4ff7; }
+
+.botphonic-audio-grid .agent-card .agent-header { display: flex; align-items: center; margin-bottom: 20px; }
+.botphonic-audio-grid .agent-header .agent-image { position: relative; margin-right: 12px; flex-shrink: 0; }
+
+.botphonic-audio-grid .agent-header .agent-image img { width: 75px; height: 75px; border-radius: 50%; object-fit: cover; }
+
+.botphonic-audio-grid .agent-card .agent-image .status-dot { display: none; position: absolute; bottom: 3px; right: 3px; width: 12px; height: 12px; background: #12b76a; border: 2px solid #fff; border-radius: 50%; box-shadow: 0 0 6px rgba(18, 183, 106, 0.8); }
+.botphonic-audio-grid .agent-card.playing .agent-image .status-dot { display: block; }
+.botphonic-audio-grid .agent-header .agent-name { margin: 0 0 6px; font-weight: 600; color: #111; }
+.botphonic-audio-grid .agent-header .agent-industry { display: inline-block; margin: 0; padding: 2px 10px; font-size: 13px; font-weight: 500; background: #e6eeff; color: #003bb3; border-radius: 20px; }
+
+.botphonic-audio-grid .agent-audio { display: flex; align-items: center; padding: 12px 14px; background: #f7f4fd; border-radius: 16px; transition: background 0.3s; }
+.botphonic-audio-grid .agent-audio:hover { background: #f0ecfb; }
+.botphonic-audio-grid .agent-audio .waveform { flex-grow: 1; height: 40px; margin-left: 12px; min-width: 0; }
+
+.botphonic-audio-grid .agent-audio .play-button { display: flex; justify-content: center; align-items: center; flex-shrink: 0; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 50px; }
+.botphonic-audio-grid .agent-audio .play-button:hover { background: #fff; transform: scale(1.05); }
+.botphonic-audio-grid .agent-audio .play-button:focus-visible { outline: 2px solid #3737c4; outline-offset: 2px; }
+.botphonic-audio-grid .agent-card.is-audio-error .play-button { opacity: 0.45; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) {
+	.botphonic-audio-grid .agent-card,
+	.botphonic-audio-grid .agent-audio,
+	.botphonic-audio-grid .agent-audio .play-button { transition: none; }
+	.botphonic-audio-grid .agent-card:hover,
+	.botphonic-audio-grid .agent-audio .play-button:hover { transform: none; }
+}

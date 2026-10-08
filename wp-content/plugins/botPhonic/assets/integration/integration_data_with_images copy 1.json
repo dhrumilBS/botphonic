@@ -1,0 +1,962 @@
+[
+  {
+    "data-category": "HelpDesk",
+    "data-name": "freshservice",
+    "link": "./freshservice-integration/",
+    "content_a": "Freshservice",
+    "category": "HelpDesk",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/frservceiintpagebanner.jpg"
+  },
+  {
+    "data-category": "HelpDesk",
+    "data-name": "engagebay",
+    "link": "./engagebay-integration/",
+    "content_a": "EngageBay",
+    "category": "HelpDesk",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/engazebay_banner.jpg"
+  },
+  {
+    "data-category": "Productivity",
+    "data-name": "enthu ai",
+    "link": "./enthu-ai-integration/",
+    "content_a": "Enthu AI",
+    "category": "Productivity",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/enthai_banner.jpg"
+  },
+  {
+    "data-category": "Analytics",
+    "data-name": "wingman",
+    "link": "./wingman-integration/",
+    "content_a": "Wingman",
+    "category": "Analytics",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/wingman_int.jpg"
+  },
+  {
+    "data-category": "HelpDesk",
+    "data-name": "happyfox",
+    "link": "./happyfox-integration/",
+    "content_a": "HappyFox",
+    "category": "HelpDesk",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/happyfox_intbann.jpg"
+  },
+  {
+    "data-category": "Productivity",
+    "data-name": "airtable",
+    "link": "./airtable-integration/",
+    "content_a": "Airtable",
+    "category": "Productivity",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/airtable_intban.jpg"
+  },
+  {
+    "data-category": "CRM",
+    "data-name": "klaviyo",
+    "link": "./klaviyo-integration/",
+    "content_a": "Klaviyo",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Klaviyo_int_ban.jpg"
+  },
+  {
+    "data-category": "CRM, For Sales Teams",
+    "data-name": "nocrm",
+    "link": "./nocrm-integration/",
+    "content_a": "noCRM",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/noCRM.jpg"
+  },
+  {
+    "data-category": "Productivity",
+    "data-name": "aztrix",
+    "link": "./aztrix-integration/",
+    "content_a": "Aztrix",
+    "category": "Productivity",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Aztrix_intbanne.jpg"
+  },
+  {
+    "data-category": "E-commerce",
+    "data-name": "ccvshop",
+    "link": "./ccvshop-integration/",
+    "content_a": "Ccvshop",
+    "category": "E-commerce",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/cctv_iintbane.jpg"
+  },
+  {
+    "data-category": "ERP",
+    "data-name": "proteria",
+    "link": "./proteria-integration/",
+    "content_a": "Proteria",
+    "category": "ERP",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/proteria_intban.jpg"
+  },
+  {
+    "data-category": "CRM",
+    "data-name": "salesforce soap",
+    "link": "./salesforce-soap-integration/",
+    "content_a": "Salesforce Soap",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/salesforce.jpg"
+  },
+  {
+    "data-category": "Sales Automation,For Sales Teams",
+    "data-name": "pipedrive",
+    "link": "./pipedrive-integration/",
+    "content_a": "PipeDrive",
+    "category": "Sales Automation",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/pipedriveint.jpg"
+  },
+  {
+    "data-category": "Sales Automation,Productivity",
+    "data-name": "zapier",
+    "link": "./zapier-integration/",
+    "content_a": "Zapier",
+    "category": "Sales Automation",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/zapier.jpg"
+  },
+  {
+    "data-category": "CRM,For Sales Teams",
+    "data-name": "hubspot",
+    "link": "./hubspot-integration/",
+    "content_a": "Hubspot",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/hubspot.jpg"
+  },
+  {
+    "data-category": "Sales Automation,For Sales Teams",
+    "data-name": "salesforce",
+    "link": "./salesforce-integration/",
+    "content_a": "SalesForce",
+    "category": "Sales Automation",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/salesforce.jpg"
+  },
+  {
+    "data-category": "CRM",
+    "data-name": "microsoftdynamics",
+    "link": "./microsoftdynamics-integration/",
+    "content_a": "Microsoft Dynamics",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/microsoftdynamics.jpg"
+  },
+  {
+    "data-category": "CRM,For Sales Teams",
+    "data-name": "talentLyft",
+    "link": "./talentlyft-integration/",
+    "content_a": "TalentLyft",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/talentlyftintbaww.jpg"
+  },
+  {
+    "data-category": "CRM,For Sales Teams",
+    "data-name": "greenhouse",
+    "link": "./greenhouse-integration/",
+    "content_a": "Greenhouse",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/greenhousnbannerq.jpg"
+  },
+  {
+    "data-category": "CRM,For Sales Teams",
+    "data-name": "constant contact integration",
+    "link": "./constant-contact-integration/",
+    "content_a": "Constant Contact Integration",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/constconint.jpg"
+  },
+  {
+    "data-category": "CRM,For Sales Teams",
+    "data-name": "make integration integromat",
+    "link": "./make-integration/",
+    "content_a": "Make\n  Integration",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/make_new_d.jpg"
+  },
+  {
+    "data-category": "CRM,For Sales Teams",
+    "data-name": "typeForm",
+    "link": "./typeform-integration/",
+    "content_a": "TypeForm Integration",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/typeformint.jpg"
+  },
+  {
+    "data-category": "HelpDesk,For Support Teams",
+    "data-name": "freshdesk",
+    "link": "./freshdesk-integration/",
+    "content_a": "Freshdesk",
+    "category": "HelpDesk",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/freshdesk.jpg"
+  },
+  {
+    "data-category": "HelpDesk,For Support Teams",
+    "data-name": "intercome",
+    "link": "./intercom-integration/",
+    "content_a": "Intercom",
+    "category": "HelpDesk",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/intercome.jpg"
+  },
+  {
+    "data-category": "HelpDesk,For Support Teams",
+    "data-name": "zendesk",
+    "link": "./zendesk-integration/",
+    "content_a": "Zendesk",
+    "category": "HelpDesk",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/zendesk.jpg"
+  },
+  {
+    "data-category": "Sales Automation",
+    "data-name": "freshworks",
+    "link": "https://callhippo.com/freshworks-integration/",
+    "content_a": "",
+    "category": "Sales automation",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/freshwork_banner.jpg"
+  },
+  {
+    "data-category": "CRM",
+    "data-name": "ontraport",
+    "link": "./ontraport-integration/",
+    "content_a": "Ontraport",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/ontraport_banner.jpg"
+  },
+  {
+    "data-category": "HelpDesk",
+    "data-name": "front",
+    "link": "./front-integration/",
+    "content_a": "Front",
+    "category": "HelpDesk",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/chsiteimages/fornt_purple_banner_integration.jpg"
+  },
+  {
+    "data-category": "HelpDesk",
+    "data-name": "klaus",
+    "link": "./klaus-integration/",
+    "content_a": "Klaus",
+    "category": "HelpDesk",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/kalus_banner.jpg"
+  },
+  {
+    "data-category": "HelpDesk",
+    "data-name": "gorgias",
+    "link": "./gorgias-integration/",
+    "content_a": "Gorgias",
+    "category": "HelpDesk",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/georgis_banner.jpg"
+  },
+  {
+    "data-category": "E-commerce",
+    "data-name": "shopify",
+    "link": "./shopify-integration/",
+    "content_a": "Shopify",
+    "category": "E-commerce",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/shopify.jpg"
+  },
+  {
+    "data-category": "HelpDesk",
+    "data-name": "groove",
+    "link": "./groove-integration/",
+    "content_a": "Groove",
+    "category": "HelpDesk",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/groove.jpg"
+  },
+  {
+    "data-category": "Productivity",
+    "data-name": "slack",
+    "link": "./slack-integration/",
+    "content_a": "Slack",
+    "category": "Productivity",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/slack.jpg"
+  },
+  {
+    "data-category": "CRM",
+    "data-name": "zoho",
+    "link": "./zoho-integration/",
+    "content_a": "Zoho",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/chsiteimages/zoho_crm_app_large.png"
+  },
+  {
+    "data-category": "Sales Automation,For Sales Teams",
+    "data-name": "outreach",
+    "link": "./outreach-integration/",
+    "content_a": "Outreach",
+    "category": "Sales Automation",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/outreach.jpg"
+  },
+  {
+    "data-category": "E-commerce",
+    "data-name": "magento1x",
+    "link": "./magento-1x-integration/",
+    "content_a": "Magento 1X",
+    "category": "E-commerce",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Magento.jpg"
+  },
+  {
+    "data-category": "CRM",
+    "data-name": "kommo",
+    "link": "./kommo-integration/",
+    "content_a": "Kommo",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/chsiteimages/integration-thumnails-copy.png"
+  },
+  {
+    "data-category": "CRM",
+    "data-name": "copper",
+    "link": "./copper-integration/",
+    "content_a": "Copper",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/copper.jpg"
+  },
+  {
+    "data-category": "For Support Teams,Helpdesk",
+    "data-name": "servicenow",
+    "link": "./servicenow-integration/",
+    "content_a": "ServiceNow",
+    "category": "Helpdesk",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/service.jpg"
+  },
+  {
+    "data-category": "Productivity",
+    "data-name": "confluence",
+    "link": "./confluence-integration/",
+    "content_a": "Confluence",
+    "category": "Productivity",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/confluence.jpg"
+  },
+  {
+    "data-category": "Productivity",
+    "data-name": "microsoftteam",
+    "link": "./microsoft-team-integration/",
+    "content_a": "Microsoft Team",
+    "category": "Productivity",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/microsoft.jpg"
+  },
+  {
+    "data-category": "Productivity",
+    "data-name": "asana",
+    "link": "./asana-integration/",
+    "content_a": "Asana",
+    "category": "Productivity",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/asana.jpg"
+  },
+  {
+    "data-category": "Helpdesk",
+    "data-name": "helpscout",
+    "link": "./help-scout-integration/",
+    "content_a": "Help Scout",
+    "category": "Helpdesk",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/help.jpg"
+  },
+  {
+    "data-category": "For Sales Teams,Sales Automation",
+    "data-name": "mailshake",
+    "link": "./mailshake-integration/",
+    "content_a": "Mailshake",
+    "category": "Sales Automation",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/mail.jpg"
+  },
+  {
+    "data-category": "For Sales Teams,Sales Automation",
+    "data-name": "zendesksell",
+    "link": "./zendesk-sell-integration/",
+    "content_a": "Zendesk Sell",
+    "category": "Sales Automation",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/zendesksell.jpg"
+  },
+  {
+    "data-category": "CRM",
+    "data-name": "activecampaign",
+    "link": "./activecampaign-integration/",
+    "content_a": "ActiveCampaign",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/ActiveCampaign.jpg"
+  },
+  {
+    "data-category": "CRM",
+    "data-name": "bitrix24",
+    "link": "./bitriks24-integration/",
+    "content_a": "Bitrix24",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Bitriks24.jpg"
+  },
+  {
+    "data-category": "CRM",
+    "data-name": "insightly",
+    "link": "./insightly-integration/",
+    "content_a": "Insightly",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Insighty.jpg"
+  },
+  {
+    "data-category": "For Support Teams,Helpdesk",
+    "data-name": "topdesk",
+    "link": "./topdesk-integration/",
+    "content_a": "TOPdesk",
+    "category": "Helpdesk",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/TOPdesk.jpg"
+  },
+  {
+    "data-category": "Productivity",
+    "data-name": "calendly",
+    "link": "./calendly-integration/",
+    "content_a": "Calendly",
+    "category": "Productivity",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Calendly.jpg"
+  },
+  {
+    "data-category": "Productivity",
+    "data-name": "trello",
+    "link": "./trello-integration/",
+    "content_a": "Trello",
+    "category": "Productivity",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Trello.jpg"
+  },
+  {
+    "data-category": "E-Commerce",
+    "data-name": "bigcommerce",
+    "link": "./bigcommerce-integration/",
+    "content_a": "BigCommerce",
+    "category": "E-Commerce",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/BigCommerce.jpg"
+  },
+  {
+    "data-category": "E-Commerce",
+    "data-name": "shopbox",
+    "link": "./shopbox-integration/",
+    "content_a": "ShopBox",
+    "category": "E-Commerce",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/ShopBox.jpg"
+  },
+  {
+    "data-category": "E-Commerce",
+    "data-name": "woocommerce",
+    "link": "./woocommerce-integration/",
+    "content_a": "Woo Commerce",
+    "category": "E-Commerce",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Woo-Commerce.jpg"
+  },
+  {
+    "data-category": "",
+    "data-name": "adobemarketingcloud",
+    "link": "./adobe-marketing-cloud-integration/",
+    "content_a": "Adobe Marketing Cloud",
+    "category": "",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Adobe.jpg"
+  },
+  {
+    "data-category": "E-Commerce",
+    "data-name": "dynamicnumberinsertion",
+    "link": "./dynamic-number-insertion/",
+    "content_a": "Dynamic Number Insertion",
+    "category": "E-Commerce",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Dynamic.jpg"
+  },
+  {
+    "data-category": "CRM",
+    "data-name": "highrise",
+    "link": "./highrise-integration/",
+    "content_a": "High Rise",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/high.jpg"
+  },
+  {
+    "data-category": "Sales Teams,Sales Automation",
+    "data-name": "freshsales",
+    "link": "./freshsales-integration/",
+    "content_a": "FreshSales",
+    "category": "Sales Teams",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/FreshSales.jpg"
+  },
+  {
+    "data-category": "Sales Teams,CRM",
+    "data-name": "hunter",
+    "link": "./hunter-integration/",
+    "content_a": "Hunter",
+    "category": "Sales Teams",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Hunter.jpg"
+  },
+  {
+    "data-category": "CRM",
+    "data-name": "keap",
+    "link": "./keap-integration/",
+    "content_a": "Keap",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Keap.jpg"
+  },
+  {
+    "data-category": "CRM,Sales Teams,Sales Automation",
+    "data-name": "leadsquared",
+    "link": "./leadsquared-integration/",
+    "content_a": "Leadsquared",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Leadsquared.jpg"
+  },
+  {
+    "data-category": "Sales Teams,Support Teams,E-commerce",
+    "data-name": "remaze",
+    "link": "./reamaze-integration/",
+    "content_a": "Re:amaze",
+    "category": "Sales Teams",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Reamaze.jpg"
+  },
+  {
+    "data-category": "Sales Teams,Sales Automation",
+    "data-name": "pipelinedeals",
+    "link": "./pipelinedeals-integration/",
+    "content_a": "PipelineDeals",
+    "category": "Sales Teams",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/PipelineDeals.jpg"
+  },
+  {
+    "data-category": "Sales Automation",
+    "data-name": "pipelinercloud",
+    "link": "./pipeliner-cloud-integration/",
+    "content_a": "Pipeliners Cloud",
+    "category": "Sales Automation",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/PipelinersCloud.jpg"
+  },
+  {
+    "data-category": "E-Commerce",
+    "data-name": "opencart",
+    "link": "./opencart-integration/",
+    "content_a": "OpenCart",
+    "category": "E-Commerce",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/OpenCart.jpg"
+  },
+  {
+    "data-category": "CRM",
+    "data-name": "tribecrm",
+    "link": "./tribecrm-integration/",
+    "content_a": "Tribe CRM",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/tribe.jpg"
+  },
+  {
+    "data-category": "CRM",
+    "data-name": "nimble",
+    "link": "./nimble-integration/",
+    "content_a": "Nimble",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Nimble.jpg"
+  },
+  {
+    "data-category": "For Sales Teams,Data and Reporting",
+    "data-name": "apify",
+    "link": "./apify-integration/",
+    "content_a": "Apify",
+    "category": "Sales Teams",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Apify.jpg"
+  },
+  {
+    "data-category": "For Sales Teams,Data and Reporting",
+    "data-name": "zohoanalytics",
+    "link": "./zoho-analytics-integration/",
+    "content_a": "Zoho Analytics",
+    "category": "Sales Teams",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/ZohoAnalytics.jpg"
+  },
+  {
+    "data-category": "For Sales Teams,Data and Reporting,CRM,Recruitment and ERP",
+    "data-name": "smplicate",
+    "link": "./simplicate-integration/",
+    "content_a": "Smplicate",
+    "category": "Data and Reporting",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Simplicate.jpg"
+  },
+  {
+    "data-category": "CRM,Recruitment and ERP",
+    "data-name": "odoo",
+    "link": "./odoo-integration/",
+    "content_a": "Odoo",
+    "category": "Recruitment and ERP",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Odoo.jpg"
+  },
+  {
+    "data-category": "CRM,Sales Automation,Productivity",
+    "data-name": "nationbuilder",
+    "link": "./nationbuilder-integration/",
+    "content_a": "Nation Builder",
+    "category": "Sales Automation",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/NationBuilder.jpg"
+  },
+  {
+    "data-category": "CRM,Sales Automation,Survey and Marketing,For Sales Teams",
+    "data-name": "act365",
+    "link": "./act365-integration/",
+    "content_a": "ACT 365",
+    "category": "Survey and Marketing",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/ACT365.jpg"
+  },
+  {
+    "data-category": "Productivity,Survey and Marketing",
+    "data-name": "customerio",
+    "link": "./customer-io-integration/",
+    "content_a": "Customer .Io",
+    "category": "Productivity",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/CustomerIo.jpg"
+  },
+  {
+    "data-category": "E-Commerce",
+    "data-name": "podio",
+    "link": "./podio-integration/",
+    "content_a": "Podio",
+    "category": "Productivity",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Podio.jpg"
+  },
+  {
+    "data-category": "CRM,For Sales Teams,Survey and Marketing",
+    "data-name": "sugarcrm",
+    "link": "./sugar-integration/",
+    "content_a": "Sugar CRM",
+    "category": "Survey and Marketing",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/SugarCRM.jpg"
+  },
+  {
+    "data-category": "Survey and Marketing",
+    "data-name": "surveymonkey",
+    "link": "./surveymonkey-integration/",
+    "content_a": "Survey Monkey",
+    "category": "Survey and Marketing",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/SurveyMonkey.jpg"
+  },
+  {
+    "data-category": "Survey and Marketing,CRM",
+    "data-name": "salesforcemarketing",
+    "link": "./salesforce-marketing-integration/",
+    "content_a": "SalesForce Marketing",
+    "category": "Survey and Marketing",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/SalesForceMarketing.jpg"
+  },
+  {
+    "data-category": "Survey and Marketing",
+    "data-name": "sendgrid",
+    "link": "./sendgrid-integration/",
+    "content_a": "Send Grid",
+    "category": "Survey and Marketing",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/SendGrid.jpg"
+  },
+  {
+    "data-category": "Data and Reporting",
+    "data-name": "datanyze",
+    "link": "./datanyze-integration/",
+    "content_a": "Datanyze",
+    "category": "Data and Reporting",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Datanyze.jpg"
+  },
+  {
+    "data-category": "Survey and Marketing",
+    "data-name": "sendinblue",
+    "link": "./sendinblue-integration/",
+    "content_a": "SendinBlue",
+    "category": "Survey and Marketing",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/SendinBlue.jpg"
+  },
+  {
+    "data-category": "Productivity",
+    "data-name": "zohomail",
+    "link": "./zohomail-integration/",
+    "content_a": "Zoho Mail",
+    "category": "Productivity",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/chsiteimages/zoho_mail_app_large.png"
+  },
+  {
+    "data-category": "For Sales Teams,Sales Automation,CRM",
+    "data-name": "nutshell",
+    "link": "./nutshell-integration/",
+    "content_a": "Nutshell",
+    "category": "Productivity",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Nutshell.jpg"
+  },
+  {
+    "data-category": "Recruitment and ERP",
+    "data-name": "bekeeper",
+    "link": "./beekeeper-integration/",
+    "content_a": "Beekeeper",
+    "category": "Recruitment and ERP",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Beekeeper.jpg"
+  },
+  {
+    "data-category": "Productivity,For Sales Teams,For Support Teams",
+    "data-name": "Chatlio",
+    "link": "./chatlio-integration/",
+    "content_a": "Chatlio",
+    "category": "For Sales Teams",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Chatlio.jpg"
+  },
+  {
+    "data-category": "Recruitment and ERP",
+    "data-name": "bamboohr",
+    "link": "./bamboohr-integration/",
+    "content_a": "Bamboo HR",
+    "category": "Recruitment and ERP",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/BambooHR.jpg"
+  },
+  {
+    "data-category": "Recruitment and ERP",
+    "data-name": "intuo",
+    "link": "./intuo-integration/",
+    "content_a": "Intuo",
+    "category": "Recruitment and ERP",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Intuo.jpg"
+  },
+  {
+    "data-category": "Recruitment and ERP",
+    "data-name": "officient",
+    "link": "./officient-integration/",
+    "content_a": "Officient",
+    "category": "Recruitment and ERP",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Officient.jpg"
+  },
+  {
+    "data-category": "Survey and Marketing",
+    "data-name": "polly",
+    "link": "./polly-integration/",
+    "content_a": "Polly",
+    "category": "Survey and Marketing",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Polly.jpg"
+  },
+  {
+    "data-category": "Recruitment and ERP",
+    "data-name": "workable",
+    "link": "./workable-integration/",
+    "content_a": "Workable",
+    "category": "Recruitment and ERP",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Workable.jpg"
+  },
+  {
+    "data-category": "Survey and Marketing",
+    "data-name": "mailchimp",
+    "link": "./mail-chimp-integration/",
+    "content_a": "Mailchimp",
+    "category": "Survey and Marketing",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/MailChamp.jpg"
+  },
+  {
+    "data-category": "Survey and Marketing",
+    "data-name": "marketo",
+    "link": "./marketo-integration/",
+    "content_a": "Marketo",
+    "category": "Survey and Marketing",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Marketo.jpg"
+  },
+  {
+    "data-category": "Recruitment and ERP,For Sales Teams,CRM",
+    "data-name": "sellsy",
+    "link": "./sellsy-integration/",
+    "content_a": "Sellsy",
+    "category": "Survey and Marketing",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Sellsy.jpg"
+  },
+  {
+    "data-category": "Sales Automation",
+    "data-name": "sellsy",
+    "link": "./overloop-integration/",
+    "content_a": "Overloop",
+    "category": "Sales Automation",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Overloop_integration.png"
+  },
+  {
+    "data-category": "CRM",
+    "data-name": "striktly",
+    "link": "./striktly-integration/",
+    "content_a": "Striktly",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Striktly.jpg"
+  },
+  {
+    "data-category": "Recruitment and ERP",
+    "data-name": "carerix",
+    "link": "./carerix-integration/",
+    "content_a": "Carerix",
+    "category": "Recruitment and ERP",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Carerix.jpg"
+  },
+  {
+    "data-category": "For Sales Teams,Sales Automation",
+    "data-name": "oraclesales",
+    "link": "./oracle-sales-integration/",
+    "content_a": "Oracle Sales",
+    "category": "Recruitment and ERP",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/OracleSales.jpg"
+  },
+  {
+    "data-category": "Survey and Marketing",
+    "data-name": "acton",
+    "link": "./act-on-integration/",
+    "content_a": "Act On",
+    "category": "Survey and Marketing",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/ActOn.jpg"
+  },
+  {
+    "data-category": "Survey and Marketing",
+    "data-name": "autopilot",
+    "link": "./autopilot-integration/",
+    "content_a": "Autopilot",
+    "category": "Survey and Marketing",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Autopilot.jpg"
+  },
+  {
+    "data-category": "Data and Reporting",
+    "data-name": "cumulio",
+    "link": "./cumul-io-integration/",
+    "content_a": "Cumul.io",
+    "category": "Data and Reporting",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Cumulio.jpg"
+  },
+  {
+    "data-category": "Data and Reporting",
+    "data-name": "datadog",
+    "link": "./datadog-integration/",
+    "content_a": "Datadog",
+    "category": "Data and Reporting",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Datadog.jpg"
+  },
+  {
+    "data-category": "Productivity",
+    "data-name": "sentry",
+    "link": "./sentry-integration/",
+    "content_a": "Sentry",
+    "category": "Productivity",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Sentry.jpg"
+  },
+  {
+    "data-category": "Productivity",
+    "data-name": "clearbit",
+    "link": "./clearbit-integration/",
+    "content_a": "Clearbit",
+    "category": "Productivity",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/ClearBit.jpg"
+  },
+  {
+    "data-category": "CRM",
+    "data-name": "streak",
+    "link": "./streak-integration/",
+    "content_a": "Streak",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Streak.jpg"
+  },
+  {
+    "data-category": "Data and Reporting",
+    "data-name": "microsoftpowerbi",
+    "link": "./microsoft-powerbi-integration/",
+    "content_a": "Microsoft Power BI",
+    "category": "Data and Reporting",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/MicrosoftPowerBI.jpg"
+  },
+  {
+    "data-category": "For Sales Teams,CRM,Data and Reporting,Recruitment and ERP",
+    "data-name": "simplicate",
+    "link": "./simplicate-integration/",
+    "content_a": "Simplicate",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/Simplicate2.jpg"
+  },
+  {
+    "data-category": "For Sales Teams,Sales Automation,CRM",
+    "data-name": "salesflare",
+    "link": "./salesflare-integration/",
+    "content_a": "SalesFlare",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/salesflare-banner.png"
+  },
+  {
+    "data-category": "For Support Teams,Data and Reporting",
+    "data-name": "promoterio",
+    "link": "https://callhippo.com/promoter-io-integration/",
+    "content_a": "Promoter.Io",
+    "category": "For Support Teams",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/PromoterIo.jpg"
+  },
+  {
+    "data-category": "Productivity",
+    "data-name": "kapture",
+    "link": "",
+    "content_a": "",
+    "category": "Productivity",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/chsiteimages/intgration_Kapture.png"
+  },
+  {
+    "data-category": "CRM",
+    "data-name": "targetcrm",
+    "link": "",
+    "content_a": "",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/chsiteimages/intgration_targetcrm.png"
+  },
+  {
+    "data-category": "Productivity",
+    "data-name": "meritto",
+    "link": "",
+    "content_a": "",
+    "category": "Productivity",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/chsiteimages/intgration_meritto.png"
+  },
+  {
+    "data-category": "Productivity",
+    "data-name": "zipteams",
+    "link": "",
+    "content_a": "",
+    "category": "Productivity",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/chsiteimages/intgration_zipteams.png"
+  },
+  {
+    "data-category": "CRM",
+    "data-name": "snap.pe",
+    "link": "",
+    "content_a": "",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/chsiteimages/intgration_snap_pe.png"
+  },
+  {
+    "data-category": "CRM",
+    "data-name": "edgecrm",
+    "link": "",
+    "content_a": "",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/chsiteimages/intgration_edge.png"
+  },
+  {
+    "data-category": "Recruitment and ERP",
+    "data-name": "we360",
+    "link": "",
+    "content_a": "",
+    "category": "ERP",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/chsiteimages/intgration_we360.png"
+  },
+  {
+    "data-category": "Recruitment and ERP",
+    "data-name": "jobitus",
+    "link": "",
+    "content_a": "",
+    "category": "ERP",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/chsiteimages/intgration_jobitus.png"
+  },
+  {
+    "data-category": "Productivity",
+    "data-name": "outplay",
+    "link": "",
+    "content_a": "",
+    "category": "Productivity",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/chsiteimages/outplay-int.png"
+  },
+  {
+    "data-category": "CRM",
+    "data-name": "maple",
+    "link": "",
+    "content_a": "",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/chsiteimages/maple-min.png"
+  },
+  {
+    "data-category": "CRM",
+    "data-name": "monday",
+    "link": "./monday-com-integration/",
+    "content_a": "Monday",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/chsiteimages/monday_crm.png"
+  },
+  {
+    "data-category": "CRM",
+    "data-name": "kylas",
+    "link": "./kylas-integration/",
+    "content_a": "Kylas",
+    "category": "CRM",
+    "image": "https://d1x9dsge91xf6g.cloudfront.net/callhippo/images/chsiteimages/Kylas-crm.png"
+  }
+]

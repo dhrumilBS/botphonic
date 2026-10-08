@@ -1,0 +1,41 @@
+.calculator-section { max-width: 1024px; margin: 0 auto; padding: 16px; color: #333; background: #fff; border-radius: 12px; -webkit-box-shadow: 0 3px 15px rgba(0, 0, 0, 0.06); box-shadow: 0 3px 15px rgba(0, 0, 0, 0.06); }
+.commission-header { text-align: center; background: #f0f4ff; padding: 0.8rem 1.2rem; border-radius: 8px; }
+.commission-header img { height: 22px; }
+.commission-display { display: flex; justify-content: space-evenly; flex-wrap: wrap; margin: 2rem 0; text-align: center; gap: 1.5rem; }
+.commission-amount div,
+.accounts-count div { font-size: 2.5rem; color: var(--accent, #4f46e5); margin: 0; font-weight: 600; }
+.commission-amount p,
+.accounts-count p { font-size: 0.95rem; color: #666; margin-top: 6px; }
+.slider-container { margin: 1rem 0; display: flex; flex-direction: column; }
+.slider-container input[type="range"] { height: 6px; background: #e7ebff; border-radius: 5px; outline: none; -webkit-appearance: none; margin: 0 12px; }
+/* iOS and WebKit slider thumb fix */
+.slider-container input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--accent, #4f46e5); border: 2px solid #fff; cursor: pointer; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); transform: translateY(-50%); position: relative; }
+.slider-container input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: var(--accent, #4f46e5); border: none; cursor: pointer; }
+.slider-labels-wrapper { width: 100%; margin-top: 1rem; }
+.slider-labels { display: flex; justify-content: space-between; flex-wrap: nowrap; width: 100%; text-align: center; font-size: 0.85rem; }
+.slider-labels span { flex: 1; text-align: center; min-width: 0; }
+.slider-title { text-align: center; font-weight: 500; margin-top: 2rem; margin-bottom: 0; }
+/* Medium screens */
+@media (max-width: 1024px) {
+
+    .commission-amount div,
+    .accounts-count div { font-size: 2.2rem; }
+    .slider-labels span { font-size: 0.7rem; }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+    .commission-display { flex-direction: column; gap: 1.2rem; }
+    .slider-labels span { font-size: 0.65rem; }
+    .slider-container input[type="range"] { margin: 0; }
+}
+
+/* Mobile / iPhone */
+@media (max-width: 480px) {
+    .calculator-section { padding: 12px 10px; }
+    .commission-amount div,
+    .accounts-count div { font-size: 2rem; }
+    .slider-title { font-size: 0.9rem; }
+    .slider-labels { flex-wrap: wrap; gap: 0.2rem; }
+    .slider-labels span { font-size: 0.6rem; margin-bottom: 2px; }
+}

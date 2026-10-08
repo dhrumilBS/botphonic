@@ -1,0 +1,82 @@
+/**
+ * BotPhonic – How It Works
+ *
+ * Values unchanged from the original inline <style> block. Rules are now
+ * scoped under .my-how-it-works, because .step-item, .step-icon, .step-content,
+ * .step-number and .step-title are generic enough to collide with theme or
+ * third-party CSS when declared globally.
+ */
+
+.my-how-it-works {
+	position: relative;
+	max-width: 700px;
+	margin: 0 auto;
+}
+
+/* Connector line */
+.my-how-it-works::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 40px;
+	left: 27px;
+	width: 2px;
+	background: var(--step-line-color, #e5e7eb);
+}
+
+.my-how-it-works .step-item {
+	position: relative;
+	display: flex;
+	margin-bottom: var(--step-gap, 28px);
+}
+
+.my-how-it-works .step-item:last-child {
+	margin: 0;
+}
+
+.my-how-it-works .step-icon {
+	position: absolute;
+	left: -2px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 56px;
+	height: 56px;
+	background: #f3f4f6;
+	border-radius: 12px;
+}
+
+.my-how-it-works .step-content {
+	margin-left: 60px;
+}
+
+.my-how-it-works .step-number {
+	font-size: 12px;
+	font-weight: 600;
+	color: #1a6ef499;
+}
+
+.my-how-it-works .step-title {
+	font-size: 20px;
+}
+
+@media screen and (max-width: 768px) {
+	.my-how-it-works::before {
+		left: 17px;
+	}
+
+	.my-how-it-works .step-content {
+		margin-left: 42px;
+	}
+
+	.my-how-it-works .step-icon {
+		width: 36px;
+		height: 36px;
+		border-radius: 8px;
+	}
+
+	.my-how-it-works .step-icon svg {
+		width: 20px;
+		height: 20px;
+	}
+}

@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540" role="img" aria-label="Post-call actions: summary and transcript generated, then CRM updated">
+  <defs>
+    <linearGradient id="pc-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F7FAFD"/>
+      <stop offset="1" stop-color="#EEF3F8"/>
+    </linearGradient>
+    <filter id="pc-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#072032" flood-opacity="0.10"/>
+    </filter>
+    <style>
+      .pc-line{transform-box:fill-box;transform-origin:left center;transform:scaleX(0);animation:pcLine 6s ease-in-out infinite}
+      @keyframes pcLine{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+      .pc-item{opacity:0;animation:pcItem 6s ease-in-out infinite}
+      @keyframes pcItem{0%,40%{opacity:0}50%,100%{opacity:1}}
+      .pc-card{opacity:0;transform-box:fill-box;transform-origin:center;animation:pcCard 6s ease-in-out infinite}
+      @keyframes pcCard{0%,45%{opacity:0;transform:translateX(-6px)}55%,100%{opacity:1;transform:translateX(0)}}
+      .pc-check{stroke-dasharray:22;stroke-dashoffset:22;animation:pcCheck 6s ease-in-out infinite}
+      @keyframes pcCheck{0%,45%{stroke-dashoffset:22}56%,100%{stroke-dashoffset:0}}
+      .pc-flow{stroke-dasharray:9 11;animation:pcDash 1.1s linear infinite}
+      @keyframes pcDash{to{stroke-dashoffset:-40}}
+      .pc-wave{transform-box:fill-box;transform-origin:center bottom;animation:pcWave 1.1s ease-in-out infinite}
+      @keyframes pcWave{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
+    </style>
+  </defs>
+
+  <rect width="720" height="540" rx="28" fill="url(#pc-bg)"/>
+  <rect x="1" y="1" width="718" height="538" rx="27" fill="none"/>
+
+  <!-- call ended banner -->
+  <g transform="translate(56,60)">
+    <rect width="608" height="52" rx="14" fill="#072032"/>
+    <g transform="translate(24,26)">
+      <rect class="pc-wave" x="0" y="-10" width="5" height="20" rx="2.5" fill="#7FE0B4" style="animation-delay:0s"/>
+      <rect class="pc-wave" x="9" y="-10" width="5" height="20" rx="2.5" fill="#FF9068" style="animation-delay:.2s"/>
+      <rect class="pc-wave" x="18" y="-10" width="5" height="20" rx="2.5" fill="#7FE0B4" style="animation-delay:.4s"/>
+    </g>
+    <text x="60" y="31" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="15" font-weight="700" fill="#fff">Call ended · 2:41</text>
+    <text x="584" y="31" text-anchor="end" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" fill="#7FE0B4">Processing post‑call actions…</text>
+  </g>
+
+  <!-- Transcript / summary card -->
+  <g filter="url(#pc-shadow)">
+    <rect x="56" y="132" width="356" height="340" rx="20" fill="#fff" stroke="#D6DFE7" stroke-width="2"/>
+  </g>
+  <text x="80" y="172" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="17" font-weight="700" fill="#072032">Transcript &amp; summary</text>
+
+  <g>
+    <rect class="pc-line" x="80" y="192" width="300" height="10" rx="5" fill="#E4EBF1" style="animation-delay:.1s;animation-duration:2s"/>
+    <rect class="pc-line" x="80" y="212" width="260" height="10" rx="5" fill="#E4EBF1" style="animation-delay:.4s;animation-duration:2s"/>
+    <rect class="pc-line" x="80" y="232" width="300" height="10" rx="5" fill="#E4EBF1" style="animation-delay:.7s;animation-duration:2s"/>
+    <rect class="pc-line" x="80" y="252" width="200" height="10" rx="5" fill="#E4EBF1" style="animation-delay:1s;animation-duration:2s"/>
+  </g>
+
+  <text x="80" y="300" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#5C6972" letter-spacing="1">KEY OUTCOMES</text>
+  <g font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="14" font-weight="600" fill="#072032">
+    <g class="pc-item" style="animation-delay:0s"><circle cx="88" cy="326" r="4" fill="#FF7E55"/><text x="104" y="331">Appointment booked · 9:20 AM</text></g>
+    <g class="pc-item" style="animation-delay:.15s"><circle cx="88" cy="356" r="4" fill="#FF7E55"/><text x="104" y="361">Caller sentiment · positive</text></g>
+    <g class="pc-item" style="animation-delay:.3s"><circle cx="88" cy="386" r="4" fill="#FF7E55"/><text x="104" y="391">Follow‑up SMS scheduled</text></g>
+    <g class="pc-item" style="animation-delay:.45s"><circle cx="88" cy="416" r="4" fill="#FF7E55"/><text x="104" y="421">Recording · saved &amp; encrypted</text></g>
+  </g>
+
+  <!-- flow arrow -->
+  <path class="pc-flow" d="M412 302 L 484 302" fill="none" stroke="#0B5CFF" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- delivered to card (outer group fixes position; inner class only animates) -->
+  <g transform="translate(484,180)">
+   <g class="pc-card">
+    <rect width="180" height="244" rx="20" fill="#072032" filter="url(#pc-shadow)"/>
+    <text x="90" y="42" text-anchor="middle" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="14" font-weight="700" fill="#fff" letter-spacing="1">DELIVERED TO</text>
+
+    <circle cx="34" cy="88" r="17" fill="#12402E"/>
+    <path class="pc-check" d="M27 88 l5 5 10 -11" fill="none" stroke="#7FE0B4" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" style="animation-delay:0s"/>
+    <text x="60" y="93" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="600" fill="#fff">CRM updated</text>
+
+    <circle cx="34" cy="140" r="17" fill="#12402E"/>
+    <path class="pc-check" d="M27 140 l5 5 10 -11" fill="none" stroke="#7FE0B4" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" style="animation-delay:.12s"/>
+    <text x="60" y="145" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="600" fill="#fff">Team inbox</text>
+
+    <circle cx="34" cy="192" r="17" fill="#12402E"/>
+    <path class="pc-check" d="M27 192 l5 5 10 -11" fill="none" stroke="#7FE0B4" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" style="animation-delay:.24s"/>
+    <text x="60" y="197" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="600" fill="#fff">Analytics</text>
+   </g>
+  </g>
+</svg>

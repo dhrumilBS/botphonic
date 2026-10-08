@@ -1,0 +1,124 @@
+@import url(https://fonts.googleapis.com/css?family=DM+Sans:100,200,300,regular,500,600,700,800);
+/* DELIBERATE MIRROR OF style.css's BRANDING TOKENS — DO NOT "DEDUPE".
+   This file is enqueued through admin_enqueue_scripts (my_enqueue_admin() in
+   inc/function-enqueue.php). style.css is enqueued through wp_enqueue_scripts,
+   which never fires in wp-admin, so the editor canvas cannot see the canonical
+   block and would lose every colour, gradient and font stack if this copy were
+   removed. The parent theme's Bootstrap editor styles also declare --primary,
+   --blue, --dark and friends with their own values, which is the second reason
+   the brand values have to be restated here.
+
+   Values are identical to the branding, text, surface, palette, gradient and
+   typography groups in style.css. Change one, change both. The permanent fix is
+   to move the shared groups into their own stylesheet enqueued in both
+   contexts; that is a deliberate refactor, not a cleanup. */
+:root {
+	--primary: #072032; 
+	--primary-rgb: 7, 32, 50; 
+	--secondary: #FF7E55;
+	--secondary-rgb: 255, 126, 85;
+	--text-color: #5C6972;
+	--text: #5C6972; 
+	--accent: #2563EB; 
+	--accent-rgb: 37, 99, 225;
+	--link-hover: #116DEE; 
+	--light-text: #dce4e8; 
+	--p-color: #6C7278; 
+	--text-muted: #8A98A6; 
+	--off-white: #F9F9F9; 
+
+	/* For sections */
+	--bg-light-1: #F9FBFC; 
+	--text-dark: #2A2F33; 
+	/*For footer areas */
+	--bg-dark-1: #0B1E2B; 
+	--text-light: #E1E8ED; 
+	--bg-light-2: #f9f9ff; 
+	--bg-dark-2: #132B3B; 
+	--bg1: #F9FBFC; 
+	--bg2: #EDF2F5;
+
+	--bs-link-color: var(--accent); 
+	--bs-link-hover-color: var(--link-hover); 
+	--bs-primary-rgb: 7, 32, 50;
+
+	--grad: linear-gradient(135deg, #2563EB 0%, #4F46E5 100%);
+	--grad-purple: linear-gradient(304deg, #FF37DF 21.73%, #6E00FF 56.6%);
+	--grad-orange: linear-gradient(135deg, #F97316 0%, #EA580C 100%);
+	--grad-cyan: linear-gradient(135deg, #2563EB 0%, #06B6D4 100%);
+	--grad-deep: linear-gradient(135deg, #0B1E2B 0%, #132B3B 60%, #1e3a4f 100%);
+
+	--success: #198754;
+	--blue: #2563EB;
+	--indigo: #4F46E5;
+	--cyan: #06B6D4;
+	--orange: #F97316;
+	--orange-light: rgba(249,115,22,0.1);
+	--orange-border: rgba(249,115,22,0.25);
+	--dark: #0F172A;
+	--slate: #334155;
+	--muted: #64748B;
+	--light: #F8FAFC;
+	--border: #E5E7EB;
+	--white: #FFFFFF;
+
+	--arrow: url('data:image/svg+xml;utf8,<svg width="11" height="6" viewBox="0 0 11 6" xmlns="http://www.w3.org/2000/svg"><path d="M10.1464 0.146447C10.3417 -0.0488155 10.6582 -0.0488155 10.8535 0.146447C11.0487 0.341712 11.0487 0.658228 10.8535 0.853478L5.85348 5.85348C5.65823 6.04873 5.34171 6.0487 5.14645 5.85348L0.146447 0.853478C-0.0488155 0.658216 -0.0488155 0.341709 0.146447 0.146447C0.341709 -0.0488155 0.658216 -0.0488155 0.853478 0.146447L5.49996 4.79293L10.1464 0.146447Z" fill="currentColor"/></svg>');
+	--arrow-white: url('data:image/svg+xml;utf8,<svg width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.1464 0.146447C10.3417 -0.0488155 10.6582 -0.0488155 10.8535 0.146447C11.0487 0.341712 11.0487 0.658228 10.8535 0.853478L5.85348 5.85348C5.65823 6.04873 5.34171 6.0487 5.14645 5.85348L0.146447 0.853478C-0.0488155 0.658216 -0.0488155 0.341709 0.146447 0.146447C0.341709 -0.0488155 0.658216 -0.0488155 0.853478 0.146447L5.49996 4.79293L10.1464 0.146447Z" fill="white"/></svg>');
+	/* Block editor typography. Must match the front-end stack in style.css, so
+	   what an editor sees in the canvas is what a visitor gets — these tokens
+	   used to say "DM Sans" while the front end rendered Manrope. This is a
+	   second literal copy of the stack because no stylesheet is loaded in both
+	   admin and front end; change them together.
+	   Manrope is enqueued for admin by my_enqueue_admin(). */
+	--site-font: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	--heading-font: var(--site-font);
+	--btn-font: var(--site-font);
+	--text-font: var(--site-font);
+	--mono-font: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+.block-editor-block-list__layout{ font-family: var(--site-font); }
+html :where(.editor-styles-wrapper){ font-family: var(--site-font); }
+.editor-styles-wrapper .wp-block-post-content a{ background-color: yellow; text-decoration-color: black; font-weight: 600;}
+
+/* Quick Summary */
+.quick-summary { width: 100%; margin: 2rem auto; padding: 24px; border-left: 6px solid #c099ff; border-radius: 10px; background-color: hsl(264 100% 99% / 1); color: var(--text); }
+.quick-summary p { margin: 0; color: var(--text); }
+@media screen and (max-width: 767px) { .quick-summary { padding: 16px; } }
+
+ul{ margin: 0}
+
+
+.wp-block-heading strong { font-weight: 700 !important; }
+figure.wp-block-image{ padding: 8px; border-radius: 12px; border: 1px solid #e5e8ec; }
+.figure-img, .wp-block-image>figure img, figure.wp-block-image img,
+figure.wp-block-image img{ margin-bottom: 0; border-radius: 4px}
+
+
+/* Table Wrapper */
+.wp-block-table { width: 100%; overflow-x: auto; border: 1px solid #dfdfdf; border-radius: 12px; scrollbar-width: none; }
+.wp-block-table::-webkit-scrollbar { display: none; }
+
+/* Table */
+.wp-block-table .has-fixed-layout{margin: 0; }
+.wp-block-table table { width: 100%; min-width: 800px; margin-bottom: 0; border-collapse: collapse; border-radius: 8px; background: #fff; overflow: hidden; text-align: left;}
+.wp-block-table table tbody tr:first-child { border-top: 0; }
+.wp-block-table th,
+.wp-block-table td,
+.table>:not(caption)>*>*,
+.wp-block-table table>:not(caption)>*>* { padding: 10px 16px; vertical-align: middle; border-color: #00000010; }
+.wp-block-table tr:nth-child(1) td { font-size: 1rem; font-weight: 700; color: var(--primary); background: #e5ecfb; text-align: left; }
+.wp-block-table tr td:first-child { font-weight: 700; color: var(--accent); border-left: 0; }
+.wp-block-table tr td:last-child { border-right: 0; }
+.wp-block-table tr:last-child { border-bottom: 0; }
+.wp-block-table tr:not(:first-child):hover { background-color: #f4f7ff; transition: background 0.3s ease; }
+@media screen and (max-width: 650px) {
+	.wp-block-table { overflow-x: auto; }
+	.wp-block-table table { font-size: 14px; line-height: 1.2; }
+}
+
+.learn-more-box-alt { width: 100%; margin: 16px 0; padding: 24px; border-left: 6px solid #a46bff; border-radius: 10px; background-color: #f6f0ff; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04); }
+.learn-more-box-alt p { margin: 0; color: #321a51; }
+.learn-more-box-alt a { font-weight: 600; color: #7b38e3 !important; transition: color 0.3s ease; }
+.learn-more-box-alt a:hover { color: #5800ff !important; }
+@media screen and (max-width: 768px) { .learn-more-box-alt { padding: 12px; border-top: 6px solid #a46bff; border-left: 0; } }

@@ -1,0 +1,66 @@
+:root { --bf-text-main: var(--dark); --bf-text-muted: var(--muted); --bf-accent: var(--blue); --bf-tab-active-bg: rgba(37, 99, 235, 0.07); --bf-tab-indicator-color: var(--blue); }
+.bf-scroll-tabs { padding: 0 !important; background: var(--light); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.bf-section-header { max-width: 70rem; margin: 0 auto; padding: 72px 1.5rem 40px; text-align: center; }
+.bf-scroll-container { position: relative; height: 300vh; }
+.bf-sticky-section { position: sticky; top: 64px; min-height: 650px; height: calc(100vh - 64px); display: flex; flex-direction: column; }
+/* ── TABS NAV ── */
+.bf-tabs-nav { background: rgba(248, 250, 252, 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); z-index: 10; position: sticky; top: 64px; }
+.bf-tabs-wrapper { max-width: 70rem; margin: 0 auto; display: flex; gap: 4px; }
+.bf-tabs-wrapper .bf-tab-button { flex: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 0.25rem; padding: 1rem 1rem 0.85rem; background: none; border: none; cursor: pointer; position: relative; text-align: left; transition: background 0.2s ease; border-radius: 8px 8px 0 0; color: var(--dark); }
+.bf-tabs-wrapper .bf-tab-button:hover { background: rgba(37, 99, 235, 0.05) !important; color: #000; }
+.bf-tabs-wrapper .bf-tab-button.bf-active { background: var(--blue); }
+.bf-tabs-wrapper .bf-tab-name { display: block; font-weight: 700; font-size: 0.9rem; color: var(--dark); transition: color 0.2s; letter-spacing: -0.01em; }
+.bf-tabs-wrapper .bf-tab-button.bf-active .bf-tab-name { color: #fff; }
+.bf-tabs-wrapper .bf-tab-description { display: block; color: var(--muted); font-size: 0.8rem; line-height: 1.5; font-weight: 400; }
+.bf-tabs-wrapper .bf-tab-indicator { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--grad); transform: scaleX(0); transform-origin: left; transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 2px 2px 0 0; }
+.bf-tabs-wrapper .bf-tab-button.bf-active .bf-tab-indicator { transform: scaleX(1); }
+
+/* ── CONTENT AREA ── */
+.bf-content-area { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.bf-content-panel { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(16px); transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); pointer-events: none; }
+.bf-content-panel.bf-active { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.bf-content-inner { max-width: 70rem; width: 100%; }
+.bf-content-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+.bf-square-img-wrapper { background: white; position: relative; justify-self: center; }
+.bf-square-img-wrapper img,
+.square-widget-bg { width: 100%; object-fit: cover; display: block; border-radius: 16px; object-fit: contain; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 4px 32px rgba(15, 23, 42, 0.08); }
+.bf-tab-text.hidden-main { display: none; }
+.bf-tab-text.hidden-main .bf-tab-description { font-size: 0.88rem; color: var(--muted); line-height: 1.6; text-align: center; margin-top: 0.75rem; }
+
+/* DESKTOP: two-column layout with text beside image */
+@media screen and (min-width: 1024px) {
+    .bf-content-grid { grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+    .bf-square-img-wrapper { grid-column: 2; grid-row: 1; margin-right: 100px; }
+    .bf-panel-text-col { grid-column: 1; grid-row: 1; }
+    .bf-tab-text.hidden-main { display: none !important; }
+}
+
+.bf-panel-text-col h3 { font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; color: var(--dark); letter-spacing: -0.025em; line-height: 1.2; margin-bottom: 16px; }
+.bf-panel-text-col p { font-size: 1rem; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+.bf-panel-bullets { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+.bf-panel-bullets li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.88rem; color: var(--slate); line-height: 1.5; }
+.bf-panel-bullets li::before { content: ''; width: 18px; height: 18px; border-radius: 50%; background: rgba(37, 99, 235, 0.1); border: 1.5px solid rgba(37, 99, 235, 0.25); flex-shrink: 0; margin-top: 1px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232563EB' stroke-width='2.5'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E"); background-size: 11px; background-position: center; background-repeat: no-repeat; }
+.bf-panel-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--grad); color: white; border: none; cursor: pointer; padding: 11px 22px; border-radius: 9px; font-size: 0.87rem; font-weight: 600; transition: all 0.2s; box-shadow: 0 4px 16px rgba(37, 99, 235, 0.25); text-decoration: none; }
+.bf-panel-cta:hover { transform: translateY(-2px); color: #fff; box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35); }
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+    .bf-sticky-section { top: 64px; }
+    .bf-scroll-container { height: 350vh; }
+}
+
+@media (max-width: 768px) {
+    .bf-scroll-container { height: auto; }
+    .bf-sticky-section { position: static; height: auto; }
+    .bf-tabs-wrapper { flex-direction: column; gap: 2px; }
+    .bf-tabs-wrapper .bf-tab-button { padding: 0.75rem 1rem; border-radius: 8px; }
+    .bf-tabs-wrapper .bf-tab-name { font-size: 0.95rem; }
+    .bf-tabs-wrapper .bf-tab-description { display: none; }
+    .bf-content-area { position: relative; min-height: 300px; padding-bottom: 2rem; }
+    .bf-content-panel { position: relative; opacity: 1 !important; transform: none !important; display: none; }
+    .bf-content-panel.bf-active { display: flex; }
+    .bf-tab-text.hidden-main { display: block !important; }
+    .bf-section-header { padding: 48px 1.5rem 32px; }
+}
+
+@media (max-width: 480px) {
+}
