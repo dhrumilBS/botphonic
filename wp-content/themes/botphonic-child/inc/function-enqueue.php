@@ -100,7 +100,16 @@ function enqueue_child_theme_style()
 	wp_enqueue_style(BOTPHONIC_LANDING_STYLE, get_stylesheet_directory_uri() . '/assets/css/common-landing.css', [], botphonic_child_asset_ver('/assets/css/common-landing.css'));
 
 	wp_enqueue_style('hfe', get_stylesheet_directory_uri() . '/assets/css/hfe.css', [BOTPHONIC_LANDING_STYLE], botphonic_child_asset_ver('/assets/css/hfe.css'));
-	wp_enqueue_script('custom', get_stylesheet_directory_uri() . '/assets/js/custom.js', [], botphonic_child_asset_ver('/assets/js/custom.js'), true);
+	wp_enqueue_script('custom', get_stylesheet_directory_uri() . '/assets/js/custom.js', ['botphonic-utm'], botphonic_child_asset_ver('/assets/js/custom.js'), true);
+
+	// UTM persistence across pages, CF7 hidden fields and the app.botphonic.ai Register/Login links.
+	wp_enqueue_script('botphonic-utm', get_stylesheet_directory_uri() . '/assets/js/utm.js', [], botphonic_child_asset_ver('/assets/js/utm.js'), ['in_footer' => true, 'strategy' => 'defer']);
+	$utm_config = apply_filters('botphonic_utm_config', [
+		'siteHosts' => array_values(array_unique([wp_parse_url(home_url(), PHP_URL_HOST), 'botphonic.ai', 'www.botphonic.ai'])),
+		'appHosts'  => ['app.botphonic.ai'],
+		'days'      => 30,
+	]);
+	wp_add_inline_script('botphonic-utm', 'window.botphonicUtmConfig = ' . wp_json_encode($utm_config) . ';', 'before');
 
 	wp_register_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
 	wp_register_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', [], '1', true);
