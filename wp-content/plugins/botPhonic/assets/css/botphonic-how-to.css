@@ -1,0 +1,58 @@
+.custom-tabs { border: 1px solid #ddd; overflow: hidden; background: #f8f9fb; box-shadow: 0 0 20px rgba(0, 0, 0, 0.05); padding: 8px; border-radius: 16px; }
+.custom-tabs .bf-preview-img { width: 100%; overflow: hidden; border-radius: 10px; }
+.custom-tabs .custom-tab-buttons { display: flex; flex-direction: column; gap: 8px; }
+.custom-tabs .custom-tab-buttons .custom-tab { position: relative; padding: 10px; border-radius: 12px; cursor: pointer; border: 1px solid #eee; background: #ffffff;  overflow: hidden; transition: background 0.3s; }
+.custom-tabs .custom-tab-buttons .custom-tab .bf-mobile { display: none; margin-bottom: 20px; }
+.custom-tabs .custom-tab-buttons .custom-tab .custom-tab-title { display: block; margin: 0; font-size: 18px; color: #1f2937; font-weight: 600; }
+.custom-tabs .custom-tab-buttons .custom-tab .custom-tab-desc { display: block; margin: 0; font-size: 13px; color: #6b7280; height: 0; overflow: hidden; transition: all 0.3s ease; }
+.custom-tabs .custom-tab-buttons .custom-tab .progress-bar { position: absolute; background-color: #0052cc; height: 3px; bottom: 0; left: 0; width: 0%; transition: width 0.1s linear; }
+
+.custom-tabs .custom-tab-buttons .custom-tab:hover,
+.custom-tabs .custom-tab-buttons .custom-tab.active { background: #e7f0fd; color: #0052cc; border-color: #1565c0; }
+.custom-tabs .custom-tab-buttons .custom-tab.active .custom-tab-desc { height: auto; margin-top: 8px; }
+.custom-tabs .custom-tab-buttons .custom-tab.active .bf-mobile { display: block; }
+
+.custom-tabs .custom-tab-content { background: #ffffff; padding: 10px; border-radius: 20px; border: 1px solid #e5e7eb; flex: 1; display: none; }
+.custom-tabs .custom-tab-content .custom-content { display: none; }
+.custom-tabs .custom-tab-content .custom-content.active { display: block; }
+.custom-tabs .custom-tab-content .custom-content h2 { font-size: 20px; margin-bottom: 8px; color: #111827; }
+.custom-tabs .custom-tab-content .custom-content p { font-size: 14px; color: #4b5563; }
+
+@media screen and (min-width: 991px) {
+    .custom-tabs { padding: 12px; border-radius: 24px; }
+    .custom-tabs .custom-tab-buttons { gap: 16px; }
+    .custom-tabs .custom-tab-buttons .custom-tab{ padding: 20px; border-radius: 12px; }
+    .custom-tabs .custom-tab-buttons .custom-tab.active .bf-mobile,
+    .custom-tabs .custom-tab-buttons .custom-tab .bf-mobile { display: none; }
+    .custom-tabs .custom-tab-buttons .custom-tab .custom-tab-title { font-size: 1.125rem; }
+    
+    .custom-tabs .custom-tab-content { display: block; }
+}
+
+
+/* .bf-right { background: #f1f0ff; border-radius: 20px; padding: 8px; display: flex; align-items: center; justify-content: center; position: relative; min-height: 300px; }
+.bf-preview-img { position: absolute; inset: 0; width: 100%; opacity: 0; visibility: hidden; transform: scale(.95); transition: opacity 300ms ease, transform 300ms ease; }
+.bf-preview-img.is-active { position: relative; opacity: 1; visibility: visible; transform: scale(1); border-radius: 12px; }
+.howto-tabs-left .howto-tabs_nav { order: 1; }
+.howto-tabs-left .howto-tabs_content { order: 2; display: flex; align-items: center; }
+.howto-tabs-right .howto-tabs_nav { order: 2; }
+.howto-tabs-right .howto-tabs_content { order: 1; }
+.bf-step { background: #fff; padding: 16px; border-radius: 20px; margin-bottom: 16px; border: 1px solid #e4ebff; cursor: pointer; transition: all 0.3s ease; }
+.bf-step:hover { border-color: #2f80ff; }
+.bf-step.active { border-color: #2f80ff; background: rgba(47, 128, 255, .06); box-shadow: 0 10px 30px rgba(47, 128, 255, .18), 0 0 0 3px rgba(47, 128, 255, .08); }
+.bf-step h4 { font-size: 20px; margin-bottom: 0; }
+.bf-step p { display: none; color: #5b6b84; }
+.bf-step.active p { display: block; }
+.bf-mobile-img { display: none; }
+.bf-mobile-img img { width: 100%; border-radius: 14px; }
+@media (max-width:1024px) and (min-width:768px) {
+	.bf-right { display: flex; }
+	.bf-mobile-img { display: none; }
+}
+@media (max-width:767px) {
+	.bf-right { display: none; }
+	.bf-mobile-img { display: block; }
+	.bf-step h4 { font-size: 18px; margin: 6px 0; }
+} */
+
+

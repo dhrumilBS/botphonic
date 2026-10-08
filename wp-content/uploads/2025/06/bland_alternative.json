@@ -1,0 +1,68 @@
+{
+    "content": [
+        {
+            "key": "Natural Language Processing",
+            "our": "yes",
+            "other": "No"
+        },
+        {
+            "key": "Multi-language Support",
+            "our": "yes",
+            "other": "Yes"
+        },
+        {
+            "key": "Real-time Analytics",
+            "our": "yes",
+            "other": "Yes"
+        },
+        {
+            "key": "Custom Voice Training",
+            "our": "yes",
+            "other": "Yes"
+        },
+        {
+            "key": "24/7 Customer Support",
+            "our": "yes",
+            "other": "Yes"
+        },
+        {
+            "key": "API Integration",
+            "our": "yes",
+            "other": "no"
+        },
+        {
+            "key": "Advanced Sentiment Analysis",
+            "our": "yes",
+            "other": "No"
+        },
+        {
+            "key": "Call Recording & Transcription",
+            "our": "yes",
+            "other": "Yes"
+        },
+        {
+            "key": "Unlimited Call Minutes",
+            "our": "yes",
+            "other": "Yes"
+        },
+        {
+            "key": "White-label Solution",
+            "our": "yes",
+            "other": "no"
+        }
+    ],
+    "img": [
+        {
+            "title": "Features",
+            "text": "Have a closer look on the distinction between Healthray and Ezovion."
+        },
+        {
+            "key": "Healthray",
+            "img": "https://healthray.com/wp-content/uploads/2024/02/Healthray-Logo.svg"
+        },
+        {
+            "key": "Practo",
+            "img": "https://healthray.com/wp-content/uploads/2025/02/Epic-logo.webp"
+        }
+    ]
+}

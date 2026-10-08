@@ -1,0 +1,90 @@
+[data-botphonic-faq] {
+	--faq-gap: 12px;
+	--faq-pad-block: clamp(14px, 1.8vw, 18px);
+	--faq-pad-inline: clamp(16px, 2.4vw, 24px);
+	display: grid;
+	gap: var(--faq-gap);
+	align-self: start;
+	inline-size: 100%;
+	min-inline-size: 0;
+	color: var(--bpg-ink-2);
+	font-family: var(--site-font);
+}
+
+[data-botphonic-faq],
+[data-botphonic-faq] *,
+[data-botphonic-faq] *::before,
+[data-botphonic-faq] *::after {
+	box-sizing: border-box;
+}
+[data-botphonic-faq]>details.faq-item { position: relative; min-inline-size: 0; margin: 0; border: 1px solid var(--bpg-line); border-radius: var(--bpg-r-md); background: var(--bpg-surface); box-shadow: var(--bpg-shadow-xs); transition:	border-color var(--bpg-speed) var(--bpg-ease), box-shadow var(--bpg-speed) var(--bpg-ease), background-color var(--bpg-speed) var(--bpg-ease); }
+[data-botphonic-faq]>details.faq-item[open] { border-color: var(--bpg-accent-line); background: var(--bpg-surface); box-shadow: var(--bpg-shadow-sm); }
+@media (hover: hover) {
+	[data-botphonic-faq]>details.faq-item:not([open]):hover { border-color: var(--bpg-line-2); box-shadow: var(--bpg-shadow-sm); }
+}
+
+[data-botphonic-faq]>details.faq-item>summary.faq-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: clamp(12px, 2vw, 18px); margin: 0; padding-block: var(--faq-pad-block); padding-inline: var(--faq-pad-inline); list-style: none; font: inherit; color: var(--bpg-ink); cursor: pointer; -webkit-tap-highlight-color: var(--bpg-accent-soft); }
+[data-botphonic-faq]>details.faq-item>summary.faq-head::-webkit-details-marker { display: none; }
+[data-botphonic-faq]>details.faq-item>summary.faq-head::marker { content: ''; }
+[data-botphonic-faq]>details.faq-item>summary.faq-head::after { display: none; content: none; }
+[data-botphonic-faq]>details.faq-item>summary.faq-head:focus-visible { outline: 3px solid var(--bpg-accent); outline-offset: 3px; border-radius: var(--bpg-r-sm); }
+[data-botphonic-faq] .faq-item-heading { min-inline-size: 0; margin: 0; font-family: var(--heading-font); font-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem); font-weight: 700; line-height: 1.42; letter-spacing: -0.01em; color: var(--bpg-ink); overflow-wrap: anywhere; text-wrap: pretty; transition: color var(--bpg-speed) var(--bpg-ease); }
+@media (hover: hover) {
+	[data-botphonic-faq]>details.faq-item:not([open])>summary.faq-head:hover .faq-item-heading { color: var(--bpg-accent-2); }
+}
+
+[data-botphonic-faq] .faq-icon { display: inline-grid; place-items: center; flex: none; inline-size: 32px; block-size: 32px; border: 1px solid var(--bpg-accent-line); border-radius: var(--bpg-r-sm); background: var(--bpg-accent-soft); color: var(--bpg-accent-2); box-shadow: var(--bpg-shadow-xs); transition:		transform var(--bpg-speed) var(--bpg-ease), border-color var(--bpg-speed) var(--bpg-ease), background var(--bpg-speed) var(--bpg-ease), color var(--bpg-speed) var(--bpg-ease), box-shadow var(--bpg-speed) var(--bpg-ease); }
+[data-botphonic-faq] .faq-icon svg { display: block; inline-size: 18px; block-size: 18px; }
+[data-botphonic-faq]>details.faq-item[open]>summary.faq-head .faq-icon { transform: rotate(180deg); border-color: var(--bpg-accent); background: var(--grad); color: var(--white); box-shadow: var(--bpg-shadow-sm); }
+[data-botphonic-faq]>details.faq-item>.faq-text { min-inline-size: 0; margin-inline: var(--faq-pad-inline); padding-block: var(--faq-pad-block); border-top: 1px solid var(--bpg-line); }
+@keyframes botphonic-faq-reveal {
+	from { opacity: 0; transform: translateY(-4px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	[data-botphonic-faq]>details.faq-item[open]>.faq-text { animation: botphonic-faq-reveal var(--bpg-speed) var(--bpg-ease) both; }
+}
+
+[data-botphonic-faq]>details.faq-item>.faq-text>.faq-paragraph { min-inline-size: 0; max-inline-size: 72ch; margin: 0; padding: 0; font-size: clamp(0.9375rem, 0.91rem + 0.12vw, 1rem); font-weight: 400; line-height: 1.75; color: var(--bpg-ink-2); overflow-wrap: anywhere; overflow-x: auto; overscroll-behavior-inline: contain; -webkit-overflow-scrolling: touch; }
+[data-botphonic-faq] .faq-paragraph> :first-child { margin-block-start: 0; }
+[data-botphonic-faq] .faq-paragraph> :last-child { margin-block-end: 0; }
+[data-botphonic-faq] .faq-paragraph :where(p, ul, ol, blockquote, pre, table, figure) { margin-block: 0 1em; }
+[data-botphonic-faq] .faq-paragraph :where(ul) { padding-inline-start: 1.4em; list-style: disc outside; }
+[data-botphonic-faq] .faq-paragraph :where(ol) { padding-inline-start: 1.4em; list-style: decimal outside; }
+[data-botphonic-faq] .faq-paragraph :where(ul, ol) :where(ul, ol) { margin-block: 0.4em 0; }
+[data-botphonic-faq] .faq-paragraph :where(li) { margin-block-end: 0.4em; color: inherit; }
+[data-botphonic-faq] .faq-paragraph :where(li)::marker { color: var(--bpg-accent); font-weight: 700; }
+[data-botphonic-faq] .faq-paragraph :where(h2, h3, h4, h5, h6) { margin-block: 1.15em 0.5em; font-family: var(--heading-font); font-size: 1em; font-weight: 700; line-height: 1.45; letter-spacing: 0; text-transform: none; color: var(--bpg-ink); }
+[data-botphonic-faq]>details.faq-item>.faq-text>.faq-paragraph :where(a) { font-weight: 600; color: var(--bpg-accent-2); text-decoration: underline; text-decoration-color: var(--bpg-accent-line); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+[data-botphonic-faq]>details.faq-item>.faq-text>.faq-paragraph :where(a:hover) { color: var(--bpg-accent); text-decoration-color: var(--bpg-accent); }
+[data-botphonic-faq] .faq-paragraph :where(blockquote) { padding: 14px 16px; border: 1px solid var(--bpg-accent-line); border-inline-start-width: 3px; border-radius: 0 var(--bpg-r-sm) var(--bpg-r-sm) 0; background: var(--bpg-accent-soft); }
+[data-botphonic-faq] .faq-paragraph :where(code, kbd, samp) { font-family: var(--mono-font); font-size: 0.9em; }
+[data-botphonic-faq] .faq-paragraph :where(:not(pre) > code) { padding: 2px 6px; border: 1px solid var(--bpg-line); border-radius: var(--bpg-r-xs); background: var(--bpg-tint); color: var(--bpg-ink); }
+[data-botphonic-faq] .faq-paragraph :where(pre) { max-inline-size: 100%; padding: 14px 16px; border: 1px solid var(--bpg-line); border-radius: var(--bpg-r-sm); background: var(--bpg-tint); overflow: auto; }
+[data-botphonic-faq] .faq-paragraph :where(img, video, iframe) { max-inline-size: 100%; border-radius: var(--bpg-r-sm); }
+[data-botphonic-faq] .faq-paragraph :where(img, video) { block-size: auto; }
+[data-botphonic-faq] .faq-paragraph :where(table) { inline-size: 100%; border-collapse: collapse; color: var(--bpg-ink-2); }
+[data-botphonic-faq] .faq-paragraph :where(th, td) { padding: 10px 12px; border: 1px solid var(--bpg-line); text-align: start; vertical-align: top; }
+[data-botphonic-faq] .faq-paragraph :where(th) { background: var(--bpg-tint); color: var(--bpg-ink); font-weight: 700; }
+@media (max-width: 600px) {
+	[data-botphonic-faq] { --faq-gap: 8px; --faq-pad-block: 14px; --faq-pad-inline: 16px; }
+	[data-botphonic-faq]>details.faq-item { border-radius: var(--bpg-r-sm); }
+	[data-botphonic-faq] .faq-icon { inline-size: 30px; block-size: 30px; border-radius: var(--bpg-r-xs); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	[data-botphonic-faq]>details.faq-item,
+	[data-botphonic-faq] .faq-item-heading,
+	[data-botphonic-faq] .faq-icon,
+	[data-botphonic-faq] .faq-text { transition: none !important; animation: none !important; }
+}
+
+@media print {
+	[data-botphonic-faq] { --faq-pad-block: 10pt; --faq-pad-inline: 12pt; display: block; }
+	[data-botphonic-faq]>details.faq-item { margin-block-end: 10pt; border-color: var(--bpg-line-2); background: var(--bpg-surface); box-shadow: none; break-inside: avoid; }
+	[data-botphonic-faq] .faq-icon { display: none !important; } 
+	[data-botphonic-faq]>details.faq-item>summary.faq-head { gap: 0; padding-block-end: 6pt; cursor: default; }
+	[data-botphonic-faq]>details.faq-item>.faq-text { display: block !important; padding-block-start: 6pt; animation: none !important; }
+	[data-botphonic-faq] .faq-paragraph { max-inline-size: none; overflow: visible; }
+}

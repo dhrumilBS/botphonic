@@ -1,0 +1,72 @@
+.hero-section { background: radial-gradient(ellipse at 50% -10%, #ffffff 0%, transparent 85%), radial-gradient(circle at 100% 5%, #D6E7FF, transparent 0%), radial-gradient(circle at 10% 8%, #F9E4FE, transparent 11%), linear-gradient(#D6E7FF 0%, #f3f9fe 20%); }
+.badge-us { background: hsla(200, 100%, 61%, 0.063); padding: 6px 10px; border-radius: 50px; }
+.feature-card,
+.industry-card { background: white; border: 1px solid #eee; padding: 20px; border-radius: 16px; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05); transition: all 0.3s ease; }
+.feature-card p,
+.industry-card p { margin-bottom: 0; }
+.section-title { font-weight: 700; font-size: 2.2rem; }
+
+.herobadgeLists { gap: 16px; justify-content: center; margin: 20px 0; }
+.herobadgeLists img { width: 80px; opacity: 0.25; }
+@media screen and (max-width:991px) { .herobadgeLists { gap: 12px; } }
+@media screen and (max-width:488px) {
+	.head-description .formlist .list-item.sentence { max-width: 300px; }
+	.herobadgeLists img { width: 80px; }	
+}
+@media screen and (max-width: 372px) { .herobadgeLists img { width: 60px; }	}
+/* =============================== GLOBAL RESPONSIVE RESET ================================ */
+@media (max-width: 576px) {
+	body { font-size: 15px; }
+	.section-title { font-size: 1.7rem; ; }
+	p { font-size: 0.95rem; }
+}
+
+@media (min-width: 576px) and (max-width: 991px) { .section-title { font-size: 2rem; } }
+
+/* =============================== WHY AI SECTION ================================ */
+.feature-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.feature-card:hover { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); }
+.feature-card .icon { color: #7B5CFF; }
+.feature-card .title { font-size: 20px; }
+.stats-box { text-align: center; background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); }
+.stats-box p { margin-bottom: 0; }
+@media (max-width: 576px) {
+	.feature-card { padding: 20px; }
+}
+
+/* =============================== INDUSTRY SECTION ================================ */
+.industry-card { height: 100%; transition: all 0.3s ease; }
+.industry-card .icon { color: #7B5CFF; }
+.industry-card .title { font-size: 20px; }
+@media (max-width: 576px) { .industry-card { padding: 22px; } }
+
+/* =============================== FEATURE TABLE ================================ */
+.table-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.feature-table { width: 100%; min-width: 990px; border-collapse: separate; border-spacing: 0; background: #ffffff; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); border-radius: 14px; overflow: hidden; }
+.feature-table th { background: linear-gradient(135deg, #5f2c82, #49a09d); color: #fff; padding: 18px; font-size: 18px; text-align: left; }
+.feature-table td { padding: 10px; border-bottom: 1px solid #f0f0f0; }
+.feature-table tr:last-child td { border-bottom: none; }
+.feature-title { font-weight: 600; color: #222; font-size: 17px; margin-bottom: 6px; }
+@media (max-width: 768px) {
+	.feature-table th,
+	.feature-table td { padding: 12px 8px; font-size: 14px; } 
+}
+
+/* =============================== AB SECTION ================================ */
+.ab-wrap { display: flex; gap: 40px; align-items: flex-start; }
+.ab-left { width: 45%; }
+.ab-content { width: 55%; }
+.ab-list { list-style: none; padding: 0; margin-top: 20px; }
+.ab-list li { position: relative; padding-left: 32px; margin-bottom: 18px; color: #4b5563; }
+.ab-list li::before { content: ""; position: absolute; left: 0; top: 2px; width: 22px; height: 22px; border-radius: 30px; background: linear-gradient(135deg, #6366f1, #22c55e); box-shadow: 0 6px 18px rgba(99, 102, 241, .35); }
+.ab-list li::after { content: "✔"; position: absolute; left: 5px; top: 3px; font-size: 14px; color: #fff; font-weight: 700; }
+@media(max-width:768px) {
+	.ab-wrap { flex-direction: column; }
+	.ab-left,
+	.ab-content { width: 100%; }
+}
+
+/* =============================== UL LI ================================ */
+.ul-list { list-style: none; padding: 0; }
+.ul-list li { position: relative; padding-left: 20px; margin-bottom: 8px; }
+.ul-list li::before { content: ''; position: absolute; left: 0; top: 12px; transform: translateY(-50%); width: 10px; height: 10px; border-radius: 50%; background-color: var(--accent); box-shadow: 0 0 8px rgba(0, 123, 255, 0.6); }

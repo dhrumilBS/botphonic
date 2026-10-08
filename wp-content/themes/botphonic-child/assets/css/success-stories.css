@@ -1,0 +1,254 @@
+/**
+ * Botphonic — Customer Stories (success-stories) single + archive.
+ *
+ * Layered on top of assets/css/blog.css, which is enqueued as this file's
+ * dependency. Every token used below is declared in blog.css § 1 (--bpg-*), and
+ * the templates reuse its primitives directly: .bpg-shell, .bpg-eyebrow,
+ * .bpg-chip, .bpg-meta, .bpg-btn, .bpg-sec-head, .bpg-grid, .bpg-card,
+ * .bpg-toc, .bpg-share, .bpg-endcta, .bpg-band, .bpg-pagination-wrap and the
+ * reading-progress rail. Nothing is redeclared here.
+ *
+ * Both roots also carry .bpg-single / .bpg-archive so the blog reset, heading
+ * colours and focus rings apply unchanged; .bpg-story is the extra hook that
+ * keeps these rules off posts and landing pages.
+ *
+ * CONTENTS
+ *   1. Story tokens
+ *   2. Single — dark hero
+ *   3. Single — metric row
+ *   4. Single — section nav (reuses the .bpg-toc shell)
+ *   5. Single — narrative sections
+ *   6. Single — outcome cards
+ *   7. Single — pull quote
+ *   8. Archive — hero proof row
+ *   9. Archive + related — story cards
+ *  10. Responsive
+ *  11. Motion + print
+ */
+
+/* 1. Story tokens */
+.bpg-story {
+	--bpg-story-hero-line: rgba(255, 255, 255, 0.14);
+	--bpg-story-hero-line-2: rgba(255, 255, 255, 0.26);
+	--bpg-story-hero-ink: rgba(255, 255, 255, 0.78);
+	--bpg-story-hero-ink-2: rgba(255, 255, 255, 0.58);
+}
+
+/* 2. Single — dark hero
+   The story hero inverts the blog hero: a case study opens on the result, so
+   the panel carries the brand's deep gradient and the metrics sit inside it. */
+.bpg-story .bpg-story-hero { position: relative; isolation: isolate; padding: clamp(30px, 5vw, 62px) 0 clamp(28px, 4vw, 52px); background: var(--bpg-deep); overflow: clip; }
+.bpg-story .bpg-story-hero::before,
+.bpg-story .bpg-story-hero::after { content: ""; position: absolute; z-index: -1; pointer-events: none; }
+.bpg-story .bpg-story-hero::before { inset: -45% 45% 20% -15%; background: radial-gradient(closest-side, rgba(37, 99, 235, 0.5), transparent 72%); }
+.bpg-story .bpg-story-hero::after { inset: 0; background-image: var(--bpg-mesh); background-size: 22px 22px; }
+.bpg-story .bpg-story-hero__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(24px, 4vw, 44px); align-items: center; }
+.bpg-story .bpg-story-hero__grid > * { min-width: 0; }
+.bpg-story .bpg-story-hero__body { min-width: 0; }
+.bpg-story .bpg-story-hero__title { margin: 0; font-size: clamp(28px, 4.1vw, 46px); font-weight: 800; line-height: 1.15; letter-spacing: -0.028em; color: #fff; }
+.bpg-story .bpg-story-hero__lede { max-width: 62ch; margin: 16px 0 0; font-size: clamp(16px, 1.3vw, 18px); line-height: 1.68; color: var(--bpg-story-hero-ink); text-wrap: pretty; }
+.bpg-story .bpg-story-hero .bpg-eyebrow { color: var(--bpg-coral); }
+.bpg-story .bpg-story-hero .bpg-eyebrow::before { background: var(--bpg-coral); }
+
+/* Badge — the ACF `badge_label`, e.g. the customer's industry. */
+.bpg-story .bpg-story-badge { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 14px; padding: 6px 14px; border: 1px solid var(--bpg-story-hero-line-2); border-radius: var(--bpg-pill); background: rgba(255, 255, 255, 0.08); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); font-size: 12px; font-weight: 700; line-height: 1.3; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; }
+.bpg-story .bpg-story-badge svg { width: 14px; height: 14px; flex: none; color: var(--bpg-coral); }
+
+/* Meta + breadcrumbs, recoloured for the dark panel. */
+.bpg-story .bpg-story-hero__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--bpg-story-hero-line); }
+.bpg-story .bpg-story-hero .bpg-meta { color: var(--bpg-story-hero-ink-2); }
+.bpg-story .bpg-story-hero .bpg-meta__item svg { color: var(--bpg-story-hero-ink-2); }
+.bpg-story .bpg-story-hero .bpg-meta__sep { background: var(--bpg-story-hero-line-2); }
+.bpg-story .bpg-story-hero .wpdev-breadcrumbs { color: var(--bpg-story-hero-ink-2); }
+.bpg-story .bpg-story-hero .wpdev-breadcrumbs .crumb-link { color: rgba(255, 255, 255, 0.82); }
+.bpg-story .bpg-story-hero .wpdev-breadcrumbs .crumb.current { color: var(--bpg-story-hero-ink-2); }
+.bpg-story .bpg-story-hero .wpdev-breadcrumbs .crumb + .crumb::before { color: var(--bpg-story-hero-line-2); }
+
+.bpg-story .bpg-story-hero__media { position: relative; margin: 0; min-width: 0; }
+.bpg-story .bpg-story-hero__media img { display: block; width: 100%; height: auto; border-radius: var(--bpg-r-lg); border: 1px solid var(--bpg-story-hero-line-2); background: rgba(255, 255, 255, 0.05); box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.7); }
+@media (min-width: 992px) {
+	.bpg-story .bpg-story-hero__grid--split { grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr); }
+}
+
+/* 3. Single — metric row
+   Sits inside the hero, so the tiles are translucent rather than white cards:
+   a white block here would fight the dark panel above the fold.
+
+   One row, always. The column count is the number of metrics, handed over by
+   the template as --bpg-stat-count, rather than auto-fit: inside the split
+   hero the body column is narrow enough that auto-fit drops the fourth tile
+   onto a line of its own, which reads as an afterthought instead of the
+   fourth quarter of one result set. */
+.bpg-story .bpg-stats { display: grid; grid-template-columns: repeat(var(--bpg-stat-count, 4), minmax(0, 1fr)); gap: 10px; margin: 26px 0 0; padding: 0; list-style: none; }
+.bpg-story .bpg-stat { display: flex; flex-direction: column; gap: 5px; min-width: 0; padding: 15px 16px; border: 1px solid var(--bpg-story-hero-line); border-radius: var(--bpg-r-md); background: rgba(255, 255, 255, 0.06); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.bpg-story .bpg-stat__num { display: flex; align-items: baseline; gap: 1px; font-size: clamp(22px, 2.5vw, 32px); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; color: #fff; font-variant-numeric: tabular-nums; }
+.bpg-story .bpg-stat__num .bpg-stat__affix { font-size: 0.6em; font-weight: 700; color: var(--bpg-coral); }
+.bpg-story .bpg-stat__label { margin: 0; font-size: 12.5px; font-weight: 600; line-height: 1.4; color: var(--bpg-story-hero-ink); text-wrap: pretty; hyphens: auto; }
+
+/* Three or four metrics split the hero column into narrow tiles, so the label
+   steps down a notch rather than wrapping to four lines. One or two metrics
+   have room to spare and keep the larger size. */
+.bpg-story .bpg-stats:has(.bpg-stat:nth-child(3)) .bpg-stat__label { font-size: 12px; }
+
+/* 4. Single — section nav
+   The card, the list and the scroll-spy highlight are all blog.css §§ 5.1/17,
+   via template-parts/toc.php. The numbers are the story's own: its sections are
+   a sequence — the situation, then what was done, then what came of it — and the
+   nav says so. Counters rather than an <ol>, because dropping an empty ACF
+   section has to renumber the rest, which is the same reason § 5 numbers the
+   headings off a counter on the column. */
+.bpg-story .bpg-toc__list { counter-reset: bpg-story-nav; }
+.bpg-story .bpg-toc__link { gap: 9px; padding: 8px 10px; }
+.bpg-story .bpg-toc__link::before { counter-increment: bpg-story-nav; content: counter(bpg-story-nav, decimal-leading-zero); flex: none; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; color: var(--bpg-ink-4); }
+.bpg-story .bpg-toc__link.bpg-toc-active::before { color: var(--bpg-accent); }
+
+/* 5. Single — narrative sections
+   Numbered off a counter on the main column, so removing an empty ACF section
+   renumbers the rest automatically. */
+.bpg-story .bpg-main { counter-reset: bpg-story-sec; }
+.bpg-story .bpg-story-sec { padding-top: clamp(28px, 3.6vw, 40px); }
+.bpg-story .bpg-story-sec:first-child { padding-top: 0; }
+.bpg-story .bpg-story-sec + .bpg-story-sec { margin-top: clamp(28px, 3.6vw, 40px); border-top: 1px solid var(--bpg-line); }
+
+/* scroll-margin-top stays 0: the anchor offset is already provided once by
+   `html { scroll-padding-top }` in hfe.css (and raised to 150px on phones by
+   blog.css § 17 while the nav card is pinned). Adding a margin here as well
+   would offset every jump twice. */
+.bpg-story .bpg-story-sec__title { display: flex; align-items: baseline; gap: 12px; margin: 0 0 16px; font-size: clamp(23px, 2.8vw, 30px); font-weight: 800; line-height: 1.26; letter-spacing: -0.022em; scroll-margin-top: 0; }
+.bpg-story .bpg-story-sec__title::before { counter-increment: bpg-story-sec; content: counter(bpg-story-sec, decimal-leading-zero); flex: none; padding-top: 0.25em; font-size: 13px; font-weight: 800; letter-spacing: 0.08em; color: var(--bpg-accent); }
+.bpg-story .bpg-story-sec__body { font-size: 17.5px; line-height: 1.8; color: var(--bpg-ink-2); overflow-wrap: break-word; }
+.bpg-story .bpg-story-sec__body > :last-child { margin-bottom: 0; }
+.bpg-story .bpg-story-sec__body p { margin: 0 0 20px; }
+.bpg-story .bpg-story-sec__body :is(strong, b) { color: var(--bpg-ink); font-weight: 700; }
+.bpg-story .bpg-story-sec__body :is(h3, h4, h5) { margin: 28px 0 12px; font-size: clamp(18px, 2vw, 21px); font-weight: 800; line-height: 1.32; }
+.bpg-story .bpg-story-sec__body ul { margin: 0 0 20px; padding-left: 24px; list-style: disc; }
+.bpg-story .bpg-story-sec__body ol { margin: 0 0 20px; padding-left: 24px; list-style: decimal; }
+.bpg-story .bpg-story-sec__body :is(ul, ol) > li { margin-bottom: 10px; line-height: 1.7; }
+.bpg-story .bpg-story-sec__body :is(ul, ol) > li::marker { color: var(--bpg-accent); font-weight: 700; }
+.bpg-story .bpg-story-sec__body a { color: var(--bpg-accent-2); font-weight: 600; text-decoration: underline; text-decoration-color: rgba(37, 99, 235, 0.35); text-underline-offset: 3px; transition: color var(--bpg-speed) var(--bpg-ease), text-decoration-color var(--bpg-speed) var(--bpg-ease); }
+.bpg-story .bpg-story-sec__body a:hover { color: var(--bpg-accent); text-decoration-color: var(--bpg-accent); }
+.bpg-story .bpg-story-sec__body table { width: 100%; margin: 0 0 20px; border-collapse: collapse; font-size: 15px; }
+.bpg-story .bpg-story-sec__body :is(th, td) { padding: 12px 14px; border-bottom: 1px solid var(--bpg-line); text-align: left; vertical-align: top; }
+
+/* A bare wrapper: the overview artwork is exported with its own border, rounded
+   corners and drop shadow, so the white frame this used to draw (padding +
+   border + box-shadow) read as a second border around the first. The image
+   radius is gone for the same reason — clipping at 10px was shaving the corners
+   off the shadow baked into the file. */
+.bpg-story .bpg-story-figure { margin: 26px 0 0; padding: 0; border: 0; background: none; box-shadow: none; }
+.bpg-story .bpg-story-figure img { display: block; width: 100%; height: auto; }
+.bpg-story .bpg-story-figure figcaption { margin-top: 10px; font-size: 13px; line-height: 1.5; color: var(--bpg-ink-4); }
+
+/* The empty state is shared with the archive, but blog.css only sizes its title
+   under .bpg-archive — the single view uses the same block for an unpublished
+   story, so it needs the heading rule too. */
+.bpg-story .bpg-empty__title { margin: 0; font-size: clamp(21px, 2.4vw, 26px); font-weight: 800; line-height: 1.25; }
+
+/* 6. Single — outcome cards
+   A fixed 2 × 2 matrix rather than auto-fit: the main column is wide enough for
+   three 250px tracks, so auto-fit laid four metrics out as 3 + 1. Two columns
+   keep the set balanced and give each card room for its description.
+
+   An odd final card spans the row, so three metrics read as 2 + 1 full-width
+   instead of leaving half a row empty. */
+.bpg-story .bpg-outcomes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 26px 0 0; padding: 0; list-style: none; }
+.bpg-story .bpg-outcome:last-child:nth-child(odd) { grid-column: 1 / -1; }
+
+/* Two columns for the top row only — icon beside the figure — then the label and
+   the description run the full width from the card's left edge. The icon column
+   is not reserved for the whole card height: doing that left a 44px-wide strip
+   of dead space down the left of every description.
+
+   align-content: start keeps the rows packed at the top, so the card that gets
+   stretched to match a taller sibling in the 2 × 2 grid grows at the bottom
+   rather than spreading its rows apart. */
+.bpg-story .bpg-outcome { display: grid; grid-template-columns: 44px minmax(0, 1fr); align-items: center; align-content: start; gap: 9px 14px; min-width: 0; padding: 22px; border: 1px solid var(--bpg-line); border-radius: var(--bpg-r-lg); background: linear-gradient(180deg, var(--bpg-tint) 0%, #FFFFFF 100%); box-shadow: var(--bpg-shadow-xs); transition: border-color var(--bpg-speed) var(--bpg-ease), box-shadow var(--bpg-speed) var(--bpg-ease), transform var(--bpg-speed) var(--bpg-ease); }
+.bpg-story .bpg-outcome:hover { border-color: var(--bpg-accent-line); transform: translateY(-3px); box-shadow: var(--bpg-shadow); }
+.bpg-story .bpg-outcome__label,
+.bpg-story .bpg-outcome__text { grid-column: 1 / -1; }
+.bpg-story .bpg-outcome__icon { grid-area: 1 / 1; display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--bpg-accent-line); border-radius: var(--bpg-r-sm); background: var(--bpg-accent-soft); color: var(--bpg-accent); }
+.bpg-story .bpg-outcome__icon svg { width: 21px; height: 21px; }
+.bpg-story .bpg-outcome__icon img { width: 23px; height: auto; margin: 0; }
+
+/* Flex, not inline: the prefix/value/suffix spans sit on their own source lines,
+   and the collapsed whitespace between them would otherwise print "+ 60 %". */
+.bpg-story .bpg-outcome__num { grid-area: 1 / 2; display: flex; align-items: baseline; gap: 1px; font-size: clamp(25px, 2.9vw, 31px); font-weight: 800; line-height: 1.05; letter-spacing: -0.028em; color: var(--bpg-ink); font-variant-numeric: tabular-nums; }
+.bpg-story .bpg-outcome__num .bpg-stat__affix { font-size: 0.64em; font-weight: 700; color: var(--bpg-accent); }
+.bpg-story .bpg-outcome__label { margin: 0; font-size: 14.5px; font-weight: 700; line-height: 1.4; color: var(--bpg-ink); }
+.bpg-story .bpg-outcome__text { margin: 0; font-size: 14.5px; line-height: 1.65; color: var(--bpg-ink-3); }
+
+/* 7. Single — pull quote */
+.bpg-story .bpg-story-quote { position: relative; margin: clamp(28px, 3.6vw, 40px) 0 0; padding: 26px 28px; border: 1px solid var(--bpg-coral-line); border-left: 3px solid var(--bpg-coral); border-radius: 0 var(--bpg-r-lg) var(--bpg-r-lg) 0; background: var(--bpg-coral-soft); }
+.bpg-story .bpg-story-quote svg { width: 26px; height: 26px; margin-bottom: 12px; color: var(--bpg-coral-2); }
+.bpg-story .bpg-story-quote p { margin: 0; font-size: clamp(17px, 1.9vw, 20px); font-weight: 600; line-height: 1.6; color: var(--bpg-ink); }
+.bpg-story .bpg-story-quote cite { display: block; margin-top: 14px; font-size: 14px; font-style: normal; font-weight: 700; color: var(--bpg-ink-3); }
+
+/* 8. Archive — hero proof row */
+.bpg-story .bpg-arc-hero__proof { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 14px; margin: 24px 0 0; padding: 0; list-style: none; }
+.bpg-story .bpg-arc-hero__proof li { display: inline-flex; align-items: center; gap: 8px; padding: 8px 15px; border: 1px solid var(--bpg-line-2); border-radius: var(--bpg-pill); background: #fff; font-size: 13.5px; font-weight: 600; line-height: 1.3; color: var(--bpg-ink-2); box-shadow: var(--bpg-shadow-xs); }
+.bpg-story .bpg-arc-hero__proof svg { width: 15px; height: 15px; flex: none; color: var(--bpg-accent); }
+
+/* 9. Archive + related — story cards
+   Built on .bpg-card, so hover, media zoom, focus-within and the featured
+   grid-span behaviour are inherited from blog.css § 14. */
+.bpg-story .bpg-story-card .bpg-card__media { aspect-ratio: 16 / 9; }
+.bpg-story .bpg-story-card__stats { display: flex; flex-wrap: wrap; gap: 8px; margin: 2px 0 0; padding: 0; list-style: none; }
+.bpg-story .bpg-story-card__stat { display: inline-flex; align-items: baseline; gap: 5px; padding: 5px 11px; border: 1px solid var(--bpg-ok-line); border-radius: var(--bpg-pill); background: var(--bpg-ok-soft); font-size: 12.5px; font-weight: 700; line-height: 1.3; color: var(--bpg-ok); }
+.bpg-story .bpg-story-card__stat span { font-weight: 600; color: var(--bpg-ink-3); }
+.bpg-story .bpg-story-card .bpg-card__foot { justify-content: space-between; }
+.bpg-story .bpg-story-card .bpg-card__date { margin-left: 0; }
+.bpg-story .bpg-story-card__more { display: inline-flex; align-items: center; gap: 6px; margin-left: auto; font-size: 13px; font-weight: 700; color: var(--bpg-accent-2); text-decoration: none; white-space: nowrap; }
+.bpg-story .bpg-story-card__more svg { width: 14px; height: 14px; flex: none; transition: transform var(--bpg-speed) var(--bpg-ease); }
+.bpg-story .bpg-story-card:hover .bpg-story-card__more svg { transform: translateX(3px); }
+@media (min-width: 768px) {
+	.bpg-story .bpg-story-card.bpg-card--featured .bpg-card__media { flex: 0 0 52%; min-height: 300px; padding: 0; aspect-ratio: auto; background: var(--bpg-tint-2); }
+	.bpg-story .bpg-story-card.bpg-card--featured .bpg-card__media img { object-fit: cover; border-radius: 0; }
+	/* Without a summary paragraph the featured body is short, so the chips get a
+	   little more breathing room against the taller media panel. */
+	.bpg-story .bpg-story-card.bpg-card--featured .bpg-story-card__stats { gap: 10px; margin-top: 6px; }
+	.bpg-story .bpg-story-card.bpg-card--featured .bpg-story-card__stat { font-size: 13.5px; padding: 7px 14px; }
+}
+
+/* 10. Responsive */
+@media (max-width: 991.98px) {
+	.bpg-story .bpg-story-hero__media img { border-radius: var(--bpg-r-md); }
+}
+
+@media (max-width: 767.98px) {
+	.bpg-story .bpg-story-hero__media { display: none; }
+	/* Four tiles across a phone would be ~70px wide. Two per row, whatever the
+	   count, and the last one spans the gap when the total is odd. */
+	.bpg-story .bpg-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.bpg-story .bpg-stat:last-child:nth-child(odd) { grid-column: 1 / -1; }
+	.bpg-story .bpg-stat { padding: 14px 16px; }
+	.bpg-story .bpg-stat__label,
+	.bpg-story .bpg-stats:has(.bpg-stat:nth-child(3)) .bpg-stat__label { font-size: 13px; }
+	.bpg-story .bpg-story-sec__body { font-size: 16.5px; line-height: 1.75; }
+	.bpg-story .bpg-story-sec__body p { margin-bottom: 17px; }
+	.bpg-story .bpg-story-sec__title { gap: 10px; }
+	/* One per row on phones; the odd-child span then has nothing to do. */
+	.bpg-story .bpg-outcomes { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+	.bpg-story .bpg-outcome:last-child:nth-child(odd) { grid-column: auto; }
+	.bpg-story .bpg-outcome { grid-template-columns: 40px minmax(0, 1fr); gap: 8px 12px; padding: 18px; }
+	.bpg-story .bpg-outcome__icon { width: 40px; height: 40px; }
+	.bpg-story .bpg-story-quote { padding: 20px; }
+	.bpg-story .bpg-arc-hero__proof { justify-content: flex-start; }
+}
+
+/* 11. Motion + print */
+@media (prefers-reduced-motion: reduce) {
+	.bpg-story .bpg-outcome:hover { transform: none; }
+	.bpg-story .bpg-story-card:hover .bpg-story-card__more svg { transform: none; }
+}
+
+@media print {
+	.bpg-story .bpg-story-hero { padding: 0 0 16px; background: none; color: var(--bpg-ink); }
+	.bpg-story .bpg-story-hero::before,
+	.bpg-story .bpg-story-hero::after { display: none; }
+	.bpg-story .bpg-story-hero__title,
+	.bpg-story .bpg-stat__num { color: var(--bpg-ink); }
+	.bpg-story .bpg-story-hero__lede,
+	.bpg-story .bpg-stat__label { color: var(--bpg-ink-2); }
+	.bpg-story .bpg-stat { border-color: var(--bpg-line); background: none; }
+	.bpg-story .bpg-story-badge { border-color: var(--bpg-line); background: none; color: var(--bpg-ink); }
+}

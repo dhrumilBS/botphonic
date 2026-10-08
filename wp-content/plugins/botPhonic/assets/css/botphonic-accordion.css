@@ -1,0 +1,23 @@
+.botphonic-accordion { display: grid; gap: 80px; }
+.botphonic-accordion.columns-1 { grid-template-columns: 1fr; }
+.botphonic-accordion.columns-2 { grid-template-columns: repeat(2, 1fr); }
+.botphonic-accordion.columns-3 { grid-template-columns: repeat(3, 1fr); }
+.botphonic-accordion.columns-4 { grid-template-columns: repeat(4, 1fr); }
+.bp-column-title { text-align: center; margin-bottom: 40px; }
+.bp-column-title h3 { font-size: 30px; letter-spacing: 0.2px; }
+.bp-item { border-bottom: 1px solid #e6e6e6; padding: 4px 0; }
+.bp-question { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; cursor: pointer; transition: 0.3s ease; }
+.bp-question h5 { margin: 0; font-weight: 500; letter-spacing: 0.3px; }
+.bp-item.active .bp-question h5,
+.bp-question:hover h5 { color: var(--secondary) }
+.bp-icon { font-size: 22px; font-weight: 300; transition: transform 0.3s ease; }
+.bp-answer { display: none; padding-bottom: 24px; }
+.bp-answer p { margin: 0; }
+.bp-item.active .bp-answer { display: block; }
+.bp-item.active .bp-icon { transform: rotate(45deg); }
+@media (max-width: 1024px) { .botphonic-accordion { gap: 30px; } }
+@media (max-width: 768px) {
+    .botphonic-accordion.columns-2,
+    .botphonic-accordion.columns-3,
+    .botphonic-accordion.columns-4 { grid-template-columns: 1fr; }
+}

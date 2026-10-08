@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="640" height="480" role="img" aria-label="Enterprise-grade AI call center: under 300 ms latency, 99.99% uptime, 50+ languages, 100+ integrations, infrastructure already in place">
+  <defs>
+    <linearGradient id="ep-panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0C2C44"/>
+      <stop offset="1" stop-color="#0A2438"/>
+    </linearGradient>
+    <linearGradient id="ep-coral" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FF9068"/><stop offset="1" stop-color="#FF7E55"/>
+    </linearGradient>
+    <linearGradient id="ep-ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FF7E55"/><stop offset="1" stop-color="#7FE0B4"/>
+    </linearGradient>
+    <filter id="ep-glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="ep-shadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+    <style>
+      .ep-tile{opacity:0;transform-box:fill-box;transform-origin:center;animation:epTile 6.5s ease-in-out infinite}
+      @keyframes epTile{0%{opacity:0;transform:translateY(12px) scale(.96)}100%{opacity:1;transform:translateY(0) scale(1)}}
+      .ep-conn{stroke-dasharray:5 8;animation:epConn 1.1s linear infinite}
+      @keyframes epConn{to{stroke-dashoffset:-26}}
+      .ep-pulse{transform-box:fill-box;transform-origin:center;animation:epPulse 2.6s ease-in-out infinite}
+      @keyframes epPulse{0%,100%{opacity:.22;transform:scale(.9)}50%{opacity:.6;transform:scale(1.12)}}
+      .ep-ripple{transform-box:fill-box;transform-origin:center;animation:epRipple 2.6s ease-out infinite}
+      @keyframes epRipple{0%{opacity:.45;transform:scale(.72)}100%{opacity:0;transform:scale(1.7)}}
+      .ep-node{transform-box:fill-box;transform-origin:center;animation:epNode 2.6s ease-in-out infinite}
+      @keyframes epNode{0%,100%{opacity:.45}50%{opacity:1}}
+      .ep-lat{transform-box:fill-box;transform-origin:0 0;animation:epLat 3s cubic-bezier(.4,0,.2,1) infinite}
+      @keyframes epLat{0%,100%{transform:scaleX(.25)}45%,60%{transform:scaleX(1)}}
+      .ep-up{stroke-dasharray:163;stroke-dashoffset:163;animation:epUp 6.5s ease-in-out infinite}
+      @keyframes epUp{0%,15%{stroke-dashoffset:163}45%,100%{stroke-dashoffset:8}}
+      .ep-bar{transform-box:fill-box;transform-origin:center bottom;animation:epBar 1.1s ease-in-out infinite}
+      @keyframes epBar{0%,100%{transform:scaleY(.45)}50%{transform:scaleY(1)}}
+      .ep-live{transform-box:fill-box;transform-origin:center;animation:epNode 2.6s ease-in-out infinite}
+      .ep-fcheck{stroke-dasharray:20;stroke-dashoffset:20;animation:epFcheck 6.5s ease-in-out infinite}
+      @keyframes epFcheck{0%,18%{stroke-dashoffset:20}40%,100%{stroke-dashoffset:0}}
+    </style>
+  </defs>
+
+  <!-- transparent background: sits on section navy #072032 -->
+
+  <!-- ambient glow behind core -->
+  <circle cx="320" cy="196" r="150" fill="#FF7E55" opacity="0.05"/>
+  <circle cx="320" cy="196" r="96" fill="#1E9E6A" opacity="0.045"/>
+
+  <!-- connectors from core to the 4 tiles -->
+  <path class="ep-conn" d="M272 168 C 290 150, 285 140, 268 138" fill="none" stroke="#FF7E55" stroke-width="2.5" stroke-linecap="round"/>
+  <path class="ep-conn" d="M368 168 C 350 150, 355 140, 372 138" fill="none" stroke="#7FE0B4" stroke-width="2.5" stroke-linecap="round"/>
+  <path class="ep-conn" d="M272 224 C 290 242, 285 252, 268 254" fill="none" stroke="#FF9068" stroke-width="2.5" stroke-linecap="round"/>
+  <path class="ep-conn" d="M368 224 C 350 242, 355 252, 372 254" fill="none" stroke="#7C5CFF" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- CENTRAL enterprise core -->
+  <g>
+    <circle class="ep-ripple" cx="320" cy="196" r="58" fill="none" stroke="#FF7E55" stroke-width="2"/>
+    <circle class="ep-pulse" cx="320" cy="196" r="58" fill="none" stroke="url(#ep-ring)" stroke-width="2.5"/>
+    <circle cx="320" cy="196" r="52" fill="url(#ep-panel)" stroke="#FFFFFF" stroke-opacity="0.14" stroke-width="1.5" filter="url(#ep-shadow)"/>
+    <!-- server/stack glyph -->
+    <g transform="translate(320,182)" filter="url(#ep-glow)">
+      <rect x="-20" y="-14" width="40" height="12" rx="3" fill="url(#ep-coral)"/>
+      <rect x="-20" y="1" width="40" height="12" rx="3" fill="#7FE0B4"/>
+      <circle cx="-13" cy="-8" r="1.8" fill="#0A2438"/>
+      <circle cx="-13" cy="7" r="1.8" fill="#0A2438"/>
+    </g>
+    <text x="320" y="222" text-anchor="middle" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="10.5" font-weight="800" fill="#fff" letter-spacing="1">CALL CENTER</text>
+    <g class="ep-live">
+      <circle cx="309" cy="234" r="3" fill="#7FE0B4"/>
+      <text x="317" y="237" text-anchor="start" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="9.5" font-weight="700" fill="#7FE0B4" letter-spacing="1">LIVE</text>
+    </g>
+  </g>
+
+  <!-- TILE 1: latency (top-left) — text left, icon chip right -->
+  <g class="ep-tile" style="animation-delay:0s">
+    <rect x="34" y="70" width="230" height="96" rx="16" fill="url(#ep-panel)" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="1.5" filter="url(#ep-shadow)"/>
+    <text x="54" y="102" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="25" font-weight="800" fill="#fff">&lt;300<tspan font-size="13" font-weight="700" fill="#9FB3C4"> ms</tspan></text>
+    <text x="54" y="122" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="11.5" fill="#9FB3C4">Response latency</text>
+    <rect x="54" y="134" width="122" height="7" rx="3.5" fill="#FFFFFF" fill-opacity="0.08"/>
+    <rect class="ep-lat" x="54" y="134" width="122" height="7" rx="3.5" fill="#FF7E55"/>
+    <!-- icon chip -->
+    <rect x="204" y="88" width="46" height="46" rx="13" fill="#FF7E55" fill-opacity="0.12"/>
+    <g transform="translate(227,111)">
+      <path d="M0 -12 v12 l8 5" fill="none" stroke="#FF9068" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle r="14" fill="none" stroke="#FF9068" stroke-width="2.4"/>
+    </g>
+  </g>
+
+  <!-- TILE 2: uptime (top-right) — text left, ring chip right -->
+  <g class="ep-tile" style="animation-delay:.7s">
+    <rect x="376" y="70" width="230" height="96" rx="16" fill="url(#ep-panel)" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="1.5" filter="url(#ep-shadow)"/>
+    <text x="398" y="102" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="25" font-weight="800" fill="#fff">99.99<tspan font-size="13" font-weight="700" fill="#7FE0B4">%</tspan></text>
+    <text x="398" y="122" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="11.5" fill="#9FB3C4">Platform uptime</text>
+    <text x="398" y="146" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" font-weight="700" fill="#7FE0B4">Always on</text>
+    <!-- progress ring chip -->
+    <g transform="translate(569,111)">
+      <circle r="22" fill="none" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="5"/>
+      <circle class="ep-up" r="26" fill="none" stroke="#7FE0B4" stroke-width="5" stroke-linecap="round" transform="scale(0.846) rotate(-90)"/>
+      <path class="ep-fcheck" d="M-7 0 l5 5 9 -11" fill="none" stroke="#7FE0B4" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+
+  <!-- TILE 3: languages (bottom-left) — text left, globe chip right -->
+  <g class="ep-tile" style="animation-delay:1.4s">
+    <rect x="34" y="226" width="230" height="96" rx="16" fill="url(#ep-panel)" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="1.5" filter="url(#ep-shadow)"/>
+    <text x="54" y="258" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="25" font-weight="800" fill="#fff">50<tspan font-size="15">+</tspan></text>
+    <text x="54" y="278" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="11.5" fill="#9FB3C4">Languages · mid-call</text>
+    <g transform="translate(54,294)">
+      <rect class="ep-bar" x="0" y="-8" width="4" height="16" rx="2" fill="#7FE0B4" style="animation-delay:0s"/>
+      <rect class="ep-bar" x="7" y="-8" width="4" height="16" rx="2" fill="#FF9068" style="animation-delay:.15s"/>
+      <rect class="ep-bar" x="14" y="-8" width="4" height="16" rx="2" fill="#7FE0B4" style="animation-delay:.3s"/>
+      <rect class="ep-bar" x="21" y="-8" width="4" height="16" rx="2" fill="#FF9068" style="animation-delay:.45s"/>
+    </g>
+    <!-- globe chip -->
+    <rect x="204" y="244" width="46" height="46" rx="13" fill="#FF9068" fill-opacity="0.12"/>
+    <g transform="translate(227,267)" fill="none" stroke="#FF9068" stroke-width="1.8">
+      <circle r="15"/>
+      <ellipse rx="6.5" ry="15"/>
+      <path d="M-15 0 H15 M-13 -8 H13 M-13 8 H13"/>
+    </g>
+  </g>
+
+  <!-- TILE 4: integrations (bottom-right) — text left, node chip right -->
+  <g class="ep-tile" style="animation-delay:2.1s">
+    <rect x="376" y="226" width="230" height="96" rx="16" fill="url(#ep-panel)" stroke="#FFFFFF" stroke-opacity="0.10" stroke-width="1.5" filter="url(#ep-shadow)"/>
+    <text x="398" y="258" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="25" font-weight="800" fill="#fff">100<tspan font-size="15">+</tspan></text>
+    <text x="398" y="278" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="11.5" fill="#9FB3C4">API · SIP · Zapier</text>
+    <g transform="translate(398,294)" fill="none" stroke-width="2">
+      <circle class="ep-node" cx="0" cy="0" r="4.5" stroke="#0B5CFF" style="animation-delay:0s"/>
+      <circle class="ep-node" cx="20" cy="-5" r="4.5" stroke="#7FE0B4" style="animation-delay:.4s"/>
+      <circle class="ep-node" cx="40" cy="2" r="4.5" stroke="#FF9068" style="animation-delay:.8s"/>
+      <path d="M4.5 0 L15.5 -5 M24.5 -5 L35.5 2" stroke="#FFFFFF" stroke-opacity="0.22"/>
+    </g>
+    <!-- integration hub chip -->
+    <rect x="546" y="244" width="46" height="46" rx="13" fill="#7C5CFF" fill-opacity="0.14"/>
+    <g transform="translate(569,267)" fill="none" stroke="#B7A6FF" stroke-width="2">
+      <circle r="5.5" fill="#7C5CFF"/>
+      <circle cx="0" cy="-13" r="4"/>
+      <circle cx="12" cy="7" r="4"/>
+      <circle cx="-12" cy="7" r="4"/>
+      <path d="M0 -8 V-2 M4.5 3 L9 5 M-4.5 3 L-9 5" stroke="#B7A6FF"/>
+    </g>
+  </g>
+
+  <!-- footer badge: infrastructure already in place -->
+  <g>
+    <g filter="url(#ep-shadow)">
+      <rect x="180" y="392" width="280" height="46" rx="23" fill="#0C2C44" stroke="#FFFFFF" stroke-opacity="0.12" stroke-width="1.5"/>
+    </g>
+    <g transform="translate(206,415)">
+      <circle r="12" fill="none" stroke="#7FE0B4" stroke-width="2"/>
+      <path class="ep-fcheck" d="M-5 0 l4 4 7 -9" fill="none" stroke="#7FE0B4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="228" y="420" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="14" font-weight="700" fill="#fff">Infrastructure already in place</text>
+  </g>
+</svg>

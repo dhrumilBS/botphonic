@@ -1,0 +1,16 @@
+.available-badge { display: inline-flex; align-items: center; gap: 12px; padding: 6px 12px; font-size: 14px; color: #28c76f; background: rgba(40, 199, 111, 0.1); border-radius: 50px; animation: botphonic-badge-fade-in 0.5s ease-in-out; } 
+.available-dot { position: relative; flex-shrink: 0; width: 12px; height: 12px; background-color: #28c76f; border-radius: 50%; }
+.available-dot::after { content: ""; position: absolute; top: -4px; left: -4px; width: 20px; height: 20px; background-color: #28c76f; border-radius: 50%; animation: botphonic-badge-pulse 1.5s infinite; }
+@keyframes botphonic-badge-pulse { 
+	0% { transform: scale(0.8); opacity: 0.4; }
+	100% { transform: scale(1.6); opacity: 0; }
+}
+@keyframes botphonic-badge-fade-in {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.available-badge { animation: none; }
+	.available-dot::after { animation: none; opacity: 0.4; }
+}
