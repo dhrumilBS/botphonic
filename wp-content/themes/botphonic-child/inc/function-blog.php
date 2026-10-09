@@ -36,9 +36,7 @@ function botphonic_is_blog_archive_view()
 		return true;
 	}
 
-	// Author archives are blog listings too (author.php is built on the same
-	// .bpg-archive components), so they get blog.css, blog.js and body.bpg-blog.
-	return is_archive() && !is_post_type_archive();
+	return is_archive() && !is_author() && !is_post_type_archive();
 }
 
 /**
@@ -50,22 +48,6 @@ function botphonic_is_blog_view()
 {
 	return botphonic_is_blog_single_view() || botphonic_is_blog_archive_view();
 }
-
-/**
- * Author archives show only the author's 3 latest posts: one row of the
- * three-column card grid, no pagination (author.php prints none). Every other
- * listing keeps Settings → Reading (12).
- *
- * @param WP_Query $query Query being prepared.
- * @return void
- */
-function botphonic_blog_author_per_page($query)
-{
-	if (!is_admin() && $query->is_main_query() && $query->is_author()) {
-		$query->set('posts_per_page', 3);
-	}
-}
-add_action('pre_get_posts', 'botphonic_blog_author_per_page');
 
 /**
  * @param string[] $classes Body classes.
@@ -378,14 +360,12 @@ function botphonic_blog_icon($name)
 		'close' => '<path d="M6 6l12 12M18 6L6 18"/>',
 		'arrow-right' => '<path d="M5 12h14M13 6l6 6-6 6"/>',
 		'link' => '<path d="M9.5 14.5a3.5 3.5 0 0 0 5 0l3-3a3.5 3.5 0 0 0-5-5l-1 1"/><path d="M14.5 9.5a3.5 3.5 0 0 0-5 0l-3 3a3.5 3.5 0 0 0 5 5l1-1"/>',
-		'mail' => '<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7.5l8.5 6 8.5-6"/>',
 	);
 
 	$raw = array(
 		'linkedin' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true" focusable="false"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1a53.79 53.79 0 1 1 53.79-53.79 53.79 53.79 0 0 1-53.79 53.79zM447.9 448h-92.4V302.4c0-34.7-.7-79.3-48.3-79.3-48.3 0-55.7 37.7-55.7 76.7V448h-92.4V148.9h88.7v40.8h1.3c12.4-23.5 42.7-48.3 87.8-48.3 93.9 0 111.2 61.8 111.2 142.3z"/></svg>',
 		'x' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true" focusable="false"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48h145.6l100.5 132.9zM364.4 421.8h39.1L151.1 88h-42z"/></svg>',
 		'facebook' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" fill="currentColor" aria-hidden="true" focusable="false"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>',
-		'youtube' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="currentColor" aria-hidden="true" focusable="false"><path d="M44.9 14.5c-.4-2.2-2.3-3.8-4.5-4.3C37.1 9.5 31 9 24.4 9S11.6 9.5 8.3 10.2c-2.2.5-4.1 2-4.5 4.3C3.4 17 3 20.5 3 25s.4 8 .9 10.5c.4 2.2 2.3 3.8 4.5 4.3C11.9 40.5 17.9 41 24.5 41s12.6-.5 16.1-1.2c2.2-.5 4.1-2 4.5-4.3.4-2.5.9-6.1 1-10.5-.2-4.5-.7-8-1.2-10.5zM19 32V18l12.2 7z"/></svg>',
 	);
 
 	if (isset($raw[$name])) {

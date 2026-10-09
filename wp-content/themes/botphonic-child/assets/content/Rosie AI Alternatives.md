@@ -16,7 +16,7 @@ We compared the advertised rate against the likely cost of a real call. From the
 
 We also weighed realistic setup time against a scripted demo, since the two rarely match. Customer experiences were reviewed through G2 and Trustpilot, where current review data was available. Product capabilities, pricing, and compliance claims were checked against vendor documentation. Figures below come from published pricing and documentation, checked in September 2026\.
 
-## **What Will These Platforms Actually Cost You?**
+## **What Will This Actually Cost You?**
 
 The effective cost depends on what each vendor bundles into its rate. Some fold the model, transcription, and voice into a single price, while others like Vapi charge a smaller platform fee but bill providers separately. For example, at 1,000 minutes/month, you could easily see \$50 in platform fees \+ \$20–\$50 in telephony \+ \$20–\$100 in AI/provider costs, putting the rough all-in cost at \$90–\$200/month.
 
@@ -140,7 +140,7 @@ Synthflow is a no-code, drag-and-drop voice agent builder. However, the platform
 
 ![][image5]
 
-Vapi is an orchestration layer that connects your own language model, transcription provider, voice, and telephony into one real-time call through an API. Its pricing calculator provides con figuration-dependent estimates, so the final per-minute cost depends on the providers and components selected, and the platform fee doesn't include provider costs. It's built for teams that want to own the stack rather than take a packaged agent.
+Vapi is an orchestration layer that connects your own language model, transcription provider, voice, and telephony into one real-time call through an API. Its pricing calculator provides configuration-dependent estimates, so the final per-minute cost depends on the providers and components selected, and the platform fee doesn't include provider costs. It's built for teams that want to own the stack rather than take a packaged agent.
 
 **Best for:** Engineering teams that want full control over the model stack and are comfortable managing separate provider costs.
 
