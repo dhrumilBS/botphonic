@@ -281,6 +281,35 @@ function enqueue_child_theme_style()
 	}
 
 	/**
+	 * Author archive — profile layer on top of blog.css, plus the comparison
+	 * guide / customer story card styles when the author has any of those
+	 * (both stylesheets are scoped to a .bpg-alt / .bpg-story ancestor, which
+	 * author.php puts on those sections only).
+	 */
+	if (is_author()) {
+		wp_enqueue_style(
+			'botphonic-author',
+			get_stylesheet_directory_uri() . '/assets/css/author.css',
+			[BOTPHONIC_BLOG_STYLE],
+			botphonic_child_asset_ver('/assets/css/author.css')
+		);
+
+		if (function_exists('botphonic_author_counts')) {
+			$author_counts = botphonic_author_counts(get_queried_object_id());
+
+			if (defined('BOTPHONIC_ALT_STYLE') && !empty($author_counts[defined('BOTPHONIC_ALT_SLUG') ? BOTPHONIC_ALT_SLUG : 'alternatives'])) {
+				wp_enqueue_style(BOTPHONIC_ALT_STYLE, get_stylesheet_directory_uri() . '/assets/css/alternatives.css', [BOTPHONIC_BLOG_STYLE], botphonic_child_asset_ver('/assets/css/alternatives.css'));
+			}
+
+			if (defined('BOTPHONIC_STORY_STYLE') && !empty($author_counts[defined('CUSTOME_STORY_SLUG') ? CUSTOME_STORY_SLUG : 'success-stories'])) {
+				wp_enqueue_style(BOTPHONIC_STORY_STYLE, get_stylesheet_directory_uri() . '/assets/css/success-stories.css', [BOTPHONIC_BLOG_STYLE], botphonic_child_asset_ver('/assets/css/success-stories.css'));
+			}
+
+			unset($author_counts);
+		}
+	}
+
+	/**
 	 * Customer Stories (success-stories) — single + post type archive.
 	 *
 	 * The story templates are built on the blog design system rather than
