@@ -1,0 +1,5 @@
+# Local config with DB credentials and security keys
+/wp-config.php
+
+# UpdraftPlus backups (full database dumps and site archives)
+/wp-content/updraft/
