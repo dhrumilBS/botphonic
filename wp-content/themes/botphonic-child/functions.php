@@ -23,6 +23,7 @@ if (!defined('BOTPHONIC_ALT_SLUG')) {
 
 $botphonic_includes = array(
 	'function-blog.php',
+	'function-author.php',
 	'function-story.php',
 	'function-alternative.php',
 	'acf-alternatives.php',

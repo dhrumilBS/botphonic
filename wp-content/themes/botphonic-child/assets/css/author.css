@@ -1,0 +1,146 @@
+/**
+ * Author archive — profile layer.
+ *
+ * Loaded on author pages after blog.css (declared as its dependency). Every
+ * colour, radius, shadow and motion value comes from the global --bpg-* tokens
+ * in style.css :root, so the page follows the blog / alternatives / home theme
+ * automatically. Cards, chips, filters, buttons, pagination and the CTA band
+ * are blog.css components and are not restyled here.
+ *
+ * Every rule is scoped to .bpa (the author page wrapper).
+ *
+ *   1. Hero
+ *   2. Social links
+ *   3. Stats
+ *   4. Topics + jump links
+ *   5. Sections
+ *   6. About
+ *   7. Responsive + motion
+ */
+
+
+/* 1. Hero ------------------------------------------------------------------ */
+
+.bpa .bpa-hero { text-align: left; }
+.bpa .bpa-hero .wpdev-breadcrumbs { margin-bottom: clamp(18px, 3vw, 28px); }
+
+.bpa-hero__grid { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(20px, 3.5vw, 40px); align-items: center; }
+.bpa-hero__grid > * { min-width: 0; }
+
+.bpa-hero__avatar { position: relative; flex: none; width: clamp(104px, 14vw, 168px); aspect-ratio: 1; padding: 4px; border-radius: 50%; background: linear-gradient(135deg, var(--bpg-accent) 0%, #06B6D4 50%, var(--bpg-coral) 100%); box-shadow: var(--bpg-shadow); }
+.bpa-hero__avatar img { display: block; width: 100%; height: 100%; border: 4px solid var(--bpg-surface); border-radius: 50%; object-fit: cover; background: var(--bpg-tint); }
+
+.bpa .bpa-hero__body .bpg-eyebrow { margin-bottom: 10px; }
+.bpg-archive .bpa-hero__name { margin: 0; font-size: clamp(30px, 4.4vw, 48px); font-weight: 800; line-height: 1.12; letter-spacing: -0.028em; color: var(--bpg-ink); }
+.bpa-hero__role { margin: 8px 0 0; font-size: clamp(15px, 1.3vw, 17px); font-weight: 700; line-height: 1.45; color: var(--bpg-accent-2); }
+.bpa-hero__role span { font-weight: 600; color: var(--bpg-ink-4); }
+.bpa-hero__lede { max-width: 68ch; margin: 14px 0 0; font-size: clamp(15px, 1.25vw, 17px); line-height: 1.7; color: var(--bpg-ink-3); text-wrap: pretty; }
+
+/* Page 2+: identity only, so the grid starts above the fold. */
+.bpa-hero--compact { padding-block: clamp(24px, 4vw, 40px) clamp(20px, 3vw, 30px); }
+.bpa-hero--compact .bpa-hero__avatar { width: 84px; }
+.bpg-archive .bpa-hero--compact .bpa-hero__name { font-size: clamp(24px, 3vw, 32px); }
+
+
+/* 2. Social links ---------------------------------------------------------- */
+
+.bpa-social { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
+.bpa-social li { margin: 0; padding: 0; }
+.bpa-social li::before { content: none; }
+.bpa-social__link { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px; border: 1px solid var(--bpg-line-2); border-radius: var(--bpg-pill); background: var(--bpg-surface); font-size: 13.5px; font-weight: 700; line-height: 1; color: var(--bpg-ink-2); text-decoration: none; box-shadow: var(--bpg-shadow-xs); transition: border-color var(--bpg-speed) var(--bpg-ease), background-color var(--bpg-speed) var(--bpg-ease), color var(--bpg-speed) var(--bpg-ease), transform var(--bpg-speed) var(--bpg-ease); }
+.bpa-social__link svg { width: 16px; height: 16px; flex: none; }
+.bpa-social__link:hover,
+.bpa-social__link:focus-visible { border-color: var(--bpg-accent-line); background: var(--bpg-accent-soft); color: var(--bpg-accent-2); transform: translateY(-1px); }
+.bpa-social__link--linkedin:hover,
+.bpa-social__link--linkedin:focus-visible { border-color: var(--bpg-accent); background: var(--bpg-accent); color: #fff; }
+
+
+/* 3. Stats ----------------------------------------------------------------- */
+
+.bpa-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 1px; margin: clamp(24px, 3.5vw, 36px) 0 0; padding: 0; border: 1px solid var(--bpg-line); border-radius: var(--bpg-r-md); background: var(--bpg-line); box-shadow: var(--bpg-shadow-sm); overflow: hidden; }
+.bpa-stat { display: flex; flex-direction: column-reverse; justify-content: center; gap: 4px; padding: 16px 18px; background: var(--bpg-surface); }
+.bpa-stat dt { margin: 0; font-size: 11.5px; font-weight: 700; line-height: 1.35; letter-spacing: 0.08em; text-transform: uppercase; color: var(--bpg-ink-4); }
+.bpa-stat dd { margin: 0; font-size: clamp(19px, 2vw, 24px); font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; color: var(--bpg-ink); }
+
+
+/* 4. Topics + jump links --------------------------------------------------- */
+
+.bpa-topics { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-top: clamp(20px, 3vw, 28px); }
+.bpa-topics__label { margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bpg-ink-4); }
+.bpa-topics__list { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.bpa-jump { display: flex; flex-wrap: wrap; gap: 4px 22px; margin-top: clamp(22px, 3vw, 30px); padding-top: 16px; border-top: 1px solid var(--bpg-line); }
+.bpa-jump__link { position: relative; padding: 4px 0; font-size: 14px; font-weight: 700; color: var(--bpg-ink-3); text-decoration: none; transition: color var(--bpg-speed) var(--bpg-ease); }
+.bpa-jump__link::after { content: ""; position: absolute; inset: auto 0 -2px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--bpg-accent), var(--bpg-coral)); transform: scaleX(0); transform-origin: left; transition: transform var(--bpg-speed) var(--bpg-ease); }
+.bpa-jump__link:hover,
+.bpa-jump__link:focus-visible { color: var(--bpg-accent-2); }
+.bpa-jump__link:hover::after,
+.bpa-jump__link:focus-visible::after { transform: scaleX(1); }
+
+
+/* 5. Sections -------------------------------------------------------------- */
+
+.bpa-section { scroll-margin-top: 110px; }
+
+/* Each content row is the latest three items: keep them on one line. */
+@media (min-width: 992px) {
+	.bpa .bpa-section .bpg-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.bpa-section + .bpa-section { margin-top: clamp(40px, 6vw, 72px); padding-top: clamp(32px, 4.5vw, 52px); border-top: 1px solid var(--bpg-line); }
+
+
+/* 6. About ----------------------------------------------------------------- */
+
+.bpa-about__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(24px, 4vw, 48px); align-items: start; }
+.bpa-about__grid > * { min-width: 0; }
+.bpg-archive .bpa-about__title { margin: 0 0 18px; font-size: clamp(24px, 3vw, 32px); font-weight: 800; line-height: 1.2; letter-spacing: -0.022em; }
+
+.bpa-about__content { max-width: 72ch; font-size: 16px; line-height: 1.75; color: var(--bpg-ink-2); }
+.bpa-about__content > :first-child { margin-top: 0; }
+.bpa-about__content p { margin: 0 0 16px; }
+.bpg-archive .bpa-about__content :is(h2, h3, h4) { margin: 28px 0 10px; font-size: clamp(18px, 1.8vw, 21px); font-weight: 800; line-height: 1.3; }
+.bpa-about__content a { color: var(--bpg-accent-2); font-weight: 600; text-decoration: underline; text-decoration-color: var(--bpg-accent-line); text-underline-offset: 3px; }
+.bpa-about__content a:hover { color: var(--bpg-accent); text-decoration-color: currentColor; }
+.bpa-about__content :is(ul, ol) { margin: 0 0 18px; padding: 0; list-style: none; }
+.bpa-about__content li { position: relative; margin: 0 0 9px; padding-left: 26px; }
+.bpa-about__content li::before { content: ""; position: absolute; left: 2px; top: 0.6em; width: 12px; height: 7px; border-left: 2.5px solid var(--bpg-ok); border-bottom: 2.5px solid var(--bpg-ok); transform: rotate(-45deg); }
+.bpa-about__content strong,
+.bpa-about__content b { color: var(--bpg-ink); }
+
+.bpa-card { display: flex; flex-direction: column; gap: 14px; padding: 24px; border: 1px solid var(--bpg-line); border-radius: var(--bpg-r-lg); background: linear-gradient(180deg, var(--bpg-tint) 0%, var(--bpg-surface) 100%); box-shadow: var(--bpg-shadow-sm); }
+.bpa-card__head { display: flex; align-items: center; gap: 14px; }
+.bpa-card__head img { width: 56px; height: 56px; flex: none; border: 3px solid var(--bpg-surface); border-radius: 50%; object-fit: cover; box-shadow: var(--bpg-shadow-sm); }
+.bpa-card__name { margin: 0; font-size: 17px; font-weight: 800; line-height: 1.3; color: var(--bpg-ink); }
+.bpa-card__role { margin: 2px 0 0; font-size: 13.5px; font-weight: 600; line-height: 1.4; color: var(--bpg-ink-3); }
+.bpa-card__label { margin: 4px 0 0; padding-top: 14px; border-top: 1px solid var(--bpg-line); font-size: 11.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bpg-ink-4); }
+.bpa-card__chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.bpa-card__chips li { margin: 0; padding: 0; }
+.bpa-card__chips li::before { content: none; }
+.bpa-card__cta { width: 100%; margin-top: 4px; }
+
+@media (min-width: 992px) {
+	.bpa-about__grid { grid-template-columns: minmax(0, 1fr) 320px; }
+	.bpa-card { position: sticky; top: 110px; }
+}
+
+
+/* 7. Responsive + motion --------------------------------------------------- */
+
+@media (max-width: 575.98px) {
+	.bpa-hero__grid { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; }
+	.bpa-hero__lede { margin-inline: auto; }
+	.bpa-social,
+	.bpa-topics,
+	.bpa-topics__list,
+	.bpa-jump { justify-content: center; }
+	.bpa-hero--compact .bpa-hero__grid { grid-template-columns: auto minmax(0, 1fr); justify-items: start; text-align: left; }
+	.bpa-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.bpa-social__link span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+	.bpa-social__link { width: 42px; min-height: 42px; padding: 0; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bpa-social__link,
+	.bpa-jump__link::after { transition: none; }
+	.bpa-social__link:hover { transform: none; }
+}

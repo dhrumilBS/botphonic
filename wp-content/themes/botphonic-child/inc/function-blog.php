@@ -36,7 +36,9 @@ function botphonic_is_blog_archive_view()
 		return true;
 	}
 
-	return is_archive() && !is_author() && !is_post_type_archive();
+	// Author pages list blog posts, so they share the blog listing chrome
+	// (blog.css, body.bpg-blog); author.css adds the profile layer on top.
+	return is_archive() && !is_post_type_archive();
 }
 
 /**
