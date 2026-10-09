@@ -13,6 +13,9 @@
  *    (handl_ref) and the page URL (full_url / handl_url_base) when a form has
  *    those fields — so the forms no longer depend on the HandL plugin.
  *
+ * 4. Paid-ad visitors (utm_source FacebookAds / GoogleAds / OpenAIAds) are sent
+ *    from /contact/ to the app register page instead, with their UTMs.
+ *
  * Visitors who never arrived with UTMs get unchanged links and empty UTM fields.
  * Exposes window.BotphonicUTM.decorate(url) for scripted redirects.
  */
@@ -35,6 +38,10 @@
 	var SITE_HOSTS = (CFG.siteHosts || []).concat([location.host]).map(lc);
 	var APP_HOSTS = (CFG.appHosts || ["app.botphonic.ai"]).map(lc);
 	var SKIP_PATH = /\/(wp-admin|wp-login\.php|wp-json|xmlrpc\.php|wp-content|wp-includes|feed)(\/|$)|\.(pdf|jpe?g|png|gif|webp|svg|ico|zip|rar|docx?|xlsx?|pptx?|csv|txt|xml|mp3|mp4|webm|mov)$/i;
+	// utm_source values (case-insensitive) whose /contact/ visits go to the app register page.
+	var REGISTER_SOURCES = (CFG.registerSources || ["FacebookAds", "GoogleAds", "OpenAIAds"]).map(lc);
+	var REGISTER_URL = CFG.registerUrl || "https://app.botphonic.ai/register/";
+	var CONTACT_PATH = /\/contact\/?$/i;
 	var IS_BOT = /bot|crawl|spider|slurp|facebookexternalhit|linkedin|lighthouse|headless/i.test(navigator.userAgent);
 
 	function lc(s) {
@@ -122,6 +129,10 @@
 	var utm = IS_BOT ? null : capture();
 	var meta = IS_BOT ? {} : captureMeta();
 
+	function sendsToRegister() {
+		return !!utm && REGISTER_SOURCES.indexOf(lc(utm.utm_source || "")) !== -1;
+	}
+
 	/* ------------------------------ links -------------------------------- */
 
 	function decorate(href) {
@@ -142,6 +153,7 @@
 			if (SKIP_PATH.test(url.pathname)) return href;
 			// In-page anchor (#section) on the current page: adding a query would reload it.
 			if (url.hash && url.pathname === location.pathname) return href;
+			if (CONTACT_PATH.test(url.pathname) && sendsToRegister()) return decorate(REGISTER_URL);
 		}
 
 		// A link that already carries its own campaign wins.
@@ -173,6 +185,15 @@
 			onLinkIntent(e);
 		}, { capture: true, passive: true });
 	});
+
+	/* ------------------------- contact -> register ----------------------- */
+
+	// Direct visit to /contact/ (ad landing URL, typed, bookmark). Not inside the
+	// Elementor editor / previews, which load the page in an iframe.
+	if (CONTACT_PATH.test(location.pathname) && sendsToRegister() && w.self === w.top &&
+		!/[?&](elementor-preview|preview|preview_id)=/.test(location.search)) {
+		location.replace(decorate(REGISTER_URL));
+	}
 
 	/* ------------------------------ CF7 forms ---------------------------- */
 
