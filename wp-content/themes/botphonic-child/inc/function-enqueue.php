@@ -96,20 +96,28 @@ function enqueue_child_theme_style()
 	wp_dequeue_style('understrap-styles');
 	wp_deregister_style('classic-theme-styles');
 	wp_deregister_style('global-styles');
+
+	/*
+	 * The 'dtbwp_fonts' handle and the whole /fonts directory it pointed at are
+	 * gone. fonts/style.css declared @font-face rules for two families, "BF Sans"
+	 * and "DM Sans", that no stylesheet, template, plugin, Elementor kit or
+	 * database row applied — so it cost every front-end request a round trip to
+	 * define faces nothing could ever select. A third subfolder, fonts/sora, held
+	 * 199 KB of Sora woff2 (mostly duplicate "(1)".."(4)" downloads) that was not
+	 * even declared in that stylesheet.
+	 *
+	 * The site's only webfont is Manrope, loaded from Google Fonts via
+	 * BOTPHONIC_FONT_SRC in functions.php and applied through --site-font.
+	 */
 	wp_enqueue_style('dtbwp_css_child', get_stylesheet_directory_uri() . '/style.css', [], botphonic_child_asset_ver('/style.css'));
+
+	// Shared landing design system. Must print before hfe.css and before any
+	// landing page stylesheet, so both declare it as a dependency.
 	wp_enqueue_style(BOTPHONIC_LANDING_STYLE, get_stylesheet_directory_uri() . '/assets/css/common-landing.css', [], botphonic_child_asset_ver('/assets/css/common-landing.css'));
 
 	wp_enqueue_style('hfe', get_stylesheet_directory_uri() . '/assets/css/hfe.css', [BOTPHONIC_LANDING_STYLE], botphonic_child_asset_ver('/assets/css/hfe.css'));
-	wp_enqueue_script('custom', get_stylesheet_directory_uri() . '/assets/js/custom.js', ['botphonic-utm'], botphonic_child_asset_ver('/assets/js/custom.js'), true);
-
-	// UTM persistence across pages, CF7 hidden fields and the app.botphonic.ai Register/Login links.
-	wp_enqueue_script('botphonic-utm', get_stylesheet_directory_uri() . '/assets/js/utm.js', [], botphonic_child_asset_ver('/assets/js/utm.js'), ['in_footer' => true, 'strategy' => 'defer']);
-	$utm_config = apply_filters('botphonic_utm_config', [
-		'siteHosts' => array_values(array_unique([wp_parse_url(home_url(), PHP_URL_HOST), 'botphonic.ai', 'www.botphonic.ai'])),
-		'appHosts'  => ['app.botphonic.ai'],
-		'days'      => 30,
-	]);
-	wp_add_inline_script('botphonic-utm', 'window.botphonicUtmConfig = ' . wp_json_encode($utm_config) . ';', 'before');
+	wp_enqueue_script('botphonic-utm', get_stylesheet_directory_uri() . '/assets/js/utm.js', [], botphonic_child_asset_ver('/assets/js/utm.js'), true);
+	wp_enqueue_script('custom', get_stylesheet_directory_uri() . '/assets/js/custom.js', [], botphonic_child_asset_ver('/assets/js/custom.js'), true);
 
 	wp_register_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
 	wp_register_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', [], '1', true);
@@ -142,6 +150,12 @@ function enqueue_child_theme_style()
 
 	wp_register_style('pricing', get_stylesheet_directory_uri() . '/assets/css/pricing.css', array(BOTPHONIC_LANDING_STYLE), botphonic_child_asset_ver('/assets/css/pricing.css'));
 	wp_register_script('pricing', get_stylesheet_directory_uri() . '/assets/js/pricing.js', array(), botphonic_child_asset_ver('/assets/js/pricing.js'), true);
+
+	/*
+	 * Pricing, New Home and Alternatives render their own FAQ data rather than
+	 * the shared shortcode. Load the canonical FAQ component before wp_head;
+	 * the renderer still requests these handles as a safe fallback.
+	 */
 	$uses_common_faq = is_page_template('temp-pricings.php')
 		|| is_page_template('temp-new-home-page.php')
 		|| (function_exists('botphonic_is_alt_single_view') && botphonic_is_alt_single_view());
@@ -156,10 +170,32 @@ function enqueue_child_theme_style()
 	}
 
 	unset($uses_common_faq);
+
+	/*
+	 * The 'alternative' style/script pair was removed. Both were registered but
+	 * never enqueued by anything in the theme, any plugin, or the database, and
+	 * assets/js/alternative.js had already been deleted at some point — so the
+	 * script registration pointed at a missing file. The comparison posts it was
+	 * written for (category 15, routed to loop-templates/content-single-alternative.php)
+	 * are styled by assets/css/blog.css and use none of its selectors.
+	 */
+
 	wp_register_style('personalize', get_stylesheet_directory_uri() . '/assets/css/personalize.css', array(), botphonic_child_asset_ver('/assets/css/personalize.css'));
 	wp_register_script('personalize', get_stylesheet_directory_uri() . '/assets/js/personalize.js', array(), botphonic_child_asset_ver('/assets/js/personalize.js'), true);
 
 	wp_register_style('unified', get_stylesheet_directory_uri() . '/assets/css/unified.css', array(), botphonic_child_asset_ver('/assets/css/unified.css'));
+
+	/*
+	 * Cold Email landing page.
+	 *
+	 * Enqueued here rather than inside temp-cold-mail.php. The template called
+	 * wp_enqueue_style() after get_header() had already run wp_head(), so the
+	 * stylesheet was too late for the head and WordPress printed it in the
+	 * footer — the page painted unstyled and then restyled.
+	 *
+	 * Depends on BOTPHONIC_LANDING_STYLE because every rule in cold-mail.css is
+	 * written against the --bpl-* tokens that common-landing.css declares.
+	 */
 	if (is_page_template('temp-cold-mail.php')) {
 		wp_enqueue_style(
 			'cold-mail',
@@ -182,10 +218,29 @@ function enqueue_child_theme_style()
 		wp_enqueue_script('new-home-page', get_stylesheet_directory_uri() . '/assets/js/new-home-page.js', [], botphonic_child_asset_ver('/assets/js/new-home-page.js'), true);
 	}
 
+	/*
+	 * In-content CTA blocks.
+	 *
+	 * Single posts use them inline. temp-cta.php is the internal gallery that
+	 * previews every block with its markup, so it needs the same stylesheet —
+	 * it used to enqueue the file itself on the line after get_header(), by
+	 * which point wp_head() had run, so the stylesheet was deferred to the
+	 * footer and the previews painted unstyled first. It also passed rand() as
+	 * the version, which defeated caching on every request. Same correction the
+	 * cold-mail template got above.
+	 */
 	if (is_single() || is_page_template('temp-cta.php')) {
 		wp_enqueue_style('cta', get_stylesheet_directory_uri() . '/assets/css/cta.css', [], botphonic_child_asset_ver('/assets/css/cta.css'));
 	}
 
+	/**
+	 * Shared table of contents behaviour.
+	 *
+	 * One script for the three views that render template-parts/toc.php. Singles
+	 * only: the card is a single-view component, and none of the three archives
+	 * prints one. Listed here rather than inside each of the three blocks below
+	 * so the fact that it is shared is stated once, in one place.
+	 */
 	if (
 		(function_exists('botphonic_is_blog_single_view') && botphonic_is_blog_single_view())
 		|| (function_exists('botphonic_is_story_single_view') && botphonic_is_story_single_view())
@@ -200,6 +255,14 @@ function enqueue_child_theme_style()
 		);
 	}
 
+	/**
+	 * Blog stylesheet + behaviour — single posts and the blog listing/archives.
+	 *
+	 * assets/css/blog.css is the single source of truth for both views: the
+	 * former assets/css/single.css (in-content components) and assets/js/single.js
+	 * (copy blocks) were merged into blog.css / blog.js and removed, so there is
+	 * exactly one file of each to maintain.
+	 */
 	if (function_exists('botphonic_is_blog_view') && botphonic_is_blog_view()) {
 		wp_enqueue_style(
 			BOTPHONIC_BLOG_STYLE,
@@ -217,6 +280,25 @@ function enqueue_child_theme_style()
 		);
 	}
 
+	/**
+	 * Customer Stories (success-stories) — single + post type archive.
+	 *
+	 * The story templates are built on the blog design system rather than
+	 * beside it: they render the same `bpg-*` primitives and the same
+	 * `data-bpg-*` hooks, so blog.css and blog.js are loaded here too and
+	 * assets/css/success-stories.css only has to add the story-specific layer
+	 * (dark hero, metric row, numbered sections, outcome cards). Declaring
+	 * BOTPHONIC_BLOG_STYLE as its dependency keeps that order guaranteed.
+	 *
+	 * assets/js/success-stories.js is only the count-up on the metrics;
+	 * everything else on the page is blog.js.
+	 *
+	 * This replaces the former assets/css/case-study.css enqueue. That file
+	 * styled `.case-study-single`, a wrapper the redesigned single template no
+	 * longer prints, and its `.stat-card` / `.icon-box` selectors were
+	 * unscoped enough to collide with cold-mail.css, enrichment.css and
+	 * personalize.css.
+	 */
 	if (function_exists('botphonic_is_story_view') && botphonic_is_story_view()) {
 		wp_enqueue_style(
 			BOTPHONIC_BLOG_STYLE,
@@ -249,6 +331,25 @@ function enqueue_child_theme_style()
 		);
 	}
 
+	/**
+	 * Alternatives (competitor comparison guides) — single + post type archive.
+	 *
+	 * Same arrangement as the customer stories above: the comparison templates
+	 * are built on the blog design system rather than beside it, so blog.css is
+	 * loaded for its `--bpg-*` tokens, its .bpg-single / .bpg-archive reset and
+	 * its shared primitives, and assets/css/alternatives.css only adds the
+	 * comparison layer (split hero, feature matrix, platform write-ups,
+	 * pros/cons grid, FAQ list). Declaring BOTPHONIC_BLOG_STYLE as its
+	 * dependency keeps that order guaranteed.
+	 *
+	 * assets/js/blog.js is deliberately *not* loaded here, which is the one way
+	 * this differs from the story block: the rest of it (share rail, reading
+	 * progress, copy blocks, "more topics") answers markup a comparison guide
+	 * does not print. The table of contents used to be the reason given here,
+	 * and no longer is — it lives in assets/js/toc.js above, which all three
+	 * views load. What is left in alternatives.js is the feature-table accordion,
+	 * and it is only enqueued on the single: the archive has no table.
+	 */
 	if (function_exists('botphonic_is_alt_view') && botphonic_is_alt_view()) {
 		wp_enqueue_style(
 			BOTPHONIC_BLOG_STYLE,
@@ -275,6 +376,13 @@ function enqueue_child_theme_style()
 		}
 	}
 
+	/**
+	 * Industries + Use Cases — reusable page templates and one shared layer.
+	 *
+	 * Their Elementor documents remain the content source. The helper adds
+	 * semantic hero classes at render time; this stylesheet owns the common
+	 * Blog/Alternatives-inspired presentation for both page families.
+	 */
 	if (function_exists('botphonic_is_solution_page') && botphonic_is_solution_page()) {
 		wp_enqueue_style(
 			BOTPHONIC_SOLUTION_STYLE,
@@ -283,6 +391,14 @@ function enqueue_child_theme_style()
 			botphonic_child_asset_ver('/assets/css/solution-pages.css')
 		);
 	}
+
+	/*
+	 * The FAQ accordion stylesheet is registered by the botPhonic plugin
+	 * (plugins/botPhonic/assets/css/botphonic-faqs.css) and conditionally
+	 * enqueued only when a FAQ renderer needs it. The theme-side handle that used to be registered here pointed at a file that does not
+	 * exist in the child theme, so it has been removed. Blog-specific FAQ
+	 * skinning lives in assets/css/blog.css § 10.
+	 */
 
 	if (!is_page()) {
 		return;
@@ -299,6 +415,15 @@ function enqueue_child_theme_style()
 	}
 }
 
+
+/**
+ * Enqueue assets that belong to an allowlisted modern page template.
+ *
+ * Priority 99 runs after the existing template hooks (including Pricing at
+ * priority 30), while still running inside wp_enqueue_scripts before styles
+ * print in wp_head. The shared modernization layer is deliberately queued
+ * after every specialized stylesheet.
+ */
 add_action('wp_enqueue_scripts', 'botphonic_enqueue_modern_template_assets', 99);
 function botphonic_enqueue_modern_template_assets()
 {

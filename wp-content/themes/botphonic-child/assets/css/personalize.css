@@ -280,4 +280,4 @@
 .cta-actions a { display: inline-block; margin-bottom: 48px; } 
 .cta-trust { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; color: #6b7280; font-size: 0.95rem; } 
 .cta-trust span { display: flex; align-items: center; gap: 8px; } 
-.cta-trust span::before { content: ""; width: 8px; height: 8px; background: #3b82f6; border-radius: 50%; } 
+.cta-trust span::before { content: ""; width: 8px; height: 8px; background: #3b82f6; border-radius: 50%; }
