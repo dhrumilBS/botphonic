@@ -14,7 +14,8 @@
  *    those fields — so the forms no longer depend on the HandL plugin.
  *
  * 4. Paid-ad visitors (utm_source FacebookAds / GoogleAds / OpenAIAds) are sent
- *    from /contact/ to the app register page instead, with their UTMs.
+ *    from /contact/ and from app Login links to the app register page instead,
+ *    with their UTMs.
  *
  * Visitors who never arrived with UTMs get unchanged links and empty UTM fields.
  * Exposes window.BotphonicUTM.decorate(url) for scripted redirects.
@@ -42,6 +43,7 @@
 	var REGISTER_SOURCES = (CFG.registerSources || ["FacebookAds", "GoogleAds", "OpenAIAds"]).map(lc);
 	var REGISTER_URL = CFG.registerUrl || "https://app.botphonic.ai/register/";
 	var CONTACT_PATH = /\/contact\/?$/i;
+	var LOGIN_PATH = /^\/login\/?$/i;
 	var IS_BOT = /bot|crawl|spider|slurp|facebookexternalhit|linkedin|lighthouse|headless/i.test(navigator.userAgent);
 
 	function lc(s) {
@@ -64,10 +66,10 @@
 		try {
 			d.cookie = name + "=" + encodeURIComponent(json) + "; path=/; max-age=" + DAYS * 86400 +
 				cookieDomain() + "; SameSite=Lax" + (location.protocol === "https:" ? "; Secure" : "");
-		} catch (e) {}
+		} catch (e) { }
 		try {
 			w.localStorage.setItem(name, json);
-		} catch (e) {}
+		} catch (e) { }
 	}
 
 	function load(name) {
@@ -75,7 +77,7 @@
 		var m = d.cookie.match(new RegExp("(?:^|; )" + name + "=([^;]*)"));
 		try {
 			raw = m ? decodeURIComponent(m[1]) : w.localStorage.getItem(name);
-		} catch (e) {}
+		} catch (e) { }
 		if (!raw) return null;
 		try {
 			var data = JSON.parse(raw);
@@ -116,7 +118,7 @@
 		var ref = "";
 		try {
 			if (d.referrer && SITE_HOSTS.indexOf(lc(new URL(d.referrer).host)) === -1) ref = clean(d.referrer).slice(0, 200);
-		} catch (e) {}
+		} catch (e) { }
 		if (gclid || ref) {
 			if (gclid) meta.gclid = gclid;
 			if (ref) meta.ref = ref;
@@ -148,6 +150,9 @@
 		var host = lc(url.host);
 		var internal = SITE_HOSTS.indexOf(host) !== -1;
 		if (!internal && APP_HOSTS.indexOf(lc(url.hostname)) === -1) return href;
+
+		// Paid-ad visitors: the app Login link goes to Register instead (same rule as /contact/).
+		if (!internal && LOGIN_PATH.test(url.pathname) && sendsToRegister()) return decorate(REGISTER_URL);
 
 		if (internal) {
 			if (SKIP_PATH.test(url.pathname)) return href;
