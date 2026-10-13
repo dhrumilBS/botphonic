@@ -226,9 +226,9 @@
 .bp .alts a:hover { border-color: var(--bpl-ink); }
 /* ---------- final CTA ---------- */
 .bp .final .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: var(--bpl-gap-split); align-items: center; }
-.bp .final h2 { font-size: var(--bpl-t-3xl); margin-bottom: 16px; color: var(--bpl-white); }
+.bp .final h2 { font-size: var(--bpl-t-3xl); margin-bottom: 16px; color: var(--bpl-ink); }
 .bp .final .lede { margin-bottom: 28px; }
-.bp .final figure { margin: 0; border-radius: var(--bpl-r-lg); overflow: hidden; background: var(--bpl-ink-3); aspect-ratio: 4/3; }
+.bp .final figure { margin: 0; border-radius: var(--bpl-r-lg); overflow: hidden; background: var(--bpl-white); aspect-ratio: 4/3; }
 .bp .final figure img { width: 100%; height: 100%; object-fit: cover; }
 @media (max-width:900px) {
 	.bp .final .wrap { grid-template-columns: 1fr; } 
