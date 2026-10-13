@@ -4,14 +4,23 @@ defined('ABSPATH') || exit;
 
 <?php get_template_part('sidebar-templates/sidebar', 'footerfull'); ?>
 
+<?php
+/*
+ * Dark footer. Colours come from the global --bpg-* tokens in style.css (the
+ * same navy / blue / coral the home page, blog and comparison guides use);
+ * the layout and component styles live in assets/css/hfe.css § Footer.
+ * Link columns are the "Footer Column 2–8" widget areas, unchanged.
+ */
+?>
 <footer class="bf-footer" role="contentinfo" aria-label="Site footer">
 	<div class="container">
 		<div class="bf-footer-grid footer-navigation">
 			<div class="bf-footer-brand">
-				<a href="/" class="bf-logo" aria-label="Botphonic – Back to homepage">
-					<img src="https://botphonic.ai/wp-content/uploads/2025/04/Botphonic-logo-1.svg" alt="Botphonic" width="160" height="auto" loading="lazy">
+				<a href="<?php echo esc_url(home_url('/')); ?>" class="bf-logo" aria-label="Botphonic – Back to homepage">
+					<img src="https://botphonic.ai/wp-content/uploads/2025/06/Botphonic-Logo-Light-1.svg" alt="Botphonic" width="160" height="32" loading="lazy" decoding="async">
 				</a>
 				<p class="bf-desc">AI voice agents that answer, book and follow up on every business call, in 50+ languages.</p>
+
 				<ul class="bf-social" role="list" aria-label="Botphonic on social media">
 					<li>
 						<a href="https://www.linkedin.com/company/botphonic/" target="_blank" rel="noopener noreferrer" aria-label="Follow Botphonic on LinkedIn" class="bf-social-link">
@@ -58,29 +67,29 @@ defined('ABSPATH') || exit;
 
 
 			<?php for ($i = 2; $i <= 8; $i++) : ?>
-			<?php if (is_active_sidebar("footer-column-{$i}")) : ?>
-			<div class="bf-footer-links footer-column-<?php echo esc_attr($i); ?>">
-				<?php dynamic_sidebar("footer-column-{$i}"); ?>
-			</div>
-			<?php endif; ?>
+				<?php if (is_active_sidebar("footer-column-{$i}")) : ?>
+					<div class="bf-footer-links footer-column-<?php echo esc_attr($i); ?>">
+						<?php dynamic_sidebar("footer-column-{$i}"); ?>
+					</div>
+				<?php endif; ?>
 			<?php endfor; ?>
 
 		</div>
 	</div>
 
-	<div class="bf-footer-bottom" role="contentinfo" aria-label="Footer legal information">
+	<div class="bf-footer-bottom">
 		<div class="container">
 			<span class="bf-copyright">
 				&copy; <?php echo esc_html(date('Y')); ?> Botphonic. All rights reserved.
 			</span>
 			<nav class="bf-bottom-nav" aria-label="Legal links">
-				<a href="/privacy-policy/">Privacy Policy</a>
+				<a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>">Privacy Policy</a>
 				<span aria-hidden="true">&middot;</span>
-				<a href="/terms-condition/">Terms &amp; Conditions</a>
+				<a href="<?php echo esc_url(home_url('/terms-condition/')); ?>">Terms &amp; Conditions</a>
 				<span aria-hidden="true">&middot;</span>
-				<a href="/security/">Security</a>
+				<a href="<?php echo esc_url(home_url('/security/')); ?>">Security</a>
 				<span aria-hidden="true">&middot;</span>
-				<a href="/sitemap/">Sitemap</a>
+				<a href="<?php echo esc_url(home_url('/sitemap/')); ?>">Sitemap</a>
 			</nav>
 		</div>
 	</div>

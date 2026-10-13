@@ -1168,7 +1168,7 @@ get_header();
 		</section>
 
 		<!-- ================= FINAL CTA ================= -->
-		<section class="sec sec--ink final" aria-labelledby="h-final">
+		<section class="sec sec--tint final" aria-labelledby="h-final">
 			<div class="wrap">
 				<div>
 					<h2 id="h-final">Give your phones to an AI agent this afternoon</h2>
