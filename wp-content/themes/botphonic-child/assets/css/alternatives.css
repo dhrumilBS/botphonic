@@ -1,8 +1,3 @@
-/**
-* Botphonic — Alternatives
-*/
-
-/**** 1. Tokens  ****/
 .bpg-alt {
 	--bpg-alt-yes: var(--bpg-ok);
 	--bpg-alt-yes-soft: var(--bpg-ok-soft);
@@ -31,7 +26,6 @@
 	html.bpg-alt-html { scroll-behavior: smooth; }
 }
 
-/**** 2. Single — hero  ****/
 .bpg-alt .bpg-alt-hero { position: relative; isolation: isolate; padding: clamp(28px, 5vw, 58px) 0 clamp(26px, 4vw, 44px); background: linear-gradient(0deg, #F5F9FF 0%, #FFFFFF 82%); border-bottom: 1px solid var(--bpg-line); overflow: clip; }
 .bpg-alt .bpg-alt-hero::before { content: ""; position: absolute; inset: 15% 58% 0 -18%; z-index: -1; background: radial-gradient(closest-side, rgba(37, 99, 235, 0.16), transparent 72%); pointer-events: none; }
 .bpg-alt .bpg-alt-hero::after { content: ""; position: absolute; inset: 22% -16% 0 62%; z-index: -1; background: radial-gradient(closest-side, rgba(255, 126, 85, 0.14), transparent 70%); pointer-events: none; }
@@ -45,7 +39,6 @@
 	.bpg-alt .bpg-alt-hero__grid--split { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); }
 }
 
-/**** 3. Single — sections + prose  ****/
 .bpg-alt .bpg-alt-sec { margin-top: var(--bpg-block); }
 .bpg-alt .bpg-alt-sec--lead { margin-top: 0; }
 .bpg-alt .bpg-alt-sec__title { margin: 0 0 16px; font-size: clamp(23px, 2.9vw, 32px); font-weight: 800; line-height: 1.2; }
@@ -92,7 +85,6 @@
 .bpg-alt .bpg-alt-matrix :is(th, td):last-child { border-right: 0; }
 .bpg-alt .bpg-alt-matrix tr:last-child :is(th, td) { border-bottom: 0; }
 
-/* 5.1 Header row */
 .bpg-alt .bpg-alt-matrix__head th { padding-top: 18px; background: var(--bpg-alt-head-bg); border-bottom: 2px solid var(--bpg-alt-line-2); vertical-align: bottom; }
 .bpg-alt .bpg-alt-matrix__head th:first-child { background: #fff; border-bottom-width: 1px; }
 .bpg-alt .bpg-alt-col { display: flex; flex-direction: column; align-items: center; gap: 8px; }
@@ -101,16 +93,13 @@
 .bpg-alt .bpg-alt-col__name { font-size: 14px; font-weight: 800; line-height: 1.3; color: var(--bpg-ink); }
 .bpg-alt .bpg-alt-col--brand .bpg-alt-col__name { color: var(--bpg-accent-2); }
 
-/* 5.2 The brand column */
 .bpg-alt .bpg-alt-matrix .is-brand,
 .bpg-alt .bpg-alt-grid-cell.is-brand { background: var(--bpg-alt-brand-bg); box-shadow: inset 1px 0 0 var(--bpg-accent-line), inset -1px 0 0 var(--bpg-accent-line); }
 .bpg-alt .bpg-alt-matrix__head th.is-brand { background: var(--bpg-accent-soft-2); box-shadow: inset 1px 0 0 var(--bpg-accent), inset -1px 0 0 var(--bpg-accent), inset 0 3px 0 var(--bpg-accent); }
 
-/* 5.3 Row labels */
 .bpg-alt .bpg-alt-matrix__glance th[scope="row"],
 .bpg-alt .bpg-alt-grid-cell--label { font-size: 14px; font-weight: 600; color: var(--bpg-ink); text-align: left; }
 
-/* 5.4 Cell values */
 .bpg-alt .bpg-alt-cell__text { display: inline-block; max-width: 100%; font-size: 13.5px; line-height: 1.5; color: var(--bpg-ink-2); overflow-wrap: break-word; hyphens: auto; text-wrap: pretty; }
 .bpg-alt .bpg-alt-cell__caption { display: block; margin-top: 4px; font-size: 12px; line-height: 1.4; color: var(--bpg-ink-4); }
 .bpg-alt .bpg-alt-cell__dash { color: var(--bpg-line-2); font-size: 16px; }
@@ -119,14 +108,12 @@
 .bpg-alt .bpg-alt-mark--yes { color: var(--bpg-alt-yes); }
 .bpg-alt .bpg-alt-mark--no { color: var(--bpg-alt-no); }
 
-/* 5.5 Star rating */
 .bpg-alt .bpg-alt-stars { position: relative; display: inline-block; font-size: 16px; font-weight: 400; font-style: normal; line-height: 1.25; letter-spacing: var(--bpg-alt-star-gap); white-space: nowrap; }
 .bpg-alt .bpg-alt-stars__track { margin-right: calc(var(--bpg-alt-star-gap) * -1); color: var(--bpg-line-2); }
 .bpg-alt .bpg-alt-stars__fill { position: absolute; inset: 0 auto 0 0; overflow: hidden; color: var(--bpg-alt-star); }
 .bpg-alt .bpg-alt-stars__track,
 .bpg-alt .bpg-alt-stars__fill { font: inherit; letter-spacing: inherit; }
 
-/* 5.6 Collapsible feature groups. */
 .bpg-alt .bpg-alt-matrix .bpg-alt-acc__cell,
 .bpg-alt .bpg-alt-matrix .bpg-alt-acc-panel__cell { padding: 0; border-right: 0; }
 .bpg-alt .bpg-alt-matrix .bpg-alt-acc__cell { border-top: 1px solid var(--bpg-alt-line); border-bottom: 0; }
@@ -156,11 +143,9 @@
 .bpg-alt .bpg-alt-grid-cell:last-child { border-right: 0; }
 .bpg-alt .bpg-alt-grid-cell--label { align-items: flex-start; text-align: left; }
 
-/* 5.7 Row hover */
 .bpg-alt .bpg-alt-grid-row:hover { background: var(--bpg-tint); }
 .bpg-alt .bpg-alt-matrix__glance:hover { background: var(--bpg-tint); }
 
-/* 5.8 Closing CTA row. */
 .bpg-alt .bpg-alt-matrix__cta td { padding: 16px 14px; border-right: 0; border-top: 1px solid var(--bpg-alt-line-2); background: var(--bpg-tint); }
 .bpg-alt .bpg-alt-matrix__cta td.is-brand { background: var(--bpg-tint); box-shadow: none; }
 .bpg-alt .bpg-alt-matrix__btn { display: inline-flex; align-items: center; justify-content: center; min-height: 54px; padding: 0 24px; border: 1px solid rgba(7, 32, 50, 0.06); border-radius: 999px; background: linear-gradient(135deg, var(--bpg-alt-cta-from) 0%, var(--bpg-alt-cta-mid) 55%, var(--bpg-alt-cta-to) 100%); font-family: var(--site-font); font-size: 15px; font-weight: 600; line-height: 1.2; color: #fff; text-decoration: none; white-space: nowrap; box-shadow: var(--bpg-alt-cta-shadow); transition: box-shadow 0.2s var(--bpg-alt-cta-ease), transform 0.2s var(--bpg-alt-cta-ease); }
@@ -169,7 +154,6 @@
 .bpg-alt .bpg-alt-matrix__btn:active { transform: translateY(0); box-shadow: var(--bpg-alt-cta-shadow); }
 .bpg-alt .bpg-alt-matrix__btn:focus-visible { outline: 3px solid var(--bpg-alt-cta-mid); outline-offset: 3px; }
 
-/**** 6. Single — platform write-ups  ****/
 .bpg-alt .bpg-alt-profiles { margin-top: var(--bpg-block); }
 .bpg-alt .bpg-alt-profiles__title { margin-bottom: 4px; }
 .bpg-alt .bpg-alt-profile { padding: 30px 0; border-bottom: 1px solid var(--bpg-line); }
@@ -183,7 +167,6 @@
 .bpg-alt .bpg-alt-profile__rating-label { font-size: 15px; font-weight: 700; color: var(--bpg-ink); }
 .bpg-alt .bpg-alt-profile__rating> span:not(.bpg-alt-stars) { font-size: 14px; font-weight: 700; color: var(--bpg-ink-2); }
 
-/* 6.1 The blocks a write-up can wrap its prose in */
 .bpg-alt .bpg-alt-profile__lead { margin-bottom: 18px; }
 .bpg-alt .bpg-alt-profile__sub { margin: 26px 0 12px; font-size: clamp(17px, 1.9vw, 20px); font-weight: 800; line-height: 1.3; color: var(--bpg-ink); }
 .bpg-alt .bpg-alt-profile__points { margin: 0 0 18px; padding: 0; list-style: none; }
@@ -193,7 +176,6 @@
 .bpg-alt .bpg-alt-profile__bestfor { margin: 22px 0; }
 .bpg-alt .bpg-alt-profile__bestfor .bpg-alt-profile__sub { margin-top: 0; }
 
-/* 6.2 The rating, sitting inside the "Best for" box. */
 .bpg-alt .bpg-alt-profile__bestfor .bpg-alt-profile__rating { gap: 9px; margin: 14px 0 0; padding-top: 13px; border-top: 1px solid var(--bpg-line-2); }
 .bpg-alt .bpg-alt-profile__bestfor .bpg-alt-profile__rating .bpg-alt-stars { font-size: 17px; }
 .bpg-alt .bpg-alt-profile__bestfor .bpg-alt-profile__rating-label { font-size: 14.5px; }
@@ -202,7 +184,6 @@
 .bpg-alt .bpg-alt-profile__verdict .bpg-alt-profile__sub { margin-top: 0; }
 
 
-/**** 7. Single — pros / cons + reviews  ****/
 .bpg-alt .bpg-alt-pc { display: flex; flex-direction: column; align-items: stretch; gap: 18px; margin: 24px 0; }
 .bpg-alt .bpg-alt-pc__box { flex: 0 0 auto; min-width: 0; padding: 22px; border: 1px solid; border-radius: var(--bpg-r-lg); background: #fff; box-shadow: var(--bpg-shadow-xs); }
 .bpg-alt .bpg-alt-pc__box--pros { border-color: var(--bpg-ok-line); }
@@ -223,7 +204,6 @@
 .bpg-alt .bpg-alt-pc__list strong { color: var(--bpg-ink); font-weight: 700; }
 .bpg-alt .bpg-alt-pc__list a { color: var(--bpg-accent-2); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 
-/* 7.1 The sourced quote under a pros or cons box */
 .bpg-alt .bpg-alt-review { margin: 18px 0 0; padding: 18px 0 0; border-top: 1px solid var(--bpg-line); }
 .bpg-alt .bpg-alt-review__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin-bottom: 10px; }
 .bpg-alt .bpg-alt-review__author { margin: 0; font-size: 14px; font-weight: 800; color: var(--bpg-ink); }
@@ -236,7 +216,6 @@
 .bpg-alt .bpg-alt-review__source a { color: inherit; text-decoration: none; }
 .bpg-alt .bpg-alt-review__source a:hover { text-decoration: underline; }
 
-/**** 8. Single — CTA box  ****/
 .bpg-alt .bpg-alt-cta { margin: var(--bpg-block) 0; }
 .bpg-alt .bpg-alt-cta__box { padding: clamp(24px, 3.6vw, 36px); border: 1px solid var(--bpg-accent-line); border-radius: var(--bpg-r-xl); background: linear-gradient(180deg, var(--bpg-tint-2) 0%, #FFFFFF 100%); box-shadow: var(--bpg-shadow-xs); }
 .bpg-alt .bpg-alt-cta__title { margin: 0 0 10px; font-size: clamp(21px, 2.7vw, 29px); font-weight: 800; line-height: 1.24; letter-spacing: -0.02em; color: var(--bpg-ink); text-wrap: balance; }
@@ -247,22 +226,14 @@
 .bpg-alt .bpg-alt-cta--inline .bpg-alt-cta__title { font-size: clamp(19px, 2.2vw, 24px); }
 
 
-/**** 9. Single — FAQs + back link  ****/
 .bpg-alt .bpg-alt-faqs { margin-top: var(--bpg-block); }
 
 
-/**** 10. Archive — proof row + cards  ****/
-.bpg-alt .bpg-alt-proof { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; margin: 26px 0 0; padding: 0; list-style: none; }
-.bpg-alt .bpg-alt-proof li { display: inline-flex; align-items: center; gap: 7px; padding: 7px 14px; border: 1px solid var(--bpg-line); border-radius: var(--bpg-pill); background: #fff; box-shadow: var(--bpg-shadow-xs); font-size: 12.5px; font-weight: 600; line-height: 1.3; color: var(--bpg-ink-2); }
-.bpg-alt .bpg-alt-proof svg { width: 15px; height: 15px; flex: none; color: var(--bpg-accent); }
+.bpg-alt .bpg-alt-card .bpg-card__media { aspect-ratio: 50 / 25; }
 .bpg-alt .bpg-alt-card__media--fallback { display: flex; align-items: center; justify-content: center; padding: 22px; background: var(--bpg-tint-2); }
 .bpg-alt .bpg-alt-card__logo { width: auto; max-width: 55%; max-height: 62px; object-fit: contain; opacity: 0.9; }
-.bpg-alt .bpg-alt-card__rating { display: inline-flex; align-items: center; gap: 7px; min-width: 0; }
-.bpg-alt .bpg-alt-card__rating .bpg-alt-stars { font-size: 14px; }
-.bpg-alt .bpg-alt-card__rating> span:not(.bpg-alt-stars) { font-size: 12px; font-weight: 700; color: var(--bpg-ink-4); white-space: nowrap; }
 .bpg-alt .bpg-alt-search { margin-bottom: 4px; }
 
-/* 10.2 Card foot */
 .bpg-alt .bpg-alt-card .bpg-card__foot { flex-wrap: wrap; justify-content: space-between; gap: 10px 12px; }
 .bpg-alt .bpg-alt-card .bpg-card__date { margin-left: 0; font-weight: 600; }
 .bpg-alt .bpg-alt-card__more { display: inline-flex; align-items: center; gap: 7px; flex: none; margin-left: auto; min-height: 34px; padding: 0 14px; border: 1px solid var(--bpg-accent-line); border-radius: var(--bpg-pill); background: var(--bpg-accent-soft); font-size: 13px; font-weight: 700; line-height: 1.2; color: var(--bpg-accent-2); text-decoration: none; white-space: nowrap; transition: background-color var(--bpg-speed) var(--bpg-ease), border-color var(--bpg-speed) var(--bpg-ease), color var(--bpg-speed) var(--bpg-ease), box-shadow var(--bpg-speed) var(--bpg-ease); }
@@ -272,14 +243,13 @@
 .bpg-alt .bpg-card:hover .bpg-alt-card__more svg,
 .bpg-alt .bpg-card:focus-within .bpg-alt-card__more svg { transform: translateX(3px); }
 
-/* The featured card's body is roomier, so the pill can be too. */
 @media (min-width: 768px) {
+	.bpg-alt .bpg-alt-card.bpg-card--featured .bpg-card__media { aspect-ratio: auto; }
 	.bpg-alt .bpg-alt-card.bpg-card--featured .bpg-alt-card__more { min-height: 40px; padding: 0 18px; font-size: 13.5px; }
 	.bpg-alt .bpg-alt-card.bpg-card--featured .bpg-alt-card__more svg { width: 15px; height: 15px; }
 }
 
 
-/**** 11. Responsive  ****/
 @media (max-width: 991.98px) {
 	.bpg-alt .bpg-side-cta { display: none; }
 	.bpg-alt .bpg-alt-hero__media img { border-radius: var(--bpg-r-lg); }
@@ -304,8 +274,7 @@
 	.bpg-alt .bpg-alt-review__quote p { font-size: 15px; }
 	.bpg-alt .bpg-alt-profile { padding: 24px 0; }
 	.bpg-alt .bpg-alt-cta__box { padding: 22px 18px; }
-	.bpg-alt .bpg-alt-proof { justify-content: flex-start; }
-	.bpg-alt .bpg-alt-hero__media { display: none; }
+		.bpg-alt .bpg-alt-hero__media { display: none; }
 }
 
 @media (max-width: 575.98px) {
@@ -318,7 +287,6 @@
 }
 
 
-/**** 12. Motion + print  ****/
 @media (prefers-reduced-motion: reduce) {
 	.bpg-alt .bpg-alt-collapse,
 	.bpg-alt .bpg-alt-acc__btn,

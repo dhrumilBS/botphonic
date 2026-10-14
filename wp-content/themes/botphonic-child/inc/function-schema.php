@@ -1,16 +1,14 @@
 <?php
 add_filter('wpseo_schema_graph', function ($graph, $context) {
 
-	// ─── 1. Enhance the existing Organization node ───────────────────────
 	foreach ($graph as &$node) {
 		$types = isset($node['@type']) ? (array) $node['@type'] : [];
 		if (in_array('Organization', $types, true)) {
 			$node['description'] = 'Botphonic is an AI-powered call assistant platform that helps businesses automate and scale customer communication with smart voice technology.';
 			$node['email'] = 'contact@botphonic.ai';
 
-			// Link to the Person entity below via @id (not inline duplicate)
 			$node['founder'] = [
-				'@id' => home_url('/#ketan-mangukiya'), // fixed: must match Person node's @id exactly
+				'@id' => home_url('/#ketan-mangukiya'),
 			];
 
 			$node['address'] = [
@@ -22,12 +20,11 @@ add_filter('wpseo_schema_graph', function ($graph, $context) {
 				'addressCountry' => 'US',
 			];
 
-			break; // Only one Organization node should exist; stop after the first match
+			break;
 		}
 	}
-	unset($node); // Required: break foreach-by-reference to prevent ghost mutation
+	unset($node);
 
-	// ─── 2. SoftwareApplication — homepage only ──────────────────────────
 	if (is_front_page() && !is_page(23537)) {
 		$already_present = false;
 		foreach ($graph as $node) {
@@ -64,7 +61,6 @@ add_filter('wpseo_schema_graph', function ($graph, $context) {
 		}
 	}
 
-	// ─── 3. Founder Person entity (site-wide, not homepage-only) ─────────
 	$person_already_present = false;
 	foreach ($graph as $node) {
 		if (($node['@id'] ?? '') === home_url('/#ketan-mangukiya')) {
@@ -98,3 +94,75 @@ add_filter('wpseo_schema_graph', function ($graph, $context) {
 
 	return $graph;
 }, 10, 2);
+
+
+add_filter('wpseo_schema_graph', function ($graph) {
+
+	if (!function_exists('botphonic_is_alt_archive_view') || !botphonic_is_alt_archive_view() || is_search()) {
+		return $graph;
+	}
+
+	$items = array();
+	$position = 0;
+
+	foreach ((array) $GLOBALS['wp_query']->posts as $alt_post) {
+		$items[] = array(
+			'@type' => 'ListItem',
+			'position' => ++$position,
+			'url' => get_permalink($alt_post),
+			'name' => wp_strip_all_tags(get_the_title($alt_post)),
+		);
+	}
+
+	if (!$items) {
+		return $graph;
+	}
+
+	foreach ($graph as &$node) {
+		$types = isset($node['@type']) ? (array) $node['@type'] : array();
+
+		if (!in_array('CollectionPage', $types, true)) {
+			continue;
+		}
+
+		$list_id = $node['@id'] . '#itemlist';
+		$node['about'] = array('@id' => home_url('/#organization'));
+		$node['mainEntity'] = array('@id' => $list_id);
+
+		$graph[] = array(
+			'@type' => 'ItemList',
+			'@id' => $list_id,
+			'name' => __('Botphonic comparison guides', 'botphonic'),
+			'numberOfItems' => count($items),
+			'itemListOrder' => 'https://schema.org/ItemListOrderDescending',
+			'itemListElement' => $items,
+		);
+		break;
+	}
+	unset($node);
+
+	return $graph;
+}, 30);
+
+add_filter('wpseo_schema_article_type', function ($type, $indexable) {
+
+	if (
+		function_exists('botphonic_alt_post_type')
+		&& isset($indexable->object_sub_type)
+		&& botphonic_alt_post_type() === $indexable->object_sub_type
+		&& 'None' === $type
+	) {
+		return 'Article';
+	}
+
+	return $type;
+}, 10, 2);
+
+add_filter('wpseo_schema_article', function ($data) {
+
+	if (function_exists('botphonic_is_alt_single_view') && botphonic_is_alt_single_view()) {
+		unset($data['wordCount']);
+	}
+
+	return $data;
+});
