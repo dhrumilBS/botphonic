@@ -146,7 +146,6 @@ function enqueue_child_theme_style()
 	wp_register_style('enrichment', get_stylesheet_directory_uri() . '/assets/css/enrichment.css', [], botphonic_child_asset_ver('/assets/css/enrichment.css'));
 	wp_register_style('sitemap-css', get_stylesheet_directory_uri() . '/assets/css/sitemap.css', [], botphonic_child_asset_ver('/assets/css/sitemap.css'));
 	wp_register_script('sitemap-js', get_stylesheet_directory_uri() . '/assets/js/sitemap.js', [], botphonic_child_asset_ver('/assets/js/sitemap.js'), true);
-	wp_register_style('usa-style', get_stylesheet_directory_uri() . '/assets/css/usa.css', [], botphonic_child_asset_ver('/assets/css/usa.css'));
 
 	wp_register_style('pricing', get_stylesheet_directory_uri() . '/assets/css/pricing.css', array(BOTPHONIC_LANDING_STYLE), botphonic_child_asset_ver('/assets/css/pricing.css'));
 	wp_register_script('pricing', get_stylesheet_directory_uri() . '/assets/js/pricing.js', array(), botphonic_child_asset_ver('/assets/js/pricing.js'), true);
@@ -428,20 +427,6 @@ function enqueue_child_theme_style()
 	 * exist in the child theme, so it has been removed. Blog-specific FAQ
 	 * skinning lives in assets/css/blog.css § 10.
 	 */
-
-	if (!is_page()) {
-		return;
-	}
-
-	$current_page = get_queried_object();
-
-	if ($current_page instanceof WP_Post && $current_page->post_parent) {
-		$parent = get_post($current_page->post_parent);
-
-		if ($parent && $parent->post_name === 'usa') {
-			wp_enqueue_style('usa-style');
-		}
-	}
 }
 
 
@@ -510,13 +495,6 @@ function botphonic_enqueue_modern_template_assets()
 
 		case 'unified-mail':
 			wp_enqueue_style('unified');
-			break;
-
-		case 'usa':
-			wp_enqueue_style('usa-style');
-			wp_enqueue_style('swiper-css');
-			wp_enqueue_script('swiper-js');
-			wp_enqueue_script('success-story-swiper');
 			break;
 	}
 
