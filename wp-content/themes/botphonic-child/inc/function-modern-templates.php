@@ -33,8 +33,6 @@ function botphonic_modern_template_allowlist()
 		'temp-prospect-enrichment.php',
 		'temp-sitemap.php',
 		'temp-unified-mail.php',
-		'temp-usa-main.php',
-		'temp-usa.php',
 	);
 }
 
@@ -43,8 +41,8 @@ function botphonic_modern_template_allowlist()
  *
  * The assigned `_wp_page_template` slug of the queried singular object is
  * authoritative for normal page templates. The resolved template path is also
- * checked because legacy routes can load a template (notably temp-usa.php)
- * without assigning that slug.
+ * checked because legacy routes can load a template without assigning that
+ * slug.
  *
  * Only the queried object is consulted: on archives and search results the
  * global post is merely the first loop item, and its template must not leak
