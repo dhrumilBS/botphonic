@@ -13,7 +13,8 @@ This workflow overrides the speed rules in `workflow.md`. Every step below, incl
 ## Source of truth (re-check every run)
 
 - Fields: `wp-content/themes/botphonic-child/inc/acf-alternatives.php` (group `group_botphonic_alternatives`, keys `field_bpalt_*`).
-- Format rules: `inc/function-alternative.php` (`botphonic_alt_prose`, `botphonic_alt_inline`, `botphonic_alt_profile_parts`, `botphonic_alt_cell`, `botphonic_alt_glance_value`, `botphonic_alt_data`).
+- Format rules: `inc/function-alternative.php` (`botphonic_alt_prose`, `botphonic_alt_inline`, `botphonic_alt_profile_parts`, `botphonic_alt_cell`, `botphonic_alt_glance_value`, `botphonic_alt_parse_rating`, `botphonic_alt_stars`, `botphonic_alt_data`). The file has no code comments, so read the functions themselves.
+- Schema: `inc/function-schema.php` (all site schema lives here). Alternatives get it automatically; see §5.
 - Page order: `single-alternatives.php`.
 - Reference post: ID 23639, "6 Best Rosie AI Alternatives in 2026", drafted from `assets/content/Rosie AI Alternatives.md`. It shows the house markup, but it also has errors (see the last section). When the two disagree, follow this guide.
 
@@ -53,7 +54,7 @@ Page order: intro → why-look → methodology → comparison → profiles (inli
 | Further H2 sections before the FAQs | `post_content` (editor), heading kept as `<h2>` | HTML; renders after the verdict with no TOC entry (say so in the report) |
 | FAQ questions (H3 or bold line) + answers | `faqs[]`: `question` (text), `answer` (HTML) | the template prints its own "Frequently asked questions" heading, so the source FAQ H2 is not stored |
 | CTA block in the source (heading, line, button text/URL) | `inline_cta_*` if right after the first profile, `mid_cta_*` if after the verdict | only when the source has one |
-| Anything after the FAQs, SEO fields (no SEO plugin is installed locally), anything else without a slot | none | report |
+| Anything after the FAQs, SEO title/meta description (Yoast is installed, but the editor writes these; see §5), anything else without a slot | none | report |
 
 H3/H4 subheadings inside a prose section stay in that section's HTML as `<h3>`/`<h4>`, verbatim.
 
@@ -61,7 +62,10 @@ H3/H4 subheadings inside a prose section stay in that section's HTML as `<h3>`/`
 
 - Header row: the first cell (e.g. "Feature / Category") has no field, so report it. Botphonic must be the first data column. Its values go in `botphonic_value`, and the template adds the Botphonic column header itself. Each other header cell becomes a `competitors[]` `name`, in source order. The number of competitors must equal the number of competitor values in every row. Leave `logo` empty unless the source contains that logo image.
 - Rows before the first category row → `glance_rows[]`: `label`, `value_type`, `botphonic_value`, `competitor_values[]` (`value`).
-  - `value_type`: use `yesno` when the row's values are ✓/✗ (text cells in the same row still render as text); otherwise `text`. Star-emoji rows stay `text` with the emoji verbatim (reference-post convention). Use `rating` only when the source gives numbers from 0 to 5.
+  - `value_type`: use `yesno` when the row's values are ✓/✗ (text cells in the same row still render as text); otherwise `text`, except for ratings:
+    - Numeric ratings from 0 to 5 → `rating`, each cell stored verbatim. `botphonic_alt_parse_rating` reads `4.8`, `4,8`, `4.8/5`, `4.8 out of 5` and `4.8 stars`, and the template draws partially filled stars (4.5 = four and a half). Only the stars are shown, not the number.
+    - Star-emoji ratings (`⭐⭐⭐⭐`, `★★★☆☆`) → `text`, emoji verbatim. A text cell holding only star glyphs renders as that many whole stars.
+    - A cell in a `rating` row that is not one of those formats (e.g. `⭐⭐⭐⭐ 4.8/5`, `N/A`, a number above 5) renders as plain text. Store it verbatim and report it.
 - A row with a bold first cell and all other cells empty starts a new `comparison_categories[]` row. `category_name` = the cell text.
 - The rows after it go in that category's `features[]`: `feature_name`, `botphonic_value`, `competitor_values[]`.
 - Cell encoding (this is how `botphonic_alt_cell` reads values):
@@ -117,7 +121,9 @@ Format-only conversions are allowed. List each one used in the report under Corr
 
 Everything else stays exactly as written: wording, order, capitalization, punctuation, straight vs curly quotes, dashes, emoji, numbers, spacing, and typos (e.g. "moths" stays "moths"). Do not add `target` or `rel` to links. In HTML fields, escape only `<`, `>`, and `&` in text. Plain-text fields (titles, names, cells) are stored unescaped.
 
-Never add anything the source does not contain (the slug is the one exception, see §7), including SEO title/description, excerpt, featured image, categories/tags, alt text, captions, CTA text/URLs (`hero_cta_*`, `comparison_cta_text`, `inline_cta_*`, `mid_cta_*`), `toc_heading_levels`, logos, ratings, reviews, links, headings, and summaries. Leave these fields empty so the template defaults apply.
+Never add anything the source does not contain (the slug is the one exception, see §7), including Yoast SEO title/description (never placeholder text either; the reference post's meta description went live starting "Rosie ai meta description:"), excerpt, featured image, categories/tags, alt text, captions, CTA text/URLs (`hero_cta_*`, `comparison_cta_text`, `inline_cta_*`, `mid_cta_*`), `toc_heading_levels`, logos, ratings, reviews, links, headings, and summaries. Leave these fields empty so the template defaults apply.
+
+Schema is automatic; never put JSON-LD, FAQ schema or microdata in any field. `inc/function-schema.php` and Yoast output an `Article` node for each guide (author, publish and modified dates, publisher) and list the guides as an `ItemList` on `/alternatives/`. So `post_author` and the dates must be real. Do not add review stars or `aggregateRating` for competitors: the ratings come from G2, not from Botphonic users, so Google treats them as self-serving.
 
 ## 6. Images
 
@@ -132,7 +138,7 @@ Never add anything the source does not contain (the slug is the one exception, s
 ## 7. Create the draft
 
 - Always create a new post: `post_type` `alternatives`, `post_status` `draft`. Never update an existing post, including 23639, unless the user says so. If a post with the same title exists, still create a new draft and mention the existing one.
-- `post_author`: the author the user names. Otherwise use the author of the most recent Alternatives post (currently user 4). State which in the report.
+- `post_author`: the author the user names. Otherwise use the author of the most recent Alternatives post (look it up each run). State which in the report. The author appears in the page's `Article` schema.
 - `post_name` (slug): always the brand name only, `sanitize_title(subject_name)`, e.g. `smallest-ai`, `rosie-ai`. Never the title-based slug WordPress would generate. Pass it to `wp_insert_post()`. If another Alternatives post already uses that slug, still set it and say so in the report (WordPress adds `-2` when the draft is published).
 - `post_excerpt` stays empty. `post_content` stays empty unless §2 routes sections there.
 - Write every field with `update_field('<field key>', $value, $post_id)` using the `field_bpalt_*` keys; field names do not save reliably on a brand-new post. Repeater rows can use sub-field names.
@@ -162,6 +168,10 @@ Fix any mismatch in the draft (never in the source) and re-run until the check i
 - **Content remaining**: source content with no field to hold it, with its location and a suggested option. Include every judgment call flagged above (ambiguous splits, uncertain author names).
 - **Content missing/skipped**: anything deliberately not transferred (empty headings, export artifacts, labels the template prints itself), or "None".
 - **Extra additions**: anything stored that is not in the source, or "None". List separately the template defaults that will still appear on the page even though they are not stored (e.g. the sidebar "Book a free demo" button and the "Frequently asked questions" heading).
+- **Before publishing (editor to-do)**: things the draft deliberately leaves empty that the editor must set:
+  - Featured image ("Comparison Cover Image"). The archive card shows it cropped to 2:1 (`aspect-ratio: 50 / 25`; the featured first card is not cropped), and the site logo shows if it is missing. A 2:1 image avoids cropping.
+  - Yoast SEO title and meta description. Keep the title in line with the H1.
+  - The ratings row type, if the source gave star emoji and the editor wants decimal stars (switch to `rating` and enter numbers).
 - **Corrections/changes**: every change to source content (the goal is "None"), then the format-only conversions used.
 
 ## Tooling
@@ -188,7 +198,11 @@ require dirname(__DIR__, 4) . '/wp-load.php';
 
 ## Don't copy these from the reference post (23639)
 
+The post is now published, and its Ratings glance row has since been changed to type `rating` with numbers (4.9, 4.5, …). That is an editor change made after drafting, not drafting convention: follow §3. Post 23770 (`smallest-ai`) still has the star-emoji `text` row.
+
+
 - `competitors` lists 4 names, but every row has 5 values (Cresta is missing).
 - Every competitor logo is the same "Synthflow Logo" attachment (23646).
 - Botphonic's screenshot is attachment 4161, titled "Poly Ai". None of the source's own images were used.
 - `comparison_cta_text` is "Get A Demo", which is not in the source.
+- The Yoast meta description starts with leftover placeholder text ("Rosie ai meta description: …"), and the Yoast title ("…for Effective Solutions") does not match the H1.
