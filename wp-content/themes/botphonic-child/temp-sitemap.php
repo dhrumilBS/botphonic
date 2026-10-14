@@ -82,7 +82,6 @@ $sitemap_sections = [
 		'Salesforce Integration' => 'salesforce-integration',
 		'Zoho Integration' => 'zoho-integration',
 		'Whatsapp Integration' => 'whatsapp-integration',
-		'JV' => 'jv',
 	],
 
 	'Legal' => [
