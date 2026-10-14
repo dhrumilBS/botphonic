@@ -1054,7 +1054,7 @@ get_header();
 						<p class="lede">No per-agent licences, no minimum call volume, no setup fee. Scale from one line to a full call center on the same plan.</p>
 						<div class="cta-row" style="margin-top:26px;margin-bottom:0">
 							<a class="bp-btn bp-btn--ink" href="https://app.botphonic.ai/register/">Start free trial</a>
-							<a class="bp-btn bp-btn--ghost" href="https://botphonic.ai/pricings-plans/">See all plans</a>
+							<a class="bp-btn bp-btn--ghost" href="https://botphonic.ai/pricing/">See all plans</a>
 						</div>
 					</div>
 					<div>
@@ -1095,22 +1095,22 @@ get_header();
 				</div>
 				<ul class="alts">
 					<li>
-						<a href="https://botphonic.ai/synthflow-alternative/">Botphonic vs Synthflow</a>
+						<a href="https://botphonic.ai/blog/synthflow-alternative/">Botphonic vs Synthflow</a>
 					</li>
 					<li>
-						<a href="https://botphonic.ai/retell-ai-alternative/">Botphonic vs Retell AI</a>
+						<a href="https://botphonic.ai/blog/retell-ai-alternative/">Botphonic vs Retell AI</a>
 					</li>
 					<li>
-						<a href="https://botphonic.ai/vapi-alternative/">Botphonic vs Vapi</a>
+						<a href="https://botphonic.ai/blog/vapi-alternative/">Botphonic vs Vapi</a>
 					</li>
 					<li>
-						<a href="https://botphonic.ai/bland-ai-alternative/">Botphonic vs Bland AI</a>
+						<a href="https://botphonic.ai/blog/bland-ai-alternative/">Botphonic vs Bland AI</a>
 					</li>
 					<li>
-						<a href="https://botphonic.ai/voiceflow-alternative/">Botphonic vs Voiceflow</a>
+						<a href="https://botphonic.ai/blog/voiceflow-alternative/">Botphonic vs Voiceflow</a>
 					</li>
 					<li>
-						<a href="https://botphonic.ai/category/alternative/">All comparisons</a>
+						<a href="https://botphonic.ai/blog/category/alternative/">All comparisons</a>
 					</li>
 				</ul>
 			</div>

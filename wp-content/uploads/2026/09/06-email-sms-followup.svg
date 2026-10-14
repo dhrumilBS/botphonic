@@ -27,15 +27,15 @@
   <rect width="720" height="540" rx="28" fill="url(#fu-bg)"/>
   <rect x="1" y="1" width="718" height="538" rx="27" fill="none" stroke="#D6DFE7" stroke-width="2"/>
 
-  <text x="360" y="70" text-anchor="middle" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="20" font-weight="800" fill="#072032">One agent, one conversation thread</text>
-  <text x="360" y="94" text-anchor="middle" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" fill="#5C6972">follows up across every channel automatically</text>
+  <text x="360" y="70" text-anchor="middle" font-family="DM Sans,Segoe UI,sans-serif" font-size="20" font-weight="800" fill="#072032">One agent, one conversation thread</text>
+  <text x="360" y="94" text-anchor="middle" font-family="DM Sans,Segoe UI,sans-serif" font-size="13" fill="#5C6972">follows up across every channel automatically</text>
 
   <!-- central agent -->
   <g transform="translate(360,270)">
     <circle class="fu-core" r="76" fill="none" stroke="#FF7E55" stroke-width="3"/>
     <circle r="60" fill="#072032" filter="url(#fu-shadow)"/>
-    <text y="-4" text-anchor="middle" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="14" font-weight="700" fill="#7FE0B4" letter-spacing="1">BOTPHONIC</text>
-    <text y="18" text-anchor="middle" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="12" fill="#9FB3C4">AI agent</text>
+    <text y="-4" text-anchor="middle" font-family="DM Sans,Segoe UI,sans-serif" font-size="14" font-weight="700" fill="#7FE0B4" letter-spacing="1">BOTPHONIC</text>
+    <text y="18" text-anchor="middle" font-family="DM Sans,Segoe UI,sans-serif" font-size="12" fill="#9FB3C4">AI agent</text>
   </g>
 
   <!-- connectors -->
@@ -50,8 +50,8 @@
       <rect width="150" height="66" rx="16" fill="#fff" stroke="#D6DFE7" stroke-width="2" filter="url(#fu-shadow)"/>
       <circle cx="34" cy="33" r="19" fill="#EAF6F0"/>
       <path d="M29.2 25.8l2.9 0.5c0.6 0.1 1 0.5 1.2 1.1l0.9 3.4c0.2 0.6 0 1.3-0.5 1.7l-1.9 1.6c1 2.2 2.8 4 5 5l1.6-1.9c0.4-0.5 1.1-0.7 1.7-0.5l3.4 0.9c0.6 0.2 1 0.6 1.1 1.2l0.5 2.9c0.2 0.9-0.5 1.8-1.5 1.8-8.7 0-15.8-7.1-15.8-15.8 0-1 0.9-1.6 1.7-1.5z" fill="#1E9E6A"/>
-      <text x="60" y="30" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="14" font-weight="700" fill="#072032">Phone</text>
-      <text x="60" y="47" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#5C6972">reminder call</text>
+      <text x="60" y="30" font-family="DM Sans,Segoe UI,sans-serif" font-size="14" font-weight="700" fill="#072032">Phone</text>
+      <text x="60" y="47" font-family="DM Sans,Segoe UI,sans-serif" font-size="11" fill="#5C6972">reminder call</text>
       <circle class="fu-ping" cx="120" cy="12" r="6" fill="#1E9E6A"/>
     </g>
   </g>
@@ -65,8 +65,8 @@
       <circle cx="29" cy="32.5" r="1.9" fill="#fff"/>
       <circle cx="34" cy="32.5" r="1.9" fill="#fff"/>
       <circle cx="39" cy="32.5" r="1.9" fill="#fff"/>
-      <text x="60" y="30" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="14" font-weight="700" fill="#072032">SMS</text>
-      <text x="60" y="47" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#5C6972">confirmation text</text>
+      <text x="60" y="30" font-family="DM Sans,Segoe UI,sans-serif" font-size="14" font-weight="700" fill="#072032">SMS</text>
+      <text x="60" y="47" font-family="DM Sans,Segoe UI,sans-serif" font-size="11" fill="#5C6972">confirmation text</text>
       <circle class="fu-ping" cx="120" cy="12" r="6" fill="#0B5CFF" style="animation-delay:3s"/>
     </g>
   </g>
@@ -78,8 +78,8 @@
       <circle cx="34" cy="33" r="19" fill="#FFF2EC"/>
       <rect x="23" y="25.5" width="22" height="16" rx="3" fill="#FF7E55"/>
       <path d="M24.5 27.5l9.5 6.5 9.5-6.5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <text x="60" y="30" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="14" font-weight="700" fill="#072032">Email</text>
-      <text x="60" y="47" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#5C6972">summary sent</text>
+      <text x="60" y="30" font-family="DM Sans,Segoe UI,sans-serif" font-size="14" font-weight="700" fill="#072032">Email</text>
+      <text x="60" y="47" font-family="DM Sans,Segoe UI,sans-serif" font-size="11" fill="#5C6972">summary sent</text>
       <circle class="fu-ping" cx="10" cy="12" r="6" fill="#FF7E55" style="animation-delay:1.5s"/>
     </g>
   </g>
@@ -91,8 +91,8 @@
       <circle cx="34" cy="33" r="19" fill="#25D366"/>
       <path d="M34 22.5c-6.1 0-11 4.9-11 11 0 2 .5 3.9 1.5 5.5L23.5 44.5l5.7-1.5c1.5.8 3.1 1.2 4.8 1.2 6.1 0 11-4.9 11-11s-4.9-11-11-11z" fill="#fff"/>
       <path d="M39.4 36.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.3z" fill="#25D366"/>
-      <text x="60" y="30" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#072032">WhatsApp</text>
-      <text x="60" y="47" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#5C6972">follow‑up msg</text>
+      <text x="60" y="30" font-family="DM Sans,Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#072032">WhatsApp</text>
+      <text x="60" y="47" font-family="DM Sans,Segoe UI,sans-serif" font-size="11" fill="#5C6972">follow‑up msg</text>
       <circle class="fu-ping" cx="10" cy="12" r="6" fill="#25D366" style="animation-delay:4.5s"/>
     </g>
   </g>
@@ -101,7 +101,7 @@
   <g transform="translate(240,436)">
     <g class="fu-msg">
       <rect width="240" height="40" rx="20" fill="url(#fu-coral)" filter="url(#fu-shadow)"/>
-      <text x="120" y="26" text-anchor="middle" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="600" fill="#fff">“Confirmed! See you at 9:20.”</text>
+      <text x="120" y="26" text-anchor="middle" font-family="DM Sans,Segoe UI,sans-serif" font-size="13" font-weight="600" fill="#fff">“Confirmed! See you at 9:20.”</text>
     </g>
   </g>
 </svg>

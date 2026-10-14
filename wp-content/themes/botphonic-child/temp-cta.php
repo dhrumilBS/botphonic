@@ -332,7 +332,7 @@ get_header();
             <div class="xdyn__lbl">Buttons <button class="xadd" onclick="xAddBtn('btn05-rows','u05')">+ Add</button></div>
             <div id="btn05-rows">
               <div class="xdyn-row"><input value="Start Free Trial" oninput="u05()"><input class="url" value="https://app.botphonic.ai/register/" oninput="u05()"><input placeholder="Class" value="bp-btn button bp-btn-primary" oninput="u05()"><button class="xrm" onclick="xRm(this,'btn05-rows',u05)">✕</button></div>
-              <div class="xdyn-row"><input value="See Pricing" oninput="u05()"><input class="url" value="https://botphonic.ai/pricings-plans/" oninput="u05()"><input placeholder="Class" value="bp-btn button bp-btn-ghost" oninput="u05()"><button class="xrm" onclick="xRm(this,'btn05-rows',u05)">✕</button></div>
+              <div class="xdyn-row"><input value="See Pricing" oninput="u05()"><input class="url" value="https://botphonic.ai/pricing/" oninput="u05()"><input placeholder="Class" value="bp-btn button bp-btn-ghost" oninput="u05()"><button class="xrm" onclick="xRm(this,'btn05-rows',u05)">✕</button></div>
             </div>
           </div>
         </div>
@@ -620,12 +620,12 @@ get_header();
         <div class="bpb-ep-rows">
           <div class="xf xf--f"><label>Body text (before link)</label><textarea id="flmf-body" oninput="ulmf()">AI answering services reduce missed calls significantly, but choosing the right platform matters and</textarea></div>
           <div class="xf xf--w"><label>Link Text</label><input id="flmf-lt" value="Why Realtors Need AI in 2025" oninput="ulmf()"></div>
-          <div class="xf xf--f"><label>Link URL</label><input id="flmf-ll" value="https://botphonic.ai/why-realtors-need-ai-in-2025/" oninput="ulmf()"></div>
+          <div class="xf xf--f"><label>Link URL</label><input id="flmf-ll" value="https://botphonic.ai/real-estate/" oninput="ulmf()"></div>
           <div class="xf xf--f"><label>Text after link</label><input id="flmf-after" value="covers exactly what to look for before you commit." oninput="ulmf()"></div>
         </div>
       </div>
       <div class="bpb-card__preview"><div id="pv-lmf">
-        <div class="learn-more-box-alt"><p><b>Learn more:</b> <span id="llmf-body">AI answering services reduce missed calls significantly, but choosing the right platform matters and</span> <a id="llmf-link" href="https://botphonic.ai/why-realtors-need-ai-in-2025/" target="_blank" rel="noopener">Why Realtors Need AI in 2025</a> <span id="llmf-after">covers exactly what to look for before you commit.</span></p></div>
+        <div class="learn-more-box-alt"><p><b>Learn more:</b> <span id="llmf-body">AI answering services reduce missed calls significantly, but choosing the right platform matters and</span> <a id="llmf-link" href="https://botphonic.ai/real-estate/" target="_blank" rel="noopener">Why Realtors Need AI in 2025</a> <span id="llmf-after">covers exactly what to look for before you commit.</span></p></div>
       </div></div>
       <div class="bpb-codepane" id="cp-lmf"><div class="bpb-code-hdr"><span>HTML - paste into blog post</span><button class="bpb-code-cp" id="pc-lmf" onclick="xpre('pre-lmf','pc-lmf')">Copy</button></div><div class="bpb-code-body"><pre id="pre-lmf"></pre></div></div>
     </div>
@@ -643,11 +643,11 @@ get_header();
       <div class="bpb-ep" id="ep-lml">
         <div class="bpb-ep-rows">
           <div class="xf xf--w"><label>Link Text</label><input id="flml-lt" value="Why do realtors need AI?" oninput="ulml()"></div>
-          <div class="xf xf--f"><label>Link URL</label><input id="flml-ll" value="https://botphonic.ai/why-realtors-need-ai-in-2025/" oninput="ulml()"></div>
+          <div class="xf xf--f"><label>Link URL</label><input id="flml-ll" value="https://botphonic.ai/real-estate/" oninput="ulml()"></div>
         </div>
       </div>
       <div class="bpb-card__preview"><div id="pv-lml">
-        <div class="learn-more-box-alt"><p><b>Learn more:</b> <a id="llml-link" href="https://botphonic.ai/why-realtors-need-ai-in-2025/" target="_blank" rel="noopener">Why do realtors need AI?</a></p></div>
+        <div class="learn-more-box-alt"><p><b>Learn more:</b> <a id="llml-link" href="https://botphonic.ai/real-estate/" target="_blank" rel="noopener">Why do realtors need AI?</a></p></div>
       </div></div>
       <div class="bpb-codepane" id="cp-lml"><div class="bpb-code-hdr"><span>HTML - paste into blog post</span><button class="bpb-code-cp" id="pc-lml" onclick="xpre('pre-lml','pc-lml')">Copy</button></div><div class="bpb-code-body"><pre id="pre-lml"></pre></div></div>
     </div>

@@ -224,6 +224,7 @@
 .bp .alts { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; }
 .bp .alts a { display: inline-block; padding: 10px 16px; border: 1.5px solid var(--bpl-line); border-radius: var(--bpl-r-pill); text-decoration: none; font-weight: 600; font-size: var(--bpl-t-sm); background: var(--bpl-white); }
 .bp .alts a:hover { border-color: var(--bpl-ink); }
+
 /* ---------- final CTA ---------- */
 .bp .final .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: var(--bpl-gap-split); align-items: center; }
 .bp .final h2 { font-size: var(--bpl-t-3xl); margin-bottom: 16px; color: var(--bpl-ink); }

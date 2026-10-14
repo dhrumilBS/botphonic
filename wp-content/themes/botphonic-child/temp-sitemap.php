@@ -12,7 +12,7 @@ $sitemap_sections = [
 	'Company' => [
 		'Home' => '',
 		'Contact' => 'contact',
-		'Pricing & Plans' => 'pricings-plans',
+		'Pricing & Plans' => 'pricing',
 	],
 
 	'Industry' => botphonic_solution_sitemap_links('industry'),
@@ -58,24 +58,22 @@ $sitemap_sections = [
 		'Sitemap' => 'sitemap',
 	],
 
+	// Comparison articles are blog posts, so they live under /blog/.
 	'Comparisons' => [
-		'AI Call Assist Alternative' => 'ai-call-assist-alternative',
-		'CallHippo AI Alternative' => 'callhippo-ai-alternative',
-		'Verloop.io Alternative' => 'verloop-io-alternative',
-		'Smith.ai Alternative' => 'smith-ai-alternative',
-		'Aircall Alternative' => 'aircall-alternative',
-		'VoiceSpin Alternative' => 'voicespin-alternative',
-		'Goodcall Alternative' => 'goodcall-alternative',
-		'Lindy Alternative' => 'lindy-alternative',
-		'Voiceflow Alternative' => 'voiceflow-alternative',
-		'PlayAI Alternative' => 'playai-alternative',
-		'Retell AI Alternative' => 'retell-ai-alternative',
-		'Vapi Alternative' => 'vapi-alternative',
-		'Synthflow Alternative' => 'synthflow-alternative',
-		'Bland AI Alternative' => 'bland-ai-alternative',
-		'Aivo Alternative' => 'aivo-alternative',
-		'Twilio Alternative' => 'twilio-alternative',
-		'Exotel Alternative' => 'exotel-alternative',
+		'CallHippo AI Alternative' => 'blog/callhippo-ai-alternative',
+		'Verloop.io Alternative' => 'blog/verloop-io-alternative',
+		'Smith.ai Alternative' => 'blog/smith-ai-alternative',
+		'Aircall Alternative' => 'blog/aircall-alternative',
+		'VoiceSpin Alternative' => 'blog/voicespin-alternative',
+		'Goodcall Alternative' => 'blog/goodcall-alternative',
+		'Lindy Alternative' => 'blog/lindy-alternative',
+		'Voiceflow Alternative' => 'blog/voiceflow-alternative',
+		'Retell AI Alternative' => 'blog/retell-ai-alternative',
+		'Vapi Alternative' => 'blog/vapi-alternative',
+		'Synthflow Alternative' => 'blog/synthflow-alternative',
+		'Bland AI Alternative' => 'blog/bland-ai-alternative',
+		'Aivo Alternative' => 'blog/aivo-alternative',
+		'Twilio Alternative' => 'blog/twilio-alternative',
 	],
 
 	'Integration' => [
