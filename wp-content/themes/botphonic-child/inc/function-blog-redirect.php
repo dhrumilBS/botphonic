@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ====================================================================
  * BOTPHONIC CHILD THEME — BLOG MIGRATION / LEGACY URL REDIRECTS (301)
@@ -66,12 +67,10 @@ function botphonic_legacy_redirect_target($path)
 		return home_url(user_trailingslashit('/' . $pages[$path]));
 	}
 
-	// Archives moved under the /blog/ front along with the posts.
 	if (preg_match('#^(category|tag|author)/.+#', $path)) {
 		return home_url(user_trailingslashit('/blog/' . $path));
 	}
 
-	// A single segment that is the slug of a published post.
 	if (preg_match('/^[a-z0-9_-]+$/i', $path)) {
 		$post = get_page_by_path($path, OBJECT, 'post');
 		if ($post && 'post' === $post->post_type && 'publish' === $post->post_status) {
@@ -81,10 +80,6 @@ function botphonic_legacy_redirect_target($path)
 
 	return '';
 }
-
-/**
- * Send moved URLs to their new location before the 404 / 410 templates run.
- */
 function botphonic_legacy_redirect()
 {
 	if (!is_404() || is_admin()) {
