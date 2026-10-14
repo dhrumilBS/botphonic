@@ -429,6 +429,24 @@ a.bpg-chip:focus-visible { background: var(--bpg-accent); border-color: var(--bp
 .bpg-archive .bpg-band__title { margin: 0 0 10px; font-size: clamp(23px, 3vw, 32px); font-weight: 800; line-height: 1.22; letter-spacing: -0.025em; color: #fff; }
 .bpg-band__text { max-width: 58ch; margin: 0; font-size: 16px; line-height: 1.7; color: rgba(255, 255, 255, 0.76); }
 
+/* Light band — search page and the alternatives archive. Same layout as the
+   dark band above; the copy sits on a tinted card so the band still reads as
+   a call to action before the dark footer. */
+.bpg-band--light { padding: clamp(36px, 5vw, 64px) 0 clamp(44px, 6vw, 76px); background: var(--bpg-surface); }
+.bpg-band--light::before { content: none; }
+.bpg-band--light .bpg-band__inner { position: relative; isolation: isolate; padding: clamp(26px, 4vw, 48px); border: 1px solid var(--bpg-accent-line); border-radius: var(--bpg-r-xl); background: linear-gradient(135deg, #F5F9FF 0%, #FFFFFF 55%, #FFF6F2 100%); box-shadow: var(--bpg-shadow); overflow: hidden; }
+.bpg-band--light .bpg-band__inner::before,
+.bpg-band--light .bpg-band__inner::after { content: ""; position: absolute; z-index: -1; pointer-events: none; }
+.bpg-band--light .bpg-band__inner::before { inset: -60% 45% -60% -15%; background: radial-gradient(closest-side, rgba(37, 99, 235, 0.14), transparent 70%); }
+.bpg-band--light .bpg-band__inner::after { inset: -60% -15% -60% 55%; background: radial-gradient(closest-side, rgba(255, 126, 85, 0.16), transparent 70%); }
+.bpg-band--light .bpg-eyebrow { color: var(--bpg-accent-2); }
+.bpg-band--light .bpg-eyebrow::before { background: linear-gradient(90deg, var(--bpg-accent), var(--bpg-coral)); }
+.bpg-archive .bpg-band--light .bpg-band__title { color: var(--bpg-ink); }
+.bpg-band--light .bpg-band__text { color: var(--bpg-ink-3); }
+.bpg-band--light .bpg-btn--ghost { background: #fff; border-color: var(--bpg-line-2); color: var(--bpg-ink); }
+.bpg-band--light .bpg-btn--ghost:hover,
+.bpg-band--light .bpg-btn--ghost:focus-visible { border-color: var(--bpg-accent); background: var(--bpg-accent-soft); color: var(--bpg-accent-2); }
+
 @media (max-width: 991.98px) {
 	.bpg-hero__media img { border-radius: var(--bpg-r-lg); }
 	.bpg-aside,

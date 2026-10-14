@@ -120,7 +120,7 @@ $alt_feature_first = (1 === $alt_paged && $alt_total > 2);
 	</div>
 
 	<?php if (have_posts()) : ?>
-		<section class="bpg-band" aria-labelledby="bpg-alt-band-title">
+		<section class="bpg-band bpg-band--light" aria-labelledby="bpg-alt-band-title">
 			<div class="bpg-shell">
 				<div class="bpg-band__inner">
 					<div class="bpg-band__copy">
