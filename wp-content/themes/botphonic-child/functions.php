@@ -36,6 +36,7 @@ $botphonic_includes = array(
 	'function-cpt.php',
 	'function-breadcrumb.php',
 	'function-schema.php',
+	'function-search.php',
 );
 
 foreach ($botphonic_includes as $botphonic_include) {
