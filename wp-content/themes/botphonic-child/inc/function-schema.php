@@ -58,7 +58,7 @@ add_filter('wpseo_schema_graph', function ($graph, $context) {
 					'lowPrice' => '22.00',
 					'highPrice' => '60.00',
 					'offerCount' => '3',
-					'url' => home_url('/pricings-plans/'),
+					'url' => home_url('/pricing/'),
 				],
 			];
 		}

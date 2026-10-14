@@ -11,8 +11,6 @@
 	--bpg-alt-no-line: rgba(196, 52, 44, 0.3);
 	--bpg-alt-star: #F1A11B;
 	--bpg-alt-star-gap: 1.5px;
-
-	/* Table chrome */
 	--bpg-alt-line: var(--bpg-line);
 	--bpg-alt-line-2: var(--bpg-line-2);
 	--bpg-alt-head-bg: var(--bpg-tint);
@@ -21,9 +19,6 @@
 	--bpg-alt-band-hover: var(--bpg-tint-2);
 	--bpg-alt-band-open: var(--bpg-accent-soft-2);
 	--bpg-alt-rail: 3px;
-
-	/* CTA button — same values as the header's .demo-btn (hfe.css, whose
-	   --bp-* tokens are scoped to the navbar and do not reach this page). */
 	--bpg-alt-cta-from: #ff9c7c;
 	--bpg-alt-cta-mid: #ff845e;
 	--bpg-alt-cta-to: #e86a44;
@@ -65,7 +60,6 @@
 .bpg-alt .bpg-alt-prose :where(h3) { font-size: clamp(19px, 2vw, 23px); }
 .bpg-alt .bpg-alt-prose :where(h4, h5) { font-size: 18px; }
 .bpg-alt .bpg-alt-prose :where(ul, ol) { margin: 0 0 18px; padding-left: 22px; }
-/* style.css resets every ul to list-style:none; plain prose lists get their markers back (same treatment as blog.css). The classed lists below (.bpg-alt-profile__points, .bpg-alt-pc__list) come later at equal specificity and keep their own dots. */
 .bpg-alt .bpg-alt-prose :where(ul) { list-style: disc; }
 .bpg-alt .bpg-alt-prose :where(ol) { list-style: decimal; }
 .bpg-alt .bpg-alt-prose :where(ul, ol)> :where(li)::marker { color: var(--bpg-accent); font-weight: 700; }

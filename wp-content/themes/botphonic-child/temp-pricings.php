@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Pricing Plans
- * Botphonic pricing page (/pricings-plans/).
+ * Botphonic pricing page (/pricing/).
  * @package Botphonic
  */
 
