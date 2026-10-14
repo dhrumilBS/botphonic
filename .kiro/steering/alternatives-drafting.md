@@ -34,27 +34,27 @@ If the code differs from this guide, follow the code and say so in the report.
 
 Page order: intro → why-look → methodology → comparison → profiles (inline CTA after the first one) → how-to-choose → final verdict → editor content → end-of-article CTA → FAQs. Map the source onto this order as written. Never reorder source content to make it fit.
 
-| Source | Field | Stored as |
-|---|---|---|
-| H1 | `post_title` | plain text |
-| Platform named in the H1 (e.g. "Rosie AI") | `subject_name` (required) | exact substring of the H1; if the H1 names no single platform, leave it empty and report |
-| Paragraphs before the first H2 | `intro_content` | HTML |
-| 1st H2 prose section before the comparison table | `why_look_title` + `why_look_content` | title verbatim, body HTML |
-| 2nd H2 prose section before the comparison table | `methodology_title` + `methodology_content` | same |
-| 3rd+ H2 prose section before the comparison table | none | report |
-| H2 that contains the comparison table | `comparison_title` | plain text |
-| Text between that H2 and the table (e.g. the legend) | `comparison_intro` | HTML |
-| The table | `competitors`, `glance_rows`, `comparison_categories` | see §3 |
-| Text directly after the table | `comparison_note` | HTML |
-| H2 directly above the first platform H3 | `profiles_heading` | plain text |
-| Text between that H2 and the first H3 | none | report |
-| Each platform H3 | one `competitor_profiles` row | see §4 |
-| 1st H2 prose section after the profiles | `how_to_choose_title` + `how_to_choose_content` | title verbatim, body HTML |
-| 2nd H2 prose section after the profiles | `final_verdict_title` + `final_verdict_content` | same |
-| Further H2 sections before the FAQs | `post_content` (editor), heading kept as `<h2>` | HTML; renders after the verdict with no TOC entry (say so in the report) |
-| FAQ questions (H3 or bold line) + answers | `faqs[]`: `question` (text), `answer` (HTML) | the template prints its own "Frequently asked questions" heading, so the source FAQ H2 is not stored |
-| CTA block in the source (heading, line, button text/URL) | `inline_cta_*` if right after the first profile, `mid_cta_*` if after the verdict | only when the source has one |
-| Anything after the FAQs, SEO title/meta description (Yoast is installed, but the editor writes these; see §5), anything else without a slot | none | report |
+| Source                                                                                                                                      | Field                                                                             | Stored as                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| H1                                                                                                                                          | `post_title`                                                                      | plain text                                                                                           |
+| Platform named in the H1 (e.g. "Rosie AI")                                                                                                  | `subject_name` (required)                                                         | exact substring of the H1; if the H1 names no single platform, leave it empty and report             |
+| Paragraphs before the first H2                                                                                                              | `intro_content`                                                                   | HTML                                                                                                 |
+| 1st H2 prose section before the comparison table                                                                                            | `why_look_title` + `why_look_content`                                             | title verbatim, body HTML                                                                            |
+| 2nd H2 prose section before the comparison table                                                                                            | `methodology_title` + `methodology_content`                                       | same                                                                                                 |
+| 3rd+ H2 prose section before the comparison table                                                                                           | none                                                                              | report                                                                                               |
+| H2 that contains the comparison table                                                                                                       | `comparison_title`                                                                | plain text                                                                                           |
+| Text between that H2 and the table (e.g. the legend)                                                                                        | `comparison_intro`                                                                | HTML                                                                                                 |
+| The table                                                                                                                                   | `competitors`, `glance_rows`, `comparison_categories`                             | see §3                                                                                               |
+| Text directly after the table                                                                                                               | `comparison_note`                                                                 | HTML                                                                                                 |
+| H2 directly above the first platform H3                                                                                                     | `profiles_heading`                                                                | plain text                                                                                           |
+| Text between that H2 and the first H3                                                                                                       | none                                                                              | report                                                                                               |
+| Each platform H3                                                                                                                            | one `competitor_profiles` row                                                     | see §4                                                                                               |
+| 1st H2 prose section after the profiles                                                                                                     | `how_to_choose_title` + `how_to_choose_content`                                   | title verbatim, body HTML                                                                            |
+| 2nd H2 prose section after the profiles                                                                                                     | `final_verdict_title` + `final_verdict_content`                                   | same                                                                                                 |
+| Further H2 sections before the FAQs                                                                                                         | `post_content` (editor), heading kept as `<h2>`                                   | HTML; renders after the verdict with no TOC entry (say so in the report)                             |
+| FAQ questions (H3 or bold line) + answers                                                                                                   | `faqs[]`: `question` (text), `answer` (HTML)                                      | the template prints its own "Frequently asked questions" heading, so the source FAQ H2 is not stored |
+| CTA block in the source (heading, line, button text/URL)                                                                                    | `inline_cta_*` if right after the first profile, `mid_cta_*` if after the verdict | only when the source has one                                                                         |
+| Anything after the FAQs, SEO title/meta description (Yoast is installed, but the editor writes these; see §5), anything else without a slot | none                                                                              | report                                                                                               |
 
 H3/H4 subheadings inside a prose section stay in that section's HTML as `<h3>`/`<h4>`, verbatim.
 
