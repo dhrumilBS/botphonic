@@ -192,12 +192,14 @@ body.bpm-page--ai-voice-agents #page>.hero-section,
 body.bpm-page--jv #page>.hero-section,
 body.bpm-page--prospect-enrichment #page>.hero-section,
 body.bpm-page--unified-mail #page>.hero-section,
+body.bpm-page--usa #page>.hero-section,
 body.bpm-page--marketplace #page>.marketplace-hero-modern,
 body.bpm-page--personalize-mail #page>.bf-hero,
 body.bpm-page--cold-mail #page>.bpcm-hero,
 body.bpm-page--pricings .bpp-hero,
 body.bpm-page--new-home-page .bp .hero,
 body.bpm-page--sitemap .sitemap-page> :first-child,
+body.bpm-page--usa-main .elementor>.e-parent:first-child,
 body.bpm-page--elementor-blank .elementor>.e-parent:first-child {
 	position: relative;
 	isolation: isolate;
@@ -233,6 +235,7 @@ body.bpm-page--ai-voice-agents #page>.hero-section,
 body.bpm-page--jv #page>.hero-section,
 body.bpm-page--prospect-enrichment #page>.hero-section,
 body.bpm-page--unified-mail #page>.hero-section,
+body.bpm-page--usa #page>.hero-section,
 body.bpm-page--marketplace #page>.marketplace-hero-modern,
 body.bpm-page--personalize-mail #page>.bf-hero {
 	min-height: 0 !important;
@@ -1077,22 +1080,49 @@ body.bpm-page--legal-page .policy-page a {
 	text-decoration-color: var(--bpg-accent-line);
 }
 
+/* USA page and Elementor-driven USA children. */
+body.bpm-page--usa .why-section,
+body.bpm-page--usa .industry-section,
+body.bpm-page--usa .steps-section {
+	background: var(--white);
+}
+
+body.bpm-page--usa .compliance-section {
+	background: var(--bpg-tint);
+}
+
+body.bpm-page--usa .herobadgeLists img {
+	opacity: 0.7;
+	filter: saturate(0.8);
+}
+
+body.bpm-page--usa .bf-step {
+	border-color: var(--bpg-line);
+	border-radius: var(--bpg-r-md);
+}
+
+body.bpm-page--usa .bf-step.active {
+	border-color: var(--bpg-accent) !important;
+	background: var(--bpg-accent-soft) !important;
+}
+
+body.bpm-page--usa-main .elementor>.e-parent,
 body.bpm-page--elementor-blank .elementor>.e-parent {
 	scroll-margin-top: var(--bpg-sticky-top);
 }
 
-body.bpm-page--elementor-blank .elementor-widget-heading :is(h1, h2, h3) {
+body:is(.bpm-page--usa-main, .bpm-page--elementor-blank) .elementor-widget-heading :is(h1, h2, h3) {
 	font-weight: 800 !important;
 	line-height: 1.16 !important;
 	letter-spacing: -0.024em !important;
 	text-transform: none !important;
 }
 
-body.bpm-page--elementor-blank .elementor-widget-icon-box {
+body:is(.bpm-page--usa-main, .bpm-page--elementor-blank) .elementor-widget-icon-box {
 	border-radius: var(--bpg-r-lg);
 }
 
-body.bpm-page--elementor-blank .elementor-button {
+body:is(.bpm-page--usa-main, .bpm-page--elementor-blank) .elementor-button {
 	border-radius: var(--bpg-pill) !important;
 	font-weight: 750 !important;
 }
@@ -1290,6 +1320,14 @@ body.bpm-page--cta .bpb-card__preview {
 	body.bpm-page--contact .contact-page-hero .elementor-icon-list-item {
 		width: 100% !important;
 		max-width: 100% !important;
+	}
+
+	body.bpm-page--usa .herobadgeLists {
+		flex-wrap: wrap;
+	}
+
+	body.bpm-page--usa .herobadgeLists img {
+		width: 64px;
 	}
 }
 
