@@ -40,7 +40,7 @@
 	var APP_HOSTS = (CFG.appHosts || ["app.botphonic.ai"]).map(lc);
 	var SKIP_PATH = /\/(wp-admin|wp-login\.php|wp-json|xmlrpc\.php|wp-content|wp-includes|feed)(\/|$)|\.(pdf|jpe?g|png|gif|webp|svg|ico|zip|rar|docx?|xlsx?|pptx?|csv|txt|xml|mp3|mp4|webm|mov)$/i;
 	// utm_source values (case-insensitive) whose /contact/ visits go to the app register page.
-	var REGISTER_SOURCES = (CFG.registerSources || ["FacebookAds", "GoogleAds", "OpenAIAds"]).map(lc);
+	var REGISTER_SOURCES = (CFG.registerSources || ["metaads", "GoogleAds", "OpenAIAds"]).map(lc);
 	var REGISTER_URL = CFG.registerUrl || "https://app.botphonic.ai/register/";
 	var CONTACT_PATH = /\/contact\/?$/i;
 	var LOGIN_PATH = /^\/login\/?$/i;

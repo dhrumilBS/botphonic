@@ -1,4 +1,4 @@
-/*! elementor-pro - v4.3.0 - 30-09-2026 */
+/*! elementor-pro - v4.3.0 - 13-10-2026 */
 (function(react, react_dom, _wordpress_i18n) {
 	//#region \0rolldown/runtime.js
 	var __create = Object.create;

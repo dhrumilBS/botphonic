@@ -1,13 +1,6 @@
-<?php /* Template name: Sitemap */
+<?php 
+/* Template name: Sitemap */
 get_header();
-
-/*
- * Sitemap links, grouped by section: 'Label' => 'page-slug'.
- *
- * - Slugs are turned into full URLs with home_url(), so the same list works on local and live.
- * - Use '' for the homepage. Full URLs (https://...) are output as-is, e.g. for external links.
- * - Industry and Use Cases come from botphonic_solution_page_registry(), so add those pages there.
- */
 $sitemap_sections = [
 	'Company' => [
 		'Home' => '',

@@ -1,5 +1,4 @@
 <?php
-
 /** * BOTPHONIC CHILD THEME — functions.php *
  * TABLE OF CONTENTS (priority order)
  * --------------------------------------------------------------------

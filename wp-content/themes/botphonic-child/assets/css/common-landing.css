@@ -17,7 +17,7 @@
 	--bpl-font: var(--site-font);
 	--bpl-gutter: clamp(20px, 4vw, 48px);
 	--bpl-sec-pad: clamp(56px, 8vw, 104px);
-	--bpl-gap-split: clamp(28px, 5vw, 64px);
+	--bpl-gap-split: clamp(24px, 5vw, 36px);
 	--bpl-head-max: 70ch;
 	--bpl-head-gap: clamp(32px, 5vw, 56px);
 	--bpl-r-sm: 8px;
