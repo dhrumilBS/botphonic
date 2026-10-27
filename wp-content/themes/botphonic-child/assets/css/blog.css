@@ -81,12 +81,6 @@ a.bpg-chip:focus-visible { background: var(--bpg-accent); border-color: var(--bp
 	html.bpg-blog-html { scroll-behavior: smooth; }
 }
 
-/* Solid navbar on mobile */
-@media (max-width: 768px) {
-	body.bpg-blog #wrapper-navbar,
-	body.bpg-blog #wrapper-navbar.bpg-nav-stuck { background: rgba(255, 255, 255, 0.97); -webkit-backdrop-filter: none; backdrop-filter: none; }
-}
-
 /* Reading progress bar */
 .bpg-progress { position: fixed; inset: 0 0 auto; z-index: 1002; height: 3px; pointer-events: none; background: transparent; }
 .bpg-progress__bar { width: 0; height: 100%; border-radius: 0 3px 3px 0; background: linear-gradient(90deg, var(--bpg-accent) 0%, #06B6D4 55%, var(--bpg-coral) 100%); transition: width 90ms linear; }

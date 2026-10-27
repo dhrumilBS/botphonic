@@ -78,7 +78,6 @@
 }
 
 @media (max-width: 767px) {
-	body.bps-solution-page #wrapper-navbar { background: rgba(var(--primary-rgb), 0.02); }
 	.bps-page { --bpg-gutter: 18px; }
 	.bps-page .elementor .bps-hero { padding-top: 24px !important; padding-bottom: 48px !important; }
 	.bps-page .elementor .bps-hero__content { --gap: 15px !important; }
