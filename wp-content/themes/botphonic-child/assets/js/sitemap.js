@@ -1,64 +1,62 @@
 document.addEventListener('DOMContentLoaded', function () {
+	'use strict';
 
-    const searchInput = document.getElementById('sitemapSearch');
-    const sections = document.querySelectorAll('.section-item');
-    const noResults = document.getElementById('sitemapNoResults');
+	const sitemap = document.querySelector('.sitemap-page');
+	if (!sitemap) return;
 
-    if (!searchInput) return;
-    function debounce(fn, delay) {
-        let timeout;
-        return function () {
-            clearTimeout(timeout);
-            timeout = setTimeout(() => fn.apply(this, arguments), delay);
-        };
-    }
+	const searchInput = sitemap.querySelector('#sitemapSearch');
+	const noResults = sitemap.querySelector('#sitemapNoResults');
+	const sections = sitemap.querySelectorAll(
+		'.section-list > .section-item'
+	);
 
-    function handleSearch() {
-        const query = searchInput.value.toLowerCase().trim();
-        let totalMatches = 0;
+	if (!searchInput || !noResults || !sections.length) return;
 
-        sections.forEach(section => {
-            const title = section.querySelector('h3').textContent.toLowerCase();
-            const links = section.querySelectorAll('a');
-            let sectionMatches = 0;
-            if (query && title.includes(query)) {
-                section.style.display = '';
-                links.forEach(link => link.style.display = '');
-                totalMatches++;
-                return;
-            }
+	function handleSearch() {
+		const query = searchInput.value.trim().toLowerCase();
+		let totalMatches = 0;
 
-            links.forEach(link => {
-                const text = link.textContent.toLowerCase();
-                const href = link.getAttribute('href').toLowerCase();
+		sections.forEach(function (section) {
+			const heading = section.querySelector('h2, h3');
+			const links = section.querySelectorAll('.section-body a');
 
-                if (!query || text.includes(query) || href.includes(query)) {
-                    link.style.display = '';
-                    sectionMatches++;
-                    totalMatches++;
-                } else {
-                    link.style.display = 'none';
-                }
-            });
+			const title = heading
+			? heading.textContent.toLowerCase().trim()
+			: '';
 
-            section.style.display = sectionMatches > 0 ? '' : 'none';
-        });
+			const headingMatches =
+				  query !== '' && title.includes(query);
 
-        noResults.style.display =
-            totalMatches === 0 && query !== '' ? 'block' : 'none';
-    }
+			let sectionMatches = 0;
 
-    searchInput.addEventListener('input', debounce(handleSearch, 150));
+			links.forEach(function (link) {
+				const text = link.textContent.toLowerCase();
+				const href = (link.getAttribute('href') || '').toLowerCase();
 
-    const schema = {
-        "@context": "https://schema.org",
-        "@type": "SiteNavigationElement",
-        "name": "Botphonic Sitemap",
-        "url": "https://botphonic.ai/sitemap/"
-    };
+				const matches =
+					  !query ||
+					  headingMatches ||
+					  text.includes(query) ||
+					  href.includes(query);
 
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.textContent = JSON.stringify(schema);
-    document.head.appendChild(script);
+				link.hidden = !matches;
+
+				if (matches) {
+					sectionMatches++;
+					totalMatches++;
+				}
+			});
+
+			section.hidden = sectionMatches === 0;
+		});
+
+		noResults.hidden = !query || totalMatches > 0;
+		noResults.style.display =
+			query && totalMatches === 0 ? 'block' : 'none';
+	}
+
+	searchInput.addEventListener('input', handleSearch);
+	searchInput.addEventListener('search', handleSearch);
+
+	handleSearch();
 });
