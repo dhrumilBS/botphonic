@@ -1,4 +1,54 @@
 <?php
+/**
+ * Leadership people, shared by the Organization node below and the About page
+ * (functions.php §11). The @id values must stay the same in both places so
+ * Google merges them into one person.
+ * Source: https://botphonic.ai/blog/author/bharat-godhani/ and /tosif-saiyad/
+ */
+if (!function_exists('botphonic_leadership_people')) {
+	function botphonic_leadership_people()
+	{
+		$org_id = home_url('/#organization');
+
+		return array(
+			array(
+				'@type' => 'Person',
+				'@id' => home_url('/#/schema/person/bharat-godhani'),
+				'name' => 'Bharat Godhani',
+				'jobTitle' => 'Founder & CEO',
+				'worksFor' => array('@id' => $org_id),
+				'url' => home_url('/blog/author/bharat-godhani/'),
+				'sameAs' => array('https://www.linkedin.com/in/bharat-godhani/'),
+				'description' => 'Founder and CEO of Botphonic, which he founded in 2025. Over thirteen years building Bigscal, he has overseen more than 1,000 software projects across 25 countries. He designed Botphonic\'s end-to-end architecture and leads its product direction.',
+				'knowsAbout' => array(
+					'Voice AI',
+					'Call automation',
+					'Inbound calls',
+					'Outbound calls',
+					'Software architecture',
+				),
+			),
+			array(
+				'@type' => 'Person',
+				'@id' => home_url('/#/schema/person/tosif-saiyad'),
+				'name' => 'Tosif Saiyad',
+				'jobTitle' => 'Chief Technology Officer',
+				'worksFor' => array('@id' => $org_id),
+				'url' => home_url('/blog/author/tosif-saiyad/'),
+				'sameAs' => array('https://www.linkedin.com/in/tosif-saiyad-30a184140/'),
+				'description' => 'CTO of Botphonic, leading engineering of its AI voice agents. In software development since 2014, with a background in backend development, APIs, cloud infrastructure and real-time applications. Led the work that brought Botphonic\'s response latency to about 300 milliseconds.',
+				'knowsAbout' => array(
+					'Voice AI',
+					'Telephony',
+					'Real-time applications',
+					'APIs and integrations',
+					'Cloud infrastructure',
+				),
+			),
+		);
+	}
+}
+
 add_filter('wpseo_schema_graph', function ($graph, $context) {
 
 	foreach ($graph as &$node) {
@@ -8,8 +58,9 @@ add_filter('wpseo_schema_graph', function ($graph, $context) {
 			$node['email'] = 'contact@botphonic.ai';
 
 			$node['founder'] = [
-				'@id' => home_url('/#ketan-mangukiya'),
+				'@id' => home_url('/#/schema/person/bharat-godhani'),
 			];
+			$node['foundingDate'] = '2025';
 
 			$node['address'] = [
 				'@type' => 'PostalAddress',
@@ -52,44 +103,24 @@ add_filter('wpseo_schema_graph', function ($graph, $context) {
 				'offers' => [
 					'@type' => 'AggregateOffer',
 					'priceCurrency' => 'USD',
-					'lowPrice' => '22.00',
-					'highPrice' => '60.00',
-					'offerCount' => '3',
+					'lowPrice' => '12.00', // Starter, billed yearly. Update when prices change.
 					'url' => home_url('/pricing/'),
 				],
 			];
 		}
 	}
 
-	$person_already_present = false;
+	// Founder & CEO and CTO, on every page (the Organization above points to the founder).
+	$present = array();
 	foreach ($graph as $node) {
-		if (($node['@id'] ?? '') === home_url('/#ketan-mangukiya')) {
-			$person_already_present = true;
-			break;
+		if (!empty($node['@id'])) {
+			$present[$node['@id']] = true;
 		}
 	}
-
-	if (!$person_already_present) {
-		$graph[] = [
-			'@type' => 'Person',
-			'@id' => home_url('/#ketan-mangukiya'),
-			'name' => 'Ketan Mangukiya',
-			'jobTitle' => 'Founder & CEO',
-			'sameAs' => [
-				'https://www.linkedin.com/in/ketanmangukiya',
-			],
-			'worksFor' => [
-				'@id' => home_url('/#organization'),
-			],
-			'knowsAbout' => [
-				'Artificial Intelligence',
-				'Voice AI',
-				'Conversational AI',
-				'SaaS',
-				'Call Automation',
-			],
-			'description' => 'Founder of Botphonic, building AI-powered voice agents for automated calling and customer interactions.',
-		];
+	foreach (botphonic_leadership_people() as $person) {
+		if (empty($present[$person['@id']])) {
+			$graph[] = $person;
+		}
 	}
 
 	return $graph;

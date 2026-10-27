@@ -16,7 +16,7 @@
 	--bpl-ok-inv: #7fe0b4;
 	--bpl-font: var(--site-font);
 	--bpl-gutter: clamp(20px, 4vw, 48px);
-	--bpl-sec-pad: clamp(56px, 8vw, 104px);
+	--bpl-sec-pad: clamp(56px, 8vw, 90px);
 	--bpl-gap-split: clamp(24px, 5vw, 36px);
 	--bpl-head-max: 70ch;
 	--bpl-head-gap: clamp(32px, 5vw, 56px);
@@ -288,7 +288,7 @@ Third-party review scores. Identical on both landing pages today.
 
 .bpl-tbl,
 .bpp-tbl,
-.bp .tbl-wrap { border: 1px solid var(--bpl-line); border-radius: var(--bpl-r-lg); background: var(--bpl-white); overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.bp .tbl-wrap { position: relative; border: 1px solid var(--bpl-line); border-radius: var(--bpl-r-lg); background: var(--bpl-white); overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
 .bpl-matrix,
 .bpp-matrix,
