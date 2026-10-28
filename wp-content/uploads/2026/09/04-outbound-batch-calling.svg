@@ -31,15 +31,15 @@
   <rect width="720" height="540" rx="28" fill="url(#bc-bg)"/>
   <rect x="1" y="1" width="718" height="538" rx="27" fill="none" stroke="#D6DFE7" stroke-width="2"/>
 
-  <text x="56" y="76" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="20" font-weight="800" fill="#072032">Batch campaign</text>
-  <text x="56" y="98" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" fill="#5C6972">thousands of calls placed in parallel</text>
+  <text x="56" y="76" font-family="DM Sans,Segoe UI,sans-serif" font-size="20" font-weight="800" fill="#072032">Batch campaign</text>
+  <text x="56" y="98" font-family="DM Sans,Segoe UI,sans-serif" font-size="13" fill="#5C6972">thousands of calls placed in parallel</text>
 
   <!-- central dialer -->
   <g transform="translate(140,300)">
     <circle class="bc-pulse" r="70" fill="none" stroke="#FF7E55" stroke-width="3"/>
     <circle r="56" fill="url(#bc-coral)" filter="url(#bc-shadow)"/>
     <use href="#bc-phone" color="#fff" transform="scale(1.85)"/>
-    <text y="90" text-anchor="middle" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="15" font-weight="700" fill="#072032">Dialer</text>
+    <text y="90" text-anchor="middle" font-family="DM Sans,Segoe UI,sans-serif" font-size="15" font-weight="700" fill="#072032">Dialer</text>
   </g>
 
   <!-- parallel call lines to contact rows -->
@@ -51,7 +51,7 @@
   </g>
 
   <!-- contact outcome rows -->
-  <g font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif">
+  <g font-family="DM Sans,Segoe UI,sans-serif">
     <g class="bc-row" style="animation-delay:.1s">
       <rect x="380" y="156" width="284" height="44" rx="12" fill="#fff" stroke="#D6DFE7" stroke-width="2" filter="url(#bc-shadow)"/>
       <text x="400" y="183" font-size="14" font-weight="600" fill="#072032">+1 (415) 555‑0148</text>
@@ -83,11 +83,11 @@
 
   <!-- progress -->
   <g transform="translate(56,446)">
-    <text font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="14" font-weight="700" fill="#072032">Campaign progress</text>
+    <text font-family="DM Sans,Segoe UI,sans-serif" font-size="14" font-weight="700" fill="#072032">Campaign progress</text>
     <rect x="0" y="16" width="230" height="14" rx="7" fill="#E4EBF1"/>
     <rect class="bc-fill" x="0" y="16" height="14" rx="7" fill="#1E9E6A"/>
     <g class="bc-count">
-      <text x="250" y="28" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="14" font-weight="700" fill="#072032">1,284 / 2,000 dialed</text>
+      <text x="250" y="28" font-family="DM Sans,Segoe UI,sans-serif" font-size="14" font-weight="700" fill="#072032">1,284 / 2,000 dialed</text>
     </g>
   </g>
 </svg>

@@ -34,15 +34,15 @@
       <rect class="pc-wave" x="9" y="-10" width="5" height="20" rx="2.5" fill="#FF9068" style="animation-delay:.2s"/>
       <rect class="pc-wave" x="18" y="-10" width="5" height="20" rx="2.5" fill="#7FE0B4" style="animation-delay:.4s"/>
     </g>
-    <text x="60" y="31" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="15" font-weight="700" fill="#fff">Call ended · 2:41</text>
-    <text x="584" y="31" text-anchor="end" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" fill="#7FE0B4">Processing post‑call actions…</text>
+    <text x="60" y="31" font-family="DM Sans,Segoe UI,sans-serif" font-size="15" font-weight="700" fill="#fff">Call ended · 2:41</text>
+    <text x="584" y="31" text-anchor="end" font-family="DM Sans,Segoe UI,sans-serif" font-size="13" fill="#7FE0B4">Processing post‑call actions…</text>
   </g>
 
   <!-- Transcript / summary card -->
   <g filter="url(#pc-shadow)">
     <rect x="56" y="132" width="356" height="340" rx="20" fill="#fff" stroke="#D6DFE7" stroke-width="2"/>
   </g>
-  <text x="80" y="172" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="17" font-weight="700" fill="#072032">Transcript &amp; summary</text>
+  <text x="80" y="172" font-family="DM Sans,Segoe UI,sans-serif" font-size="17" font-weight="700" fill="#072032">Transcript &amp; summary</text>
 
   <g>
     <rect class="pc-line" x="80" y="192" width="300" height="10" rx="5" fill="#E4EBF1" style="animation-delay:.1s;animation-duration:2s"/>
@@ -51,8 +51,8 @@
     <rect class="pc-line" x="80" y="252" width="200" height="10" rx="5" fill="#E4EBF1" style="animation-delay:1s;animation-duration:2s"/>
   </g>
 
-  <text x="80" y="300" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#5C6972" letter-spacing="1">KEY OUTCOMES</text>
-  <g font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="14" font-weight="600" fill="#072032">
+  <text x="80" y="300" font-family="DM Sans,Segoe UI,sans-serif" font-size="13" font-weight="700" fill="#5C6972" letter-spacing="1">KEY OUTCOMES</text>
+  <g font-family="DM Sans,Segoe UI,sans-serif" font-size="14" font-weight="600" fill="#072032">
     <g class="pc-item" style="animation-delay:0s"><circle cx="88" cy="326" r="4" fill="#FF7E55"/><text x="104" y="331">Appointment booked · 9:20 AM</text></g>
     <g class="pc-item" style="animation-delay:.15s"><circle cx="88" cy="356" r="4" fill="#FF7E55"/><text x="104" y="361">Caller sentiment · positive</text></g>
     <g class="pc-item" style="animation-delay:.3s"><circle cx="88" cy="386" r="4" fill="#FF7E55"/><text x="104" y="391">Follow‑up SMS scheduled</text></g>
@@ -66,19 +66,19 @@
   <g transform="translate(484,180)">
    <g class="pc-card">
     <rect width="180" height="244" rx="20" fill="#072032" filter="url(#pc-shadow)"/>
-    <text x="90" y="42" text-anchor="middle" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="14" font-weight="700" fill="#fff" letter-spacing="1">DELIVERED TO</text>
+    <text x="90" y="42" text-anchor="middle" font-family="DM Sans,Segoe UI,sans-serif" font-size="14" font-weight="700" fill="#fff" letter-spacing="1">DELIVERED TO</text>
 
     <circle cx="34" cy="88" r="17" fill="#12402E"/>
     <path class="pc-check" d="M27 88 l5 5 10 -11" fill="none" stroke="#7FE0B4" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" style="animation-delay:0s"/>
-    <text x="60" y="93" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="600" fill="#fff">CRM updated</text>
+    <text x="60" y="93" font-family="DM Sans,Segoe UI,sans-serif" font-size="13" font-weight="600" fill="#fff">CRM updated</text>
 
     <circle cx="34" cy="140" r="17" fill="#12402E"/>
     <path class="pc-check" d="M27 140 l5 5 10 -11" fill="none" stroke="#7FE0B4" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" style="animation-delay:.12s"/>
-    <text x="60" y="145" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="600" fill="#fff">Team inbox</text>
+    <text x="60" y="145" font-family="DM Sans,Segoe UI,sans-serif" font-size="13" font-weight="600" fill="#fff">Team inbox</text>
 
     <circle cx="34" cy="192" r="17" fill="#12402E"/>
     <path class="pc-check" d="M27 192 l5 5 10 -11" fill="none" stroke="#7FE0B4" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" style="animation-delay:.24s"/>
-    <text x="60" y="197" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="13" font-weight="600" fill="#fff">Analytics</text>
+    <text x="60" y="197" font-family="DM Sans,Segoe UI,sans-serif" font-size="13" font-weight="600" fill="#fff">Analytics</text>
    </g>
   </g>
 </svg>

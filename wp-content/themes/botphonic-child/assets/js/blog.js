@@ -1,40 +1,11 @@
-/**
- * Botphonic — blog single + archive behaviour.
- *
- * Single source of truth for blog behaviour: this file absorbed the former
- * assets/js/single.js (in-content copy blocks, § 4).
- *
- * The table of contents is no longer here. It moved to assets/js/toc.js, which
- * the customer stories and the comparison guides load too — the guides used to
- * carry a second implementation of it. Everything left in this file answers
- * markup only a post or the blog archive prints.
- *
- * Progressive enhancement only. Everything here degrades to a working page
- * when JavaScript is unavailable:
- *   - glassy navbar        → stays translucent, just never "firms up"
- *   - reading progress     → rail stays at 0 width (visually absent)
- *   - share / copy link    → native links keep working, copy button hides
- *   - copy blocks          → the code/script text is still shown and selectable
- *   - "More topics"        → native <details>, only the click-away closing is
- *                            added here
- *   - FAQs                 → the shared botphonic-faqs.js component owns
- *                            native grouping and its legacy-browser fallback
- *
- * `html.bpg-blog-html` is printed server-side and carries the CSS that must
- * work without JavaScript. `html.bpg-js`, added below, gates the enhancements
- * that would otherwise leave dead controls on the page.
- *
- * Scope: elements inside .bpg-single / .bpg-archive plus #wrapper-navbar on
- * pages carrying the body.bpg-blog class. Nothing else is touched.
- */
 (function () {
 	'use strict';
 
-	var MOBILE_QUERY = '(max-width: 991.98px)';
 	var root = document.documentElement;
 
 	root.classList.add('bpg-blog-html', 'bpg-js');
 
+	// Run once the DOM is ready.
 	function ready(fn) {
 		if (document.readyState === 'loading') {
 			document.addEventListener('DOMContentLoaded', fn, { once: true });
@@ -43,35 +14,7 @@
 		}
 	}
 
-	/**
-	 * Run `fn(matches)` now and whenever the media query flips.
-	 *
-	 * @param {string}   query Media query.
-	 * @param {Function} fn    Receives the current match state.
-	 */
-	function onBreakpoint(query, fn) {
-		var mql = window.matchMedia(query);
-
-		fn(mql.matches);
-
-		if (typeof mql.addEventListener === 'function') {
-			mql.addEventListener('change', function (event) {
-				fn(event.matches);
-			});
-		} else if (typeof mql.addListener === 'function') {
-			// Safari < 14.
-			mql.addListener(function (event) {
-				fn(event.matches);
-			});
-		}
-	}
-
-	/**
-	 * Coalesce high-frequency events into one animation frame.
-	 *
-	 * @param {Function} fn Work to run.
-	 * @return {Function} Throttled caller.
-	 */
+	// Limit a handler to one call per animation frame.
 	function rafThrottle(fn) {
 		var queued = false;
 
@@ -87,81 +30,87 @@
 		};
 	}
 
-	/* ------------------------------------------------------------------
-	 * 1. Glassy navbar state + reading progress
-	 * ---------------------------------------------------------------- */
+	// Copy text to the clipboard, with a fallback for older browsers.
+	function copyText(text) {
+		function legacyCopy() {
+			return new Promise(function (resolve, reject) {
+				var area = document.createElement('textarea');
+				area.value = text;
+				area.setAttribute('readonly', '');
+				area.style.position = 'fixed';
+				area.style.top = '0';
+				area.style.left = '0';
+				area.style.opacity = '0';
+				document.body.appendChild(area);
+				area.select();
+				area.setSelectionRange(0, text.length);
+
+				var ok = false;
+				try {
+					ok = document.execCommand('copy');
+				} catch (e) {
+					ok = false;
+				}
+				document.body.removeChild(area);
+
+				if (ok) {
+					resolve();
+				} else {
+					reject(new Error('copy failed'));
+				}
+			});
+		}
+
+		if (navigator.clipboard && window.isSecureContext) {
+			return navigator.clipboard.writeText(text).catch(legacyCopy);
+		}
+		return legacyCopy();
+	}
+
+	var COPY_ICON =
+		'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
+		'<path d="M8 8H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-3" stroke="currentColor" stroke-width="2"/>' +
+		'<rect x="8" y="3" width="13" height="13" rx="2" stroke="currentColor" stroke-width="2"/>' +
+		'</svg>';
+
+	var DONE_ICON =
+		'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+		'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+		'<path d="M20 6 9 17l-5-5"/></svg>';
+
+	// Reading progress bar. The header's sticky state lives in header.js.
 	function initScrollChrome() {
-		var navbar = document.getElementById('wrapper-navbar');
 		var progress = document.querySelector('[data-bpg-progress]');
 		var article = document.querySelector('[data-bpg-article]');
 
-		if (!navbar && !(progress && article)) {
+		if (!progress || !article) {
 			return;
 		}
 
-		var stuck = false;
-
 		var measure = rafThrottle(function () {
 			var y = window.pageYOffset || root.scrollTop || 0;
+			var start = article.getBoundingClientRect().top + y;
+			var span = article.offsetHeight - window.innerHeight * 0.55;
+			var pct = 0;
 
-			if (navbar) {
-				var shouldStick = y > 12;
-				if (shouldStick !== stuck) {
-					stuck = shouldStick;
-					navbar.classList.toggle('bpg-nav-stuck', stuck);
-				}
+			if (span > 0) {
+				pct = ((y - start) / span) * 100;
+			} else if (y > start) {
+				pct = 100;
 			}
 
-			if (progress && article) {
-				/* Progress is measured against the article, not the document, so
-				 * the footer and the CTA blocks below it do not count as
-				 * "unread". The last screenful of the article is treated as
-				 * finished, which is why the span is short by 55vh. */
-				var start = article.getBoundingClientRect().top + y;
-				var span = article.offsetHeight - window.innerHeight * 0.55;
-				var pct = 0;
-
-				if (span > 0) {
-					pct = ((y - start) / span) * 100;
-				} else if (y > start) {
-					/* Article shorter than the viewport: there is nothing to
-					 * track, so show it as read rather than stuck at zero. */
-					pct = 100;
-				}
-
-				progress.style.width = Math.min(100, Math.max(0, pct)).toFixed(2) + '%';
-			}
+			progress.style.width = Math.min(100, Math.max(0, pct)).toFixed(2) + '%';
 		});
 
 		window.addEventListener('scroll', measure, { passive: true });
 		window.addEventListener('resize', measure, { passive: true });
 		measure();
-
-		/* The Max Mega Menu drawer needs an opaque bar behind it. The `:has()`
-		 * rule in hfe.css covers modern browsers; this mirrors it as a class
-		 * for anything older. */
-		var toggle = navbar && navbar.querySelector('.mega-menu-toggle');
-		if (toggle && 'MutationObserver' in window) {
-			new MutationObserver(function () {
-				navbar.classList.toggle(
-					'bpg-nav-open',
-					toggle.classList.contains('mega-menu-open')
-				);
-			}).observe(toggle, { attributes: true, attributeFilter: ['class'] });
-		}
 	}
 
-	/* ------------------------------------------------------------------
-	 * 2. Share rail — clipboard copy with a visible confirmation
-	 * ---------------------------------------------------------------- */
+	// Share rail "Copy link" button.
 	function initShare() {
 		var copyBtn = document.querySelector('[data-bpg-copy]');
 		if (!copyBtn) {
-			return;
-		}
-
-		if (!navigator.clipboard) {
-			copyBtn.hidden = true;
 			return;
 		}
 
@@ -172,7 +121,7 @@
 		copyBtn.addEventListener('click', function () {
 			var url = copyBtn.getAttribute('data-bpg-copy') || window.location.href;
 
-			navigator.clipboard.writeText(url).then(
+			copyText(url).then(
 				function () {
 					copyBtn.classList.add('is-copied');
 					if (label) {
@@ -186,37 +135,17 @@
 						}
 					}, 2000);
 				},
-				function () {
-					/* Clipboard denied (insecure context / permissions) — leave
-					 * the visible share links as the working path. */
-				}
+				function () {}
 			);
 		});
 	}
 
-	/* ------------------------------------------------------------------
-	 * 3. In-content copy blocks
-	 *
-	 * Posts mark a block as copyable with `.copy-text`. Each one gets wrapped
-	 * in `.copy-wrap` with a copy button (styled in blog.css § 7.12). Merged
-	 * here from the former assets/js/single.js.
-	 * ---------------------------------------------------------------- */
+	// In-post .copy-text blocks get a Copy button.
 	function initCopyBlocks() {
 		var blocks = document.querySelectorAll('.bpg-single .copy-text');
-		if (!blocks.length || !navigator.clipboard) {
+		if (!blocks.length) {
 			return;
 		}
-
-		var copyIcon =
-			'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
-			'<path d="M8 8H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-3" stroke="currentColor" stroke-width="2"/>' +
-			'<rect x="8" y="3" width="13" height="13" rx="2" stroke="currentColor" stroke-width="2"/>' +
-			'</svg>';
-
-		var doneIcon =
-			'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
-			'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-			'<path d="M20 6 9 17l-5-5"/></svg>';
 
 		Array.prototype.forEach.call(blocks, function (block) {
 			if (block.parentNode && block.parentNode.classList.contains('copy-wrap')) {
@@ -229,8 +158,7 @@
 			var button = document.createElement('button');
 			button.type = 'button';
 			button.className = 'copy-trigger';
-			button.setAttribute('title', 'Copy');
-			button.innerHTML = copyIcon + '<span>Copy</span>';
+			button.innerHTML = COPY_ICON + '<span>Copy</span>';
 
 			block.parentNode.insertBefore(wrap, block);
 			wrap.appendChild(button);
@@ -256,20 +184,235 @@
 				return;
 			}
 
-			navigator.clipboard.writeText(text).then(function () {
-				button.classList.add('copied');
-				button.innerHTML = doneIcon + '<span>Copied</span>';
-				window.setTimeout(function () {
-					button.classList.remove('copied');
-					button.innerHTML = copyIcon + '<span>Copy</span>';
-				}, 1500);
-			});
+			copyText(text).then(
+				function () {
+					button.classList.add('copied');
+					button.innerHTML = DONE_ICON + '<span>Copied</span>';
+					window.setTimeout(function () {
+						button.classList.remove('copied');
+						button.innerHTML = COPY_ICON + '<span>Copy</span>';
+					}, 1500);
+				},
+				function () {
+					button.innerHTML = '<span>Select to copy</span>';
+					window.setTimeout(function () {
+						button.innerHTML = COPY_ICON + '<span>Copy</span>';
+					}, 2500);
+				}
+			);
 		});
 	}
 
-	/* ------------------------------------------------------------------
-	 * 4. "More topics" disclosure — close on outside click / Escape
-	 * ---------------------------------------------------------------- */
+	var CHECKLIST_STORE = 'bpg-checklist:' + window.location.pathname;
+
+	// Load saved ticks for this post.
+	function readChecklistState() {
+		try {
+			return JSON.parse(window.localStorage.getItem(CHECKLIST_STORE)) || {};
+		} catch (e) {
+			return {};
+		}
+	}
+
+	// Save ticks for this post.
+	function writeChecklistState(state) {
+		try {
+			window.localStorage.setItem(CHECKLIST_STORE, JSON.stringify(state));
+		} catch (e) {}
+	}
+
+	function cleanText(node) {
+		return (node.textContent || '').replace(/\s+/g, ' ').trim();
+	}
+
+	// Use the heading right before the list as its title.
+	function headingBefore(list) {
+		var prev = list.previousElementSibling;
+		if (prev && /^H[2-5]$/.test(prev.tagName)) {
+			return cleanText(prev);
+		}
+		return '';
+	}
+
+	// Interactive ul.checklist with progress, copy and clear.
+	function initChecklists() {
+		var lists = document.querySelectorAll('.bpg-single ul.checklist');
+		if (!lists.length) {
+			return;
+		}
+
+		var saved = readChecklistState();
+
+		Array.prototype.forEach.call(lists, function (list, listIndex) {
+			if (list.parentNode && list.parentNode.classList.contains('bp-checklist')) {
+				return;
+			}
+
+			var id = list.getAttribute('data-checklist-id') || 'list-' + listIndex;
+			var title = list.getAttribute('data-title') || headingBefore(list) || 'Checklist';
+			var withSource = !list.hasAttribute('data-no-source');
+			var savedTicks = saved[id] || [];
+
+			var items = Array.prototype.filter.call(list.children, function (el) {
+				return el.tagName === 'LI';
+			});
+			if (!items.length) {
+				return;
+			}
+
+			var box = document.createElement('div');
+			box.className = 'bp-checklist';
+
+			var head = document.createElement('div');
+			head.className = 'bp-checklist__head';
+
+			var status = document.createElement('div');
+			status.className = 'bp-checklist__status';
+
+			var count = document.createElement('p');
+			count.className = 'bp-checklist__count';
+			count.setAttribute('aria-live', 'polite');
+
+			var resetBtn = document.createElement('button');
+			resetBtn.type = 'button';
+			resetBtn.className = 'bp-checklist__reset';
+			resetBtn.textContent = 'Clear ticks';
+
+			status.appendChild(count);
+			status.appendChild(resetBtn);
+
+			var copyBtn = document.createElement('button');
+			copyBtn.type = 'button';
+			copyBtn.className = 'bp-checklist__copy';
+			copyBtn.innerHTML = COPY_ICON + '<span>Copy checklist</span>';
+
+			head.appendChild(status);
+			head.appendChild(copyBtn);
+
+			var bar = document.createElement('div');
+			bar.className = 'bp-checklist__bar';
+			bar.setAttribute('aria-hidden', 'true');
+			var fill = document.createElement('span');
+			bar.appendChild(fill);
+
+			list.parentNode.insertBefore(box, list);
+			box.appendChild(head);
+			box.appendChild(bar);
+			box.appendChild(list);
+
+			var boxes = items.map(function (li, i) {
+				var input = li.querySelector('input[type="checkbox"]');
+
+				if (!input) {
+					var label = document.createElement('label');
+					label.className = 'bp-checklist__label';
+
+					input = document.createElement('input');
+					input.type = 'checkbox';
+					input.className = 'custom-checkbox';
+
+					var text = document.createElement('span');
+					text.className = 'bp-checklist__text';
+					while (li.firstChild) {
+						text.appendChild(li.firstChild);
+					}
+
+					label.appendChild(input);
+					label.appendChild(text);
+					li.appendChild(label);
+				} else {
+					input.classList.add('custom-checkbox');
+				}
+
+				input.checked = savedTicks[i] === true || input.checked;
+				li.classList.toggle('checked', input.checked);
+				return input;
+			});
+
+			function update() {
+				var done = boxes.filter(function (b) {
+					return b.checked;
+				}).length;
+				var total = boxes.length;
+
+				count.textContent = done === total
+					? 'All ' + total + ' done'
+					: done + ' of ' + total + ' done';
+				fill.style.width = ((done / total) * 100).toFixed(1) + '%';
+				box.classList.toggle('is-complete', done === total);
+				resetBtn.disabled = done === 0;
+			}
+
+			function save() {
+				saved[id] = boxes.map(function (b) {
+					return b.checked;
+				});
+				writeChecklistState(saved);
+			}
+
+			list.addEventListener('change', function (event) {
+				var input = event.target;
+				if (!input || input.type !== 'checkbox') {
+					return;
+				}
+				var li = input.closest('li');
+				if (li) {
+					li.classList.toggle('checked', input.checked);
+				}
+				save();
+				update();
+			});
+
+			resetBtn.addEventListener('click', function () {
+				boxes.forEach(function (b) {
+					b.checked = false;
+					var li = b.closest('li');
+					if (li) {
+						li.classList.remove('checked');
+					}
+				});
+				save();
+				update();
+				if (boxes[0]) {
+					boxes[0].focus();
+				}
+			});
+
+			var copyTimer = null;
+
+			copyBtn.addEventListener('click', function () {
+				var lines = items.map(function (li, i) {
+					var textNode = li.querySelector('.bp-checklist__text') || li;
+					return (boxes[i].checked ? '- [x] ' : '- [ ] ') + cleanText(textNode);
+				});
+
+				var text = title + '\n\n' + lines.join('\n');
+				if (withSource) {
+					text += '\n\nSource: ' + window.location.origin + window.location.pathname;
+				}
+
+				copyText(text).then(
+					function () {
+						copyBtn.classList.add('is-copied');
+						copyBtn.innerHTML = DONE_ICON + '<span>Checklist copied</span>';
+					},
+					function () {
+						copyBtn.innerHTML = '<span>Select to copy</span>';
+					}
+				).then(function () {
+					window.clearTimeout(copyTimer);
+					copyTimer = window.setTimeout(function () {
+						copyBtn.classList.remove('is-copied');
+						copyBtn.innerHTML = COPY_ICON + '<span>Copy checklist</span>';
+					}, 2000);
+				});
+			});
+
+			update();
+		});
+	}
+
+	// Close "More topics" on outside click or Escape.
 	function initMoreTopics() {
 		var more = document.querySelector('.bpg-more');
 		if (!more) {
@@ -293,18 +436,7 @@
 		});
 	}
 
-	/* ------------------------------------------------------------------
-	 * 4.1 Category rail — bring the active topic into view
-	 *
-	 * Below 768px the rail is a one-row horizontal scroller (blog.css § 17).
-	 * On a category archive the active chip can sit past the right edge, so a
-	 * reader lands on the page with no visible sign of which topic they are
-	 * browsing. Centring it on load fixes that.
-	 *
-	 * scrollLeft is assigned rather than calling scrollIntoView(), because that
-	 * method also scrolls the nearest scrollable ancestors — i.e. the document —
-	 * which would jump the reader past the hero.
-	 * ---------------------------------------------------------------- */
+	// Scroll the active category chip into view on mobile.
 	function initFilterRail() {
 		var track = document.querySelector('.bpg-filters__track');
 		if (!track) {
@@ -313,19 +445,14 @@
 
 		var active = track.querySelector('.bpg-filter.is-active');
 
-		// Nothing to do on desktop, where the rail does not scroll.
 		if (!active || track.scrollWidth <= track.clientWidth + 1) {
 			return;
 		}
 
-		// Measured off rects rather than offsetLeft: the chips' offsetParent is
-		// `.bpg-filters` (it is positioned), not the track, so offsetLeft would
-		// silently drift if the rail ever gained padding.
 		var chip = active.getBoundingClientRect();
 		var rail = track.getBoundingClientRect();
 		var offset = (chip.left - rail.left) - (rail.width - chip.width) / 2;
 
-		// The browser clamps to the maximum scroll position by itself.
 		track.scrollLeft = Math.max(0, track.scrollLeft + offset);
 	}
 
@@ -333,6 +460,7 @@
 		initScrollChrome();
 		initShare();
 		initCopyBlocks();
+		initChecklists();
 		initMoreTopics();
 		initFilterRail();
 	});
