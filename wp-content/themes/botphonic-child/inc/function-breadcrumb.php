@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ====================================================================
  * BREADCRUMBS — Visual navigation only (no Microdata)
@@ -107,10 +108,8 @@ if (!function_exists('wpdev_breadcrumbs')) {
 					. $args['item_after'];
 			}
 			$out .= $current_crumb(esc_html(single_cat_title('', false)));
-
 		} elseif (is_tag()) {
 			$out .= $current_crumb(esc_html(single_tag_title('', false)));
-
 		} elseif (is_tax()) {
 			$term = get_queried_object();
 			$post_type = get_post_type_object(get_post_type());
@@ -135,14 +134,11 @@ if (!function_exists('wpdev_breadcrumbs')) {
 				}
 			}
 			$out .= $current_crumb(esc_html(single_term_title('', false)));
-
 		} elseif (is_post_type_archive()) {
 			$post_type = get_queried_object();
 			$out .= $current_crumb(esc_html($post_type->labels->name));
-
 		} elseif (is_author()) {
 			$out .= $current_crumb(esc_html(get_the_author()));
-
 		} elseif (is_day() || is_month() || is_year()) {
 			if (is_year()) {
 				$out .= $current_crumb(get_the_date('Y'));
@@ -169,10 +165,8 @@ if (!function_exists('wpdev_breadcrumbs')) {
 					. $args['item_after'];
 				$out .= $current_crumb(get_the_date('j'));
 			}
-
 		} elseif (is_search()) {
-			$out .= $current_crumb(sprintf('Search results for "%s"', esc_html(get_search_query())));
-
+			$out .= $current_crumb('' === trim(get_search_query()) ? 'Search' : sprintf('Search results for "%s"', esc_html(get_search_query())));
 		} elseif (is_404()) {
 			$out .= $current_crumb('Not Found');
 		}
@@ -228,7 +222,6 @@ if (!function_exists('wpdev_breadcrumbs')) {
 						. $args['link_after']
 						. $args['item_after'];
 				}
-
 			} else {
 				$post_type = get_post_type_object(get_post_type($post));
 				if ($post_type && !empty($post_type->has_archive)) {

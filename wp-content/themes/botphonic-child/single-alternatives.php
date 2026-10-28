@@ -42,8 +42,6 @@ global $post;
 $alt = botphonic_alt_data($post);
 $alt_brand = botphonic_alt_brand();
 $alt_has_cover = has_post_thumbnail($post);
-$alt_archive_url = get_post_type_archive_link(botphonic_alt_post_type());
-$alt_profile_count = count($alt['profiles']);
 $alt_competitor_count = count($alt['competitors']);
 
 /*
@@ -88,29 +86,7 @@ $alt_body = trim(apply_filters('the_content', get_the_content()));
 					}
 					?>
 
-					<p class="bpg-eyebrow"><?php esc_html_e('Comparison guide', 'botphonic'); ?></p>
-
 					<h1 class="bpg-alt-hero__title"><?php the_title(); ?></h1>
-
-					<?php
-					// No lede here. The hero opens on the title and goes straight
-					// to the two actions: a paragraph between them restated the
-					// Intro section below, and pushed the comparison jump-link
-					// below the fold on a phone. The Intro section carries the
-					// opening copy instead.
-					?>
-					<div class="bpg-alt-hero__row">
-						<a class="bpg-btn bpg-btn--coral" href="<?php echo esc_url($alt['cta_url']); ?>" <?php echo botphonic_alt_link_target($alt['cta_url']); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- fixed attribute string. ?>>
-							<?php echo esc_html($alt['cta_text']); ?>
-						</a>
-
-						<?php if ($alt['has_compare']): ?>
-							<a class="bpg-alt-hero__jump" href="#bpg-alt-compare">
-								<?php esc_html_e('Jump to the comparison', 'botphonic'); ?>
-								<?php echo botphonic_alt_icon('chevron-down'); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- inline SVG from a fixed whitelist. ?>
-							</a>
-						<?php endif; ?>
-					</div>
 
 					<p class="bpg-meta bpg-alt-hero__meta">
 						<span class="bpg-meta__item">
@@ -125,20 +101,6 @@ $alt_body = trim(apply_filters('the_content', get_the_content()));
 								?>
 							</time>
 						</span>
-
-						<?php if ($alt_profile_count): ?>
-							<span class="bpg-meta__sep" aria-hidden="true"></span>
-							<span class="bpg-meta__item">
-								<?php echo botphonic_alt_icon('scale'); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- inline SVG from a fixed whitelist. ?>
-								<?php
-								printf(
-									/* translators: %s: number of platforms. */
-									esc_html(_n('%s platform compared', '%s platforms compared', $alt_profile_count, 'botphonic')),
-									esc_html(number_format_i18n($alt_profile_count))
-								);
-								?>
-							</span>
-						<?php endif; ?>
 					</p>
 
 				</div>
@@ -743,14 +705,6 @@ $alt_body = trim(apply_filters('the_content', get_the_content()));
 						</section>
 					<?php endif; ?>
 
-					<?php if ($alt_archive_url): ?>
-						<p class="bpg-alt-backlink">
-							<a href="<?php echo esc_url($alt_archive_url); ?>">
-								<?php esc_html_e('See all comparison guides', 'botphonic'); ?>
-								<?php echo botphonic_alt_icon('arrow-right'); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- inline SVG from a fixed whitelist. ?>
-							</a>
-						</p>
-					<?php endif; ?>
 
 				</main>
 			</div>

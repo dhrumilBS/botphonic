@@ -45,20 +45,20 @@
 
   <!-- Serenity header -->
   <circle cx="58" cy="58" r="18" fill="#072032"/>
-  <text x="58" y="63" text-anchor="middle" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="14" font-weight="800" fill="#7FE0B4">S</text>
-  <text x="86" y="52" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="15" font-weight="800" fill="#072032">Serenity</text>
-  <text x="86" y="69" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="11.5" fill="#5C6972">call handling moved to Botphonic AI</text>
+  <text x="58" y="63" text-anchor="middle" font-family="DM Sans,Segoe UI,sans-serif" font-size="14" font-weight="800" fill="#7FE0B4">S</text>
+  <text x="86" y="52" font-family="DM Sans,Segoe UI,sans-serif" font-size="15" font-weight="800" fill="#072032">Serenity</text>
+  <text x="86" y="69" font-family="DM Sans,Segoe UI,sans-serif" font-size="11.5" fill="#5C6972">call handling moved to Botphonic AI</text>
 
   <!-- ROI headline -->
   <g class="rs-roi">
-    <text x="48" y="128" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="52" font-weight="800" fill="#1E9E6A">150%</text>
+    <text x="48" y="128" font-family="DM Sans,Segoe UI,sans-serif" font-size="52" font-weight="800" fill="#1E9E6A">150%</text>
     <!-- static wrapper positions the arrow; inner group only animates -->
     <g transform="translate(214,96)">
       <g class="rs-up"><path d="M0 12 L8 0 L16 12 Z" fill="#1E9E6A"/></g>
     </g>
-    <text x="238" y="120" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="16" font-weight="800" fill="#072032">ROI</text>
+    <text x="238" y="120" font-family="DM Sans,Segoe UI,sans-serif" font-size="16" font-weight="800" fill="#072032">ROI</text>
   </g>
-  <text x="48" y="150" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="12.5" fill="#5C6972">Return after switching call handling to AI</text>
+  <text x="48" y="150" font-family="DM Sans,Segoe UI,sans-serif" font-size="12.5" fill="#5C6972">Return after switching call handling to AI</text>
 
   <!-- chart area -->
   <g transform="translate(48,168)">
@@ -76,12 +76,12 @@
     <!-- end dot -->
     <circle class="rs-dot" cx="324" cy="8" r="6" fill="#1E9E6A" stroke="#fff" stroke-width="2.5"/>
     <!-- baseline labels -->
-    <text x="0" y="136" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="10.5" fill="#94A3B8">Before</text>
-    <text x="324" y="136" text-anchor="end" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="10.5" fill="#94A3B8">After</text>
+    <text x="0" y="136" font-family="DM Sans,Segoe UI,sans-serif" font-size="10.5" fill="#94A3B8">Before</text>
+    <text x="324" y="136" text-anchor="end" font-family="DM Sans,Segoe UI,sans-serif" font-size="10.5" fill="#94A3B8">After</text>
   </g>
 
   <!-- scope caption (fits inside the 372px-wide card: x 24..396) -->
-  <text x="48" y="326" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#5C6972">Inbound answering · booking · follow-up moved to AI</text>
+  <text x="48" y="326" font-family="DM Sans,Segoe UI,sans-serif" font-size="11" fill="#5C6972">Inbound answering · booking · follow-up moved to AI</text>
 
   <!-- ===== RIGHT: 4 result metric tiles ===== -->
   <!-- Tile A: conversion 25% -->
@@ -92,8 +92,8 @@
       <path d="M-9 6 L-3 0 L2 4 L9 -7"/>
       <path d="M4 -7 L9 -7 L9 -2"/>
     </g>
-    <text x="486" y="58" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="22" font-weight="800" fill="#072032">+25%</text>
-    <text x="486" y="76" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#5C6972">Higher conversion</text>
+    <text x="486" y="58" font-family="DM Sans,Segoe UI,sans-serif" font-size="22" font-weight="800" fill="#072032">+25%</text>
+    <text x="486" y="76" font-family="DM Sans,Segoe UI,sans-serif" font-size="11" fill="#5C6972">Higher conversion</text>
   </g>
 
   <!-- Tile B: handling time 50% -->
@@ -104,8 +104,8 @@
       <circle r="11"/>
       <path d="M0 -6 V0 L5 4"/>
     </g>
-    <text x="486" y="138" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="22" font-weight="800" fill="#072032">−50%</text>
-    <text x="486" y="156" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#5C6972">Call handling time</text>
+    <text x="486" y="138" font-family="DM Sans,Segoe UI,sans-serif" font-size="22" font-weight="800" fill="#072032">−50%</text>
+    <text x="486" y="156" font-family="DM Sans,Segoe UI,sans-serif" font-size="11" fill="#5C6972">Call handling time</text>
   </g>
 
   <!-- Tile C: fewer errors 20% -->
@@ -116,8 +116,8 @@
       <path d="M0 -11 L9 -7 V1 C9 7 5 10 0 12 C-5 10 -9 7 -9 1 V-7 Z"/>
       <path d="M-4 0 l3 3 6 -7"/>
     </g>
-    <text x="486" y="218" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="22" font-weight="800" fill="#072032">−20%</text>
-    <text x="486" y="236" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#5C6972">Fewer booking errors</text>
+    <text x="486" y="218" font-family="DM Sans,Segoe UI,sans-serif" font-size="22" font-weight="800" fill="#072032">−20%</text>
+    <text x="486" y="236" font-family="DM Sans,Segoe UI,sans-serif" font-size="11" fill="#5C6972">Fewer booking errors</text>
   </g>
 
   <!-- Tile D: agent satisfaction 15% -->
@@ -129,7 +129,7 @@
       <path d="M-5 -2 h.01 M5 -2 h.01"/>
       <path d="M-5 3 C-2 7 2 7 5 3"/>
     </g>
-    <text x="486" y="298" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="22" font-weight="800" fill="#072032">+15%</text>
-    <text x="486" y="316" font-family="Manrope,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif" font-size="11" fill="#5C6972">Agent satisfaction</text>
+    <text x="486" y="298" font-family="DM Sans,Segoe UI,sans-serif" font-size="22" font-weight="800" fill="#072032">+15%</text>
+    <text x="486" y="316" font-family="DM Sans,Segoe UI,sans-serif" font-size="11" fill="#5C6972">Agent satisfaction</text>
   </g>
 </svg>

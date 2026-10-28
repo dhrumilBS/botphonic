@@ -1,51 +1,19 @@
 <?php
-
-/**
- * Botphonic child theme — asset enqueueing.
- *
- * @package Botphonic
- */
+// Theme asset enqueueing.
 if (!function_exists('botphonic_child_asset_ver')) {
 	function botphonic_child_asset_ver($relative_path)
 	{
 		$absolute = get_stylesheet_directory() . $relative_path;
-
 		return file_exists($absolute) ? (string) filemtime($absolute) : '1';
 	}
 }
 
-/**
- * Handle of the shared landing design system (assets/css/common-landing.css).
- *
- * It holds the brand tokens plus the layout, typography, button, ratings, table
- * and accordion primitives shared by the landing templates, and is loaded on
- * every request so the common header/footer and any landing page can rely on
- * it. Every rule inside is scoped to a landing root, so it cannot affect other
- * pages or posts.
- *
- * A new landing template only has to declare it as a dependency:
- *
- *     wp_enqueue_style(
- *         'my-landing',
- *         get_stylesheet_directory_uri() . '/assets/css/my-landing.css',
- *         [BOTPHONIC_LANDING_STYLE],
- *         botphonic_child_asset_ver('/assets/css/my-landing.css')
- *     );
- *
- * which guarantees the shared layer is printed first and stays overridable.
- */
+// Shared landing styles handle.
 if (!defined('BOTPHONIC_LANDING_STYLE')) {
 	define('BOTPHONIC_LANDING_STYLE', 'botphonic-common-landing');
 }
 
-/*
- * The shared table of contents (template-parts/toc.php + assets/js/toc.js).
- * Its own handle rather than a per-view one, because the blog, the customer
- * stories and the comparison guides all render the same card and the script is
- * the only asset of the three views that has no natural owner: blog.js is not
- * loaded on the guides, and alternatives.js is not loaded anywhere else. The
- * card's styling stays in blog.css §§ 5.1 / 17, which all three already load.
- */
+// Shared TOC script handle.
 if (!defined('BOTPHONIC_TOC_SCRIPT')) {
 	define('BOTPHONIC_TOC_SCRIPT', 'botphonic-toc');
 }
@@ -53,24 +21,13 @@ if (!defined('BOTPHONIC_TOC_SCRIPT')) {
 add_action('admin_enqueue_scripts', 'my_enqueue_admin');
 function my_enqueue_admin()
 {
-	/*
-	 * Manrope in the editor too. admin-style.css sets the block canvas to the
-	 * front-end stack, but botphonic_enqueue_global_fonts() hooks
-	 * wp_enqueue_scripts and so never runs in admin — without this the canvas
-	 * would silently fall back to a system face and the editor still would not
-	 * match the published page.
-	 *
-	 * Reuses BOTPHONIC_FONT_HANDLE / BOTPHONIC_FONT_SRC from functions.php
-	 * rather than repeating the URL, so the family and the weight range stay in
-	 * one place.
-	 */
+	// Manrope in editor.
 	$font_deps = array();
 
 	if (defined('BOTPHONIC_FONT_HANDLE') && defined('BOTPHONIC_FONT_SRC')) {
 		wp_enqueue_style(BOTPHONIC_FONT_HANDLE, BOTPHONIC_FONT_SRC, array(), null);
 		$font_deps[] = BOTPHONIC_FONT_HANDLE;
 	}
-
 	wp_enqueue_style('my-admin-theme', get_stylesheet_directory_uri() . '/assets/css/admin-style.css', $font_deps, botphonic_child_asset_ver('/assets/css/admin-style.css'));
 	wp_enqueue_script('admin-script', get_stylesheet_directory_uri() . '/assets/js/admin-script.js', ['wp-data'], botphonic_child_asset_ver('/assets/js/admin-script.js'), true);
 }
@@ -96,20 +53,16 @@ function enqueue_child_theme_style()
 	wp_dequeue_style('understrap-styles');
 	wp_deregister_style('classic-theme-styles');
 	wp_deregister_style('global-styles');
+
+	// Child theme stylesheet.
 	wp_enqueue_style('dtbwp_css_child', get_stylesheet_directory_uri() . '/style.css', [], botphonic_child_asset_ver('/style.css'));
+
+	// Shared landing design system.
 	wp_enqueue_style(BOTPHONIC_LANDING_STYLE, get_stylesheet_directory_uri() . '/assets/css/common-landing.css', [], botphonic_child_asset_ver('/assets/css/common-landing.css'));
 
 	wp_enqueue_style('hfe', get_stylesheet_directory_uri() . '/assets/css/hfe.css', [BOTPHONIC_LANDING_STYLE], botphonic_child_asset_ver('/assets/css/hfe.css'));
-	wp_enqueue_script('custom', get_stylesheet_directory_uri() . '/assets/js/custom.js', ['botphonic-utm'], botphonic_child_asset_ver('/assets/js/custom.js'), true);
-
-	// UTM persistence across pages, CF7 hidden fields and the app.botphonic.ai Register/Login links.
-	wp_enqueue_script('botphonic-utm', get_stylesheet_directory_uri() . '/assets/js/utm.js', [], botphonic_child_asset_ver('/assets/js/utm.js'), ['in_footer' => true, 'strategy' => 'defer']);
-	$utm_config = apply_filters('botphonic_utm_config', [
-		'siteHosts' => array_values(array_unique([wp_parse_url(home_url(), PHP_URL_HOST), 'botphonic.ai', 'www.botphonic.ai'])),
-		'appHosts'  => ['app.botphonic.ai'],
-		'days'      => 30,
-	]);
-	wp_add_inline_script('botphonic-utm', 'window.botphonicUtmConfig = ' . wp_json_encode($utm_config) . ';', 'before');
+	wp_enqueue_script('botphonic-utm', get_stylesheet_directory_uri() . '/assets/js/utm.js', [], botphonic_child_asset_ver('/assets/js/utm.js'), true);
+	wp_enqueue_script('custom', get_stylesheet_directory_uri() . '/assets/js/custom.js', [], botphonic_child_asset_ver('/assets/js/custom.js'), true);
 
 	wp_register_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
 	wp_register_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', [], '1', true);
@@ -142,8 +95,11 @@ function enqueue_child_theme_style()
 
 	wp_register_style('pricing', get_stylesheet_directory_uri() . '/assets/css/pricing.css', array(BOTPHONIC_LANDING_STYLE), botphonic_child_asset_ver('/assets/css/pricing.css'));
 	wp_register_script('pricing', get_stylesheet_directory_uri() . '/assets/js/pricing.js', array(), botphonic_child_asset_ver('/assets/js/pricing.js'), true);
+
+	// Shared FAQ assets.
 	$uses_common_faq = is_page_template('temp-pricings.php')
 		|| is_page_template('temp-new-home-page.php')
+		|| is_page_template('temp-about-us.php')
 		|| (function_exists('botphonic_is_alt_single_view') && botphonic_is_alt_single_view());
 
 	if ($uses_common_faq) {
@@ -154,27 +110,17 @@ function enqueue_child_theme_style()
 			wp_enqueue_script('botphonic-faqs-js');
 		}
 	}
-
 	unset($uses_common_faq);
+
+	// Mail product assets.
 	wp_register_style('personalize', get_stylesheet_directory_uri() . '/assets/css/personalize.css', array(), botphonic_child_asset_ver('/assets/css/personalize.css'));
 	wp_register_script('personalize', get_stylesheet_directory_uri() . '/assets/js/personalize.js', array(), botphonic_child_asset_ver('/assets/js/personalize.js'), true);
-
 	wp_register_style('unified', get_stylesheet_directory_uri() . '/assets/css/unified.css', array(), botphonic_child_asset_ver('/assets/css/unified.css'));
-	if (is_page_template('temp-cold-mail.php')) {
-		wp_enqueue_style(
-			'cold-mail',
-			get_stylesheet_directory_uri() . '/assets/css/cold-mail.css',
-			[BOTPHONIC_LANDING_STYLE],
-			botphonic_child_asset_ver('/assets/css/cold-mail.css')
-		);
 
-		wp_enqueue_script(
-			'cold-mail',
-			get_stylesheet_directory_uri() . '/assets/js/cold-mail.js',
-			[],
-			botphonic_child_asset_ver('/assets/js/cold-mail.js'),
-			true
-		);
+	// Cold Email page.
+	if (is_page_template('temp-cold-mail.php')) {
+		wp_enqueue_style('cold-mail', get_stylesheet_directory_uri() . '/assets/css/cold-mail.css', [BOTPHONIC_LANDING_STYLE], botphonic_child_asset_ver('/assets/css/cold-mail.css'));
+		wp_enqueue_script('cold-mail', get_stylesheet_directory_uri() . '/assets/js/cold-mail.js', [], botphonic_child_asset_ver('/assets/js/cold-mail.js'), true);
 	}
 
 	if (is_page_template('temp-new-home-page.php')) {
@@ -182,128 +128,96 @@ function enqueue_child_theme_style()
 		wp_enqueue_script('new-home-page', get_stylesheet_directory_uri() . '/assets/js/new-home-page.js', [], botphonic_child_asset_ver('/assets/js/new-home-page.js'), true);
 	}
 
+	if (is_page_template('temp-about-us.php')) {
+		wp_enqueue_style('about-us', get_stylesheet_directory_uri() . '/assets/css/about-us.css', [BOTPHONIC_LANDING_STYLE], botphonic_child_asset_ver('/assets/css/about-us.css'));
+		wp_enqueue_script('about-us', get_stylesheet_directory_uri() . '/assets/js/about-us.js', [], botphonic_child_asset_ver('/assets/js/about-us.js'), true);
+	}
+
+	// In-content CTA blocks.
 	if (is_single() || is_page_template('temp-cta.php')) {
 		wp_enqueue_style('cta', get_stylesheet_directory_uri() . '/assets/css/cta.css', [], botphonic_child_asset_ver('/assets/css/cta.css'));
 	}
 
+	// CTA gallery blog styles.
+	if (is_page_template('temp-cta.php') && defined('BOTPHONIC_BLOG_STYLE')) {
+		wp_enqueue_style(BOTPHONIC_BLOG_STYLE, get_stylesheet_directory_uri() . '/assets/css/blog.css', [BOTPHONIC_LANDING_STYLE], botphonic_child_asset_ver('/assets/css/blog.css'));
+	}
+
+	// Shared TOC script.
 	if (
 		(function_exists('botphonic_is_blog_single_view') && botphonic_is_blog_single_view())
 		|| (function_exists('botphonic_is_story_single_view') && botphonic_is_story_single_view())
 		|| (function_exists('botphonic_is_alt_single_view') && botphonic_is_alt_single_view())
 	) {
-		wp_enqueue_script(
-			BOTPHONIC_TOC_SCRIPT,
-			get_stylesheet_directory_uri() . '/assets/js/toc.js',
-			[],
-			botphonic_child_asset_ver('/assets/js/toc.js'),
-			true
-		);
+		wp_enqueue_script(BOTPHONIC_TOC_SCRIPT, get_stylesheet_directory_uri() . '/assets/js/toc.js', [], botphonic_child_asset_ver('/assets/js/toc.js'), true);
 	}
 
+	// Blog styles and script.
 	if (function_exists('botphonic_is_blog_view') && botphonic_is_blog_view()) {
-		wp_enqueue_style(
-			BOTPHONIC_BLOG_STYLE,
-			get_stylesheet_directory_uri() . '/assets/css/blog.css',
-			[BOTPHONIC_LANDING_STYLE],
-			botphonic_child_asset_ver('/assets/css/blog.css')
-		);
-
-		wp_enqueue_script(
-			BOTPHONIC_BLOG_STYLE,
-			get_stylesheet_directory_uri() . '/assets/js/blog.js',
-			[],
-			botphonic_child_asset_ver('/assets/js/blog.js'),
-			true
-		);
+		wp_enqueue_style(BOTPHONIC_BLOG_STYLE, get_stylesheet_directory_uri() . '/assets/css/blog.css', [BOTPHONIC_LANDING_STYLE], botphonic_child_asset_ver('/assets/css/blog.css'));
+		wp_enqueue_script(BOTPHONIC_BLOG_STYLE, get_stylesheet_directory_uri() . '/assets/js/blog.js', [], botphonic_child_asset_ver('/assets/js/blog.js'), true);
 	}
 
-	if (function_exists('botphonic_is_story_view') && botphonic_is_story_view()) {
-		wp_enqueue_style(
-			BOTPHONIC_BLOG_STYLE,
-			get_stylesheet_directory_uri() . '/assets/css/blog.css',
-			[BOTPHONIC_LANDING_STYLE],
-			botphonic_child_asset_ver('/assets/css/blog.css')
-		);
+	// Author archive styles.
+	if (is_author()) {
+		wp_enqueue_style('botphonic-author', get_stylesheet_directory_uri() . '/assets/css/author.css', [BOTPHONIC_BLOG_STYLE], botphonic_child_asset_ver('/assets/css/author.css'));
 
-		wp_enqueue_script(
-			BOTPHONIC_BLOG_STYLE,
-			get_stylesheet_directory_uri() . '/assets/js/blog.js',
-			[],
-			botphonic_child_asset_ver('/assets/js/blog.js'),
-			true
-		);
+		if (function_exists('botphonic_author_counts')) {
+			$author_counts = botphonic_author_counts(get_queried_object_id());
+			if (defined('BOTPHONIC_ALT_STYLE') && !empty($author_counts[defined('BOTPHONIC_ALT_SLUG') ? BOTPHONIC_ALT_SLUG : 'alternatives'])) {
+				wp_enqueue_style(BOTPHONIC_ALT_STYLE, get_stylesheet_directory_uri() . '/assets/css/alternatives.css', [BOTPHONIC_BLOG_STYLE], botphonic_child_asset_ver('/assets/css/alternatives.css'));
+			}
 
-		wp_enqueue_style(
-			BOTPHONIC_STORY_STYLE,
-			get_stylesheet_directory_uri() . '/assets/css/success-stories.css',
-			[BOTPHONIC_BLOG_STYLE],
-			botphonic_child_asset_ver('/assets/css/success-stories.css')
-		);
+			if (defined('BOTPHONIC_STORY_STYLE') && !empty($author_counts[defined('CUSTOME_STORY_SLUG') ? CUSTOME_STORY_SLUG : 'success-stories'])) {
+				wp_enqueue_style(BOTPHONIC_STORY_STYLE, get_stylesheet_directory_uri() . '/assets/css/success-stories.css', [BOTPHONIC_BLOG_STYLE], botphonic_child_asset_ver('/assets/css/success-stories.css'));
+			}
 
-		wp_enqueue_script(
-			BOTPHONIC_STORY_STYLE,
-			get_stylesheet_directory_uri() . '/assets/js/success-stories.js',
-			[],
-			botphonic_child_asset_ver('/assets/js/success-stories.js'),
-			true
-		);
-	}
-
-	if (function_exists('botphonic_is_alt_view') && botphonic_is_alt_view()) {
-		wp_enqueue_style(
-			BOTPHONIC_BLOG_STYLE,
-			get_stylesheet_directory_uri() . '/assets/css/blog.css',
-			[BOTPHONIC_LANDING_STYLE],
-			botphonic_child_asset_ver('/assets/css/blog.css')
-		);
-
-		wp_enqueue_style(
-			BOTPHONIC_ALT_STYLE,
-			get_stylesheet_directory_uri() . '/assets/css/alternatives.css',
-			[BOTPHONIC_BLOG_STYLE],
-			botphonic_child_asset_ver('/assets/css/alternatives.css')
-		);
-
-		if (botphonic_is_alt_single_view()) {
-			wp_enqueue_script(
-				BOTPHONIC_ALT_STYLE,
-				get_stylesheet_directory_uri() . '/assets/js/alternatives.js',
-				[],
-				botphonic_child_asset_ver('/assets/js/alternatives.js'),
-				true
-			);
+			unset($author_counts);
 		}
 	}
 
-	if (function_exists('botphonic_is_solution_page') && botphonic_is_solution_page()) {
-		wp_enqueue_style(
-			BOTPHONIC_SOLUTION_STYLE,
-			get_stylesheet_directory_uri() . '/assets/css/solution-pages.css',
-			[BOTPHONIC_LANDING_STYLE],
-			botphonic_child_asset_ver('/assets/css/solution-pages.css')
-		);
+	// Customer stories assets.
+	if (function_exists('botphonic_is_story_view') && botphonic_is_story_view()) {
+		wp_enqueue_style(BOTPHONIC_BLOG_STYLE, get_stylesheet_directory_uri() . '/assets/css/blog.css', [BOTPHONIC_LANDING_STYLE], botphonic_child_asset_ver('/assets/css/blog.css'));
+		wp_enqueue_script(BOTPHONIC_BLOG_STYLE, get_stylesheet_directory_uri() . '/assets/js/blog.js', [], botphonic_child_asset_ver('/assets/js/blog.js'), true);
+		wp_enqueue_style(BOTPHONIC_STORY_STYLE, get_stylesheet_directory_uri() . '/assets/css/success-stories.css', [BOTPHONIC_BLOG_STYLE], botphonic_child_asset_ver('/assets/css/success-stories.css'));
+		wp_enqueue_script(BOTPHONIC_STORY_STYLE, get_stylesheet_directory_uri() . '/assets/js/success-stories.js', [], botphonic_child_asset_ver('/assets/js/success-stories.js'), true);
 	}
 
+	// Alternatives comparison assets.
+	if (function_exists('botphonic_is_alt_view') && botphonic_is_alt_view()) {
+		wp_enqueue_style(BOTPHONIC_BLOG_STYLE, get_stylesheet_directory_uri() . '/assets/css/blog.css', [BOTPHONIC_LANDING_STYLE], botphonic_child_asset_ver('/assets/css/blog.css'));
+		wp_enqueue_style(BOTPHONIC_ALT_STYLE, get_stylesheet_directory_uri() . '/assets/css/alternatives.css', [BOTPHONIC_BLOG_STYLE], botphonic_child_asset_ver('/assets/css/alternatives.css'));
+		if (botphonic_is_alt_single_view()) {
+			wp_enqueue_script(BOTPHONIC_ALT_STYLE, get_stylesheet_directory_uri() . '/assets/js/alternatives.js', [], botphonic_child_asset_ver('/assets/js/alternatives.js'), true);
+		}
+	}
+
+	// Solution pages styles.
+	if (function_exists('botphonic_is_solution_page') && botphonic_is_solution_page()) {
+		wp_enqueue_style(BOTPHONIC_SOLUTION_STYLE, get_stylesheet_directory_uri() . '/assets/css/solution-pages.css', [BOTPHONIC_LANDING_STYLE], botphonic_child_asset_ver('/assets/css/solution-pages.css'));
+	}
+
+	// USA child pages.
 	if (!is_page()) {
 		return;
 	}
 
 	$current_page = get_queried_object();
-
 	if ($current_page instanceof WP_Post && $current_page->post_parent) {
 		$parent = get_post($current_page->post_parent);
-
 		if ($parent && $parent->post_name === 'usa') {
 			wp_enqueue_style('usa-style');
 		}
 	}
 }
 
+
+// Modern template assets.
 add_action('wp_enqueue_scripts', 'botphonic_enqueue_modern_template_assets', 99);
 function botphonic_enqueue_modern_template_assets()
 {
 	$template_key = botphonic_get_current_template_key();
-
 	if ('' === $template_key) {
 		return;
 	}
@@ -338,7 +252,7 @@ function botphonic_enqueue_modern_template_assets()
 
 		case 'multilingual':
 			wp_enqueue_style('multilingual');
-			/* multilingual.js is intentionally empty and remains dormant. */
+			// multilingual.js intentionally empty.
 			break;
 
 		case 'personalize-mail':
@@ -365,11 +279,5 @@ function botphonic_enqueue_modern_template_assets()
 			wp_enqueue_script('success-story-swiper');
 			break;
 	}
-
-	wp_enqueue_style(
-		BOTPHONIC_MODERN_STYLE,
-		get_stylesheet_directory_uri() . '/assets/css/template-modernization.css',
-		[BOTPHONIC_LANDING_STYLE],
-		botphonic_child_asset_ver('/assets/css/template-modernization.css')
-	);
+	wp_enqueue_style(BOTPHONIC_MODERN_STYLE, get_stylesheet_directory_uri() . '/assets/css/template-modernization.css', [BOTPHONIC_LANDING_STYLE], botphonic_child_asset_ver('/assets/css/template-modernization.css'));
 }

@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Pricing Plans
- * Botphonic pricing page (/pricings-plans/).
+ * Botphonic pricing page (/pricing/).
  * @package Botphonic
  */
 
@@ -42,17 +42,23 @@ $bp_foot_enterprise = 'White-label and reseller terms available for agencies.';
 $bp_foot_wallet = 'Credit does not expire. No monthly subscription charge.';
 
 /**
- * Subscription plans.
+ * Subscription plans — the static fallback for what pricing.js renders from
+ * the live API. Keep these numbers equal to the API: the FAQ, the cost card,
+ * the structured data and the meta descriptions are all derived from them.
  *
  * monthly/yearly: price per month in USD. null = custom (Enterprise).
+ * minutes / concurrent: integers. null = custom. The first two feature lines
+ *   ("100 talk minutes per month", "5 concurrent calls") are generated from
+ *   these, so do not repeat them in `features`.
  * features: limited inline markup (<b>) is allowed and filtered on output.
  */
 $bp_plans = array(
 	array(
 		'name' => 'Starter',
-		'monthly' => 22,
-		'yearly' => 20,
-		'minutes' => 50,
+		'monthly' => 15,
+		'yearly' => 12,
+		'minutes' => 100,
+		'concurrent' => 5,
 		'popular' => false,
 		'description' => 'For a single line: a small clinic, agency or practice replacing voicemail.',
 		'inherit' => 'The foundation every plan builds on.',
@@ -60,19 +66,17 @@ $bp_plans = array(
 		'cta_url' => $bp_signup_url,
 		'foot' => $bp_foot_trial,
 		'features' => array(
-			'<b>50 talk minutes</b> per month',
-			'<b>5 concurrent calls</b>',
 			'Unlimited AI agents, all 50+ languages',
 			'Outbound batch campaigns',
 			'Team member invitations',
-			'REST API and all integrations',
 		),
 	),
 	array(
 		'name' => 'Pro',
-		'monthly' => 60,
-		'yearly' => 55,
-		'minutes' => 120,
+		'monthly' => 45,
+		'yearly' => 36,
+		'minutes' => 300,
+		'concurrent' => 10,
 		'popular' => true,
 		'description' => 'For growing teams running campaigns alongside inbound answering.',
 		'inherit' => 'Everything in Starter, included.',
@@ -80,11 +84,10 @@ $bp_plans = array(
 		'cta_url' => $bp_signup_url,
 		'foot' => $bp_foot_trial,
 		'features' => array(
-			'<b>120 talk minutes</b> per month',
-			'<b>25 concurrent calls</b>',
-			'5 custom workflows',
 			'Unlimited AI agents, all 50+ languages',
 			'Outbound batch campaigns',
+			'5 custom workflows',
+			'Team member invitations',
 			'Email and Google Meet support',
 		),
 	),
@@ -93,6 +96,7 @@ $bp_plans = array(
 		'monthly' => null,
 		'yearly' => null,
 		'minutes' => null,
+		'concurrent' => null,
 		'popular' => false,
 		'description' => 'For call centers and BPOs with high-volume, regulated calling.',
 		'inherit' => 'Everything in Pro, included.',
@@ -100,14 +104,31 @@ $bp_plans = array(
 		'cta_url' => $bp_contact_url,
 		'foot' => $bp_foot_enterprise,
 		'features' => array(
-			'Custom minute bundles',
-			'<b>200+ concurrent calls</b>',
-			'Unlimited custom workflows and integrations',
-			'Boosted call queuing and rebilling',
-			'Solution architect and onboarding',
+			'Unlimited AI agents, all 50+ languages',
+			'Outbound batch campaigns',
+			'Unlimited custom workflows',
+			'Team member invitations',
+			'Custom white-label subaccounts',
+			'Rebilling',
+			'Boosted call queuing',
+			'Email, chat and Google Meet support, plus a solution architect',
 		),
 	),
 );
+
+/* Generate the minutes + concurrency lines so they always match the numbers. */
+foreach ($bp_plans as $bp_i => $bp_plan) {
+	array_unshift(
+		$bp_plans[$bp_i]['features'],
+		null === $bp_plan['minutes']
+		? '<b>Custom</b> minute bundle'
+		: '<b>' . number_format_i18n($bp_plan['minutes']) . ' talk minutes</b> per month',
+		null === $bp_plan['concurrent']
+		? '<b>Custom concurrent calls</b>'
+		: '<b>' . number_format_i18n($bp_plan['concurrent']) . ' concurrent calls</b>'
+	);
+}
+unset($bp_i, $bp_plan);
 
 /**
  * Pay-as-you-go credit wallets. `currency` decides which cards are visible in
@@ -161,6 +182,314 @@ $bp_wallets = array(
 	),
 );
 
+/* =============================================================================
+ * 1b. Live sync — read the same API as pricing.js, on the server
+ *
+ * The arrays above are only used when the API cannot be reached and no
+ * earlier copy exists. Otherwise every number on the page (cards, FAQ, cost
+ * card, schema, meta) comes from /api/plans, cached for one hour. After a
+ * price change in the API the page catches up within the hour; to update at
+ * once, open the page while logged in as an admin with ?bp_pricing_refresh=1
+ * on the end of the URL (then clear your page cache if you use one).
+ * ========================================================================== */
+
+if (!function_exists('bp_pricing_api_get')) {
+	/**
+	 * GET an /api/plans URL and return its `data` array.
+	 *
+	 * Good responses are cached for an hour and also kept as a "last good"
+	 * copy. If the API fails, the last good copy is served and retried in
+	 * five minutes, so an outage never empties the page.
+	 *
+	 * @param string $url Full API URL with query string.
+	 * @return array
+	 */
+	function bp_pricing_api_get($url)
+	{
+		$key = 'bp_pricing_' . md5($url);
+		$force = isset($_GET['bp_pricing_refresh']) && current_user_can('manage_options'); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+
+		if (!$force) {
+			$cached = get_transient($key);
+			if (is_array($cached)) {
+				return $cached;
+			}
+		}
+
+		$response = wp_remote_get(
+			$url,
+			array(
+				'timeout' => 4,
+				'headers' => array('Accept' => 'application/json'),
+			)
+		);
+
+		if (!is_wp_error($response) && 200 === (int) wp_remote_retrieve_response_code($response)) {
+			$json = json_decode(wp_remote_retrieve_body($response), true);
+			if (is_array($json) && !empty($json['data']) && is_array($json['data'])) {
+				set_transient($key, $json['data'], HOUR_IN_SECONDS);
+				update_option($key . '_last', $json['data'], false);
+				return $json['data'];
+			}
+		}
+
+		$last = get_option($key . '_last');
+		$last = is_array($last) ? $last : array();
+		set_transient($key, $last, 5 * MINUTE_IN_SECONDS);
+
+		return $last;
+	}
+}
+
+if (!function_exists('bp_pricing_money')) {
+	/**
+	 * Same output as money() in pricing.js: "$12", "$0.40", "₹3,000", "₹1,00,000".
+	 *
+	 * @param float       $amount   Amount.
+	 * @param string      $currency USD | INR.
+	 * @param int|null    $dp       Decimal places; null = 0 for whole numbers, else 2.
+	 * @return string
+	 */
+	function bp_pricing_money($amount, $currency = 'USD', $dp = null)
+	{
+		$amount = (float) $amount;
+		$dp = null === $dp ? (fmod($amount, 1.0) ? 2 : 0) : (int) $dp;
+		$text = number_format($amount, $dp, '.', ',');
+
+		if ('INR' === $currency) {
+			$parts = explode('.', number_format($amount, $dp, '.', ''));
+			$int = $parts[0];
+			if (strlen($int) > 3) {
+				$last3 = substr($int, -3);
+				$rest = substr($int, 0, -3);
+				$int = preg_replace('/\B(?=(\d{2})+(?!\d))/', ',', $rest) . ',' . $last3;
+			}
+			$text = $int . (isset($parts[1]) ? '.' . $parts[1] : '');
+			return '₹' . $text;
+		}
+
+		return '$' . $text;
+	}
+}
+
+if (!function_exists('bp_pricing_feature_lines')) {
+	/**
+	 * PHP copy of featureLines() in pricing.js, so the server-rendered cards
+	 * show exactly the lines the live cards show. Change both together.
+	 *
+	 * @param array $features The plan's `features` object from the API.
+	 * @return string[]
+	 */
+	function bp_pricing_feature_lines($features)
+	{
+		$features = is_array($features) ? $features : array();
+		$cost = isset($features['Cost Structure']) ? (array) $features['Cost Structure'] : array();
+		$core = isset($features['Core Capabilities']) ? (array) $features['Core Capabilities'] : array();
+		$actions = isset($features['Actions']) ? (array) $features['Actions'] : array();
+		$white = isset($features['White Label']) ? (array) $features['White Label'] : array();
+		$support = isset($features['Support']) ? (array) $features['Support'] : array();
+		$out = array();
+
+		$minutes = isset($cost['Minutes Included']) ? $cost['Minutes Included'] : null;
+		if (is_int($minutes) || is_float($minutes)) {
+			$out[] = '<b>' . $minutes . ' talk minutes</b> per month';
+		} elseif ($minutes) {
+			$out[] = '<b>Custom</b> minute bundle';
+		}
+
+		if (isset($cost['Concurrent Calls'])) {
+			$concurrent = $cost['Concurrent Calls'];
+			$out[] = '<b>' . (is_int($concurrent) || is_float($concurrent) ? $concurrent : 'Custom') . ' concurrent calls</b>';
+		}
+
+		if (!empty($core['Unlimited Agents'])) {
+			$out[] = 'Unlimited AI agents, all 50+ languages';
+		}
+		if (!empty($core['Batch Campaigns'])) {
+			$out[] = 'Outbound batch campaigns';
+		}
+
+		$workflows = isset($actions['Custom Workflows Included']) ? $actions['Custom Workflows Included'] : null;
+		if ((is_int($workflows) || is_float($workflows)) && $workflows > 0) {
+			$out[] = $workflows . ' custom workflows';
+		} elseif ('Custom' === $workflows) {
+			$out[] = 'Unlimited custom workflows';
+		}
+
+		if (!empty($core['Invite Team Members'])) {
+			$out[] = 'Team member invitations';
+		}
+
+		$subaccounts = isset($white['Subaccounts']) ? $white['Subaccounts'] : null;
+		if ((is_int($subaccounts) || is_float($subaccounts)) && $subaccounts > 0) {
+			$out[] = $subaccounts . ' white-label subaccounts';
+		} elseif ('Custom' === $subaccounts) {
+			$out[] = 'Custom white-label subaccounts';
+		}
+
+		if (!empty($core['Rebilling'])) {
+			$out[] = 'Rebilling';
+		}
+		if (!empty($cost['Boosted Queuing for Calls'])) {
+			$out[] = 'Boosted call queuing';
+		}
+
+		$channels = array();
+		if (!empty($support['Email Support'])) {
+			$channels[] = 'Email';
+		}
+		if (!empty($support['Desku Support'])) {
+			$channels[] = 'chat';
+		}
+		if (!empty($support['Google Meet Support'])) {
+			$channels[] = 'Google Meet';
+		}
+		$line = '';
+		if ($channels) {
+			$last = array_pop($channels);
+			$line = ($channels ? implode(', ', $channels) . ' and ' : '') . $last . ' support';
+		}
+		if (!empty($support['Solution Architect'])) {
+			$line = $line ? $line . ', plus a solution architect' : 'Dedicated solution architect';
+		}
+		if ($line) {
+			$out[] = $line;
+		}
+
+		return $out;
+	}
+}
+
+if (!function_exists('bp_pricing_number')) {
+	/**
+	 * @param mixed $value API value.
+	 * @return int|float|null Number, or null for "Custom" / missing.
+	 */
+	function bp_pricing_number($value)
+	{
+		return (is_int($value) || is_float($value)) ? $value : null;
+	}
+}
+
+$bp_api_plans = trailingslashit($bp_api_origin) . 'api/plans';
+
+/* Subscription plans: yearly list drives the cards, monthly list gives the strike-through price. */
+$bp_api_yearly = bp_pricing_api_get(add_query_arg(array('billingCycle' => 'Yearly', 'currency' => 'USD'), $bp_api_plans));
+$bp_api_monthly = bp_pricing_api_get(add_query_arg(array('billingCycle' => 'Monthly', 'currency' => 'USD'), $bp_api_plans));
+
+if ($bp_api_yearly) {
+	$bp_fallback_by_name = array_column($bp_plans, null, 'name');
+	$bp_monthly_by_name = array();
+	foreach ($bp_api_monthly as $bp_row) {
+		if (isset($bp_row['name'])) {
+			$bp_monthly_by_name[$bp_row['name']] = $bp_row;
+		}
+	}
+
+	$bp_live_plans = array();
+	foreach ($bp_api_yearly as $bp_row) {
+		if (empty($bp_row['name'])) {
+			continue;
+		}
+		$bp_name = $bp_row['name'];
+		$bp_fb = isset($bp_fallback_by_name[$bp_name]) ? $bp_fallback_by_name[$bp_name] : array();
+		$bp_custom = empty($bp_row['hasPrice']) || !isset($bp_row['price']);
+		$bp_cost = isset($bp_row['features']['Cost Structure']) ? (array) $bp_row['features']['Cost Structure'] : array();
+		$bp_month_row = isset($bp_monthly_by_name[$bp_name]) ? $bp_monthly_by_name[$bp_name] : null;
+
+		$bp_live_plans[] = array(
+			'name' => $bp_name,
+			'monthly' => $bp_custom ? null : (float) ($bp_month_row && isset($bp_month_row['price']) ? $bp_month_row['price'] : $bp_row['price']),
+			'yearly' => $bp_custom ? null : (float) $bp_row['price'],
+			'minutes' => bp_pricing_number(isset($bp_cost['Minutes Included']) ? $bp_cost['Minutes Included'] : null),
+			'concurrent' => bp_pricing_number(isset($bp_cost['Concurrent Calls']) ? $bp_cost['Concurrent Calls'] : null),
+			'popular' => !empty($bp_row['isRecommended']),
+			'description' => !empty($bp_row['description']) ? $bp_row['description'] : (isset($bp_fb['description']) ? $bp_fb['description'] : ''),
+			'inherit' => isset($bp_fb['inherit']) ? $bp_fb['inherit'] : '',
+			'cta' => $bp_custom ? 'Talk to sales' : 'Start 14-day free trial',
+			'cta_url' => $bp_custom ? $bp_contact_url : $bp_signup_url,
+			'foot' => $bp_custom ? $bp_foot_enterprise : $bp_foot_trial,
+			'features' => bp_pricing_feature_lines(isset($bp_row['features']) ? $bp_row['features'] : array()),
+		);
+	}
+
+	// Use the API list only if it has at least one priced plan.
+	if (array_filter(array_column($bp_live_plans, 'yearly'))) {
+		$bp_plans = $bp_live_plans;
+	}
+	unset($bp_fallback_by_name, $bp_monthly_by_name, $bp_live_plans, $bp_row, $bp_name, $bp_fb, $bp_custom, $bp_cost, $bp_month_row);
+}
+
+/* Pay-as-you-go wallets, per currency. A currency the API misses keeps its fallback cards. */
+$bp_live_wallets = array();
+foreach (array('USD', 'INR') as $bp_cur) {
+	$bp_rows = bp_pricing_api_get(add_query_arg(array('currency' => $bp_cur, 'isWalletPlan' => 'true'), $bp_api_plans));
+
+	if (!$bp_rows) {
+		foreach ($bp_wallets as $bp_w) {
+			if ($bp_cur === $bp_w['currency']) {
+				$bp_live_wallets[] = $bp_w;
+			}
+		}
+		continue;
+	}
+
+	foreach ($bp_rows as $bp_row) {
+		if (empty($bp_row['name']) || !isset($bp_row['price'])) {
+			continue;
+		}
+		$bp_usd_rate = isset($bp_row['features']['Cost Structure']['Per Minute Credit']) ? (float) $bp_row['features']['Cost Structure']['Per Minute Credit'] : 0;
+		$bp_rate = 'INR' === $bp_cur ? $bp_usd_rate * $bp_usd_inr_rate : $bp_usd_rate;
+
+		$bp_live_wallets[] = array(
+			'name' => $bp_row['name'],
+			'currency' => $bp_cur,
+			'wallet' => bp_pricing_money($bp_row['price'], $bp_cur),
+			'per_min' => $bp_rate > 0 ? bp_pricing_money($bp_rate, $bp_cur, 2) . ' per talk minute' : '',
+			'estimate' => $bp_rate > 0 ? sprintf('Roughly %d minutes of conversation.', round((float) $bp_row['price'] / $bp_rate)) : '',
+			'foot' => $bp_foot_wallet . ('INR' === $bp_cur ? ' Per-minute rate converted from USD at the prevailing rate.' : ''),
+			'features' => bp_pricing_feature_lines(isset($bp_row['features']) ? $bp_row['features'] : array()),
+		);
+	}
+}
+if ($bp_live_wallets) {
+	$bp_wallets = $bp_live_wallets;
+}
+unset($bp_live_wallets, $bp_cur, $bp_rows, $bp_w, $bp_row, $bp_usd_rate, $bp_rate);
+
+/**
+ * Figures quoted in prose (FAQ, cost card, schema, meta). Derived from the
+ * arrays above so a price change is made in one place only.
+ */
+$bp_priced = array_values(array_filter($bp_plans, function ($plan) {
+	return !empty($plan['yearly']);
+}));
+usort($bp_priced, function ($a, $b) {
+	return $a['yearly'] <=> $b['yearly'];
+});
+$bp_starter = isset($bp_priced[0]) ? $bp_priced[0] : null;          // cheapest plan
+$bp_pro = isset($bp_priced[1]) ? $bp_priced[1] : $bp_starter;       // next one up
+
+$bp_from_price = $bp_starter ? bp_pricing_money($bp_starter['yearly']) : '';
+
+$bp_usd_wallet = null;
+foreach ($bp_wallets as $bp_w) {
+	if ('USD' === $bp_w['currency']) {
+		$bp_usd_wallet = $bp_w;
+		break;
+	}
+}
+unset($bp_w);
+
+$bp_meta_desc = sprintf(
+	'Botphonic AI voice agent pricing: plans from %s/month with a 14-day free trial and 20 free minutes. Compare Starter, Pro and Enterprise features and costs.',
+	$bp_from_price
+);
+$bp_social_desc = sprintf(
+	'Plans from %s/month with a 14-day free trial and 20 free minutes. Compare Starter, Pro and Enterprise.',
+	$bp_from_price
+);
+
 /** 14-day trial timeline. */
 $bp_timeline = array(
 	array(
@@ -189,8 +518,8 @@ $bp_timeline = array(
 $bp_cost_cards = array(
 	array(
 		'title' => 'Botphonic AI voice agent',
-		'fig' => 'From $20/month',
-		'body' => 'Unlimited simultaneous calls, 24/7 cover, books appointments and updates your CRM. Scales by adding minutes, not people.',
+		'fig' => sprintf('From %s/month', $bp_from_price),
+		'body' => 'Answers several calls at once, 24/7 cover, books appointments and updates your CRM. Scales by adding minutes, not people.',
 		'best' => true,
 	),
 	array(
@@ -325,7 +654,26 @@ $bp_ratings = array(
 $bp_faqs = array(
 	array(
 		'q' => 'How much does an AI voice agent cost?',
-		'a' => 'Botphonic subscription plans start at $20 per month on Starter billed yearly, or $22 billed monthly, which includes 50 talk minutes and 5 concurrent calls. Pro is $55 per month billed yearly and includes 120 minutes and 25 concurrent calls. There is also a pay-as-you-go option: a $250 credit wallet billed at $0.40 per talk minute with no monthly commitment. Enterprise pricing is based on your minute volume, concurrency and compliance needs.',
+		'a' => sprintf(
+			'Botphonic subscription plans start at %1$s per month on %10$s billed yearly, or %2$s billed monthly, which includes %3$s talk minutes and %4$s concurrent calls. %11$s is %5$s per month billed yearly, or %6$s billed monthly, and includes %7$s minutes and %8$s concurrent calls.%9$s Enterprise pricing is based on your minute volume, concurrency and compliance needs.',
+			bp_pricing_money($bp_starter['yearly']),
+			bp_pricing_money($bp_starter['monthly']),
+			null === $bp_starter['minutes'] ? 'custom' : number_format($bp_starter['minutes']),
+			null === $bp_starter['concurrent'] ? 'custom' : $bp_starter['concurrent'],
+			bp_pricing_money($bp_pro['yearly']),
+			bp_pricing_money($bp_pro['monthly']),
+			null === $bp_pro['minutes'] ? 'custom' : number_format($bp_pro['minutes']),
+			null === $bp_pro['concurrent'] ? 'custom' : $bp_pro['concurrent'],
+			$bp_usd_wallet
+			? sprintf(
+				' There is also a pay-as-you-go option: a %1$s credit wallet billed at %2$s with no monthly commitment.',
+				$bp_usd_wallet['wallet'],
+				$bp_usd_wallet['per_min']
+			)
+			: '',
+			$bp_starter['name'],
+			$bp_pro['name']
+		),
 	),
 	array(
 		'q' => 'Is there a free trial, and do I need a credit card?',
@@ -349,7 +697,7 @@ $bp_faqs = array(
 	),
 	array(
 		'q' => 'Do you charge per seat or per user?',
-		'a' => 'No. Botphonic is priced on talk minutes and concurrent calls, not on the number of people in your team. Unlimited assistants are included on every plan, and team member invitations are included from the Pro plan up.',
+		'a' => 'No. Botphonic is priced on talk minutes and concurrent calls, not on the number of people in your team. Unlimited AI agents and team member invitations are included on every plan.',
 	),
 	array(
 		'q' => 'Can I pay in Indian rupees?',
@@ -357,7 +705,7 @@ $bp_faqs = array(
 	),
 	array(
 		'q' => 'How does Botphonic pricing compare with a human answering service?',
-		'a' => 'A staffed answering service typically costs $1 to $2 per minute with monthly minimums and limits on how many calls can be handled at once. Botphonic is a fraction of that per minute, handles unlimited simultaneous calls, and books appointments and updates your CRM rather than only taking messages.',
+		'a' => 'A staffed answering service typically costs $1 to $2 per minute with monthly minimums and limits on how many calls can be handled at once. Botphonic is a fraction of that per minute, answers several calls at once up to your plan’s concurrency limit, and books appointments and updates your CRM rather than only taking messages.',
 	),
 	array(
 		'q' => 'Are there setup fees or long-term contracts?',
@@ -378,6 +726,17 @@ foreach ($bp_plans as $bp_plan) {
 		);
 	}
 }
+
+/* Keep Yoast's descriptions in step with the plan prices above. */
+add_filter('wpseo_metadesc', function () use ($bp_meta_desc) {
+	return $bp_meta_desc;
+});
+add_filter('wpseo_opengraph_desc', function () use ($bp_social_desc) {
+	return $bp_social_desc;
+});
+add_filter('wpseo_twitter_description', function () use ($bp_social_desc) {
+	return $bp_social_desc;
+});
 
 /* =============================================================================
  * 2. Assets — registered on the correct hook, before get_header()
@@ -610,7 +969,7 @@ add_action(
 				'offers' => array(
 					'@type' => 'AggregateOffer',
 					'priceCurrency' => 'USD',
-					'lowPrice' => number_format($prices ? min($prices) : 20, 2, '.', ''),
+					'lowPrice' => number_format($prices ? min($prices) : 0, 2, '.', ''),
 					'highPrice' => number_format($prices ? max($prices) : 250, 2, '.', ''),
 					'offerCount' => (string) count($offers),
 					'offers' => $offers,
@@ -625,12 +984,12 @@ add_action(
 
 		echo '<script type="application/ld+json">'
 			. wp_json_encode(
-				array(
-					'@context' => 'https://schema.org',
-					'@graph' => $graph,
-				),
-				JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
-			)
+			array(
+				'@context' => 'https://schema.org',
+				'@graph' => $graph,
+			),
+			JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+		)
 			. '</script>' . "\n";
 	},
 	20
@@ -712,26 +1071,26 @@ if (!function_exists('bp_pricing_controls')) {
 			'USD' => 'USD $',
 			'INR' => 'INR ₹',
 		);
-		?>
-		<div class="bpp-controls" data-bpp-controls="<?php echo esc_attr($context); ?>">
-			<div class="bpp-seg" role="group" aria-label="<?php echo esc_attr('Billing option for ' . $label); ?>">
-				<?php foreach ($views as $bp_key => $bp_text): ?>
-					<button type="button" data-bpp-view="<?php echo esc_attr($bp_key); ?>" aria-pressed="<?php echo $bp_key === $view ? 'true' : 'false'; ?>">
-						<?php echo esc_html($bp_text); ?>
-						<?php if ('monthly' !== $bp_key): ?>
-							<?php $bp_show = 'yearly' === $bp_key && $max_saving > 0; ?>
-							<span class="bpp-save" data-bpp-save="<?php echo esc_attr($bp_key); ?>" <?php echo $bp_show ? '' : ' hidden'; ?>><?php echo $bp_show ? esc_html(sprintf('save up to %d%%', $max_saving)) : ''; ?></span>
-						<?php endif; ?>
-					</button>
-				<?php endforeach; ?>
-			</div>
-			<div class="bpp-seg" role="group" aria-label="<?php echo esc_attr('Currency for ' . $label); ?>">
-				<?php foreach ($currencies as $bp_key => $bp_text): ?>
-					<button type="button" data-bpp-currency="<?php echo esc_attr($bp_key); ?>" aria-pressed="<?php echo $bp_key === $currency ? 'true' : 'false'; ?>"><?php echo esc_html($bp_text); ?></button>
-				<?php endforeach; ?>
-			</div>
-		</div>
-		<?php
+?>
+<div class="bpp-controls" data-bpp-controls="<?php echo esc_attr($context); ?>">
+	<div class="bpp-seg" role="group" aria-label="<?php echo esc_attr('Billing option for ' . $label); ?>">
+		<?php foreach ($views as $bp_key => $bp_text): ?>
+		<button type="button" data-bpp-view="<?php echo esc_attr($bp_key); ?>" aria-pressed="<?php echo $bp_key === $view ? 'true' : 'false'; ?>">
+			<?php echo esc_html($bp_text); ?>
+			<?php if ('monthly' !== $bp_key): ?>
+			<?php $bp_show = 'yearly' === $bp_key && $max_saving > 0; ?>
+			<span class="bpp-save" data-bpp-save="<?php echo esc_attr($bp_key); ?>" <?php echo $bp_show ? '' : ' hidden'; ?>><?php echo $bp_show ? esc_html(sprintf('save up to %d%%', $max_saving)) : ''; ?></span>
+			<?php endif; ?>
+		</button>
+		<?php endforeach; ?>
+	</div>
+	<div class="bpp-seg" role="group" aria-label="<?php echo esc_attr('Currency for ' . $label); ?>">
+		<?php foreach ($currencies as $bp_key => $bp_text): ?>
+		<button type="button" data-bpp-currency="<?php echo esc_attr($bp_key); ?>" aria-pressed="<?php echo $bp_key === $currency ? 'true' : 'false'; ?>"><?php echo esc_html($bp_text); ?></button>
+		<?php endforeach; ?>
+	</div>
+</div>
+<?php
 	}
 }
 
@@ -779,8 +1138,8 @@ get_header();
 	</section>
 
 	<!-- PLANS - Prices below are a complete server-rendered fallback, so the page is
-		 correct for crawlers and if the API is unreachable. On load,
-		 assets/js/pricing.js re-renders both grids from the live API. -->
+   correct for crawlers and if the API is unreachable. On load,
+   assets/js/pricing.js re-renders both grids from the live API. -->
 	<section class="bpp-sec bpp-sec--flush" id="plans" aria-labelledby="bpp-h-plans">
 		<div class="bpp-wrap">
 			<h2 id="bpp-h-plans" class="bpp-sr">Botphonic plans and pricing</h2>
@@ -804,40 +1163,40 @@ get_header();
 				<div class="bpp-plans" data-bpp-grid="sub" aria-live="polite">
 					<?php
 					foreach ($bp_plans as $bp_plan):
-						$bp_is_custom = empty($bp_plan['yearly']);
-						$bp_price = 'monthly' === $bp_default_view ? $bp_plan['monthly'] : $bp_plan['yearly'];
-						$bp_cycle = 'monthly' === $bp_default_view ? 'monthly' : 'yearly';
-						?>
-						<article class="bpp-plan<?php echo $bp_plan['popular'] ? ' bpp-plan--best' : ''; ?>">
-							<?php if ($bp_plan['popular']): ?>
-								<span class="bpp-flag">Most popular</span>
+					$bp_is_custom = empty($bp_plan['yearly']);
+					$bp_price = 'monthly' === $bp_default_view ? $bp_plan['monthly'] : $bp_plan['yearly'];
+					$bp_cycle = 'monthly' === $bp_default_view ? 'monthly' : 'yearly';
+					?>
+					<article class="bpp-plan<?php echo $bp_plan['popular'] ? ' bpp-plan--best' : ''; ?>">
+						<?php if ($bp_plan['popular']): ?>
+						<span class="bpp-flag">Most popular</span>
+						<?php endif; ?>
+
+						<h3><?php echo esc_html($bp_plan['name']); ?></h3>
+						<p class="bpp-for"><?php echo esc_html($bp_plan['description']); ?></p>
+
+						<?php if ($bp_is_custom): ?>
+						<div class="bpp-amount bpp-amount--custom">
+							<b>Custom</b><span>volume pricing</span>
+						</div>
+						<p class="bpp-rate">Priced on volume and compliance scope</p>
+						<?php else: ?>
+						<div class="bpp-amount">
+							<b><?php echo esc_html(bp_pricing_money($bp_price)); ?></b><span>/month</span>
+							<?php if ('yearly' === $bp_default_view && $bp_plan['monthly'] > $bp_plan['yearly']): ?>
+							<span class="bpp-was"><?php echo esc_html(bp_pricing_money($bp_plan['monthly'])); ?></span>
 							<?php endif; ?>
+						</div>
+						<p class="bpp-rate"><b><?php echo esc_html($bp_plan['minutes']); ?> minutes</b> included &middot; billed <?php echo esc_html($bp_cycle); ?></p>
+						<?php endif; ?>
 
-							<h3><?php echo esc_html($bp_plan['name']); ?></h3>
-							<p class="bpp-for"><?php echo esc_html($bp_plan['description']); ?></p>
+						<a class="bpp-btn <?php echo $bp_plan['popular'] ? 'bpp-btn--coral' : ($bp_is_custom ? 'bpp-btn--ghost' : 'bpp-btn--ink'); ?>" href="<?php echo esc_url($bp_plan['cta_url']); ?>" <?php echo $bp_is_custom ? '' : ' target="_blank" rel="noopener"'; ?>><?php echo esc_html($bp_plan['cta']); ?></a>
 
-							<?php if ($bp_is_custom): ?>
-								<div class="bpp-amount bpp-amount--custom">
-									<b>Custom</b><span>volume pricing</span>
-								</div>
-								<p class="bpp-rate">Priced on volume and compliance scope</p>
-							<?php else: ?>
-								<div class="bpp-amount">
-									<b>$<?php echo esc_html($bp_price); ?></b><span>/month</span>
-									<?php if ('yearly' === $bp_default_view): ?>
-										<span class="bpp-was">$<?php echo esc_html($bp_plan['monthly']); ?></span>
-									<?php endif; ?>
-								</div>
-								<p class="bpp-rate"><b><?php echo esc_html($bp_plan['minutes']); ?> minutes</b> included &middot; billed <?php echo esc_html($bp_cycle); ?></p>
-							<?php endif; ?>
+						<?php bp_pricing_bullets($bp_plan['features']); ?>
 
-							<a class="bpp-btn <?php echo $bp_plan['popular'] ? 'bpp-btn--coral' : ($bp_is_custom ? 'bpp-btn--ghost' : 'bpp-btn--ink'); ?>" href="<?php echo esc_url($bp_plan['cta_url']); ?>" <?php echo $bp_is_custom ? '' : ' target="_blank" rel="noopener"'; ?>><?php echo esc_html($bp_plan['cta']); ?></a>
-
-							<?php bp_pricing_bullets($bp_plan['features']); ?>
-
-							<p class="bpp-inherit"><?php echo esc_html($bp_plan['inherit']); ?></p>
-							<p class="bpp-foot"><?php echo esc_html($bp_plan['foot']); ?></p>
-						</article>
+						<p class="bpp-inherit"><?php echo esc_html($bp_plan['inherit']); ?></p>
+						<p class="bpp-foot"><?php echo esc_html($bp_plan['foot']); ?></p>
+					</article>
 					<?php endforeach; ?>
 				</div>
 			</div>
@@ -849,20 +1208,20 @@ get_header();
 
 				<div class="bpp-plans" data-bpp-grid="payg" aria-live="polite">
 					<?php foreach ($bp_wallets as $bp_wallet): ?>
-						<article class="bpp-plan" data-bpp-cur="<?php echo esc_attr($bp_wallet['currency']); ?>" <?php echo $bp_wallet['currency'] === $bp_default_currency ? '' : ' hidden'; ?>>
-							<h3><?php echo esc_html($bp_wallet['name']); ?></h3>
-							<p class="bpp-for">Prepaid credit, drawn down per talk minute.</p>
-							<div class="bpp-amount">
-								<b><?php echo esc_html($bp_wallet['wallet']); ?></b><span>credit wallet</span>
-							</div>
-							<p class="bpp-rate"><span class="bpp-permin"><?php echo esc_html($bp_wallet['per_min']); ?></span></p>
-							<a class="bpp-btn bpp-btn--ink" href="<?php echo esc_url($bp_signup_url); ?>" target="_blank" rel="noopener">Top up and start</a>
+					<article class="bpp-plan" data-bpp-cur="<?php echo esc_attr($bp_wallet['currency']); ?>" <?php echo $bp_wallet['currency'] === $bp_default_currency ? '' : ' hidden'; ?>>
+						<h3><?php echo esc_html($bp_wallet['name']); ?></h3>
+						<p class="bpp-for">Prepaid credit, drawn down per talk minute.</p>
+						<div class="bpp-amount">
+							<b><?php echo esc_html($bp_wallet['wallet']); ?></b><span>credit wallet</span>
+						</div>
+						<p class="bpp-rate"><span class="bpp-permin"><?php echo esc_html($bp_wallet['per_min']); ?></span></p>
+						<a class="bpp-btn bpp-btn--ink" href="<?php echo esc_url($bp_signup_url); ?>" target="_blank" rel="noopener">Top up and start</a>
 
-							<?php bp_pricing_bullets($bp_wallet['features']); ?>
+						<?php bp_pricing_bullets($bp_wallet['features']); ?>
 
-							<p class="bpp-inherit"><?php echo $bp_wallet['estimate'] ? esc_html($bp_wallet['estimate']) : '&nbsp;'; ?></p>
-							<p class="bpp-foot"><?php echo esc_html($bp_wallet['foot']); ?></p>
-						</article>
+						<p class="bpp-inherit"><?php echo $bp_wallet['estimate'] ? esc_html($bp_wallet['estimate']) : '&nbsp;'; ?></p>
+						<p class="bpp-foot"><?php echo esc_html($bp_wallet['foot']); ?></p>
+					</article>
 					<?php endforeach; ?>
 				</div>
 
@@ -883,11 +1242,11 @@ get_header();
 			</div>
 			<ol class="bpp-tl">
 				<?php foreach ($bp_timeline as $bp_step): ?>
-					<li>
-						<small><?php echo esc_html($bp_step['when']); ?></small>
-						<b><?php echo esc_html($bp_step['what']); ?></b>
-						<p><?php echo esc_html($bp_step['body']); ?></p>
-					</li>
+				<li>
+					<small><?php echo esc_html($bp_step['when']); ?></small>
+					<b><?php echo esc_html($bp_step['what']); ?></b>
+					<p><?php echo esc_html($bp_step['body']); ?></p>
+				</li>
 				<?php endforeach; ?>
 			</ol>
 		</div>
@@ -902,12 +1261,12 @@ get_header();
 			</div>
 			<ul class="bpp-cost">
 				<?php foreach ($bp_cost_cards as $bp_card): ?>
-					<li<?php echo $bp_card['best'] ? ' class="bpp-best"' : ''; ?>>
-						<h3><?php echo esc_html($bp_card['title']); ?></h3>
-						<p class="bpp-fig"><?php echo esc_html($bp_card['fig']); ?></p>
-						<p><?php echo esc_html($bp_card['body']); ?></p>
-						</li>
-					<?php endforeach; ?>
+				<li<?php echo $bp_card['best'] ? ' class="bpp-best"' : ''; ?>>
+					<h3><?php echo esc_html($bp_card['title']); ?></h3>
+					<p class="bpp-fig"><?php echo esc_html($bp_card['fig']); ?></p>
+					<p><?php echo esc_html($bp_card['body']); ?></p>
+				</li>
+				<?php endforeach; ?>
 			</ul>
 			<p class="bpp-fine">Costs vary by market and provider. See the full <a class="bpp-link" href="https://botphonic.ai/ai-answering-service/">AI answering service</a> and <a class="bpp-link" href="https://botphonic.ai/ai-receptionist/">AI receptionist</a> breakdowns.</p>
 		</div>
@@ -974,7 +1333,7 @@ get_header();
 			</div>
 			<ul>
 				<?php foreach ($bp_enterprise_points as $bp_point): ?>
-					<li><?php echo bp_pricing_tick(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?><span><?php echo esc_html($bp_point); ?></span></li>
+				<li><?php echo bp_pricing_tick(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?><span><?php echo esc_html($bp_point); ?></span></li>
 				<?php endforeach; ?>
 			</ul>
 		</div>
@@ -988,15 +1347,15 @@ get_header();
 			</div>
 			<ul class="bpp-ratings">
 				<?php foreach ($bp_ratings as $bp_rating): ?>
-					<li>
-						<img src="<?php echo esc_url($bp_rating['logo']); ?>" alt="<?php echo esc_attr($bp_rating['name']); ?>" width="80" height="28" loading="lazy" decoding="async">
-						<div class="bpp-score"><?php echo esc_html($bp_rating['score']); ?><small>/5</small></div>
-						<?php if ($bp_rating['url']): ?>
-							<a href="<?php echo esc_url($bp_rating['url']); ?>" target="_blank" rel="noopener nofollow"><?php echo esc_html($bp_rating['label']); ?> <span class="bpp-sr">on <?php echo esc_html($bp_rating['name']); ?></span></a>
-						<?php else: ?>
-							<span><?php echo esc_html($bp_rating['label']); ?></span>
-						<?php endif; ?>
-					</li>
+				<li>
+					<img src="<?php echo esc_url($bp_rating['logo']); ?>" alt="<?php echo esc_attr($bp_rating['name']); ?>" width="80" height="28" loading="lazy" decoding="async">
+					<div class="bpp-score"><?php echo esc_html($bp_rating['score']); ?><small>/5</small></div>
+					<?php if ($bp_rating['url']): ?>
+					<a href="<?php echo esc_url($bp_rating['url']); ?>" target="_blank" rel="noopener nofollow"><?php echo esc_html($bp_rating['label']); ?> <span class="bpp-sr">on <?php echo esc_html($bp_rating['name']); ?></span></a>
+					<?php else: ?>
+					<span><?php echo esc_html($bp_rating['label']); ?></span>
+					<?php endif; ?>
+				</li>
 				<?php endforeach; ?>
 			</ul>
 		</div>

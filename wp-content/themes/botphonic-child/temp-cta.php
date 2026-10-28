@@ -4,31 +4,10 @@ Template Name: Botphonic CTA Builder
 */
 get_header();
 
-/*
- * assets/css/cta.css is enqueued for this template in inc/function-enqueue.php
- * now, not here. The call used to sit on the line below get_header(), which has
- * already run wp_head() by then, so WordPress had no head left to print into
- * and deferred the stylesheet to the footer: the page painted its previews
- * unstyled and then restyled them. It also passed rand() as the version, so no
- * visitor ever got a cached copy.
- */
+// CSS enqueued in function-enqueue.php.
 ?>
 <style>
-/* ── Builder UI Tokens ──
-   Chrome for the builder shell only: the sidebar, the cards and the little
-   field rows. Everything these style is a .bpb-* element.
-
-   --r-sm/md/lg (7/11/16px) used to be declared here too and were never in
-   effect: cta.css declares the same three names at :root and, because it was
-   being deferred to the footer, it landed after this block and won. The whole
-   page — builder chrome and the CTA previews alike — has always rendered with
-   cta.css's 8/12/18px. Those three are gone rather than kept, so the previews
-   keep showing production radii, which is the one thing a component gallery
-   has to get right. The radius scale now lives in style.css.
-
-   If the builder shell is ever meant to have its own tighter radii, give them a
-   --bpb- prefix and scope them to .bpb-layout; do not reintroduce bare --r-*
-   names here, because cta.css owns those on this page. */
+/* Builder UI tokens */
 .bpb-layout{
   --bp:#2563EB;--bp-d:#1D4ED8;--bp-pale:#EFF6FF;
   --bp-purple:#7C3AED;
@@ -87,7 +66,9 @@ get_header();
 .xrm{background:#FEE2E2;color:#DC2626;padding:3px 7px}.xrm:hover{background:#FECACA}
 
 /* preview */
-.bpb-card__preview{padding:18px;background:var(--surf)}
+.bpb-card__preview{padding:18px;background:#fff}
+/* Trim preview block margins */
+.bpb-card__preview.bpg-single>.single-content-inner>*{margin-top:0!important;margin-bottom:0!important}
 
 /* code */
 .bpb-codepane{display:none;border-top:1px solid var(--bdr)}
@@ -156,7 +137,7 @@ get_header();
           </div>
         </div>
       </div>
-      <div class="bpb-card__preview"><div id="pv01">
+      <div class="bpb-card__preview bpg-single bpg-article"><div class="single-content-inner" id="pv01">
         <div class="cta-wrap" style="padding-top:0"><div class="cta-block"><div class="cta-pulse-banner">
           <div>
             <div class="pb-live"><div class="dot"></div><span id="l01-live">AI answering calls right now</span></div>
@@ -197,7 +178,7 @@ get_header();
           </div>
         </div>
       </div>
-      <div class="bpb-card__preview"><div id="pv02">
+      <div class="bpb-card__preview bpg-single bpg-article"><div class="single-content-inner" id="pv02">
         <div class="cta-wrap" style="padding-top:0"><div class="cta-block"><div class="cta-metric-punch">
           <div>
             <div class="mp-numbers" id="l02-stats"></div>
@@ -244,7 +225,7 @@ get_header();
           </div>
         </div>
       </div>
-      <div class="bpb-card__preview"><div id="pv03">
+      <div class="bpb-card__preview bpg-single bpg-article"><div class="single-content-inner" id="pv03">
         <div class="cta-wrap" style="padding-top:0"><div class="cta-block"><div class="cta-spotlight-card">
           <div class="sc-eyebrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg><span id="l03-eye">Free · No Credit Card</span></div>
           <h3 id="l03-hl">Let AI Handle Your Bookings <em>While You Sleep</em></h3>
@@ -281,7 +262,7 @@ get_header();
           <div class="xf xf--f"><label>Footer note</label><input id="f04-note" value="Migration support included" oninput="u04()"></div>
         </div>
       </div>
-      <div class="bpb-card__preview"><div id="pv04">
+      <div class="bpb-card__preview bpg-single bpg-article"><div class="single-content-inner" id="pv04">
         <div class="cta-wrap" style="padding-top:0"><div class="cta-block"><div class="cta-switch-strip">
           <div class="ss-left">
             <div class="ss-badge"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg><span id="l04-badge">Easy Migration</span></div>
@@ -337,7 +318,7 @@ get_header();
           </div>
         </div>
       </div>
-      <div class="bpb-card__preview"><div id="pv05">
+      <div class="bpb-card__preview bpg-single bpg-article"><div class="single-content-inner" id="pv05">
         <div class="cta-wrap" style="padding-top:0"><div class="cta-block"><div class="cta-value-grid">
           <div class="vg-top"><h3 id="l05-hl">Everything You Need to Automate Customer Calls</h3><p id="l05-sub">One platform. No per-minute fees. Deploy in 48 hours.</p></div>
           <div class="vg-features" id="l05-feats"></div>
@@ -370,7 +351,7 @@ get_header();
           <div class="xf xf--f"><label>Note (below button)</label><input id="f06-note" value="No credit card · Cancel anytime" oninput="u06()"></div>
         </div>
       </div>
-      <div class="bpb-card__preview"><div id="pv06">
+      <div class="bpb-card__preview bpg-single bpg-article"><div class="single-content-inner" id="pv06">
         <div class="cta-wrap" style="padding-top:0"><div class="cta-block"><div class="cta-orange-ignite">
           <div class="oi-inner">
             <div class="oi-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8.56 2.9A7 7 0 0119 9v4l1.38 2.76A1 1 0 0119.46 17H4.54a1 1 0 01-.92-1.24L5 13V9a7 7 0 013.56-6.1"></path><path d="M10.68 21a2 2 0 003.64 0"></path></svg></div>
@@ -407,7 +388,7 @@ get_header();
           <div class="xf xf--w"><label>Button URL</label><input id="f07-bl" value="https://calendly.com/contact-botphonic/product-discovery" oninput="u07()"></div>
         </div>
       </div>
-      <div class="bpb-card__preview"><div id="pv07">
+      <div class="bpb-card__preview bpg-single bpg-article"><div class="single-content-inner" id="pv07">
         <div class="cta-wrap" style="padding-top:0"><div class="cta-block"><div class="cta-minimal-nudge">
           <div class="mn-text"><span id="l07-txt">Want to see this in your workflow?</span> <span id="l07-span">Get a personalised Botphonic demo in 20 minutes.</span></div>
           <a id="l07-btn" href="https://calendly.com/contact-botphonic/product-discovery" class="bp-btn button bp-btn-primary bp-btn-sm">Book Demo <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
@@ -450,7 +431,7 @@ get_header();
           </div>
         </div>
       </div>
-      <div class="bpb-card__preview"><div id="pv08">
+      <div class="bpb-card__preview bpg-single bpg-article"><div class="single-content-inner" id="pv08">
         <div class="cta-wrap" style="padding-top:0"><div class="cta-block"><div class="cta-deep-end">
           <div class="de-kicker"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg><span id="l08-kick">Ready when you are</span></div>
           <h3><span id="l08-hl1">Stop Losing Leads to</span><br><span id="l08-hl2">Unanswered Calls</span></h3>
@@ -500,7 +481,7 @@ get_header();
           <div class="xf xf--w"><label>Button URL</label><input id="f09-bl" value="https://app.botphonic.ai/register/" oninput="u09()"></div>
         </div>
       </div>
-      <div class="bpb-card__preview"><div id="pv09">
+      <div class="bpb-card__preview bpg-single bpg-article"><div class="single-content-inner" id="pv09">
         <div class="cta-wrap" style="padding-top:0"><div class="cta-block"><div class="cta-slash-compare">
           <div class="sc-header"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><span id="l09-hdr">Side-by-Side Comparison</span></div>
           <div class="sc-grid">
@@ -551,7 +532,7 @@ get_header();
           <div class="xf"><label>CTA Button Text</label><input id="f10-bt" value="Confirm Booking" oninput="u10()"></div>
         </div>
       </div>
-      <div class="bpb-card__preview"><div id="pv10">
+      <div class="bpb-card__preview bpg-single bpg-article"><div class="single-content-inner" id="pv10">
         <div class="cta-wrap" style="padding-top:0"><div class="cta-block"><div class="cta-booking-widget">
           <div class="bw-header">
             <div class="bw-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></div>
@@ -595,7 +576,7 @@ get_header();
           <div class="xf xf--w"><label>Button URL</label><input id="f11-bl" value="https://app.botphonic.ai/register/" oninput="u11()"></div>
         </div>
       </div>
-      <div class="bpb-card__preview"><div id="pv11">
+      <div class="bpb-card__preview bpg-single bpg-article"><div class="single-content-inner" id="pv11">
         <div class="cta-wrap" style="padding-top:0"><div class="cta-block"><div class="cta-trust-ribbon">
           <div class="tr-trust" id="l11-badges"></div>
           <a id="l11-btn" href="https://app.botphonic.ai/register/" class="bp-btn button bp-btn-primary bp-btn-sm">Start Free Trial <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
@@ -624,7 +605,7 @@ get_header();
           <div class="xf xf--f"><label>Text after link</label><input id="flmf-after" value="covers exactly what to look for before you commit." oninput="ulmf()"></div>
         </div>
       </div>
-      <div class="bpb-card__preview"><div id="pv-lmf">
+      <div class="bpb-card__preview bpg-single bpg-article"><div class="single-content-inner" id="pv-lmf">
         <div class="learn-more-box-alt"><p><b>Learn more:</b> <span id="llmf-body">AI answering services reduce missed calls significantly, but choosing the right platform matters and</span> <a id="llmf-link" href="https://botphonic.ai/why-realtors-need-ai-in-2025/" target="_blank" rel="noopener">Why Realtors Need AI in 2025</a> <span id="llmf-after">covers exactly what to look for before you commit.</span></p></div>
       </div></div>
       <div class="bpb-codepane" id="cp-lmf"><div class="bpb-code-hdr"><span>HTML - paste into blog post</span><button class="bpb-code-cp" id="pc-lmf" onclick="xpre('pre-lmf','pc-lmf')">Copy</button></div><div class="bpb-code-body"><pre id="pre-lmf"></pre></div></div>
@@ -646,7 +627,7 @@ get_header();
           <div class="xf xf--f"><label>Link URL</label><input id="flml-ll" value="https://botphonic.ai/why-realtors-need-ai-in-2025/" oninput="ulml()"></div>
         </div>
       </div>
-      <div class="bpb-card__preview"><div id="pv-lml">
+      <div class="bpb-card__preview bpg-single bpg-article"><div class="single-content-inner" id="pv-lml">
         <div class="learn-more-box-alt"><p><b>Learn more:</b> <a id="llml-link" href="https://botphonic.ai/why-realtors-need-ai-in-2025/" target="_blank" rel="noopener">Why do realtors need AI?</a></p></div>
       </div></div>
       <div class="bpb-codepane" id="cp-lml"><div class="bpb-code-hdr"><span>HTML - paste into blog post</span><button class="bpb-code-cp" id="pc-lml" onclick="xpre('pre-lml','pc-lml')">Copy</button></div><div class="bpb-code-body"><pre id="pre-lml"></pre></div></div>
@@ -669,7 +650,7 @@ get_header();
           <div class="xf xf--f"><label>Icon Image URL</label><input id="fnote-icon" value="https://botphonic.ai/wp-content/uploads/2025/07/Notes-Icon.svg" oninput="unote()"></div>
         </div>
       </div>
-      <div class="bpb-card__preview"><div id="pv-note">
+      <div class="bpb-card__preview bpg-single bpg-article"><div class="single-content-inner" id="pv-note">
         <div class="remember-box-light"><div class="remember-icon"><img id="lnote-icon" src="https://botphonic.ai/wp-content/uploads/2025/07/Notes-Icon.svg" alt="Note Icon" onerror="this.style.display='none'"><span id="lnote-lbl">NOTE</span></div><div class="remember-content" id="lnote-content">Ensure your AI voice bot supports CRM integration, multilingual responses, and SOC2-compliant data handling before going live.</div></div>
       </div></div>
       <div class="bpb-codepane" id="cp-note"><div class="bpb-code-hdr"><span>HTML - paste into blog post</span><button class="bpb-code-cp" id="pc-note" onclick="xpre('pre-note','pc-note')">Copy</button></div><div class="bpb-code-body"><pre id="pre-note"></pre></div></div>
@@ -692,7 +673,7 @@ get_header();
           <div class="xf xf--f"><label>Icon Image URL</label><input id="ftip-icon" value="https://botphonic.ai/wp-content/uploads/2025/07/Pro-Tips.svg" oninput="utip()"></div>
         </div>
       </div>
-      <div class="bpb-card__preview"><div id="pv-tip">
+      <div class="bpb-card__preview bpg-single bpg-article"><div class="single-content-inner" id="pv-tip">
         <div class="blog-tip-box"><div class="tip-icon"><img id="ltip-icon" src="https://botphonic.ai/wp-content/uploads/2025/07/Pro-Tips.svg" alt="Pro Tips" onerror="this.style.display='none'"><span id="ltip-lbl">PRO TIP</span></div><div class="tip-content" id="ltip-content">"Choose an AI voice bot that not only handles today's call volume but scales with your business growth and integrates natively with your existing CRM."</div></div>
       </div></div>
       <div class="bpb-codepane" id="cp-tip"><div class="bpb-code-hdr"><span>HTML - paste into blog post</span><button class="bpb-code-cp" id="pc-tip" onclick="xpre('pre-tip','pc-tip')">Copy</button></div><div class="bpb-code-body"><pre id="pre-tip"></pre></div></div>
@@ -742,7 +723,7 @@ function xAddTick(wrId,fnName){const r=document.createElement('div');r.className
 function xAddFeat(wrId,fnName){const r=document.createElement('div');r.className='xdyn-row';r.innerHTML=`<input placeholder="Feature title" oninput="${fnName}()"><input placeholder="Description" oninput="${fnName}()"><button class="xrm" onclick="xRm(this,'${wrId}',${fnName})">✕</button>`;xg(wrId).appendChild(r);eval(fnName+'()')}
 function xAddSlot(wrId,fnName){const r=document.createElement('div');r.className='xdyn-row';r.innerHTML=`<input placeholder="Thu, Mar 26 · 10:00 AM" oninput="${fnName}()"><input class="url" placeholder="2026-03-26T10:00:00+05:30" oninput="${fnName}()"><button class="xrm" onclick="xRm(this,'${wrId}',${fnName})">✕</button>`;xg(wrId).appendChild(r);eval(fnName+'()')}
 
-/* helper: render buttons from a rows container */
+/* Render button rows */
 function xRenderBtns(rowsId,wrapId,withArrow){
   const w=xg(wrapId);w.innerHTML='';
   xg(rowsId).querySelectorAll('.xdyn-row').forEach(row=>{

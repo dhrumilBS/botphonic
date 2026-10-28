@@ -49,7 +49,7 @@ get_header();
 				</div>
 				<!-- Live call: the real agent, not a chat. Sizing lives in new-home-page.css. -->
 				<div class="call" id="live-call">
-					<iframe src="<?php echo $bp_demo_url; ?>" title="Live demo: talk to the Botphonic AI voice agent" allow="microphone; autoplay" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+					<iframe src="<?php echo esc_url($bp_demo_url); ?>" title="Live demo: talk to the Botphonic AI voice agent" allow="microphone; autoplay" referrerpolicy="strict-origin-when-cross-origin"></iframe>
 				</div>
 			</div>
 		</section>
@@ -122,10 +122,10 @@ get_header();
 								<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />
 							</svg>
 						</div>
-						<h3><a class="link" href="https://botphonic.ai/ai-answering-service/">AI answering service</a></h3>
+						<h3><a class="link" href="https://botphonic.ai/product/ai-answering-service/">AI answering service</a></h3>
 						<p>Every inbound call answered on the first ring, 24/7, in the caller's language. No hold music, no voicemail, no missed leads after hours.</p>
 						<ul>
-							<li>Unlimited simultaneous calls</li>
+							<li>Many calls at once, no busy signal</li>
 							<li>Spam and robocall screening</li>
 							<li>Warm transfer to a human when it matters</li>
 						</ul>
@@ -137,7 +137,7 @@ get_header();
 								<path d="M8 3v4M16 3v4M3 10h18M8 15h3" />
 							</svg>
 						</div>
-						<h3><a class="link" href="https://botphonic.ai/ai-receptionist/">AI receptionist</a></h3>
+						<h3><a class="link" href="https://botphonic.ai/product/ai-receptionist/">AI receptionist</a></h3>
 						<p>Checks live availability, books, reschedules and confirms appointments, then updates the record in your CRM or practice software.</p>
 						<ul>
 							<li>Google Calendar, Outlook, Calendly</li>
@@ -152,10 +152,10 @@ get_header();
 								<path d="M4 5v14" />
 							</svg>
 						</div>
-						<h3><a class="link" href="https://botphonic.ai/ai-phone-call/">Outbound AI phone agent</a></h3>
+						<h3><a class="link" href="https://botphonic.ai/product/ai-phone-call/">Outbound AI phone agent</a></h3>
 						<p>Follows up on leads within seconds of a form fill, runs reminder and renewal campaigns, and qualifies prospects before your reps pick up.</p>
 						<ul>
-							<li>Batch calling at any volume</li>
+							<li>Batch calling from a list or your CRM</li>
 							<li>Branded caller ID, TCPA controls</li>
 							<li>Lead scoring pushed to your CRM</li>
 						</ul>
@@ -167,7 +167,7 @@ get_header();
 								<path d="M8 20h8M12 16v4M7 9h4M7 12h7" />
 							</svg>
 						</div>
-						<h3><a class="link" href="https://botphonic.ai/ai-call-centre/">AI call center software</a></h3>
+						<h3><a class="link" href="https://botphonic.ai/product/ai-call-center/">AI call center software</a></h3>
 						<p>Replace or extend a staffed call center. SIP trunking into your telephony, custom workflows, analytics and human handoff in one dashboard.</p>
 						<ul>
 							<li>Twilio, Telnyx, Plivo or your own SIP</li>
@@ -307,7 +307,9 @@ get_header();
 								<svg class="tick" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2">
 									<path d="M4 10.5l4 4 8-9" />
 								</svg>
-								<div><b>Thousands of calls in parallel</b><span>No concurrency limits. Upload a list or trigger from your CRM.</span></div>
+								<div>
+									<b>Large campaigns in parallel</b><span>Run as many calls at once as your plan allows. Upload a list or trigger from your CRM.</span>
+								</div>							
 							</li>
 							<li>
 								<svg class="tick" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2">
@@ -528,7 +530,7 @@ get_header();
 						<div><b>Mid-call</b><span>Language switching, no hand-off</span></div>
 						<div><b>1 agent</b><span>Same script, knowledge base and rules in every language</span></div>
 					</div>
-					<p><a class="link" href="https://botphonic.ai/multilingual-voice-ai-agents/" style="color:var(--bpl-white)">See the full language and voice list</a></p>
+					<p><a class="link" href="https://botphonic.ai/product/multilingual-voice-ai-agents/" style="color:var(--bpl-white)">See the full language and voice list</a></p>
 				</div>
 				<div>
 					<div class="lang-group">
@@ -609,6 +611,7 @@ get_header();
 		</section>
 
 		<!-- ================= INDUSTRIES ================= -->
+
 		<section class="sec" id="industries" aria-labelledby="h-ind">
 			<div class="wrap">
 				<div class="head">
@@ -617,90 +620,90 @@ get_header();
 				</div>
 				<ul class="inds">
 					<li>
-						<a href="https://botphonic.ai/healthcare/"><span class="ic">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-									<path d="M12 4v16M4 12h16" />
-								</svg>
+						<a href="https://botphonic.ai/industry/healthcare/"><span class="ic">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+								<path d="M12 4v16M4 12h16" />
+							</svg>
 							</span><b>Healthcare</b><small>Patient scheduling, reminders, HIPAA-ready intake</small></a>
 					</li>
 					<li>
-						<a href="https://botphonic.ai/real-estate/"><span class="ic">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-									<path d="M3 11l9-7 9 7v9H3z M9 20v-6h6v6" />
-								</svg>
+						<a href="https://botphonic.ai/industry/real-estate/"><span class="ic">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+								<path d="M3 11l9-7 9 7v9H3z M9 20v-6h6v6" />
+							</svg>
 							</span><b>Real estate</b><small>Listing enquiries, buyer qualification, viewings</small></a>
 					</li>
 					<li>
-						<a href="https://botphonic.ai/car-dealerships/"><span class="ic">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-									<path d="M3 14l2-6h14l2 6v5H3zM6 14h12M7 19v1M17 19v1" />
-								</svg>
+						<a href="https://botphonic.ai/industry/car-dealerships/"><span class="ic">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+								<path d="M3 14l2-6h14l2 6v5H3zM6 14h12M7 19v1M17 19v1" />
+							</svg>
 							</span><b>Car dealerships</b><small>Test drives, service bookings, follow-ups</small></a>
 					</li>
 					<li>
-						<a href="https://botphonic.ai/home-services/"><span class="ic">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-									<path d="M14 4l6 6-9 9H5v-6z M12 6l6 6" />
-								</svg>
+						<a href="https://botphonic.ai/industry/home-services/"><span class="ic">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+								<path d="M14 4l6 6-9 9H5v-6z M12 6l6 6" />
+							</svg>
 							</span><b>Home services</b><small>Job bookings, quotes, emergency dispatch</small></a>
 					</li>
 					<li>
-						<a href="https://botphonic.ai/finance/"><span class="ic">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-									<path d="M3 9l9-5 9 5H3zM5 9v8M12 9v8M19 9v8M3 20h18" />
-								</svg>
+						<a href="https://botphonic.ai/industry/finance/"><span class="ic">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+								<path d="M3 9l9-5 9 5H3zM5 9v8M12 9v8M19 9v8M3 20h18" />
+							</svg>
 							</span><b>Financial services</b><small>Verification, collections, policy questions</small></a>
 					</li>
 					<li>
-						<a href="https://botphonic.ai/insurance/"><span class="ic">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-									<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" />
-								</svg>
+						<a href="https://botphonic.ai/industry/insurance/"><span class="ic">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+								<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" />
+							</svg>
 							</span><b>Insurance</b><small>Renewals, claims status, upsell calls</small></a>
 					</li>
 					<li>
-						<a href="https://botphonic.ai/recruitment/"><span class="ic">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-									<circle cx="9" cy="8" r="3" />
-									<path d="M3 20a6 6 0 0 1 12 0M16 4a3 3 0 0 1 0 6M21 20a6 6 0 0 0-5-5.9" />
-								</svg>
+						<a href="https://botphonic.ai/industry/recruitment/"><span class="ic">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+								<circle cx="9" cy="8" r="3" />
+								<path d="M3 20a6 6 0 0 1 12 0M16 4a3 3 0 0 1 0 6M21 20a6 6 0 0 0-5-5.9" />
+							</svg>
 							</span><b>Recruitment</b><small>Candidate screening, interview scheduling</small></a>
 					</li>
 					<li>
-						<a href="https://botphonic.ai/solar/"><span class="ic">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-									<circle cx="12" cy="12" r="4" />
-									<path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2" />
-								</svg>
+						<a href="https://botphonic.ai/industry/solar/"><span class="ic">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+								<circle cx="12" cy="12" r="4" />
+								<path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2" />
+							</svg>
 							</span><b>Solar</b><small>Lead qualification, site-visit booking</small></a>
 					</li>
 					<li>
-						<a href="https://botphonic.ai/education/"><span class="ic">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-									<path d="M2 9l10-5 10 5-10 5z M6 11v5c2 2 10 2 12 0v-5" />
-								</svg>
+						<a href="https://botphonic.ai/industry/education/"><span class="ic">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+								<path d="M2 9l10-5 10 5-10 5z M6 11v5c2 2 10 2 12 0v-5" />
+							</svg>
 							</span><b>Education</b><small>Admissions enquiries, fee reminders</small></a>
 					</li>
 					<li>
-						<a href="https://botphonic.ai/travel-and-hospitality/"><span class="ic">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-									<path d="M3 20h18M5 20v-9h14v9M9 11V7h6v4M11 20v-4h2v4" />
-								</svg>
+						<a href="https://botphonic.ai/industry/travel-and-hospitality/"><span class="ic">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+								<path d="M3 20h18M5 20v-9h14v9M9 11V7h6v4M11 20v-4h2v4" />
+							</svg>
 							</span><b>Travel and hospitality</b><small>Reservations, changes, concierge</small></a>
 					</li>
 					<li>
-						<a href="https://botphonic.ai/bpo-customer-service/"><span class="ic">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-									<path d="M4 13a8 8 0 0 1 16 0M4 13v4a2 2 0 0 0 2 2h2v-6H4zM20 13v4a2 2 0 0 1-2 2h-2v-6h4z" />
-								</svg>
+						<a href="https://botphonic.ai/industry/bpo-customer-service/"><span class="ic">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+								<path d="M4 13a8 8 0 0 1 16 0M4 13v4a2 2 0 0 0 2 2h2v-6H4zM20 13v4a2 2 0 0 1-2 2h-2v-6h4z" />
+							</svg>
 							</span><b>BPO and contact centers</b><small>Overflow, after-hours, tier-1 resolution</small></a>
 					</li>
 					<li>
-						<a href="https://botphonic.ai/agency/"><span class="ic">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-									<rect x="3" y="7" width="18" height="13" rx="2" />
-									<path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18" />
-								</svg>
+						<a href="https://botphonic.ai/industry/agency/"><span class="ic">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+								<rect x="3" y="7" width="18" height="13" rx="2" />
+								<path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18" />
+							</svg>
 							</span><b>Agencies</b><small>White-label AI receptionists for your clients</small></a>
 					</li>
 				</ul>
@@ -734,7 +737,7 @@ get_header();
 							</tr>
 							<tr>
 								<th scope="row">Simultaneous calls</th>
-								<td class="yes best">Unlimited</td>
+								<td class="yes best">Many at once, scales with your plan</td>
 								<td class="no">Limited by staff on shift</td>
 								<td class="no">Unlimited, no resolution</td>
 							</tr>
@@ -758,13 +761,13 @@ get_header();
 							</tr>
 							<tr>
 								<th scope="row">Outbound campaigns</th>
-								<td class="yes best">Yes, thousands in parallel</td>
+								<td class="yes best">Yes, large campaigns in parallel</td>
 								<td class="no">Priced per agent hour</td>
 								<td class="no">Robocall only</td>
 							</tr>
 							<tr>
 								<th scope="row">Typical cost</th>
-								<td class="yes best">$0.20–$0.40 per talk minute</td>
+								<td class="yes best">$0.12 per talk minute</td>
 								<td class="no">$1–2 per minute, monthly minimums</td>
 								<td class="no">Low, but loses the lead</td>
 							</tr>
@@ -946,7 +949,7 @@ get_header();
 					<li><img src="https://botphonic.ai/wp-content/uploads/2025/12/g2-logo.webp" alt="G2" width="80" height="28" loading="lazy">
 						<div class="score">5.0<small>/5</small></div>
 						<div class="stars" aria-hidden="true"><svg viewBox="0 0 20 20" fill="currentColor">
-								<path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 14.9l-5.3 2.8 1.1-5.9L1.5 7.7l5.9-.8z" />
+							<path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 14.9l-5.3 2.8 1.1-5.9L1.5 7.7l5.9-.8z" />
 							</svg>
 							<svg viewBox="0 0 20 20" fill="currentColor">
 								<path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 14.9l-5.3 2.8 1.1-5.9L1.5 7.7l5.9-.8z" />
@@ -965,7 +968,7 @@ get_header();
 					<li><img src="https://botphonic.ai/wp-content/uploads/2025/12/capterra-1.webp" alt="Capterra" width="80" height="28" loading="lazy">
 						<div class="score">4.8<small>/5</small></div>
 						<div class="stars" aria-hidden="true"><svg viewBox="0 0 20 20" fill="currentColor">
-								<path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 14.9l-5.3 2.8 1.1-5.9L1.5 7.7l5.9-.8z" />
+							<path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 14.9l-5.3 2.8 1.1-5.9L1.5 7.7l5.9-.8z" />
 							</svg>
 							<svg viewBox="0 0 20 20" fill="currentColor">
 								<path d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L10 14.9l-5.3 2.8 1.1-5.9L1.5 7.7l5.9-.8z" />
@@ -1051,14 +1054,14 @@ get_header();
 				<div class="price">
 					<div>
 						<h2 id="h-price" style="margin-bottom:14px">Pay for talk time, not seats</h2>
-						<p class="lede">No per-agent licences, no minimum call volume, no setup fee. Scale from one line to a full call center on the same plan.</p>
+						<p class="lede">No per-agent licences, no minimum call volume, no setup fee. Scale from one line to a full call center on the same platform.</p>
 						<div class="cta-row" style="margin-top:26px;margin-bottom:0">
 							<a class="bp-btn bp-btn--ink" href="https://app.botphonic.ai/register/">Start free trial</a>
-							<a class="bp-btn bp-btn--ghost" href="https://botphonic.ai/pricings-plans/">See all plans</a>
+							<a class="bp-btn bp-btn--ghost" href="https://botphonic.ai/pricing/">See all plans</a>
 						</div>
 					</div>
 					<div>
-						<div class="big"><span>$0.20–$0.40</span><small>per talk minute</small></div>
+						<div class="big"><span>$0.12</span><small>per talk minute</small></div>
 						<ul>
 							<li>
 								<svg class="tick" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2">
@@ -1086,6 +1089,7 @@ get_header();
 			</div>
 		</section>
 
+
 		<!-- ================= COMPARE ================= -->
 		<section class="sec sec--tint" aria-labelledby="h-alt">
 			<div class="wrap">
@@ -1095,26 +1099,27 @@ get_header();
 				</div>
 				<ul class="alts">
 					<li>
-						<a href="https://botphonic.ai/synthflow-alternative/">Botphonic vs Synthflow</a>
+						<a href="https://botphonic.ai/blog/synthflow-alternative/">Botphonic vs Synthflow</a>
 					</li>
 					<li>
-						<a href="https://botphonic.ai/retell-ai-alternative/">Botphonic vs Retell AI</a>
+						<a href="https://botphonic.ai/blog/retell-ai-alternative/">Botphonic vs Retell AI</a>
 					</li>
 					<li>
-						<a href="https://botphonic.ai/vapi-alternative/">Botphonic vs Vapi</a>
+						<a href="https://botphonic.ai/blog/vapi-alternative/">Botphonic vs Vapi</a>
 					</li>
 					<li>
-						<a href="https://botphonic.ai/bland-ai-alternative/">Botphonic vs Bland AI</a>
+						<a href="https://botphonic.ai/blog/bland-ai-alternative/">Botphonic vs Bland AI</a>
 					</li>
 					<li>
-						<a href="https://botphonic.ai/voiceflow-alternative/">Botphonic vs Voiceflow</a>
+						<a href="https://botphonic.ai/blog/voiceflow-alternative/">Botphonic vs Voiceflow</a>
 					</li>
 					<li>
-						<a href="https://botphonic.ai/category/alternative/">All comparisons</a>
+						<a href="https://botphonic.ai/alternatives/">All comparisons</a>
 					</li>
 				</ul>
 			</div>
 		</section>
+
 
 		<!-- ================= FAQ ================= -->
 		<section class="sec" aria-labelledby="h-faq">
@@ -1131,7 +1136,7 @@ get_header();
 					),
 					array(
 						'question' => 'How is an AI answering service different from a human answering service?',
-						'answer' => 'A human answering service takes messages and passes them on. An AI answering service like Botphonic answers instantly, 24/7, handles unlimited simultaneous calls, books directly into your calendar and updates your CRM, at a per-minute cost that is a fraction of staffed services.',
+						'answer' => 'A human answering service takes messages and passes them on. An AI answering service like Botphonic answers instantly, 24/7, handles many calls at the same time, books directly into your calendar and updates your CRM, at a per-minute cost that is a fraction of staffed services.',
 					),
 					array(
 						'question' => 'Can the AI receptionist book appointments into my calendar?',
@@ -1139,7 +1144,7 @@ get_header();
 					),
 					array(
 						'question' => 'Can Botphonic make outbound calls as well as answer them?',
-						'answer' => 'Yes. The same AI phone agent runs outbound campaigns: lead follow-up, appointment reminders, payment reminders, surveys and re-engagement. Batch calling runs thousands of calls in parallel with branded caller ID and TCPA-compliant controls.',
+						'answer' => 'Yes. The same AI phone agent runs outbound campaigns: lead follow-up, appointment reminders, payment reminders, surveys and re-engagement. Batch calling runs large campaigns in parallel with branded caller ID and TCPA-compliant controls.',
 					),
 					array(
 						'question' => 'Does it work with my existing phone system?',
@@ -1155,7 +1160,7 @@ get_header();
 					),
 					array(
 						'question' => 'How much does an AI call center cost?',
-						'answer' => 'Botphonic is priced per minute of talk time, from $0.20 to $0.40 per minute depending on volume, with no seat licences and no minimum call volume. Every plan starts with a 14-day free trial.',
+						'answer' => 'Botphonic is priced per minute of talk time, from $0.12 per minute depending on volume, with no seat licences and no minimum call volume. Every plan starts with a 14-day free trial.',
 					),
 				);
 
@@ -1168,7 +1173,7 @@ get_header();
 		</section>
 
 		<!-- ================= FINAL CTA ================= -->
-		<section class="sec sec--ink final" aria-labelledby="h-final">
+		<section class="sec sec--tint final" aria-labelledby="h-final">
 			<div class="wrap">
 				<div>
 					<h2 id="h-final">Give your phones to an AI agent this afternoon</h2>

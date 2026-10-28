@@ -5,8 +5,8 @@
 #sitemapNoResults { margin-top: 16px; padding: 14px 18px; border-radius: 12px; background: #f8faff; border: 1px dashed #cdd9ff; color: #445266; }
 .sitemap-page .section-list { counter-reset: section; list-style: none; padding-left: 0; }
 .sitemap-page .section-item { counter-increment: section; padding: 20px; border: 1px solid #dde3ff; border-radius: 12px; margin-bottom: 16px; transition: all 0.25s ease; }
-.sitemap-page .section-item h3 { color: #006DEE; margin: 0; }
-.sitemap-page .section-item h3::before { content: counter(section) ". "; color: #006DEE; }
+.sitemap-page .section-item :is(h2, h3) { color: #006DEE; margin: 0; }
+.sitemap-page .section-item :is(h2, h3)::before { content: counter(section) ". "; color: #006DEE; }
 .sitemap-page .section-item .section-body { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 6px; padding-top: 8px; }
 .sitemap-page .section-item .section-body a { display: block; padding: 6px 8px; border-radius: 6px; color: #5C6972; text-transform: capitalize; transition: all 0.2s ease; }
 .sitemap-page .section-item .section-body a:hover { background: #f2f6ff; color: #006DEE; text-decoration: none; }
@@ -14,4 +14,21 @@
 @media only screen and (max-width:1020px) {
 	.sitemap-page .container { padding: 0 16px; }
 	.sitemap-page .sitemap-search-wrap { margin: 16px; }
+}
+/* Hide filtered sitemap results */
+.sitemap-page .section-item[hidden],
+.sitemap-page .section-body a[hidden] {
+    display: none !important;
+}
+
+/* Search input improvements */
+.sitemap-page #sitemapSearch {
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.sitemap-page #sitemapSearch:focus-visible {
+    outline: 2px solid #006DEE;
+    outline-offset: 2px;
 }

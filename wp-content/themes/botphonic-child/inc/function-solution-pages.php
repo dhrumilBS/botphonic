@@ -1,8 +1,9 @@
 <?php
+
 /**
  * Reusable Industries and Use Cases page templates.
  *
- * Existing pages are matched by their full root-level URI. Future pages can
+ * Existing pages are matched by their full URI or registered ID. Future pages can
  * opt in by selecting either named page template in the editor. Elementor
  * content is transformed only in memory to add semantic presentation hooks;
  * post content and _elementor_data are never changed.
@@ -19,9 +20,8 @@ if (!defined('BOTPHONIC_SOLUTION_STYLE')) {
 /**
  * Canonical solution page registry.
  *
- * IDs document the current production records for audits, while runtime
- * routing uses the full page URI so the templates remain portable and do not
- * accidentally match regional child pages with duplicate leaf slugs.
+ * IDs identify existing production pages even when moved beneath a parent.
+ * Root-level URI matching remains supported for unmigrated pages.
  *
  * @return array<string, array<string, array{label:string,id:int}>>
  */
@@ -29,33 +29,33 @@ function botphonic_solution_page_registry()
 {
 	$pages = array(
 		'industry' => array(
-			'healthcare' => array('label' => 'Healthcare', 'id' => 506),
-			'real-estate' => array('label' => 'Real Estate', 'id' => 294),
-			'finance' => array('label' => 'Financial Services', 'id' => 3086),
-			'bpo-customer-service' => array('label' => 'BPO Customer Services', 'id' => 5299),
-			'car-dealerships' => array('label' => 'Car Dealerships', 'id' => 1201),
-			'recruitment' => array('label' => 'Recruitment', 'id' => 2577),
-			'home-services' => array('label' => 'Home Services', 'id' => 5535),
+			'healthcare'            => array('label' => 'Healthcare', 'id' => 506),
+			'real-estate'           => array('label' => 'Real Estate', 'id' => 294),
+			'finance'               => array('label' => 'Financial Services', 'id' => 3086),
+			'bpo-customer-service'  => array('label' => 'BPO Customer Services', 'id' => 5299),
+			'car-dealerships'       => array('label' => 'Car Dealerships', 'id' => 1201),
+			'recruitment'           => array('label' => 'Recruitment', 'id' => 2577),
+			'home-services'         => array('label' => 'Home Services', 'id' => 5535),
 			'travel-and-hospitality' => array('label' => 'Travel and Hospitality', 'id' => 5470),
-			'education' => array('label' => 'Education', 'id' => 3345),
-			'solar' => array('label' => 'Solar', 'id' => 1221),
-			'insurance' => array('label' => 'Insurance', 'id' => 5373),
-			'logistic' => array('label' => 'Logistics', 'id' => 5392),
-			'agency' => array('label' => 'Agency', 'id' => 1240),
-			'technology' => array('label' => 'Technology', 'id' => 20765),
+			'education'             => array('label' => 'Education', 'id' => 3345),
+			'solar'                 => array('label' => 'Solar', 'id' => 1221),
+			'insurance'             => array('label' => 'Insurance', 'id' => 5373),
+			'logistic'              => array('label' => 'Logistics', 'id' => 5392),
+			'agency'                => array('label' => 'Agency', 'id' => 1240),
+			'technology'            => array('label' => 'Technology', 'id' => 20765),
 		),
 		'use-case' => array(
-			'ai-concierge' => array('label' => 'AI Concierge', 'id' => 175),
-			'ai-receptionist' => array('label' => 'AI Receptionist', 'id' => 1032),
-			'ai-answering-service' => array('label' => 'AI Answering Service', 'id' => 1130),
-			'ai-customer-service' => array('label' => 'AI Customer Service', 'id' => 2820),
-			'ai-phone-call' => array('label' => 'AI Phone Call', 'id' => 4550),
-			'ai-sales-assistant' => array('label' => 'AI Sales Assistant', 'id' => 5588),
-			'ai-call-centre' => array('label' => 'AI Call Centre', 'id' => 5655),
-			'ai-appointment-setter' => array('label' => 'AI Appointment Setter', 'id' => 13555),
-			'ai-telemarketing' => array('label' => 'AI Telemarketing', 'id' => 13653),
+			'ai-concierge'           => array('label' => 'AI Concierge', 'id' => 175),
+			'ai-receptionist'        => array('label' => 'AI Receptionist', 'id' => 1032),
+			'ai-answering-service'   => array('label' => 'AI Answering Service', 'id' => 1130),
+			'ai-customer-service'    => array('label' => 'AI Customer Service', 'id' => 2820),
+			'ai-phone-call'          => array('label' => 'AI Phone Call', 'id' => 4550),
+			'ai-sales-assistant'     => array('label' => 'AI Sales Assistant', 'id' => 5588),
+			'ai-call-centre'         => array('label' => 'AI Call Centre', 'id' => 5655),
+			'ai-appointment-setter'  => array('label' => 'AI Appointment Setter', 'id' => 13555),
+			'ai-telemarketing'       => array('label' => 'AI Telemarketing', 'id' => 13653),
 			'ai-appointment-booking' => array('label' => 'AI Appointment Booking', 'id' => 6304),
-			'ai-ivr' => array('label' => 'AI IVR', 'id' => 6382),
+			'ai-ivr'                 => array('label' => 'AI IVR', 'id' => 6382),
 		),
 	);
 
@@ -106,9 +106,20 @@ function botphonic_solution_family($post = null)
 		$page_uri = trim((string) get_page_uri($post), '/');
 
 		foreach (botphonic_solution_page_registry() as $candidate => $pages) {
+			// Preserve current matching for unmigrated root-level pages.
 			if (isset($pages[$page_uri])) {
 				$family = $candidate;
 				break;
+			}
+
+			// After an existing page is moved beneath /industry/ or /product/,
+			// its complete URI changes. Match its registered ID so its existing
+			// family template and Elementor hooks continue to work.
+			foreach ($pages as $registered_page) {
+				if (isset($registered_page['id']) && (int) $registered_page['id'] === (int) $post->ID) {
+					$family = $candidate;
+					break 2;
+				}
 			}
 		}
 	}
@@ -202,7 +213,10 @@ function botphonic_solution_sitemap_links($family)
 
 	foreach ($registry[$family] as $uri => $page) {
 		$label = isset($page['label']) ? (string) $page['label'] : ucwords(str_replace('-', ' ', $uri));
-		$links[$label] = home_url('/' . user_trailingslashit($uri));
+		// Use the published page's canonical permalink after a parent change.
+		$page_id = isset($page['id']) ? absint($page['id']) : 0;
+		$permalink = $page_id ? get_permalink($page_id) : false;
+		$links[$label] = $permalink ? $permalink : home_url('/' . user_trailingslashit($uri));
 	}
 
 	return $links;
@@ -406,7 +420,7 @@ function botphonic_solution_elementor_content_data($data, $post_id)
 		return $data;
 	}
 
-	$hero =& $data[0];
+	$hero = &$data[0];
 	if (1 !== botphonic_solution_node_h1_count($hero) || (isset($data[1]) && botphonic_solution_node_has_h1($data[1]))) {
 		return $data;
 	}
