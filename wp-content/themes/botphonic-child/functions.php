@@ -829,7 +829,8 @@ function botphonic_about_enqueue_assets()
 
 /*
  * 11b. FAQ data. Single source for the visible accordion in
- * template-about.php AND the FAQPage schema below. Edit answers here only.
+ * template-about.php AND the FAQPage schema. Edit answers here only, and keep
+ * prices in step with the Pricing page.
  */
 if (!function_exists('botphonic_about_faq_items')) {
 	function botphonic_about_faq_items()
@@ -861,7 +862,7 @@ if (!function_exists('botphonic_about_faq_items')) {
 			),
 			array(
 				'q' => 'How much does Botphonic cost?',
-				'a' => 'Plans start at $20 a month billed yearly ($22 billed monthly) for 50 talk minutes and 5 concurrent calls. Pro is $55 a month billed yearly for 120 minutes and 25 concurrent calls. You can also pay as you go from a $250 prepaid credit at $0.40 per talk minute, with no subscription, and Enterprise pricing is based on your volume and compliance needs. There are no per-seat fees and no setup fees.',
+				'a' => 'Starter is $12 a month billed yearly ($15 billed monthly) for 100 talk minutes and 5 concurrent calls. Pro is $36 a month billed yearly ($45 billed monthly) for 300 minutes and 10 concurrent calls. You can also pay as you go from a $75 prepaid credit wallet at $0.13 per talk minute, with no subscription, and Enterprise pricing is based on your volume and compliance needs. There are no per-seat fees, and no setup fee or long-term contract on Starter or Pro.',
 			),
 			array(
 				'q' => 'Is there a free trial?',
