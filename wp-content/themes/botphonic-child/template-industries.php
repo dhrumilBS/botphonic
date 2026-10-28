@@ -113,12 +113,12 @@ get_header();
 					<span aria-hidden="true">/</span>
 					<span aria-current="page">Industries</span>
 				</nav>
-				<p class="bpi-kicker bpi-kicker--dark">Industries</p>
+				<p class="bpi-kicker">Industries</p>
 				<h1 id="bpi-title">AI voice agents built for the way your industry takes calls</h1>
 				<p class="bpi-lede">Botphonic answers, books and follows up on calls for <?php echo esc_html(number_format_i18n(count($bpi_cards))); ?> industries, from clinics and dealerships to contact centers. Pick yours to see what the agent does on a real call.</p>
 				<div class="bpi-actions">
 					<a class="bpi-btn bpi-btn--coral" href="<?php echo esc_url($bpi_register); ?>">Start 14-day free trial<?php echo $bpi_arrow; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?></a>
-					<a class="bpi-btn bpi-btn--ghost" href="<?php echo esc_url($bpi_demo); ?>">Book a 20-minute demo</a>
+					<a class="bpi-btn bpi-btn--outline" href="<?php echo esc_url($bpi_demo); ?>">Book a 20-minute demo</a>
 				</div>
 				<ul class="bpi-proof" aria-label="Botphonic at a glance">
 					<li><strong>500+</strong> businesses</li>
