@@ -1,8 +1,8 @@
-/* Anchor targets clear the sticky header (72px, 64px at 768px and below). */
-html { scroll-padding-top: 88px; }
+/* Anchor targets clear the floating header (10px + 72px, 8px + 64px at 768px and below). */
+html { scroll-padding-top: 104px; }
 
 @media screen and (max-width: 768px) {
-	html { scroll-padding-top: 80px; }
+	html { scroll-padding-top: 88px; }
 	html { overflow-x: hidden; overflow-x: clip; }
 	body { overflow-x: clip; }
 }
