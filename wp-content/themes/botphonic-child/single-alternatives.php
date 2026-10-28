@@ -203,7 +203,7 @@ $alt_body = trim(apply_filters('the_content', get_the_content()));
 
 					<!-- Methodology -->
 					<?php if (!empty($alt['method'])): ?>
-						<section class="bpg-alt-sec" aria-labelledby="bpg-alt-method">
+						<section class="bpg-alt-sec common-content-box" aria-labelledby="bpg-alt-method">
 							<h2 class="bpg-alt-sec__title" id="bpg-alt-method">
 								<?php echo esc_html('' !== $alt['method_title'] ? $alt['method_title'] : __('How we analyse', 'botphonic')); ?>
 							</h2>
