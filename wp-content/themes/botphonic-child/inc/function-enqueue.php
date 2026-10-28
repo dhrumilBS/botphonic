@@ -133,6 +133,12 @@ function enqueue_child_theme_style()
 		wp_enqueue_script('about-us', get_stylesheet_directory_uri() . '/assets/js/about-us.js', [], botphonic_child_asset_ver('/assets/js/about-us.js'), true);
 	}
 
+	// Industries hub.
+	if (is_page_template('template-industries.php')) {
+		wp_enqueue_style('botphonic-industries', get_stylesheet_directory_uri() . '/assets/css/industries.css', ['dtbwp_css_child'], botphonic_child_asset_ver('/assets/css/industries.css'));
+		wp_enqueue_script('botphonic-industries', get_stylesheet_directory_uri() . '/assets/js/industries.js', [], botphonic_child_asset_ver('/assets/js/industries.js'), array('in_footer' => true, 'strategy' => 'defer'));
+	}
+
 	// In-content CTA blocks.
 	if (is_single() || is_page_template('temp-cta.php')) {
 		wp_enqueue_style('cta', get_stylesheet_directory_uri() . '/assets/css/cta.css', [], botphonic_child_asset_ver('/assets/css/cta.css'));
