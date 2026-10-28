@@ -77,7 +77,7 @@
 		var m = d.cookie.match(new RegExp("(?:^|; )" + name + "=([^;]*)"));
 		try {
 			raw = m ? decodeURIComponent(m[1]) : w.localStorage.getItem(name);
-		} catch (e) { }
+		} catch (e) {}
 		if (!raw) return null;
 		try {
 			var data = JSON.parse(raw);
