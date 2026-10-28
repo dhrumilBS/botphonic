@@ -1,6 +1,7 @@
 """Build the full release deploy and rollback zips from git.
 
-Release = floating header + mega menu, About page refresh, Industries Hub.
+Release = floating header + mega menu, About page refresh, Industries Hub,
+AI voice agents library redesign.
 
 Usage (from the repository root):
     python -I deploy/full-release/build-package.py [OUTPUT_DIR]
@@ -38,7 +39,12 @@ DEPLOY_ORDER = [
     "assets/css/about.css",
     "assets/js/about.js",
     "template-about.php",
-    # 3. Industries assets loader, then functions.php (loads function-header.php)
+    # AI voice agents library: styles and script, then the template. The new
+    # script does nothing without the new markup, so either order is safe.
+    "assets/css/ai-voice-agents.css",
+    "assets/js/ai-voice-agents.js",
+    "temp-ai-voice-agents.php",
+    # 3. Assets loader (Industries Hub, drops Bootstrap for AI voice agents), then functions.php (loads function-header.php)
     #    before header.php (calls it).
     "inc/function-enqueue.php",
     "functions.php",
@@ -63,6 +69,9 @@ ROLLBACK_ORDER = [
     "template-about.php",
     "assets/css/about.css",
     "assets/js/about.js",
+    "temp-ai-voice-agents.php",
+    "assets/css/ai-voice-agents.css",
+    "assets/js/ai-voice-agents.js",
     "assets/css/hfe.css",
     "assets/css/blog.css",
     "assets/css/solution-pages.css",
