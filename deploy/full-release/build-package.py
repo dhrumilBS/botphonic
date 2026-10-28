@@ -49,6 +49,8 @@ DEPLOY_ORDER = [
     "assets/css/solution-pages.css",
     "assets/js/blog.js",
     "style.css",
+    # 5. Unrelated whitespace-only change merged from feature/utm-tracking.
+    "assets/js/utm.js",
 ]
 
 # Rollback: old header.php first (stops calling the new header code), then
@@ -66,6 +68,7 @@ ROLLBACK_ORDER = [
     "assets/css/solution-pages.css",
     "assets/js/blog.js",
     "style.css",
+    "assets/js/utm.js",
 ]
 
 
