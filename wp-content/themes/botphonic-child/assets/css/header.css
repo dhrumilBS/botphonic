@@ -98,8 +98,8 @@ body.admin-bar .bph { top: calc(32px + var(--bph-float)); }
 .bph .bph-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 44px; padding: 0 16px; border: 0; border-radius: 12px; font-size: 13.5px; font-weight: 700; line-height: 1; white-space: nowrap; transition: background-color var(--bph-speed) var(--bph-ease); }
 .bph .bph-btn--accent { background: var(--bph-accent); color: #fff; }
 .bph .bph-btn--accent:hover { background: var(--bph-accent-2); color: #fff; }
-.bph .bph-btn--coral { background: var(--bph-coral); color: var(--bph-ink); }
-.bph .bph-btn--coral:hover { background: var(--bph-coral-2); color: var(--bph-ink); }
+.bph .bph-btn--coral { background: var(--bph-coral); color: var(--bpg-on-coral, #fff); }
+.bph .bph-btn--coral:hover { background: var(--bph-coral-2); color: var(--bpg-on-coral-hover, #F4F8FD); }
 .bph .bph-btn--white { background: #fff; color: var(--bph-ink); }
 .bph .bph-btn--white:hover { background: var(--bph-tint-2); color: var(--bph-ink); }
 

@@ -58,8 +58,8 @@
 .bpv .bpv-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px; border: 1.5px solid transparent; border-radius: 12px; font: inherit; font-size: 0.95rem; font-weight: 700; line-height: 1.2; text-decoration: none; cursor: pointer; transition: background-color var(--bpv-speed) var(--bpv-ease), border-color var(--bpv-speed) var(--bpv-ease), color var(--bpv-speed) var(--bpv-ease), transform var(--bpv-speed) var(--bpv-ease); }
 .bpv .bpv-btn svg { transition: transform var(--bpv-speed) var(--bpv-ease); }
 .bpv .bpv-btn:hover svg { transform: translateX(3px); }
-.bpv .bpv-btn--coral { background: var(--bpv-coral); color: var(--bpv-ink); }
-.bpv .bpv-btn--coral:hover { background: var(--bpv-coral-2); color: var(--bpv-ink); }
+.bpv .bpv-btn--coral { background: var(--bpv-coral); color: var(--bpg-on-coral, #fff); }
+.bpv .bpv-btn--coral:hover { background: var(--bpv-coral-2); color: var(--bpg-on-coral-hover, #F4F8FD); }
 .bpv .bpv-btn--outline { border-color: var(--bpv-line-2); background: #fff; color: var(--bpv-ink); }
 .bpv .bpv-btn--outline:hover { border-color: var(--bpv-ink); color: var(--bpv-ink); }
 .bpv .bpv-btn--ghost { border-color: rgba(255, 255, 255, 0.3); background: rgba(255, 255, 255, 0.06); color: #fff; }
