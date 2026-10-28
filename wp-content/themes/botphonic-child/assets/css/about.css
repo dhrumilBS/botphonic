@@ -88,8 +88,8 @@
 .bp-about .bau-btn svg { transition: transform var(--bau-speed) var(--bau-ease); }
 .bp-about .bau-btn:hover { transform: translateY(-1px); }
 .bp-about .bau-btn:hover svg { transform: translateX(3px); }
-.bp-about .bau-btn--coral { background: var(--bau-coral); color: var(--bau-ink); }
-.bp-about .bau-btn--coral:hover { background: var(--bau-coral-2); color: var(--bau-ink); }
+.bp-about .bau-btn--coral { background: var(--bau-coral); color: var(--bpg-on-coral, #fff); }
+.bp-about .bau-btn--coral:hover { background: var(--bau-coral-2); color: var(--bpg-on-coral-hover, #F4F8FD); }
 .bp-about .bau-btn--ink { background: var(--bau-ink); color: #fff; }
 .bp-about .bau-btn--ink:hover { background: #0F3453; color: #fff; }
 .bp-about .bau-btn--white { background: #fff; color: var(--bau-ink); }
