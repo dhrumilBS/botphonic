@@ -9,70 +9,85 @@
 	root.classList.remove('no-js');
 	root.classList.add('is-ready');
 
-	var audienceButtons = Array.prototype.slice.call(root.querySelectorAll('[data-bau-audience]'));
-	var audiencePanels = Array.prototype.slice.call(root.querySelectorAll('[data-bau-audience-panel]'));
+	// Industry tabs: click, arrow keys, Home and End.
+	var tabs = Array.prototype.slice.call(root.querySelectorAll('[data-bau-tabs] [role="tab"]'));
+	var panels = Array.prototype.slice.call(root.querySelectorAll('[data-bau-panel]'));
 
-	function selectAudience(id) {
-		audienceButtons.forEach(function (button) {
-			var active = button.getAttribute('data-bau-audience') === id;
-			button.classList.toggle('is-active', active);
-			button.setAttribute('aria-pressed', active ? 'true' : 'false');
+	function selectTab(tab, focus) {
+		tabs.forEach(function (item) {
+			var active = item === tab;
+			item.setAttribute('aria-selected', active ? 'true' : 'false');
+			item.tabIndex = active ? 0 : -1;
 		});
 
-		audiencePanels.forEach(function (panel) {
-			var active = panel.getAttribute('data-bau-audience-panel') === id;
+		panels.forEach(function (panel) {
+			var active = panel.id === tab.getAttribute('aria-controls');
 			panel.classList.toggle('is-active', active);
 			panel.hidden = !active;
 		});
+
+		if (focus) {
+			tab.focus();
+		}
 	}
 
-	audienceButtons.forEach(function (button) {
-		button.addEventListener('click', function () {
-			selectAudience(button.getAttribute('data-bau-audience'));
+	tabs.forEach(function (tab, index) {
+		tab.addEventListener('click', function () {
+			selectTab(tab, false);
+		});
+
+		tab.addEventListener('keydown', function (e) {
+			var next = null;
+			if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+				next = tabs[(index + 1) % tabs.length];
+			} else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+				next = tabs[(index - 1 + tabs.length) % tabs.length];
+			} else if (e.key === 'Home') {
+				next = tabs[0];
+			} else if (e.key === 'End') {
+				next = tabs[tabs.length - 1];
+			}
+
+			if (next) {
+				e.preventDefault();
+				selectTab(next, true);
+			}
 		});
 	});
 
-	var initialAudience = root.querySelector('[data-bau-audience][aria-pressed="true"]');
-	if (initialAudience) {
-		selectAudience(initialAudience.getAttribute('data-bau-audience'));
+	var initial = root.querySelector('[data-bau-tabs] [aria-selected="true"]') || tabs[0];
+	if (initial) {
+		selectTab(initial, false);
 	}
 
-	var minuteButtons = Array.prototype.slice.call(root.querySelectorAll('[data-bau-minutes]'));
-	var minuteLabel = root.querySelector('[data-bau-minutes-label]');
-	var botCost = root.querySelector('[data-bau-bot-cost]');
-	var humanCost = root.querySelector('[data-bau-human-cost]');
-	var saving = root.querySelector('[data-bau-saving]');
-	var formatter = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
-	var RATE_PER_MINUTE = 0.12; // pay-as-you-go; human services are $1–$2 per minute
+	// Reveal blocks as they scroll into view, staggered within each group.
+	var reveals = Array.prototype.slice.call(root.querySelectorAll('[data-bau-reveal]'));
+	var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-	function money(value) {
-		return '$' + formatter.format(Math.round(value));
-	}
-
-	function updateEstimate(minutes) {
-		minuteButtons.forEach(function (button) {
-			var active = Number(button.getAttribute('data-bau-minutes')) === minutes;
-			button.classList.toggle('is-active', active);
-			button.setAttribute('aria-pressed', active ? 'true' : 'false');
+	if (!('IntersectionObserver' in window) || reduceMotion) {
+		reveals.forEach(function (el) {
+			el.classList.add('is-visible');
 		});
-
-		if (minuteLabel) {
-			minuteLabel.textContent = formatter.format(minutes);
-		}
-		if (botCost) {
-			botCost.textContent = money(minutes * RATE_PER_MINUTE);
-		}
-		if (humanCost) {
-			humanCost.textContent = money(minutes) + '–' + money(minutes * 2);
-		}
-		if (saving) {
-			saving.textContent = money(minutes * (1 - RATE_PER_MINUTE)) + '–' + money(minutes * (2 - RATE_PER_MINUTE));
-		}
+		return;
 	}
 
-	minuteButtons.forEach(function (button) {
-		button.addEventListener('click', function () {
-			updateEstimate(Number(button.getAttribute('data-bau-minutes')));
+	reveals.forEach(function (el) {
+		var siblings = Array.prototype.filter.call(el.parentNode.children, function (child) {
+			return child.hasAttribute('data-bau-reveal');
 		});
+		el.style.setProperty('--bau-delay', Math.min(siblings.indexOf(el), 5) * 70 + 'ms');
+	});
+
+	var observer = new IntersectionObserver(function (entries) {
+		entries.forEach(function (entry) {
+			if (entry.isIntersecting) {
+				entry.target.classList.add('is-visible');
+				observer.unobserve(entry.target);
+			}
+		});
+	}, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+
+	reveals.forEach(function (el) {
+		observer.observe(el);
 	});
 })();
