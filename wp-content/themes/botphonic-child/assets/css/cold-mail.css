@@ -19,9 +19,9 @@
 .bpcm-eyebrow { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 14px; font-size: var(--bpl-t-xs); font-weight: 700; line-height: 1; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bpl-coral-dark); }
 .bpcm-eyebrow::before { content: ""; width: 18px; height: 2px; border-radius: 2px; background: var(--bpl-coral); }
 
-.bpcm-btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 48px; padding: 0 24px; border: 1.5px solid var(--bpl-coral); border-radius: var(--bpl-r-pill); background: var(--bpl-coral); font: inherit; font-size: var(--bpl-t-sm); font-weight: 700; line-height: 1.2; color: var(--bpl-ink); text-align: center; text-decoration: none; white-space: nowrap; cursor: pointer; transition: background-color var(--bpcm-speed) var(--bpcm-ease), border-color var(--bpcm-speed) var(--bpcm-ease), color var(--bpcm-speed) var(--bpcm-ease), transform var(--bpcm-speed) var(--bpcm-ease); }
+.bpcm-btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 48px; padding: 0 24px; border: 1.5px solid var(--bpl-coral); border-radius: var(--bpl-r-pill); background: var(--bpl-coral); font: inherit; font-size: var(--bpl-t-sm); font-weight: 700; line-height: 1.2; color: var(--bpg-on-coral, #fff); text-align: center; text-decoration: none; white-space: nowrap; cursor: pointer; transition: background-color var(--bpcm-speed) var(--bpcm-ease), border-color var(--bpcm-speed) var(--bpcm-ease), color var(--bpcm-speed) var(--bpcm-ease), transform var(--bpcm-speed) var(--bpcm-ease); }
 .bpcm-btn:hover,
-.bpcm-btn:focus-visible { background: var(--bpl-coral-dark); border-color: var(--bpl-coral-dark); color: var(--bpl-white); transform: translateY(-2px); }
+.bpcm-btn:focus-visible { background: var(--bpl-coral-dark); border-color: var(--bpl-coral-dark); color: var(--bpg-on-coral-hover, #F4F8FD); transform: translateY(-2px); }
 
 .bpcm-hero { position: relative; isolation: isolate; overflow: clip; background: linear-gradient(0deg, var(--bpl-tint) 0%, var(--bpl-white) 74%); border-bottom: 1px solid var(--bpcm-hair); text-align: center; }
 .bpcm-hero::before,
@@ -37,8 +37,8 @@
 .bpcm-hero__form .wpcf7-form p { margin: 0; }
 .bpcm-hero__form :is(input[type="text"], input[type="email"], input[type="tel"], input[type="url"]) { width: 100%; min-height: 52px; padding: 0 18px; border: 1px solid var(--bpcm-line); border-radius: var(--bpl-r-pill); background: var(--bpl-white); font: inherit; color: var(--bpl-ink); box-shadow: var(--bpcm-shadow-sm); transition: border-color var(--bpcm-speed) var(--bpcm-ease), box-shadow var(--bpcm-speed) var(--bpcm-ease); }
 .bpcm-hero__form :is(input[type="text"], input[type="email"], input[type="tel"], input[type="url"]):focus { outline: 0; border-color: var(--bpl-coral); box-shadow: 0 0 0 4px var(--bpl-coral-soft); }
-.bpcm-hero__form input[type="submit"] { min-height: 52px; padding: 0 28px; border: 1.5px solid var(--bpl-coral); border-radius: var(--bpl-r-pill); background: var(--bpl-coral); font: inherit; font-weight: 700; color: var(--bpl-ink); cursor: pointer; transition: background-color var(--bpcm-speed) var(--bpcm-ease), border-color var(--bpcm-speed) var(--bpcm-ease), color var(--bpcm-speed) var(--bpcm-ease); }
-.bpcm-hero__form input[type="submit"]:hover { background: var(--bpl-coral-dark); border-color: var(--bpl-coral-dark); color: var(--bpl-white); }
+.bpcm-hero__form input[type="submit"] { min-height: 52px; padding: 0 28px; border: 1.5px solid var(--bpl-coral); border-radius: var(--bpl-r-pill); background: var(--bpl-coral); font: inherit; font-weight: 700; color: var(--bpg-on-coral, #fff); cursor: pointer; transition: background-color var(--bpcm-speed) var(--bpcm-ease), border-color var(--bpcm-speed) var(--bpcm-ease), color var(--bpcm-speed) var(--bpcm-ease); }
+.bpcm-hero__form input[type="submit"]:hover { background: var(--bpl-coral-dark); border-color: var(--bpl-coral-dark); color: var(--bpg-on-coral-hover, #F4F8FD); }
 
 .bpcm-head { max-width: var(--bpl-head-max); margin: 0 auto var(--bpl-head-gap); text-align: center; }
 .bpcm .bpcm-head__title { margin: 0; font-size: var(--bpl-t-2xl); font-weight: 800; line-height: 1.16; letter-spacing: -0.02em; }

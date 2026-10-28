@@ -45,7 +45,7 @@ html { scroll-padding-top: 104px; }
 .bf-social-link { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 1px solid var(--bf-line-2); border-radius: 50%; background: rgba(255, 255, 255, 0.04); color: var(--bf-strong); text-decoration: none; transition: background-color var(--bf-speed) var(--bf-ease), border-color var(--bf-speed) var(--bf-ease), color var(--bf-speed) var(--bf-ease), transform var(--bf-speed) var(--bf-ease); }
 .bf-social-link svg { width: 17px; height: 17px; }
 .bf-social-link:hover,
-.bf-social-link:focus-visible { background: var(--bf-coral); border-color: var(--bf-coral); color: #0B1F33; transform: translateY(-2px); outline: none; }
+.bf-social-link:focus-visible { background: var(--bf-coral); border-color: var(--bf-coral); color: var(--bpg-on-coral-hover, #F4F8FD); transform: translateY(-2px); outline: none; }
 .bf-divider { border: none; border-top: 1px solid var(--bf-line); margin: 20px 0; }
 .bf-trust-label { display: block; font-size: 12px; color: var(--bf-text); margin-bottom: 12px; letter-spacing: 0.5px; }
 .bf-trust-badges { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
