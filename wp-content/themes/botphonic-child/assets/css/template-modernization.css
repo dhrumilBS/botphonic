@@ -182,7 +182,7 @@ body.bpm-page :is(a.theme-btn,
 	a.bf-btn,
 	button.bf-btn,
 	a.marketplace-btn,
-	button.templateModal) { border-color: var(--bpg-coral) !important; background: var(--bpg-coral) !important; box-shadow: 0 10px 22px -12px rgba(var(--secondary-rgb), 0.72) !important; color: var(--primary) !important; fill: var(--primary) !important; }
+	button.templateModal) { border-color: var(--bpg-coral) !important; background: var(--bpg-coral) !important; box-shadow: 0 10px 22px -12px rgba(var(--secondary-rgb), 0.72) !important; color: var(--bpg-on-coral, #fff) !important; fill: var(--bpg-on-coral, #fff) !important; }
 body.bpm-page :is(a.theme-btn,
 	button.theme-btn,
 	input.theme-btn,
@@ -204,7 +204,7 @@ body.bpm-page :is(a.theme-btn,
 	a.bf-btn,
 	button.bf-btn,
 	a.marketplace-btn,
-	button.templateModal):focus-visible { border-color: var(--bpg-coral-2) !important; background: var(--bpg-coral-2) !important; box-shadow: 0 14px 26px -14px rgba(var(--secondary-rgb), 0.82) !important; color: var(--white) !important; fill: var(--white) !important; transform: translateY(-2px); }
+	button.templateModal):focus-visible { border-color: var(--bpg-coral-2) !important; background: var(--bpg-coral-2) !important; box-shadow: 0 14px 26px -14px rgba(var(--secondary-rgb), 0.82) !important; color: var(--bpg-on-coral-hover, #F4F8FD) !important; fill: var(--bpg-on-coral-hover, #F4F8FD) !important; transform: translateY(-2px); }
 body.bpm-page :is(.btn-outline, .btn-outline-light, .theme-btn.border-btn, .bpl-btn--ghost, .bpp-btn--ghost, .bpcm-btn--ghost) { border-color: var(--bpg-line-2) !important; background: var(--white) !important; box-shadow: none !important; color: var(--bpg-ink) !important; }
 body.bpm-page :is(.btn-outline, .btn-outline-light, .theme-btn.border-btn, .bpl-btn--ghost, .bpp-btn--ghost, .bpcm-btn--ghost):hover { border-color: var(--bpg-accent) !important; background: var(--bpg-accent-soft) !important; color: var(--bpg-accent-2) !important; }
 body.bpm-page .clear-all-btn { min-height: 36px; border-radius: var(--bpg-pill); font-family: var(--btn-font); font-size: 12px !important; font-weight: 750 !important; color: var(--bpg-accent-2) !important; text-decoration: none; }
@@ -336,7 +336,9 @@ body.bpm-page .signup-form-wrapper:not(.contact-v2) { width: 100%; max-width: 62
 body.bpm-page .signup-form-wrapper:not(.contact-v2) .form-field { display: flex; align-items: stretch; gap: 7px; }
 body.bpm-page .signup-form-wrapper:not(.contact-v2) .field-wrapper { flex: 1 1 240px; min-width: 0; margin: 0; }
 body.bpm-page .signup-form-wrapper:not(.contact-v2) input[type="email"] { border-color: transparent !important; box-shadow: none !important; }
-body.bpm-page .signup-form-wrapper:not(.contact-v2) input[type="submit"] { min-height: 50px; padding: 0 22px !important; border: 1px solid var(--bpg-coral) !important; border-radius: var(--bpg-pill) !important; background: var(--bpg-coral) !important; font-family: var(--btn-font); font-weight: 750 !important; color: var(--primary) !important; }
+body.bpm-page .signup-form-wrapper:not(.contact-v2) input[type="submit"] { min-height: 50px; padding: 0 22px !important; border: 1px solid var(--bpg-coral) !important; border-radius: var(--bpg-pill) !important; background: var(--bpg-coral) !important; font-family: var(--btn-font); font-weight: 750 !important; color: var(--bpg-on-coral, #fff) !important; }
+body.bpm-page .signup-form-wrapper:not(.contact-v2) input[type="submit"]:hover,
+body.bpm-page .signup-form-wrapper:not(.contact-v2) input[type="submit"]:focus-visible { color: var(--bpg-on-coral-hover, #F4F8FD) !important; }
 body.bpm-page--contact .contact-page-hero-form { padding: clamp(20px, 3vw, 32px) !important; border: 1px solid color-mix(in srgb, var(--white) 18%, transparent) !important; border-radius: var(--bpg-r-xl) !important; background: color-mix(in srgb, var(--white) 7%, transparent) !important; box-shadow: var(--bpg-shadow-lg); backdrop-filter: blur(14px); }
 body.bpm-page--contact .contact-page-hero-form .contact-v2 .w-form-field { border-color: color-mix(in srgb, var(--white) 22%, transparent) !important; background: color-mix(in srgb, var(--white) 8%, transparent) !important; color: var(--white) !important; }
 body.bpm-page--contact .contact-page-hero-form .form-submit-btn .theme-btn { width: 100%; }
