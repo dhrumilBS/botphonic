@@ -78,57 +78,33 @@
 		'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
 		'<path d="M20 6 9 17l-5-5"/></svg>';
 
-	// Sticky navbar state and reading progress bar.
+	// Reading progress bar. The header's sticky state lives in header.js.
 	function initScrollChrome() {
-		var navbar = document.getElementById('wrapper-navbar');
 		var progress = document.querySelector('[data-bpg-progress]');
 		var article = document.querySelector('[data-bpg-article]');
 
-		if (!navbar && !(progress && article)) {
+		if (!progress || !article) {
 			return;
 		}
 
-		var stuck = false;
-
 		var measure = rafThrottle(function () {
 			var y = window.pageYOffset || root.scrollTop || 0;
+			var start = article.getBoundingClientRect().top + y;
+			var span = article.offsetHeight - window.innerHeight * 0.55;
+			var pct = 0;
 
-			if (navbar) {
-				var shouldStick = y > 12;
-				if (shouldStick !== stuck) {
-					stuck = shouldStick;
-					navbar.classList.toggle('bpg-nav-stuck', stuck);
-				}
+			if (span > 0) {
+				pct = ((y - start) / span) * 100;
+			} else if (y > start) {
+				pct = 100;
 			}
 
-			if (progress && article) {
-				var start = article.getBoundingClientRect().top + y;
-				var span = article.offsetHeight - window.innerHeight * 0.55;
-				var pct = 0;
-
-				if (span > 0) {
-					pct = ((y - start) / span) * 100;
-				} else if (y > start) {
-					pct = 100;
-				}
-
-				progress.style.width = Math.min(100, Math.max(0, pct)).toFixed(2) + '%';
-			}
+			progress.style.width = Math.min(100, Math.max(0, pct)).toFixed(2) + '%';
 		});
 
 		window.addEventListener('scroll', measure, { passive: true });
 		window.addEventListener('resize', measure, { passive: true });
 		measure();
-
-		var toggle = navbar && navbar.querySelector('.mega-menu-toggle');
-		if (toggle && 'MutationObserver' in window) {
-			new MutationObserver(function () {
-				navbar.classList.toggle(
-					'bpg-nav-open',
-					toggle.classList.contains('mega-menu-open')
-				);
-			}).observe(toggle, { attributes: true, attributeFilter: ['class'] });
-		}
 	}
 
 	// Share rail "Copy link" button.
