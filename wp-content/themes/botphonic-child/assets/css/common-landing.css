@@ -343,3 +343,8 @@ Third-party review scores. Identical on both landing pages today.
 	.bpl-sec--ink h3,
 	.bpl-sec--ink h4 { color: #000 !important; }
 }
+
+/* Phones: tighter comparison-table cells. Synced from a fix made directly on live. */
+@media only screen and (max-width: 650px) {
+	.bpl-matrix th, .bpl-matrix td, .bpp-matrix th, .bpp-matrix td, .bp th, .bp td { padding: 12px; font-size: 14px; }
+}
