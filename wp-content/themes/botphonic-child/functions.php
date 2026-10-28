@@ -32,6 +32,7 @@ $botphonic_includes = array(
 	'function-solution-pages.php',
 	'function-modern-templates.php',
 	'function-enqueue.php',
+	'function-header.php',
 	'function-widget.php',
 	'function-cpt.php',
 	'function-breadcrumb.php',

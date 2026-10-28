@@ -141,7 +141,7 @@ Text Domain:    botphonic
 	--bpg-block: clamp(36px, 4.4vw, 48px);
 	--bpg-nav-h: 72px;
 	--bpg-sticky-top: calc(var(--bpg-nav-h) + 24px);
-	--bpg-nav-band: calc(10px + var(--bp-nav-h, 72px));
+	--bpg-nav-band: var(--bpg-nav-h);
 	--bpg-toc-pill-h: 40px;
 	--bpg-toc-top: calc(var(--bpg-nav-band) + 12px);
 }

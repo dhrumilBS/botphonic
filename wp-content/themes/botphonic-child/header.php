@@ -10,9 +10,6 @@
 
 // Exit if accessed directly.
 defined('ABSPATH') || exit;
-
-$bootstrap_version = get_theme_mod('understrap_bootstrap_version', 'bootstrap4');
-$navbar_type = get_theme_mod('understrap_navbar_type', 'collapse');
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -80,22 +77,4 @@ $navbar_type = get_theme_mod('understrap_navbar_type', 'collapse');
 <body <?php body_class(); ?> <?php understrap_body_attributes(); ?>>
 	<?php do_action('wp_body_open'); ?>
 	<div class="site" id="page">
-		<header id="wrapper-navbar">
-			<div class="container">
-				<div id="main-nav" class="navbar navbar-expand-md justify-content-between main-nav" aria-labelledby="main-nav-label">
-					<div class="site-logo">
-						<?php the_custom_logo(); ?>
-					</div>
-
-					<?php
-					wp_nav_menu([
-						'theme_location' => 'primary',
-						'container_class' => 'collapse navbar-collapse',
-						'container_id' => 'navbarNavDropdown',
-						'menu_class' => 'navbar-nav ms-auto',
-						'fallback_cb' => '',
-					]);
-					?>
-				</div>
-			</div><!-- .container(-fluid) -->
-		</header><!-- #wrapper-navbar -->
+		<?php get_template_part('template-parts/header/site-header'); ?>
