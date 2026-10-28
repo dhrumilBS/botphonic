@@ -62,9 +62,13 @@
 		if (open === isMenuOpen()) return;
 
 		if (open) {
+			// Pin the bar exactly where the floating header sits (inside its 1px border).
 			var rect = header.getBoundingClientRect();
-			header.style.setProperty("--bph-bar-top", Math.max(0, rect.top) + "px");
-			header.style.setProperty("--bph-drawer-top", Math.max(0, rect.top) + rect.height + "px");
+			var top = Math.max(0, rect.top);
+			header.style.setProperty("--bph-bar-top", top + 1 + "px");
+			header.style.setProperty("--bph-bar-left", rect.left + 1 + "px");
+			header.style.setProperty("--bph-bar-width", rect.width - 2 + "px");
+			header.style.setProperty("--bph-drawer-top", top + rect.height + "px");
 		} else {
 			closePanel();
 		}
