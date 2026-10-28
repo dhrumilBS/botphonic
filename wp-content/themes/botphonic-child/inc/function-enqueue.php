@@ -81,9 +81,8 @@ function enqueue_child_theme_style()
 	wp_register_style('marketplace', get_stylesheet_directory_uri() . '/assets/css/marketplace.css', ['swiper-css'], botphonic_child_asset_ver('/assets/css/marketplace.css'));
 	wp_register_script('marketplace', get_stylesheet_directory_uri() . '/assets/js/marketplace.js', ['swiper-js'], botphonic_child_asset_ver('/assets/js/marketplace.js'), true);
 
-	wp_register_script('botphonic-bootstrap-5-3-8', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js', [], '5.3.8', true);
-	wp_register_style('ai-voice-agents', get_stylesheet_directory_uri() . '/assets/css/ai-voice-agents.css', [], botphonic_child_asset_ver('/assets/css/ai-voice-agents.css'));
-	wp_register_script('ai-voice-agents', get_stylesheet_directory_uri() . '/assets/js/ai-voice-agents.js', ['botphonic-bootstrap-5-3-8'], botphonic_child_asset_ver('/assets/js/ai-voice-agents.js'), true);
+	wp_register_style('ai-voice-agents', get_stylesheet_directory_uri() . '/assets/css/ai-voice-agents.css', ['dtbwp_css_child'], botphonic_child_asset_ver('/assets/css/ai-voice-agents.css'));
+	wp_register_script('ai-voice-agents', get_stylesheet_directory_uri() . '/assets/js/ai-voice-agents.js', [], botphonic_child_asset_ver('/assets/js/ai-voice-agents.js'), array('in_footer' => true, 'strategy' => 'defer'));
 
 	wp_register_style('agent-studio', get_stylesheet_directory_uri() . '/assets/css/agent-studio.css', [], botphonic_child_asset_ver('/assets/css/agent-studio.css'));
 	wp_register_script('agent-studio', get_stylesheet_directory_uri() . '/assets/js/agent-studio.js', [], botphonic_child_asset_ver('/assets/js/agent-studio.js'), true);
@@ -236,7 +235,6 @@ function botphonic_enqueue_modern_template_assets()
 
 		case 'ai-voice-agents':
 			wp_enqueue_style('ai-voice-agents');
-			wp_enqueue_script('botphonic-bootstrap-5-3-8');
 			wp_enqueue_script('ai-voice-agents');
 			break;
 
