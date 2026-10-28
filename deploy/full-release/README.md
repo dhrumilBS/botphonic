@@ -1,12 +1,12 @@
-# Full release: header, About page, Industries hub
+# Full release: header, About page, Industries hub, AI voice agents
 
 One zip ships everything. One zip undoes it. No plugin changes, no
 maintenance mode, and the site stays up the whole time.
 
 | File | What it does |
 | --- | --- |
-| `botphonic-release-2026-10-28-deploy.zip` | 18 theme files: floating header + mega menu, About page refresh, Industries Hub template |
-| `botphonic-release-2026-10-28-rollback.zip` | The 11 original files, restoring today's live site |
+| `botphonic-release-2026-10-28-deploy.zip` | 22 theme files: floating header + mega menu, About page refresh, Industries Hub template, AI voice agents library |
+| `botphonic-release-2026-10-28-rollback.zip` | The 15 original files, restoring today's live site |
 | `botphonic-release-2026-10-28-SHA256SUMS.txt` | Checksums of every file in both zips |
 
 The zips are in `D:\xampp\deploy\botphonic\`, outside the web root. This
@@ -22,6 +22,9 @@ package **replaces** the earlier header-only package; do not upload both.
   fixed links. The FAQ answers and FAQ schema now match the Pricing page.
 - **Industries hub:** new "Industries Hub" template that lists every
   industry page with filters. It only appears once you assign it (step 7).
+- **AI voice agents library:** redesigned `/ai-voice-agents/` page. Same live
+  templates from the Botphonic API, with search, sort, filter counts and a
+  new details popup. It no longer loads Bootstrap's JS from jsDelivr.
 
 ## Before you start (5 minutes)
 
@@ -34,13 +37,15 @@ package **replaces** the earlier header-only package; do not upload both.
    2026-10-28 (their public CSS/JS matched the base on that date):
    `functions.php`, `header.php`, `inc/function-enqueue.php`,
    `template-about.php`, `style.css`, `assets/css/hfe.css`, `blog.css`,
-   `solution-pages.css`, `about.css`, `assets/js/blog.js`, `about.js`.
+   `solution-pages.css`, `about.css`, `assets/js/blog.js`, `about.js`,
+   `temp-ai-voice-agents.php`, `ai-voice-agents.css`, `ai-voice-agents.js`,
+   `utm.js`.
    `common-landing.css` is **not** touched, so its live-only mobile table
    fix is kept.
 
 ## Deploy
 
-4. cPanel → **File Manager** (or WP admin → Filester file manager) → open the
+4. Your **hosting panel's File Manager** (cPanel, hPanel, Plesk) → open the
    WordPress root, the folder that contains `wp-config.php` (usually
    `public_html`). Upload the zip **here**, not into the themes folder: the
    paths inside start with `wp-content/themes/botphonic-child/...`.
@@ -61,13 +66,17 @@ Unzip tools write files one at a time, in the order they sit in the zip. The
 order is chosen so the site never runs code that isn't on disk yet: new,
 unused files first; then the About page; then `functions.php` (loads the new
 header code) before `header.php` (calls it); then style clean-up. Every one
-of the 30 in-between states (19 deploy, 11 rollback) was replayed on the local
-copy across the home, About, Industry, Blog and product pages: all returned
+of the 38 in-between states (23 deploy, 15 rollback) was replayed on the local
+copy across the home, About, Industry, Blog, product and AI voice agents pages:
+all returned
 200 with no PHP errors. The old header serves until `header.php` lands; then
 the new one takes over.
 
-Use cPanel File Manager, Filester or the `unzip` command. Do not use a tool
-that sorts files alphabetically or extracts in parallel.
+Use your hosting panel's File Manager or the `unzip` command; both extract
+in archive order, in place. **Do not use Filester (WP admin → File Manager) to
+extract:** it is built on elFinder, which either unpacks into a new folder
+(nothing deploys) or, with "Here", may delete the existing `wp-content` folder
+and replace it with the zip's contents, depending on its merge setting.
 
 ## Check it worked (2 minutes, in a private window)
 
@@ -90,7 +99,7 @@ that sorts files alphabetically or extracts in parallel.
    in steps 4 to 6 (WordPress root, overwrite).
 3. Purge every cache.
 
-The rollback restores the 11 original files in a safe order (`header.php`
+The rollback restores the 15 original files in a safe order (`header.php`
 first). The 7 new files stay on the server but nothing loads them; delete
 them afterwards if you like:
 
@@ -104,7 +113,7 @@ back exactly as it was.
 
 ## Rebuilding
 
-From the repository root, after committing to `integration/header-and-about`:
+From the repository root, after committing to `main`:
 
 ```bash
 python -I deploy/full-release/build-package.py

@@ -7,8 +7,8 @@ Usage (from the repository root):
     python -I deploy/full-release/build-package.py [OUTPUT_DIR]
 
 Files come from git commits, not the working tree:
-    deploy   = integration/header-and-about  (all three features)
-    rollback = search-redesign               (what is live today)
+    deploy   = main                     (everything in the release)
+    rollback = release-base-2026-10-28  (tag: what was live before it)
 
 Zip entries are written in a fixed order because unzip tools extract in
 archive order. That order is what makes the upload safe while the site is
@@ -22,8 +22,8 @@ import sys
 import zipfile
 from datetime import datetime
 
-BASE_REF = "search-redesign"
-NEW_REF = "integration/header-and-about"
+BASE_REF = "release-base-2026-10-28"
+NEW_REF = "main"
 THEME = "wp-content/themes/botphonic-child/"
 
 DEPLOY_ORDER = [
@@ -55,7 +55,7 @@ DEPLOY_ORDER = [
     "assets/css/solution-pages.css",
     "assets/js/blog.js",
     "style.css",
-    # 5. Unrelated whitespace-only change merged from feature/utm-tracking.
+    # 5. Whitespace-only change from the UTM tracking work.
     "assets/js/utm.js",
 ]
 
@@ -121,8 +121,8 @@ def main():
     if missing:
         sys.exit(f"ROLLBACK_ORDER is out of date with git, check: {sorted(missing)}")
 
-    base_sha = git("rev-parse", "--short", BASE_REF).decode().strip()
-    new_sha = git("rev-parse", "--short", NEW_REF).decode().strip()
+    base_sha = git("rev-parse", "--short", BASE_REF + "^{commit}").decode().strip()
+    new_sha = git("rev-parse", "--short", NEW_REF + "^{commit}").decode().strip()
     name = "botphonic-release-" + datetime.now().strftime("%Y-%m-%d")
 
     deploy_sums = build(os.path.join(out_dir, f"{name}-deploy.zip"), NEW_REF, DEPLOY_ORDER)
