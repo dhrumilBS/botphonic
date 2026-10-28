@@ -167,13 +167,13 @@ pricing only: the home template's buttons inherit the 1.6 body value. */
 
 .bpl-btn--coral,
 .bpp-btn--coral,
-.bp .bp-btn--coral { background: var(--bpl-coral); border-color: var(--bpl-coral); color: var(--bpl-ink); }
+.bp .bp-btn--coral { background: var(--bpl-coral); border-color: var(--bpl-coral); color: var(--bpg-on-coral, #fff); }
 
 .bpl-btn--coral:hover,
 .bpl-btn--coral:focus,
 .bpp-btn--coral:hover,
 .bpp-btn--coral:focus,
-.bp .bp-btn--coral:hover { background: var(--bpl-coral-dark); border-color: var(--bpl-coral-dark); color: var(--bpl-white); }
+.bp .bp-btn--coral:hover { background: var(--bpl-coral-dark); border-color: var(--bpl-coral-dark); color: var(--bpg-on-coral-hover, #F4F8FD); }
 
 .bpl-btn--ink,
 .bpp-btn--ink,
