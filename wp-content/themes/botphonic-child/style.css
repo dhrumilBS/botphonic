@@ -100,6 +100,8 @@ Text Domain:    botphonic
 	--bpg-coral-2: #F2673B;
 	--bpg-coral-soft: rgba(255, 126, 85, 0.09);
 	--bpg-coral-line: rgba(255, 126, 85, 0.28);
+	--bpg-on-coral: #fff; /* text on coral buttons */
+	--bpg-on-coral-hover: var(--bpg-tint); /* hover text on coral buttons */
 
 	/* Positive */
 	--bpg-ok: #14804A;
@@ -356,8 +358,8 @@ h6,
 .wpcf7-form .w-form.signup-form-wrapper .w-form-field { display: block; width: 100%; height: 52px; padding: 0 18px; border: 1px solid #dbe3ed; border-radius: 12px; background: #fff; color: #072032; font-size: 15px; font-weight: 500; box-sizing: border-box; transition: border-color .2s ease, box-shadow .2s ease; }
 .wpcf7-form .w-form.signup-form-wrapper .w-form-field:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, .10); }
 .wpcf7-form .w-form.signup-form-wrapper .form-submit-btn { position: relative; flex: 0 0 auto; margin: 0; }
-.wpcf7-form .w-form.signup-form-wrapper .form-submit-btn .theme-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; height: 52px; padding: 0 24px; border: 0; border-radius: 12px; background: #ff7e55; color: #fff; font-size: 14px; font-weight: 700; line-height: 1.3; white-space: nowrap; cursor: pointer; box-shadow: none; transition: background .2s ease; }
-.wpcf7-form .w-form.signup-form-wrapper .form-submit-btn .theme-btn:hover { background: #f2673b; color: #fff; }
+.wpcf7-form .w-form.signup-form-wrapper .form-submit-btn .theme-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; height: 52px; padding: 0 24px; border: 0; border-radius: 12px; background: #ff7e55; color: var(--bpg-on-coral); font-size: 14px; font-weight: 700; line-height: 1.3; white-space: nowrap; cursor: pointer; box-shadow: none; transition: background .2s ease; }
+.wpcf7-form .w-form.signup-form-wrapper .form-submit-btn .theme-btn:hover { background: #f2673b; color: var(--bpg-on-coral-hover); }
 .wpcf7-form .w-form.signup-form-wrapper .form-submit-btn .theme-btn:focus-visible { outline: 2px solid #2563eb; outline-offset: 3px; }
 .wpcf7-form .w-form.signup-form-wrapper .w-form-field.wpcf7-not-valid { border: 1px solid #dc3545 !important; background: #fff; }
 .wpcf7-form .w-form.signup-form-wrapper .wpcf7-not-valid-tip { display: block; margin: 7px 0 0 !important; padding: 0 0 0 22px; color: #dc3545; font-size: 13px; font-weight: 500; line-height: 1.5; text-align: left; }

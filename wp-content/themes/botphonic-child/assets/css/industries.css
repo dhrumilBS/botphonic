@@ -56,8 +56,8 @@
 .bpi .bpi-btn svg { transition: transform var(--bpi-speed) var(--bpi-ease); }
 .bpi .bpi-btn:hover { transform: translateY(-1px); }
 .bpi .bpi-btn:hover svg { transform: translateX(3px); }
-.bpi .bpi-btn--coral { background: var(--bpi-coral); color: var(--bpi-ink); }
-.bpi .bpi-btn--coral:hover { background: var(--bpi-coral-2); color: var(--bpi-ink); }
+.bpi .bpi-btn--coral { background: var(--bpi-coral); color: var(--bpg-on-coral, #fff); }
+.bpi .bpi-btn--coral:hover { background: var(--bpi-coral-2); color: var(--bpg-on-coral-hover, #F4F8FD); }
 .bpi .bpi-btn--ghost { border-color: rgba(255, 255, 255, 0.3); background: rgba(255, 255, 255, 0.06); color: #fff; }
 .bpi .bpi-btn--ghost:hover { border-color: #fff; color: #fff; }
 .bpi .bpi-btn--outline { border-color: var(--bpi-line-2); background: #fff; color: var(--bpi-ink); }
