@@ -369,6 +369,77 @@ function botphonic_alt_matrix_columns($competitor_count)
 	);
 }
 
+/*
+ * Which comparison a guide prints: 'classic' (the table in
+ * single-alternatives.php) or 'vs' (template-parts/alt-compare-vs.php, the
+ * interactive pick-your-rivals comparison). Every guide prints 'vs'; use the
+ * filter to put a single guide back on 'classic'.
+ */
+function botphonic_alt_matrix_layout($post = null)
+{
+	$post = get_post($post);
+	// $vs = $post instanceof WP_Post && in_array($post->post_name, array('rosie-ai'), true);
+
+	return (string) apply_filters('botphonic_alt_matrix_layout', 'vs', $post);
+}
+
+/*
+ * Every product the comparison has values for, brand first, as
+ * array('name', 'logo', 'brand').
+ *
+ * A row can carry more values than there are named Competitors: a platform that
+ * got a write-up but was never added to the Competitors list. The classic table
+ * stops at the Competitors count and silently drops those values. Here the
+ * extra product takes its name from the matching write-up instead — profile 0
+ * is the brand, so competitor value i belongs to profile i + 1.
+ */
+function botphonic_alt_platforms(array $alt)
+{
+	$competitors = isset($alt['competitors']) ? array_values($alt['competitors']) : array();
+	$profiles = isset($alt['profiles']) ? array_values($alt['profiles']) : array();
+
+	$platforms = array(
+		array(
+			'name' => botphonic_alt_brand(),
+			'logo' => (int) get_theme_mod('custom_logo'),
+			'brand' => true,
+		),
+	);
+
+	foreach ($competitors as $competitor) {
+		$platforms[] = array(
+			'name' => trim((string) (isset($competitor['name']) ? $competitor['name'] : '')),
+			'logo' => (int) (isset($competitor['logo']) ? $competitor['logo'] : 0),
+			'brand' => false,
+		);
+	}
+
+	$rows = isset($alt['glance_rows']) ? $alt['glance_rows'] : array();
+	foreach ((isset($alt['categories']) ? $alt['categories'] : array()) as $category) {
+		$rows = array_merge($rows, array_values((array) $category['features']));
+	}
+
+	$values = 0;
+	foreach ($rows as $row) {
+		if (isset($row['competitor_values']) && is_array($row['competitor_values'])) {
+			$values = max($values, count($row['competitor_values']));
+		}
+	}
+
+	for ($i = count($competitors); $i < $values; $i++) {
+		$name = isset($profiles[$i + 1]['name']) ? trim((string) $profiles[$i + 1]['name']) : '';
+
+		$platforms[] = array(
+			/* translators: %s: column number. */
+			'name' => '' !== $name ? $name : sprintf(__('Platform %s', 'botphonic'), number_format_i18n($i + 2)),
+			'logo' => 0,
+			'brand' => false,
+		);
+	}
+
+	return $platforms;
+}
+
 
 function botphonic_alt_review_label(array $profile, $slot)
 {
@@ -631,6 +702,8 @@ function botphonic_alt_icon($name)
 		'quote' => '<path d="M9.5 6.5C6.5 8 5 10.5 5 14a3.5 3.5 0 1 0 3.5-3.5"/><path d="M19 6.5C16 8 14.5 10.5 14.5 14a3.5 3.5 0 1 0 3.5-3.5"/>',
 		'shield' => '<path d="M12 3l7.5 3v5.5c0 4.6-3.1 7.9-7.5 9.5-4.4-1.6-7.5-4.9-7.5-9.5V6z"/><path d="M9 12l2 2 4-4.5"/>',
 		'star' => '<path d="M12 3.6l2.6 5.3 5.9.85-4.25 4.15 1 5.9L12 17l-5.25 2.8 1-5.9L3.5 9.75l5.9-.85z"/>',
+		'check' => '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+		'plus' => '<path d="M12 5v14M5 12h14"/>',
 	);
 
 	if (isset($paths[$name])) {
