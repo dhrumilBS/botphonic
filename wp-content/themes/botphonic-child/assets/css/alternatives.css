@@ -156,7 +156,7 @@
 .bpg-alt .bpg-alt-matrix__btn:focus-visible { outline: 3px solid var(--bpg-alt-cta-mid); outline-offset: 3px; }
 
 /* Versus comparison — template-parts/alt-compare-vs.php */
-.bpg-alt .bpg-alt-vs { --bpg-alt-vs-brand: #F5F8FE; --bpg-alt-vs-band: #F7F8FA; --bpg-alt-vs-yes: #16A34A; --bpg-alt-vs-no: #DC4C4C; --bpg-alt-vs-pad: 14px; container: bpg-alt-vs / inline-size; }
+.bpg-alt .bpg-alt-vs { --bpg-alt-vs-brand: #F5F8FE; --bpg-alt-vs-band: #F7F8FA; --bpg-alt-vs-yes: #16A34A; --bpg-alt-vs-no: #DC4C4C; --bpg-alt-vs-pad: 14px; }
 .bpg-alt .bpg-alt-vs [hidden] { display: none !important; }
 .bpg-alt .bpg-alt-vs__frame { border: 1px solid var(--bpg-line-2); border-radius: var(--bpg-r-lg); background: #fff; overflow: clip; }
 
@@ -242,7 +242,7 @@
 .bpg-alt .bpg-alt-vs.is-ready:not(.show-8) [data-p="8"],
 .bpg-alt .bpg-alt-vs.is-ready:not(.show-9) [data-p="9"] { display: none !important; }
 
-@container bpg-alt-vs (min-width: 640px) {
+@media (min-width: 640px) {
 	.bpg-alt .bpg-alt-vs__scroll { overflow: visible; }
 	/* Four or more rivals no longer fit; scroll sideways with the labels pinned. */
 	.bpg-alt .bpg-alt-vs.is-wide .bpg-alt-vs__scroll { overflow-x: auto; }
@@ -251,11 +251,9 @@
 	.bpg-alt .bpg-alt-vs.is-wide .bpg-alt-vs__table tr > th:first-child { position: sticky; left: 0; z-index: 2; box-shadow: 1px 0 0 var(--bpg-line-2); }
 }
 @media (min-width: 992px) {
-	@container bpg-alt-vs (min-width: 640px) {
-		.bpg-alt .bpg-alt-vs:not(.is-wide) .bpg-alt-vs__head th { position: sticky; top: var(--bpg-nav-band); z-index: 3; }
-	}
+	.bpg-alt .bpg-alt-vs:not(.is-wide) .bpg-alt-vs__head th { position: sticky; top: var(--bpg-nav-band); z-index: 3; }
 }
-@container bpg-alt-vs (max-width: 639.98px) {
+@media (max-width: 639.98px) {
 	.bpg-alt .bpg-alt-vs { --bpg-alt-vs-pad: 12px; }
 	.bpg-alt .bpg-alt-vs__chip { min-height: 38px; padding: 0 12px 0 10px; font-size: 13.5px; }
 	.bpg-alt .bpg-alt-vs__table { display: block; min-width: calc(var(--bpg-alt-vs-cols) * 150px); }
@@ -269,9 +267,19 @@
 	.bpg-alt .bpg-alt-vs__head th.is-brand { box-shadow: inset 0 2px 0 var(--bpg-accent), 1px 0 0 var(--bpg-line-2); }
 	.bpg-alt .bpg-alt-vs__row > th { padding: 14px 0 2px; border-bottom: 0; }
 	.bpg-alt .bpg-alt-vs__label-in,
-	.bpg-alt .bpg-alt-vs__pin { position: sticky; left: 0; display: block; width: min(100%, calc(100cqw - 2px)); }
+	.bpg-alt .bpg-alt-vs__pin { position: sticky; left: 0; display: block; width: min(100%, calc(100vw - 2px)); }
 	.bpg-alt .bpg-alt-vs__label-in { padding: 0 var(--bpg-alt-vs-pad); }
 	.bpg-alt .bpg-alt-vs__row > td { padding-top: 8px; padding-bottom: 14px; }
+}
+
+@media (max-width: 639.98px) {
+	.bpg-alt .bpg-alt-vs__row > th { padding: 10px 0; border-bottom: 1px solid var(--bpg-line); background: #FAFBFC; }
+	.bpg-alt .bpg-alt-vs__label { font-size: 13px; font-weight: 700; line-height: 1.4; }
+	.bpg-alt .bpg-alt-vs__row > td { padding-top: 12px; padding-bottom: 14px; }
+
+	.bpg-alt .bpg-alt-vs__sec-head :is(th, td) { border-bottom-color: var(--bpg-line-2); background: #eceef285; }
+	.bpg-alt .bpg-alt-vs__sec-name { color: var(--bpg-ink); }
+	.bpg-alt .bpg-alt-vs__sec-btn[aria-expanded="true"] { box-shadow: inset 3px 0 0 var(--bpg-ink); }
 }
 
 .bpg-alt .bpg-alt-profiles { margin-top: var(--bpg-block); }
@@ -279,10 +287,6 @@
 .bpg-alt .bpg-alt-profile { padding: 30px 0; border-bottom: 1px solid var(--bpg-line); }
 .bpg-alt .bpg-alt-profile:last-child { border-bottom: 0; }
 .bpg-alt .bpg-alt-profiles__title+.bpg-alt-profile { padding-top: 18px; }
-.bpg-alt .bpg-alt-profile__title { margin: 0 0 16px; font-size: clamp(20px, 2.5vw, 27px); font-weight: 800; line-height: 1.25; }
-.bpg-alt .bpg-alt-profile__shot { margin: 0 0 20px; line-height: 0; }
-.bpg-alt .bpg-alt-profile__shot img { display: block; width: 100%; height: auto; border: 1px solid var(--bpg-line); border-radius: var(--bpg-r-md); }
-.bpg-alt .bpg-alt-profile__rating { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0 0 20px; }
 .bpg-alt .bpg-alt-profile__rating .bpg-alt-stars { font-size: 19px; }
 .bpg-alt .bpg-alt-profile__rating-label { font-size: 15px; font-weight: 700; color: var(--bpg-ink); }
 .bpg-alt .bpg-alt-profile__rating> span:not(.bpg-alt-stars) { font-size: 14px; font-weight: 700; color: var(--bpg-ink-2); }
