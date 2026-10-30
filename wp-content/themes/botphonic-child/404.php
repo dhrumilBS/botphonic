@@ -68,7 +68,6 @@ $bars = [10, 18, 30, 22, 38, 26, 14, 34, 42, 24, 16, 30, 20, 12, 6, 3, 3, 3, 3, 
 	.bp-err__bubble { margin: 0 0 16px; padding: 14px 16px; border-radius: 4px 16px 16px 16px; background: var(--bpg-tint, #F4F8FD); border: 1px solid var(--bpg-tint-2, #EAF1FB); color: var(--primary, #072032); font-size: 15px; line-height: 1.5; font-weight: 500; }
 	.bp-err__card-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; font-size: 14px; color: var(--bpg-ink-3, #6B7A88); }
 	.bp-err__card-foot code { max-width: 100%; overflow-wrap: anywhere; padding: 4px 10px; border-radius: 8px; background: var(--bpg-tint-2, #EAF1FB); color: var(--primary, #072032); font-size: 13px; }
-	/* One-screen layout on desktop: no scrolling. */
 	@media (min-width: 992px) and (min-height: 600px) {
 		html.bp-err-html, body.bp-err-page { height: 100%; overflow: hidden; }
 		.bp-err { height: 100vh; height: 100dvh; }
@@ -90,25 +89,21 @@ $bars = [10, 18, 30, 22, 38, 26, 14, 34, 42, 24, 16, 30, 20, 12, 6, 3, 3, 3, 3, 
 <?php wp_body_open(); ?>
 
 <main id="main" class="bp-err bp-err--404">
-
 	<a class="bp-err__brand" href="<?php echo esc_url(home_url('/')); ?>" aria-label="<?php echo esc_attr(get_bloginfo('name')); ?>">
 		<?php echo has_custom_logo() ? wp_kses_post(get_custom_logo()) : esc_html(get_bloginfo('name')); ?>
 	</a>
 
 	<div class="bp-err__inner">
-
 		<div class="bp-err__copy">
 			<span class="bp-err__pill"><i aria-hidden="true"></i>Page not found</span>
 			<p class="bp-err__code" aria-hidden="true">404</p>
 			<h1 class="bp-err__title">We couldn&rsquo;t find that page</h1>
 			<p class="bp-err__text">The link may be mistyped, or the page may have moved. Head back home or jump to one of our most visited pages.</p>
-
 			<div class="bp-err__actions">
 				<a class="bp-err__btn" href="<?php echo esc_url(home_url('/')); ?>">Back to homepage</a>
 				<a class="bp-err__ghost" href="<?php echo esc_url(home_url('/contact/')); ?>">Talk to our team</a>
 			</div>
 		</div>
-
 		<div class="bp-err__card" role="img" aria-label="A phone call from Botphonic AI that has ended">
 			<div class="bp-err__card-head">
 				<span class="bp-err__avatar" aria-hidden="true">
@@ -120,15 +115,12 @@ $bars = [10, 18, 30, 22, 38, 26, 14, 34, 42, 24, 16, 30, 20, 12, 6, 3, 3, 3, 3, 
 				</span>
 				<span class="bp-err__time">00:00</span>
 			</div>
-
 			<div class="bp-err__wave" aria-hidden="true">
 				<?php foreach ($bars as $i => $h): ?>
 						<span style="--h:<?php echo (int) $h; ?>px;--i:<?php echo (int) $i; ?>"></span>
 				<?php endforeach; ?>
 			</div>
-
 			<p class="bp-err__bubble">I couldn&rsquo;t reach that page. Let me take you somewhere useful.</p>
-
 			<div class="bp-err__card-foot">
 				<span>Page not found</span>
 				<?php if ($request_path): ?>
@@ -136,7 +128,6 @@ $bars = [10, 18, 30, 22, 38, 26, 14, 34, 42, 24, 16, 30, 20, 12, 6, 3, 3, 3, 3, 
 				<?php endif; ?>
 			</div>
 		</div>
-
 	</div>
 </main>
 
