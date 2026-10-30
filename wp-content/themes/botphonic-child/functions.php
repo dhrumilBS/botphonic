@@ -38,6 +38,7 @@ $botphonic_includes = array(
 	'function-breadcrumb.php',
 	'function-schema.php',
 	'function-search.php',
+	'function-cf7-spam.php',
 );
 
 foreach ($botphonic_includes as $botphonic_include) {

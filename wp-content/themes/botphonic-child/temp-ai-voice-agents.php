@@ -64,31 +64,31 @@ $bpv_card = static function ($agent) use ($bpv_icon) {
 	$type = strtolower($agent['type']) === 'inbound' ? 'inbound' : 'outbound';
 	ob_start();
 ?>
-	<li class="bpv-card" data-id="<?php echo esc_attr($agent['id']); ?>" data-industry="<?php echo esc_attr($agent['industry']); ?>" data-type="<?php echo esc_attr($agent['type']); ?>">
-		<div class="bpv-card__top">
-			<span class="bpv-type bpv-type--<?php echo esc_attr($type); ?>" data-f="typechip">
-				<span class="bpv-type__icon bpv-type__icon--inbound"><?php echo $bpv_icon('inbound', 16); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. 
-																		?></span>
-				<span class="bpv-type__icon bpv-type__icon--outbound"><?php echo $bpv_icon('outbound', 16); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. 
-																		?></span>
-				<span data-f="type"><?php echo esc_html($agent['type']); ?></span>
-			</span>
-			<span class="bpv-price" data-f="price">Free</span>
-		</div>
-		<h3 class="bpv-card__title" data-f="title"><?php echo esc_html($agent['title']); ?></h3>
-		<p class="bpv-card__industry" data-f="industry"><?php echo esc_html($agent['industry']); ?></p>
-		<p class="bpv-card__text" data-f="text"><?php echo esc_html($agent['text']); ?></p>
-		<ul class="bpv-tags" data-f="tags" aria-label="Tags">
-			<?php foreach ($agent['tags'] as $tag) : ?>
-				<li><?php echo esc_html($tag); ?></li>
-			<?php endforeach; ?>
-		</ul>
-		<div class="bpv-card__foot">
-			<span class="bpv-downloads"><?php echo $bpv_icon('download', 16); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. 
-										?><span data-f="downloads"><?php echo esc_html(number_format_i18n($agent['downloads'])); ?></span><span class="screen-reader-text"> downloads</span></span>
-			<button type="button" class="bpv-btn bpv-btn--card" data-bpv-open>View details<span class="screen-reader-text" data-f="srtitle">: <?php echo esc_html($agent['title']); ?></span></button>
-		</div>
-	</li>
+<li class="bpv-card" data-id="<?php echo esc_attr($agent['id']); ?>" data-industry="<?php echo esc_attr($agent['industry']); ?>" data-type="<?php echo esc_attr($agent['type']); ?>">
+	<div class="bpv-card__top">
+		<span class="bpv-type bpv-type--<?php echo esc_attr($type); ?>" data-f="typechip">
+			<span class="bpv-type__icon bpv-type__icon--inbound"><?php echo $bpv_icon('inbound', 16); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. 
+				?></span>
+			<span class="bpv-type__icon bpv-type__icon--outbound"><?php echo $bpv_icon('outbound', 16); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. 
+				?></span>
+			<span data-f="type"><?php echo esc_html($agent['type']); ?></span>
+		</span>
+		<span class="bpv-price" data-f="price">Free</span>
+	</div>
+	<h3 class="bpv-card__title" data-f="title"><?php echo esc_html($agent['title']); ?></h3>
+	<p class="bpv-card__industry" data-f="industry"><?php echo esc_html($agent['industry']); ?></p>
+	<p class="bpv-card__text" data-f="text"><?php echo esc_html($agent['text']); ?></p>
+	<ul class="bpv-tags" data-f="tags" aria-label="Tags">
+		<?php foreach ($agent['tags'] as $tag) : ?>
+		<li><?php echo esc_html($tag); ?></li>
+		<?php endforeach; ?>
+	</ul>
+	<div class="bpv-card__foot">
+		<span class="bpv-downloads"><?php echo $bpv_icon('download', 16); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. 
+			?><span data-f="downloads"><?php echo esc_html(number_format_i18n($agent['downloads'])); ?></span><span class="screen-reader-text"> downloads</span></span>
+		<button type="button" class="bpv-btn bpv-btn--card" data-bpv-open>View details<span class="screen-reader-text" data-f="srtitle">: <?php echo esc_html($agent['title']); ?></span></button>
+	</div>
+</li>
 <?php
 	return ob_get_clean();
 };
@@ -155,7 +155,7 @@ get_header();
 								<legend>Call type</legend>
 								<div data-bpv-options="type">
 									<?php foreach ($bpv_types as $bpv_value => $bpv_count) : ?>
-										<label class="bpv-option"><input type="checkbox" value="<?php echo esc_attr($bpv_value); ?>"><span class="bpv-option__label"><?php echo esc_html($bpv_value); ?></span><span class="bpv-option__count"><?php echo esc_html($bpv_count); ?></span></label>
+									<label class="bpv-option"><input type="checkbox" value="<?php echo esc_attr($bpv_value); ?>"><span class="bpv-option__label"><?php echo esc_html($bpv_value); ?></span><span class="bpv-option__count"><?php echo esc_html($bpv_count); ?></span></label>
 									<?php endforeach; ?>
 								</div>
 							</fieldset>
@@ -164,7 +164,7 @@ get_header();
 								<legend>Industry</legend>
 								<div data-bpv-options="industry">
 									<?php foreach ($bpv_industries as $bpv_value => $bpv_count) : ?>
-										<label class="bpv-option"><input type="checkbox" value="<?php echo esc_attr($bpv_value); ?>"><span class="bpv-option__label"><?php echo esc_html($bpv_value); ?></span><span class="bpv-option__count"><?php echo esc_html($bpv_count); ?></span></label>
+									<label class="bpv-option"><input type="checkbox" value="<?php echo esc_attr($bpv_value); ?>"><span class="bpv-option__label"><?php echo esc_html($bpv_value); ?></span><span class="bpv-option__count"><?php echo esc_html($bpv_count); ?></span></label>
 									<?php endforeach; ?>
 								</div>
 							</fieldset>
@@ -195,7 +195,7 @@ get_header();
 
 					<div class="bpv-empty" data-bpv-empty hidden>
 						<span class="bpv-empty__icon"><?php echo $bpv_icon('empty', 28); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. 
-														?></span>
+							?></span>
 						<p class="bpv-empty__title">No templates match your filters</p>
 						<p>Try another search, or clear the filters to see every template.</p>
 						<button type="button" class="bpv-btn bpv-btn--outline" data-bpv-clear>Clear all filters</button>
@@ -213,7 +213,7 @@ get_header();
 					</div>
 					<div class="bpv-actions">
 						<a class="bpv-btn bpv-btn--coral" href="<?php echo esc_url(home_url('/ai-agent-studio/')); ?>">Open Agent Studio<?php echo $bpv_icon('arrow', 16); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. 
-																																		?></a>
+							?></a>
 						<a class="bpv-btn bpv-btn--ghost" href="<?php echo esc_url($bpv_demo); ?>">Book a demo</a>
 					</div>
 				</div>
@@ -232,16 +232,16 @@ get_header();
 			<div class="bpv-modal__chips">
 				<span class="bpv-type" data-m="typechip">
 					<span class="bpv-type__icon bpv-type__icon--inbound"><?php echo $bpv_icon('inbound', 16); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. 
-																			?></span>
+						?></span>
 					<span class="bpv-type__icon bpv-type__icon--outbound"><?php echo $bpv_icon('outbound', 16); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. 
-																			?></span>
+						?></span>
 					<span data-m="type"></span>
 				</span>
 				<span class="bpv-chip" data-m="industry"></span>
 			</div>
 			<h2 id="bpv-modal-title" class="bpv-modal__title" data-m="title"></h2>
 			<button type="button" class="bpv-modal__close" data-bpv-close aria-label="Close"><?php echo $bpv_icon('close', 20); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. 
-																								?></button>
+				?></button>
 		</div>
 		<div class="bpv-modal__body">
 			<p class="bpv-modal__text" data-m="text"></p>
@@ -271,11 +271,11 @@ get_header();
 		<div class="bpv-modal__foot">
 			<p class="bpv-modal__meta">
 				<span class="bpv-downloads"><?php echo $bpv_icon('download', 16); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. 
-											?><span data-m="downloads"></span>&nbsp;downloads</span>
+					?><span data-m="downloads"></span>&nbsp;downloads</span>
 				<span class="bpv-price" data-m="price"></span>
 			</p>
 			<a class="bpv-btn bpv-btn--coral" href="<?php echo esc_url($bpv_register); ?>">Use this template<?php echo $bpv_icon('arrow', 16); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. 
-																											?></a>
+				?></a>
 		</div>
 	</dialog>
 

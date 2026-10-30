@@ -15,7 +15,6 @@
 	.badge-noindex { background: #fee2e2; color: #dc2626; }
 	.meta-info { font-size: 13px; color: #64748b; display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
 	.meta-info code { padding: 2px 6px; background: #fcfcfc; border: 1px solid #c5d0dd; border-radius: 8px; font-family: var(--mono-font); }
-	.card-excerpt { font-size: 14px; color: #64748b; }
 	.no-results { text-align: center; color: #64748b; }
 </style>
 
@@ -72,9 +71,6 @@ $total = $query->found_posts;
 							<div class="meta-info">
 								<code><?php echo esc_html($slug); ?></code>
 								<span><?php echo esc_html($date); ?></span>
-							</div>
-							<div class="card-excerpt">
-								<?php echo esc_html(wp_trim_words(get_the_excerpt(), 12)); ?>
 							</div>
 						</div>
 					</div>
