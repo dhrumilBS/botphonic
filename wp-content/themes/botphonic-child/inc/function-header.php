@@ -39,7 +39,7 @@ function botphonic_header_nav()
 				array(
 					'label' => 'Build',
 					'items' => array(
-						array('title' => 'Agent Studio', 'desc' => 'Build an agent without code', 'url' => home_url('/ai-agent-studio/'), 'icon' => 'wand'),
+						array('title' => 'Agent Studio', 'desc' => 'Build an agent without code', 'url' => home_url('/product/ai-agent-studio/'), 'icon' => 'wand'),
 						array('title' => 'AI voice agents', 'desc' => 'Pre-built agents by use case', 'url' => home_url('/ai-voice-agents/'), 'icon' => 'bot'),
 						array('title' => 'Agent templates', 'desc' => 'Start from a proven call flow', 'url' => home_url('/marketplace/'), 'icon' => 'grid'),
 					),
