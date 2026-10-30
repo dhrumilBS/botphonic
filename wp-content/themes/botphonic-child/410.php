@@ -18,17 +18,6 @@ $request_path = isset($_SERVER['REQUEST_URI'])
 	? esc_html(wp_parse_url(wp_unslash($_SERVER['REQUEST_URI']), PHP_URL_PATH))
 	: '';
 
-$pricing_url = get_permalink(2027);
-$pricing_url = $pricing_url ? $pricing_url : home_url('/pricing/');
-$stories_slug = defined('CUSTOME_STORY_SLUG') ? CUSTOME_STORY_SLUG : 'success-stories';
-
-$links = [
-	'Explore AI voice agents' => home_url('/'),
-	'See pricing' => $pricing_url,
-	'Customer success stories' => home_url('/' . $stories_slug . '/'),
-	'Read the blog' => home_url('/blog/'),
-];
-
 // Waveform: lively on the left, flat on the right (the call "dropping").
 $bars = [10, 18, 30, 22, 38, 26, 14, 34, 42, 24, 16, 30, 20, 12, 6, 3, 3, 3, 3, 3, 3, 3];
 ?><!DOCTYPE html>
