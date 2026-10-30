@@ -223,18 +223,13 @@ $alt_body = trim(apply_filters('the_content', get_the_content()));
 								<div class="bpg-alt-prose bpg-alt-compare__intro">
 									<?php echo botphonic_alt_prose($alt['compare_intro']); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- sanitised in botphonic_alt_prose(). ?>
 								</div>
-							<?php endif; ?>
-
-							<?php if ('vs' === botphonic_alt_matrix_layout($post)): ?>
-								<?php
+							<?php endif; 
+							if ('vs' === botphonic_alt_matrix_layout($post)): 
 								get_template_part('template-parts/alt-compare-vs', '', array(
 									'alt' => $alt,
 									'brand' => $alt_brand,
 								));
-								?>
-							<?php else: ?>
-
-							<?php
+								else:
 							/*
 							 * The grouped feature rows are CSS grid, not table rows:
 							 * a whole category lives inside one colspan'd cell so it
