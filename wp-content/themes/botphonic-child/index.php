@@ -86,7 +86,7 @@ $bpg_total = (int) $GLOBALS['wp_query']->found_posts;
 	</div>
 
 	<!-- ── CTA band ─────────────────────────────────────────────────── -->
-	<section class="bpg-band" aria-labelledby="bpg-band-title">
+	<section class="bpg-band bpg-band--light" aria-labelledby="bpg-band-title">
 		<div class="bpg-shell">
 			<div class="bpg-band__inner">
 				<div class="bpg-band__copy">

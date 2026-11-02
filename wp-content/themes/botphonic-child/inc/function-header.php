@@ -40,9 +40,7 @@ function botphonic_header_nav()
 					'label' => 'Build',
 					'items' => array(
 						array('title' => 'Agent Studio', 'desc' => 'Build an agent without code', 'url' => home_url('/product/ai-agent-studio/'), 'icon' => 'wand'),
-						array('title' => 'AI voice agents', 'desc' => 'Pre-built agents by use case', 'url' => home_url('/ai-voice-agents/'), 'icon' => 'bot'),
-						array('title' => 'Agent templates', 'desc' => 'Start from a proven call flow', 'url' => home_url('/marketplace/'), 'icon' => 'grid'),
-					),
+						array('title' => 'AI voice agents', 'desc' => 'Pre-built agents by use case', 'url' => home_url('/product/voice-agent-templates/'), 'icon' => 'bot'),					),
 				),
 				array(
 					'label' => 'Run',
@@ -55,20 +53,14 @@ function botphonic_header_nav()
 				array(
 					'label' => 'Integrations',
 					'links' => array(
-						array('title' => 'Salesforce', 'url' => home_url('/salesforce-integration/')),
-						array('title' => 'HubSpot', 'url' => home_url('/hubspot-integration/')),
-						array('title' => 'Zapier', 'url' => home_url('/zapier-integration/')),
-						array('title' => 'Zoho', 'url' => home_url('/zoho-integration/')),
-						array('title' => 'WhatsApp', 'url' => home_url('/whatsapp-integration/')),
+						array('title' => 'Salesforce', 'url' => home_url('/integrations/salesforce-integration/')),
+						array('title' => 'HubSpot', 'url' => home_url('/integrations/hubspot-integration/')),
+						array('title' => 'Zapier', 'url' => home_url('/integrations/zapier-integration/')),
+						array('title' => 'Zoho', 'url' => home_url('/integrations/zoho-integration/')),
+						array('title' => 'WhatsApp', 'url' => home_url('/integrations/whatsapp-integration/')),
 					),
 					'more'  => array('title' => 'All integrations', 'url' => home_url('/integrations/')),
 				),
-			),
-			'feature' => array(
-				'badge' => '14-day free trial',
-				'title' => 'Live in minutes, not weeks',
-				'text'  => 'Build your agent, connect a number and start taking calls the same day.',
-				'cta'   => array('title' => 'Start free trial', 'url' => BOTPHONIC_REGISTER_URL),
 			),
 			'footer'  => array(
 				'badge' => 'Live demo',
@@ -82,16 +74,16 @@ function botphonic_header_nav()
 				array(
 					'span'  => 2,
 					'items' => array(
-						array('title' => 'AI receptionist', 'desc' => 'Answers, books, transfers', 'url' => home_url('/product/ai-receptionist/'), 'icon' => 'phone-incoming'),
-						array('title' => 'AI answering service', 'desc' => 'Answers and logs every call', 'url' => home_url('/product/ai-answering-service/'), 'icon' => 'message'),
-						array('title' => 'AI customer service', 'desc' => 'Resolves questions 24/7', 'url' => home_url('/product/ai-customer-service/'), 'icon' => 'smile'),
-						array('title' => 'AI call center', 'desc' => 'High call volume, both ways', 'url' => home_url('/product/ai-call-center/'), 'icon' => 'headphones'),
-						array('title' => 'AI appointment booking', 'desc' => 'Books callers into open slots', 'url' => home_url('/product/ai-appointment-booking/'), 'icon' => 'calendar-check'),
-						array('title' => 'AI appointment setter', 'desc' => 'Books into your calendar', 'url' => home_url('/ai-appointment-setter/'), 'icon' => 'calendar'),
-						array('title' => 'AI sales assistant', 'desc' => 'Qualifies every new lead', 'url' => home_url('/product/ai-sales-assistant/'), 'icon' => 'trending'),
-						array('title' => 'AI telemarketing', 'desc' => 'Outbound campaigns at scale', 'url' => home_url('/product/ai-telemarketing/'), 'icon' => 'megaphone'),
-						array('title' => 'AI IVR', 'desc' => 'Talk instead of press 1', 'url' => home_url('/product/ai-ivr/'), 'icon' => 'list'),
-						array('title' => 'AI concierge', 'desc' => 'Personal help, 24/7', 'url' => home_url('/product/ai-concierge/'), 'icon' => 'bell'),
+						array('title' => 'AI receptionist', 'desc' => 'Answers, books, transfers', 'url' => home_url('/solution/ai-receptionist/'), 'icon' => 'phone-incoming'),
+						array('title' => 'AI answering service', 'desc' => 'Answers and logs every call', 'url' => home_url('/solution/ai-answering-service/'), 'icon' => 'message'),
+						array('title' => 'AI customer service', 'desc' => 'Resolves questions 24/7', 'url' => home_url('/solution/ai-customer-service/'), 'icon' => 'smile'),
+						array('title' => 'AI call center', 'desc' => 'High call volume, both ways', 'url' => home_url('/solution/ai-call-center/'), 'icon' => 'headphones'),
+						array('title' => 'AI appointment booking', 'desc' => 'Books callers into open slots', 'url' => home_url('/solution/ai-appointment-booking/'), 'icon' => 'calendar-check'),
+						array('title' => 'AI appointment setter', 'desc' => 'Books into your calendar', 'url' => home_url('/solution/ai-appointment-setter/'), 'icon' => 'calendar'),
+						array('title' => 'AI sales assistant', 'desc' => 'Qualifies every new lead', 'url' => home_url('/solution/ai-sales-assistant/'), 'icon' => 'trending'),
+						array('title' => 'AI telemarketing', 'desc' => 'Outbound campaigns at scale', 'url' => home_url('/solution/ai-telemarketing/'), 'icon' => 'megaphone'),
+						array('title' => 'AI IVR', 'desc' => 'Talk instead of press 1', 'url' => home_url('/solution/ai-ivr/'), 'icon' => 'list'),
+						array('title' => 'AI concierge', 'desc' => 'Personal help, 24/7', 'url' => home_url('/solution/ai-concierge/'), 'icon' => 'bell'),
 					),
 				),
 				array(

@@ -1,5 +1,53 @@
 <?php
 defined('ABSPATH') || exit;
+
+$botphonic_footer_columns = array(
+	'industries' => array(
+		'title' => 'Industries',
+		'links' => array(
+			array('label' => 'Healthcare', 'url' => home_url('/industry/healthcare/')),
+			array('label' => 'Real Estate', 'url' => home_url('/industry/real-estate/')),
+			array('label' => 'Car Dealerships', 'url' => home_url('/industry/car-dealerships/')),
+			array('label' => 'Home Services', 'url' => home_url('/industry/home-services/')),
+			array('label' => 'Financial Services', 'url' => home_url('/industry/finance/')),
+			array('label' => 'BPO Customer Service', 'url' => home_url('/industry/bpo-customer-service/')),
+		),
+	),
+	'integrations' => array(
+		'title' => 'Integrations',
+		'links' => array(
+			array('label' => 'Salesforce Integration', 'url' => home_url('/integrations/salesforce-integration/')),
+			array('label' => 'HubSpot Integration', 'url' => home_url('/integrations/hubspot-integration/')),
+			array('label' => 'Zoho Integration', 'url' => home_url('/integrations/zoho-integration/')),
+			array('label' => 'WhatsApp Integration', 'url' => home_url('/integrations/whatsapp-integration/')),
+			array('label' => 'Zapier Integration', 'url' => home_url('/integrations/zapier-integration/')),
+			array('label' => 'All integrations', 'url' => home_url('/integrations/')),
+		),
+	),
+	'company' => array(
+		'title' => 'Company',
+		'links' => array(
+			array('label' => 'Pricing', 'url' => home_url('/pricing/')),
+			array('label' => 'Blog', 'url' => home_url('/blog/')),
+			array('label' => 'Success Stories', 'url' => home_url('/success-stories/')),
+			array('label' => 'Documentation', 'url' => 'https://docs.botphonic.ai/', 'new_tab' => true),
+			array('label' => 'Partners', 'url' => home_url('/become-a-partner/')),
+			array('label' => 'Marketplace', 'url' => home_url('/marketplace/')),
+		),
+	),
+	'email-outreach' => array(
+		'title' => 'Email outreach',
+		'links' => array(
+			array('label' => 'Cold Email', 'url' => home_url('/product/cold-email/')),
+			array('label' => 'AI Cold Email Sequences', 'url' => home_url('/product/ai-cold-email-sequences/')),
+			array('label' => 'Auto Follow-ups', 'url' => home_url('/product/automatic-follow-up-emails/')),
+			array('label' => 'Warm Up Mail', 'url' => home_url('/product/warm-up-mail/')),
+			array('label' => 'Email Verifier', 'url' => home_url('/product/email-verifier/')),
+			array('label' => 'White-Label Cold Email', 'url' => home_url('/product/white-label-cold-mail/')),
+		),
+	),
+);
+
 ?>
 
 <?php get_template_part('sidebar-templates/sidebar', 'footerfull'); ?>
@@ -9,7 +57,7 @@ defined('ABSPATH') || exit;
  * Dark footer. Colours come from the global --bpg-* tokens in style.css (the
  * same navy / blue / coral the home page, blog and comparison guides use);
  * the layout and component styles live in assets/css/hfe.css § Footer.
- * Link columns are the "Footer Column 2–8" widget areas, unchanged.
+ * Link columns are maintained in $botphonic_footer_columns above.
  */
 ?>
 <footer class="bf-footer" role="contentinfo" aria-label="Site footer">
@@ -66,13 +114,20 @@ defined('ABSPATH') || exit;
 			</div>
 
 
-			<?php for ($i = 2; $i <= 8; $i++) : ?>
-				<?php if (is_active_sidebar("footer-column-{$i}")) : ?>
-					<div class="bf-footer-links footer-column-<?php echo esc_attr($i); ?>">
-						<?php dynamic_sidebar("footer-column-{$i}"); ?>
-					</div>
-				<?php endif; ?>
-			<?php endfor; ?>
+			<?php foreach ($botphonic_footer_columns as $column_key => $column) : ?>
+			<div class="bf-footer-links">
+				<div class="footer-items">
+					<h2 class="widget-title"><?php echo esc_html($column['title']); ?></h2>
+					<ul class="menu" id="<?php echo esc_attr('bf-footer-menu-' . $column_key); ?>">
+						<?php foreach ($column['links'] as $link) : ?>
+						<li>
+							<a href="<?php echo esc_url($link['url']); ?>"<?php if (!empty($link['new_tab'])) : ?> target="_blank" rel="noopener noreferrer"<?php endif; ?>><?php echo esc_html($link['label']); ?></a>
+						</li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+			</div>
+			<?php endforeach; ?>
 
 		</div>
 	</div>

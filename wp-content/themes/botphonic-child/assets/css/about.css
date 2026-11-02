@@ -1,6 +1,6 @@
 /* ==========================================================================
-   About page (template-about.php). Built on the --bpg-* design tokens.
-   ========================================================================== */
+About page (template-about.php). Built on the --bpg-* design tokens.
+========================================================================== */
 
 .bp-about {
 	--bau-ink: var(--bpg-ink, #072032);
@@ -52,7 +52,7 @@
 .bp-about .screen-reader-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* Layout
-   ========================================================================== */
+========================================================================== */
 .bau-wrap { width: 100%; max-width: calc(var(--bau-max) + 2 * var(--bau-gutter)); margin-inline: auto; padding-inline: var(--bau-gutter); }
 .bau-section { padding-block: clamp(64px, 8vw, 112px); background: #fff; }
 .bau-section--tint { background: var(--bau-tint); }
@@ -81,15 +81,15 @@
 .bau-lede--inverse { color: var(--bau-on-deep); }
 
 /* Buttons and links
-   ========================================================================== */
+========================================================================== */
 .bau-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 .bau-actions--center { justify-content: center; }
 .bp-about .bau-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 22px; border: 1.5px solid transparent; border-radius: var(--bau-r-sm); font-size: 0.95rem; font-weight: 700; line-height: 1.2; text-decoration: none; transition: background-color var(--bau-speed) var(--bau-ease), border-color var(--bau-speed) var(--bau-ease), color var(--bau-speed) var(--bau-ease), transform var(--bau-speed) var(--bau-ease); }
 .bp-about .bau-btn svg { transition: transform var(--bau-speed) var(--bau-ease); }
 .bp-about .bau-btn:hover { transform: translateY(-1px); }
 .bp-about .bau-btn:hover svg { transform: translateX(3px); }
-.bp-about .bau-btn--coral { background: var(--bau-coral); color: var(--bpg-on-coral, #fff); }
-.bp-about .bau-btn--coral:hover { background: var(--bau-coral-2); color: var(--bpg-on-coral-hover, #F4F8FD); }
+.bp-about .bau-btn--coral { background: var(--bau-coral); color: var(--bau-ink); }
+.bp-about .bau-btn--coral:hover { background: var(--bau-coral-2); color: var(--bau-ink); }
 .bp-about .bau-btn--ink { background: var(--bau-ink); color: #fff; }
 .bp-about .bau-btn--ink:hover { background: #0F3453; color: #fff; }
 .bp-about .bau-btn--white { background: #fff; color: var(--bau-ink); }
@@ -100,7 +100,7 @@
 .bp-about .bau-text-link:hover { color: var(--bau-accent-2); text-decoration-style: solid; }
 
 /* Hero
-   ========================================================================== */
+========================================================================== */
 .bau-hero { padding-top: clamp(32px, 5vw, 56px); padding-bottom: clamp(120px, 12vw, 160px); }
 .bau-hero::after { content: ""; position: absolute; z-index: -1; top: -20%; right: -10%; width: min(60vw, 760px); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(37, 99, 235, 0.32) 0%, rgba(37, 99, 235, 0) 68%); pointer-events: none; }
 .bau-breadcrumb { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: clamp(28px, 4vw, 44px); color: var(--bau-on-deep); font-size: 0.875rem; }
@@ -138,7 +138,7 @@
 .bau-stat span { color: var(--bau-text); font-size: 0.9rem; line-height: 1.45; }
 
 /* Story
-   ========================================================================== */
+========================================================================== */
 .bau-story { display: flex; flex-direction: column; gap: 18px; color: var(--bau-ink-2); font-size: 1.0625rem; line-height: 1.75; }
 .bau-story .bau-lede { color: var(--bau-ink); }
 .bau-quote { position: relative; display: flex; flex-direction: column; gap: 12px; margin-block: 8px; padding: 26px 28px 26px 32px; border-radius: var(--bau-r); background: var(--bau-deep); color: #fff; }
@@ -155,7 +155,7 @@
 .bau-facts dd { font-weight: 700; }
 
 /* Cards
-   ========================================================================== */
+========================================================================== */
 .bau-card { position: relative; padding: 28px; border: 1px solid var(--bau-line); border-radius: var(--bau-r-lg); background: #fff; box-shadow: var(--bau-shadow); transition: transform var(--bau-speed) var(--bau-ease), box-shadow var(--bau-speed) var(--bau-ease), border-color var(--bau-speed) var(--bau-ease); }
 .bau-card:hover { transform: translateY(-3px); border-color: var(--bau-line-2); box-shadow: var(--bau-shadow-lg); }
 .bau-card p { color: var(--bau-text); }
@@ -194,7 +194,7 @@
 .bau-dark-card p { color: var(--bau-on-deep); font-size: 0.97rem; }
 
 /* Industry tabs
-   ========================================================================== */
+========================================================================== */
 .bau-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 24px; }
 .bp-about .bau-tab { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border: 1.5px solid var(--bau-line-2); border-radius: 999px; background: #fff; color: var(--bau-ink); font: inherit; font-size: 0.92rem; font-weight: 700; cursor: pointer; transition: background-color var(--bau-speed) var(--bau-ease), border-color var(--bau-speed) var(--bau-ease), color var(--bau-speed) var(--bau-ease); }
 .bp-about .bau-tab:hover { border-color: var(--bau-ink); }
@@ -212,7 +212,7 @@
 .bau-check-list li > span { display: inline-flex; flex: none; align-items: center; justify-content: center; width: 24px; height: 24px; margin-top: 1px; border-radius: 50%; background: var(--bau-ok-soft); color: var(--bau-ok); }
 
 /* Proof
-   ========================================================================== */
+========================================================================== */
 .bau-case { position: relative; isolation: isolate; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 48px); align-items: center; padding: clamp(28px, 4vw, 48px); border-radius: var(--bau-r-lg); background: var(--bau-deep); color: #fff; }
 .bau-case::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(420px 320px at 100% 0%, rgba(255, 126, 85, 0.22), transparent 70%), radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1.5px) 0 0 / 22px 22px; }
 .bp-about .bau-case h3 { color: #fff; font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.2; }
@@ -253,12 +253,122 @@
 .bau-faq { display: grid; grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.6fr); gap: clamp(32px, 5vw, 64px); align-items: start; }
 .bau-faq__intro { position: sticky; top: calc(var(--bpg-nav-h, 72px) + 24px); }
 
-/* Final CTA */
-.bau-final::after { content: ""; position: absolute; z-index: -1; bottom: -40%; left: 50%; width: min(80vw, 900px); aspect-ratio: 2; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 126, 85, 0.22), transparent); transform: translateX(-50%); pointer-events: none; }
-.bau-final__inner { display: flex; flex-direction: column; align-items: center; gap: 20px; max-width: 860px; margin-inline: auto; padding-inline: var(--bau-gutter); text-align: center; }
-.bp-about .bau-final h2 { max-width: 22ch; font-size: clamp(1.9rem, 3.6vw, 2.75rem); }
-.bau-final__inner > p { max-width: 56ch; color: var(--bau-on-deep); font-size: 1.15rem; line-height: 1.6; }
-.bau-final small { color: var(--bau-on-deep); font-size: 0.875rem; }
+/* Final CTA — light gradient card */
+.bau-final--light {
+	padding: clamp(36px, 5vw, 64px) var(--bau-gutter, 20px);
+	background: var(--bpg-surface, #fff);
+	color: var(--bpg-ink, #072032);
+}
+
+.bau-final--light::before,
+.bau-final--light::after {
+	content: none;
+}
+
+.bau-final--light .bau-final__inner {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+	width: 100%;
+	max-width: 1200px;
+	box-sizing: border-box;
+	margin-inline: auto;
+	padding: clamp(28px, 4vw, 52px);
+	border: 1px solid var(--bpg-accent-line, #D0DDFF);
+	border-radius: var(--bpg-r-xl, 28px);
+	background: linear-gradient(
+		135deg,
+		#F5F9FF 0%,
+		#FFFFFF 55%,
+		#FFF6F2 100%
+	);
+	box-shadow: var(--bpg-shadow, 0 8px 24px rgba(7, 32, 50, 0.06));
+	text-align: center;
+}
+
+.bau-final--light .bau-final__inner::before,
+.bau-final--light .bau-final__inner::after {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	pointer-events: none;
+}
+
+.bau-final--light .bau-final__inner::before {
+	inset: -60% 45% -60% -15%;
+	background: radial-gradient(
+		closest-side,
+		rgba(37, 99, 235, 0.14),
+		transparent 70%
+	);
+}
+
+.bau-final--light .bau-final__inner::after {
+	inset: -60% -15% -60% 55%;
+	background: radial-gradient(
+		closest-side,
+		rgba(255, 126, 85, 0.16),
+		transparent 70%
+	);
+}
+
+.bp-about .bau-final--light h2 {
+	max-width: 28ch;
+	margin: 0;
+	color: var(--bpg-ink, #072032);
+	font-size: clamp(1.9rem, 3.6vw, 2.75rem);
+	line-height: 1.2;
+}
+
+.bau-final--light .bau-final__inner > p {
+	max-width: 60ch;
+	margin: 0;
+	color: var(--bpg-ink-2, #41505E);
+	font-size: clamp(1rem, 1.5vw, 1.15rem);
+	line-height: 1.7;
+}
+
+.bau-final--light .bau-actions {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 12px;
+}
+
+.bau-final--light .bau-btn--ghost-dark {
+	background: #fff;
+	border: 1px solid var(--bpg-line-2, #DCE5F0);
+	color: var(--bpg-ink, #072032);
+}
+
+.bau-final--light .bau-btn--ghost-dark:hover,
+.bau-final--light .bau-btn--ghost-dark:focus-visible {
+	background: var(--bpg-accent-soft, #EFF4FF);
+	border-color: var(--bpg-accent, #2563EB);
+	color: var(--bpg-accent-2, #1D4ED8);
+}
+
+.bau-final--light small {
+	max-width: 76ch;
+	color: var(--bpg-ink-2, #41505E);
+	font-size: 0.875rem;
+	line-height: 1.7;
+}
+
+@media (max-width: 575.98px) {
+	.bau-final--light .bau-actions {
+		width: 100%;
+	}
+
+	.bau-final--light .bau-actions .bau-btn {
+		width: 100%;
+		justify-content: center;
+	}
+}
 
 /* Reveal on scroll (only once about.js has run, so content never stays hidden) */
 .bp-about.is-ready [data-bau-reveal] { opacity: 0; transform: translateY(16px); transition: opacity 600ms var(--bau-ease), transform 600ms var(--bau-ease); transition-delay: var(--bau-delay, 0ms); }
@@ -270,7 +380,7 @@
 }
 
 /* Responsive
-   ========================================================================== */
+========================================================================== */
 @media (max-width: 1080px) {
 	.bau-grid--hero,
 	.bau-grid--story,

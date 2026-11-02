@@ -152,9 +152,4 @@ $bph_logo_id = (int) get_theme_mod('custom_logo');
 			</button>
 		</div>
 	</div>
-
-	<div class="bph__cta-bar">
-		<a class="bph-btn bph-btn--accent" href="<?php echo esc_url(BOTPHONIC_DEMO_URL); ?>">Book a demo</a>
-		<a class="bph-btn bph-btn--coral" href="<?php echo esc_url(BOTPHONIC_REGISTER_URL); ?>">Start free trial</a>
-	</div>
 </header><!-- #wrapper-navbar -->

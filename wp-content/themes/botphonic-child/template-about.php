@@ -247,7 +247,7 @@ get_header();
 						</div>
 						<ul class="bau-outcomes" aria-label="Actions completed during the example call">
 							<?php foreach (array('Appointment booked', 'Practice software updated', 'Text message sent', 'Summary emailed to the team') as $bp_about_outcome) : ?>
-								<li><?php echo $bp_about_check; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?><?php echo esc_html($bp_about_outcome); ?></li>
+							<li><?php echo $bp_about_check; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?><?php echo esc_html($bp_about_outcome); ?></li>
 							<?php endforeach; ?>
 						</ul>
 					</figure>
@@ -259,7 +259,7 @@ get_header();
 			<div class="bau-wrap">
 				<div class="bau-stats">
 					<?php foreach ($bp_about_stats as $bp_about_stat) : ?>
-						<div class="bau-stat" data-bau-reveal><strong><?php echo esc_html($bp_about_stat['value']); ?></strong><span><?php echo esc_html($bp_about_stat['label']); ?></span></div>
+					<div class="bau-stat" data-bau-reveal><strong><?php echo esc_html($bp_about_stat['value']); ?></strong><span><?php echo esc_html($bp_about_stat['label']); ?></span></div>
 					<?php endforeach; ?>
 				</div>
 			</div>
@@ -304,11 +304,11 @@ get_header();
 				</header>
 				<div class="bau-grid bau-grid--three">
 					<?php foreach ($bp_about_pains as $bp_about_pain) : ?>
-						<article class="bau-card bau-pain" data-bau-reveal>
-							<span class="bau-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><?php echo $bp_about_pain['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG paths. ?></svg></span>
-							<h3><?php echo esc_html($bp_about_pain['quote']); ?></h3>
-							<p><?php echo esc_html($bp_about_pain['text']); ?></p>
-						</article>
+					<article class="bau-card bau-pain" data-bau-reveal>
+						<span class="bau-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><?php echo $bp_about_pain['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG paths. ?></svg></span>
+						<h3><?php echo esc_html($bp_about_pain['quote']); ?></h3>
+						<p><?php echo esc_html($bp_about_pain['text']); ?></p>
+					</article>
 					<?php endforeach; ?>
 				</div>
 			</div>
@@ -323,10 +323,10 @@ get_header();
 				</header>
 				<ol class="bau-grid bau-grid--three bau-values">
 					<?php foreach ($bp_about_values as $bp_about_value) : ?>
-						<li class="bau-value" data-bau-reveal>
-							<h3><?php echo esc_html($bp_about_value['title']); ?></h3>
-							<p><?php echo esc_html($bp_about_value['text']); ?></p>
-						</li>
+					<li class="bau-value" data-bau-reveal>
+						<h3><?php echo esc_html($bp_about_value['title']); ?></h3>
+						<p><?php echo esc_html($bp_about_value['text']); ?></p>
+					</li>
 					<?php endforeach; ?>
 				</ol>
 			</div>
@@ -342,40 +342,40 @@ get_header();
 
 				<div class="bau-grid bau-grid--leaders">
 					<?php foreach ($bp_about_leaders as $bp_about_leader) : ?>
-						<?php
-						$bp_about_user = get_user_by('slug', $bp_about_leader['slug']);
-						$bp_about_photo = $bp_about_user ? get_avatar_url($bp_about_user->ID, array('size' => 192)) : '';
-						?>
-						<article class="bau-card bau-person" data-bau-reveal>
-							<div class="bau-person__head">
-								<?php if ($bp_about_photo) : ?>
-									<img class="bau-avatar" src="<?php echo esc_url($bp_about_photo); ?>" alt="" width="72" height="72" loading="lazy" decoding="async">
-								<?php else : ?>
-									<span class="bau-avatar bau-avatar--initials" aria-hidden="true"><?php echo esc_html($bp_about_leader['initials']); ?></span>
-								<?php endif; ?>
-								<div>
-									<h3><?php echo esc_html($bp_about_leader['name']); ?></h3>
-									<span><?php echo esc_html($bp_about_leader['role']); ?></span>
-								</div>
+					<?php
+					$bp_about_user = get_user_by('slug', $bp_about_leader['slug']);
+					$bp_about_photo = $bp_about_user ? get_avatar_url($bp_about_user->ID, array('size' => 192)) : '';
+					?>
+					<article class="bau-card bau-person" data-bau-reveal>
+						<div class="bau-person__head">
+							<?php if ($bp_about_photo) : ?>
+							<img class="bau-avatar" src="<?php echo esc_url($bp_about_photo); ?>" alt="" width="72" height="72" loading="lazy" decoding="async">
+							<?php else : ?>
+							<span class="bau-avatar bau-avatar--initials" aria-hidden="true"><?php echo esc_html($bp_about_leader['initials']); ?></span>
+							<?php endif; ?>
+							<div>
+								<h3><?php echo esc_html($bp_about_leader['name']); ?></h3>
+								<span><?php echo esc_html($bp_about_leader['role']); ?></span>
 							</div>
-							<p><?php echo esc_html($bp_about_leader['bio']); ?></p>
-							<div class="bau-person__links">
-								<a class="bau-text-link" href="<?php echo esc_url($bp_about_leader['linkedin']); ?>">LinkedIn<span class="screen-reader-text"> profile of <?php echo esc_html($bp_about_leader['name']); ?></span></a>
-								<?php if ($bp_about_user) : ?>
-									<a class="bau-text-link" href="<?php echo esc_url(get_author_posts_url($bp_about_user->ID)); ?>">Articles<span class="screen-reader-text"> by <?php echo esc_html($bp_about_leader['name']); ?></span></a>
-								<?php endif; ?>
-							</div>
-						</article>
+						</div>
+						<p><?php echo esc_html($bp_about_leader['bio']); ?></p>
+						<div class="bau-person__links">
+							<a class="bau-text-link" href="<?php echo esc_url($bp_about_leader['linkedin']); ?>">LinkedIn<span class="screen-reader-text"> profile of <?php echo esc_html($bp_about_leader['name']); ?></span></a>
+							<?php if ($bp_about_user) : ?>
+							<a class="bau-text-link" href="<?php echo esc_url(get_author_posts_url($bp_about_user->ID)); ?>">Articles<span class="screen-reader-text"> by <?php echo esc_html($bp_about_leader['name']); ?></span></a>
+							<?php endif; ?>
+						</div>
+					</article>
 					<?php endforeach; ?>
 				</div>
 
 				<ol class="bau-timeline" aria-label="Botphonic milestones">
 					<?php foreach ($bp_about_milestones as $bp_about_milestone) : ?>
-						<li data-bau-reveal>
-							<span><?php echo esc_html($bp_about_milestone['when']); ?></span>
-							<strong><?php echo esc_html($bp_about_milestone['title']); ?></strong>
-							<p><?php echo esc_html($bp_about_milestone['text']); ?></p>
-						</li>
+					<li data-bau-reveal>
+						<span><?php echo esc_html($bp_about_milestone['when']); ?></span>
+						<strong><?php echo esc_html($bp_about_milestone['title']); ?></strong>
+						<p><?php echo esc_html($bp_about_milestone['text']); ?></p>
+					</li>
 					<?php endforeach; ?>
 				</ol>
 			</div>
@@ -390,11 +390,11 @@ get_header();
 				</header>
 				<div class="bau-grid bau-grid--three">
 					<?php foreach ($bp_about_differences as $bp_about_difference) : ?>
-						<article class="bau-dark-card" data-bau-reveal>
-							<svg viewBox="0 0 24 24" aria-hidden="true"><?php echo $bp_about_difference['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG paths. ?></svg>
-							<h3><?php echo esc_html($bp_about_difference['title']); ?></h3>
-							<p><?php echo esc_html($bp_about_difference['text']); ?></p>
-						</article>
+					<article class="bau-dark-card" data-bau-reveal>
+						<svg viewBox="0 0 24 24" aria-hidden="true"><?php echo $bp_about_difference['icon']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG paths. ?></svg>
+						<h3><?php echo esc_html($bp_about_difference['title']); ?></h3>
+						<p><?php echo esc_html($bp_about_difference['text']); ?></p>
+					</article>
 					<?php endforeach; ?>
 				</div>
 			</div>
@@ -408,24 +408,24 @@ get_header();
 				</header>
 				<div class="bau-tabs" role="tablist" aria-label="Choose your industry" data-bau-tabs>
 					<?php foreach ($bp_about_audiences as $bp_about_id => $bp_about_audience) : ?>
-						<button class="bau-tab" type="button" role="tab" id="bau-tab-<?php echo esc_attr($bp_about_id); ?>" aria-controls="bau-panel-<?php echo esc_attr($bp_about_id); ?>" aria-selected="<?php echo 'health' === $bp_about_id ? 'true' : 'false'; ?>"<?php echo 'health' === $bp_about_id ? '' : ' tabindex="-1"'; ?>><?php echo esc_html($bp_about_audience['label']); ?></button>
+					<button class="bau-tab" type="button" role="tab" id="bau-tab-<?php echo esc_attr($bp_about_id); ?>" aria-controls="bau-panel-<?php echo esc_attr($bp_about_id); ?>" aria-selected="<?php echo 'health' === $bp_about_id ? 'true' : 'false'; ?>"<?php echo 'health' === $bp_about_id ? '' : ' tabindex="-1"'; ?>><?php echo esc_html($bp_about_audience['label']); ?></button>
 					<?php endforeach; ?>
 				</div>
 				<div class="bau-panels">
 					<?php foreach ($bp_about_audiences as $bp_about_id => $bp_about_audience) : ?>
-						<article class="bau-panel" id="bau-panel-<?php echo esc_attr($bp_about_id); ?>" role="tabpanel" aria-labelledby="bau-tab-<?php echo esc_attr($bp_about_id); ?>" data-bau-panel>
-							<div class="bau-stack">
-								<p class="bau-panel__label"><?php echo esc_html($bp_about_audience['label']); ?></p>
-								<h3><?php echo esc_html($bp_about_audience['title']); ?></h3>
-								<p><?php echo esc_html($bp_about_audience['pain']); ?></p>
-								<a class="bau-btn bau-btn--ink" href="<?php echo esc_url($bp_about_audience['href']); ?>"><?php echo esc_html($bp_about_audience['cta']); ?><?php echo $bp_about_arrow; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?></a>
-							</div>
-							<ul class="bau-check-list">
-								<?php foreach ($bp_about_audience['points'] as $bp_about_point) : ?>
-									<li><span aria-hidden="true"><?php echo $bp_about_check; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?></span><?php echo esc_html($bp_about_point); ?></li>
-								<?php endforeach; ?>
-							</ul>
-						</article>
+					<article class="bau-panel" id="bau-panel-<?php echo esc_attr($bp_about_id); ?>" role="tabpanel" aria-labelledby="bau-tab-<?php echo esc_attr($bp_about_id); ?>" data-bau-panel>
+						<div class="bau-stack">
+							<p class="bau-panel__label"><?php echo esc_html($bp_about_audience['label']); ?></p>
+							<h3><?php echo esc_html($bp_about_audience['title']); ?></h3>
+							<p><?php echo esc_html($bp_about_audience['pain']); ?></p>
+							<a class="bau-btn bau-btn--ink" href="<?php echo esc_url($bp_about_audience['href']); ?>"><?php echo esc_html($bp_about_audience['cta']); ?><?php echo $bp_about_arrow; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?></a>
+						</div>
+						<ul class="bau-check-list">
+							<?php foreach ($bp_about_audience['points'] as $bp_about_point) : ?>
+							<li><span aria-hidden="true"><?php echo $bp_about_check; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?></span><?php echo esc_html($bp_about_point); ?></li>
+							<?php endforeach; ?>
+						</ul>
+					</article>
 					<?php endforeach; ?>
 				</div>
 			</div>
@@ -453,23 +453,23 @@ get_header();
 				</div>
 				<div class="bau-grid bau-grid--three">
 					<?php foreach ($bp_about_testimonials as $bp_about_testimonial) : ?>
-						<figure class="bau-card bau-testimonial" data-bau-reveal>
-							<span class="bau-stars" aria-hidden="true">★★★★★</span>
-							<blockquote>“<?php echo esc_html($bp_about_testimonial['quote']); ?>”</blockquote>
-							<figcaption><span aria-hidden="true"><?php echo esc_html($bp_about_testimonial['initials']); ?></span><span><strong><?php echo esc_html($bp_about_testimonial['name']); ?></strong><small><?php echo esc_html($bp_about_testimonial['role']); ?></small></span></figcaption>
-						</figure>
+					<figure class="bau-card bau-testimonial" data-bau-reveal>
+						<span class="bau-stars" aria-hidden="true">★★★★★</span>
+						<blockquote>“<?php echo esc_html($bp_about_testimonial['quote']); ?>”</blockquote>
+						<figcaption><span aria-hidden="true"><?php echo esc_html($bp_about_testimonial['initials']); ?></span><span><strong><?php echo esc_html($bp_about_testimonial['name']); ?></strong><small><?php echo esc_html($bp_about_testimonial['role']); ?></small></span></figcaption>
+					</figure>
 					<?php endforeach; ?>
 				</div>
 				<ul class="bau-ratings" aria-label="Third-party review ratings">
 					<?php foreach ($bp_about_ratings as $bp_about_rating) : ?>
-						<li>
-							<strong><?php echo esc_html($bp_about_rating['score']); ?><small>/5</small></strong>
-							<?php if (!empty($bp_about_rating['url'])) : ?>
-								<a href="<?php echo esc_url($bp_about_rating['url']); ?>"><?php echo esc_html($bp_about_rating['site']); ?></a>
-							<?php else : ?>
-								<span><?php echo esc_html($bp_about_rating['site']); ?></span>
-							<?php endif; ?>
-						</li>
+					<li>
+						<strong><?php echo esc_html($bp_about_rating['score']); ?><small>/5</small></strong>
+						<?php if (!empty($bp_about_rating['url'])) : ?>
+						<a href="<?php echo esc_url($bp_about_rating['url']); ?>"><?php echo esc_html($bp_about_rating['site']); ?></a>
+						<?php else : ?>
+						<span><?php echo esc_html($bp_about_rating['site']); ?></span>
+						<?php endif; ?>
+					</li>
 					<?php endforeach; ?>
 				</ul>
 			</div>
@@ -485,7 +485,7 @@ get_header();
 				</div>
 				<ul class="bau-trust">
 					<?php foreach ($bp_about_trust as $bp_about_item) : ?>
-						<li data-bau-reveal><?php echo $bp_about_check; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?><span><strong><?php echo esc_html($bp_about_item['title']); ?></strong><?php echo esc_html($bp_about_item['text']); ?></span></li>
+					<li data-bau-reveal><?php echo $bp_about_check; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?><span><strong><?php echo esc_html($bp_about_item['title']); ?></strong><?php echo esc_html($bp_about_item['text']); ?></span></li>
 					<?php endforeach; ?>
 				</ul>
 			</div>
@@ -518,32 +518,36 @@ get_header();
 		</section>
 
 		<?php if ($bp_about_faqs && function_exists('botphonic_render_faq_group')) : ?>
-			<section id="faq" class="bau-section bau-section--tint" aria-labelledby="faq-title">
-				<div class="bau-wrap bau-faq">
-					<div class="bau-stack bau-faq__intro">
-						<p class="bau-kicker">FAQ</p>
-						<h2 id="faq-title">Questions people ask about Botphonic</h2>
-						<p class="bau-lede">Still unsure? Hear the agent on your own use case.</p>
-						<a class="bau-btn bau-btn--ink" href="<?php echo esc_url($bp_about_demo); ?>">Book a 20-minute demo</a>
-					</div>
-					<div class="bau-faq__list">
-						<?php echo botphonic_render_faq_group($bp_about_faqs); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped by the shared renderer. ?>
-					</div>
+		<section id="faq" class="bau-section bau-section--tint" aria-labelledby="faq-title">
+			<div class="bau-wrap bau-faq">
+				<div class="bau-stack bau-faq__intro">
+					<p class="bau-kicker">FAQ</p>
+					<h2 id="faq-title">Questions people ask about Botphonic</h2>
+					<p class="bau-lede">Still unsure? Hear the agent on your own use case.</p>
+					<a class="bau-btn bau-btn--ink" href="<?php echo esc_url($bp_about_demo); ?>">Book a 20-minute demo</a>
 				</div>
-			</section>
+				<div class="bau-faq__list">
+					<?php echo botphonic_render_faq_group($bp_about_faqs); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped by the shared renderer. ?>
+				</div>
+			</div>
+		</section>
 		<?php endif; ?>
 
-		<section class="bau-section bau-section--dark bau-final" aria-labelledby="cta-title">
+		<section class="bau-section bau-final bau-final--light" aria-labelledby="cta-title">
 			<div class="bau-final__inner">
 				<h2 id="cta-title">Your next call could be answered by Botphonic this afternoon</h2>
+
 				<p>Connect a number, add your FAQs, pick a voice. Your first call is answered in minutes, and you only pay for talk time.</p>
+
 				<div class="bau-actions bau-actions--center">
 					<a class="bau-btn bau-btn--coral" href="<?php echo esc_url($bp_about_register); ?>">Start 14-day free trial</a>
 					<a class="bau-btn bau-btn--ghost-dark" href="<?php echo esc_url(home_url('/pricing/')); ?>">See pricing</a>
 				</div>
+
 				<small>14-day free trial · 20 free minutes · $1 card check, refunded within 48 hours · Cancel anytime</small>
 			</div>
 		</section>
+
 	</main>
 </div>
 

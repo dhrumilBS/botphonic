@@ -78,57 +78,57 @@ $bpg_labels = botphonic_blog_archive_labels();
 
 				<?php if (have_posts()) : ?>
 
-					<?php if ($bpg_total) : ?>
-					<p class="bpg-arc-count">
-						<?php
-						echo esc_html(number_format_i18n($bpg_total)) . ' ';
-						echo esc_html(_n('article', 'articles', $bpg_total, 'botphonic'));
-
-						if ($bpg_pages > 1) {
-							echo esc_html(
-								sprintf(
-									/* translators: 1: current page, 2: total pages. */
-									' · page %1$s of %2$s',
-									number_format_i18n($bpg_paged),
-									number_format_i18n($bpg_pages)
-								)
-							);
-						}
-						?>
-					</p>
-					<?php endif; ?>
-
-					<div class="bpg-grid">
-						<?php
-						while (have_posts()) :
-							the_post();
-							get_template_part('loop-templates/content', 'bpgcard');
-						endwhile;
-						?>
-					</div>
-
+				<?php if ($bpg_total) : ?>
+				<p class="bpg-arc-count">
 					<?php
-					// Only printed when there is more than one page: an empty
-					// wrapper would still contribute its top margin.
-					if ($bpg_pages > 1) :
+					echo esc_html(number_format_i18n($bpg_total)) . ' ';
+					echo esc_html(_n('article', 'articles', $bpg_total, 'botphonic'));
+
+					if ($bpg_pages > 1) {
+						echo esc_html(
+							sprintf(
+								/* translators: 1: current page, 2: total pages. */
+								' · page %1$s of %2$s',
+								number_format_i18n($bpg_paged),
+								number_format_i18n($bpg_pages)
+							)
+						);
+					}
 					?>
-					<div class="bpg-pagination-wrap">
-						<?php understrap_pagination(array(), 'bpg-pagination'); ?>
-					</div>
-					<?php endif; ?>
+				</p>
+				<?php endif; ?>
+
+				<div class="bpg-grid">
+					<?php
+					while (have_posts()) :
+					the_post();
+					get_template_part('loop-templates/content', 'bpgcard');
+					endwhile;
+					?>
+				</div>
+
+				<?php
+				// Only printed when there is more than one page: an empty
+				// wrapper would still contribute its top margin.
+				if ($bpg_pages > 1) :
+				?>
+				<div class="bpg-pagination-wrap">
+					<?php understrap_pagination(array(), 'bpg-pagination'); ?>
+				</div>
+				<?php endif; ?>
 
 				<?php else : ?>
 
-					<div class="bpg-empty">
-						<h2 class="bpg-empty__title">Nothing here yet</h2>
-						<p>No articles match this archive. Try a search, or browse the full blog.</p>
-						<?php get_search_form(); ?>
-						<?php if ($bpg_posts_page_id) : ?>
-						<p class="bpg-empty__action">
-							<a class="bpg-btn bpg-btn--ghost" href="<?php echo esc_url(get_permalink($bpg_posts_page_id)); ?>">Browse all articles</a>
-						</p>
-						<?php endif; ?>
-					</div>
+				<div class="bpg-empty">
+					<h2 class="bpg-empty__title">Nothing here yet</h2>
+					<p>No articles match this archive. Try a search, or browse the full blog.</p>
+					<?php get_search_form(); ?>
+					<?php if ($bpg_posts_page_id) : ?>
+					<p class="bpg-empty__action">
+						<a class="bpg-btn bpg-btn--ghost" href="<?php echo esc_url(get_permalink($bpg_posts_page_id)); ?>">Browse all articles</a>
+					</p>
+					<?php endif; ?>
+				</div>
 
 				<?php endif; ?>
 
@@ -137,7 +137,7 @@ $bpg_labels = botphonic_blog_archive_labels();
 	</div>
 
 	<!-- ── CTA band ─────────────────────────────────────────────────── -->
-	<section class="bpg-band" aria-labelledby="bpg-band-title">
+	<section class="bpg-band bpg-band--light" aria-labelledby="bpg-band-title">
 		<div class="bpg-shell">
 			<div class="bpg-band__inner">
 				<div class="bpg-band__copy">
