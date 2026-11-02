@@ -101,6 +101,7 @@ defined('ABSPATH') || exit;
 <script>
 	window.myData = window.myData || {};
 	window.myData.isUserLoggedIn = <?php echo wp_json_encode(is_user_logged_in()); ?>;
+	window.myData.thankYouUrl = <?php echo wp_json_encode(home_url('/thank-you/')); ?>;
 </script>
 
 <?php wp_footer(); ?>

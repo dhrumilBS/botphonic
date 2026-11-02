@@ -12,12 +12,21 @@
 			});
 		}
 
+		// After a successful send the sign-up forms continue into the app;
+		// every other form lands on the thank-you page.
+		const SIGNUP_FORMS = ["3104"];
+
 		d.addEventListener("wpcf7submit", function (e) {
 			const wpcf7 = e.target.closest(".wpcf7");
 			if (!wpcf7) return;
-			const id = wpcf7.dataset.wpcf7Id;
-			if (!["11923", "3104"].includes(id)) return;
 			if (e.detail.status !== "mail_sent") return;
+			const id = wpcf7.dataset.wpcf7Id;
+
+			if (!SIGNUP_FORMS.includes(id)) {
+				const thankYouUrl = w.myData && w.myData.thankYouUrl;
+				if (thankYouUrl) w.location.href = thankYouUrl;
+				return;
+			}
 
 			const getValue = (name) =>
 				e.target.querySelector(`[name="${name}"]`)?.value || "";
