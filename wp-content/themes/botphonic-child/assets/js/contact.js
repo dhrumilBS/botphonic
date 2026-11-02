@@ -50,6 +50,24 @@
 	var phone = form && form.querySelector('[name="your-number"]');
 	var fullPhone = form && form.querySelector('[name="full_phone"]');
 
+	// Digits and phone punctuation only, whether typed, pasted or autofilled.
+	// Dashes stay allowed because intl-tel-input formats some countries with them.
+	if (phone) {
+		phone.setAttribute('inputmode', 'tel');
+		var notPhoneChar = /[^\d+()\-\s]/g;
+		phone.addEventListener('input', function () {
+			var value = phone.value;
+			if (!value.match(notPhoneChar)) {
+				return;
+			}
+			// Keep the caret where it was, minus the characters removed before it.
+			var caret = phone.selectionStart;
+			caret = value.slice(0, caret).replace(notPhoneChar, '').length;
+			phone.value = value.replace(notPhoneChar, '');
+			phone.setSelectionRange(caret, caret);
+		});
+	}
+
 	if (phone && fullPhone && typeof window.intlTelInput === 'function') {
 		var iti = window.intlTelInput(phone, {
 			formatOnDisplay: true,

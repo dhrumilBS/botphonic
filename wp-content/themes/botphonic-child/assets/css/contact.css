@@ -1,8 +1,4 @@
-/* ==========================================================================
-Contact page (temp-contact.php). Built on the --bpg-* design tokens,
-same visual language as about.css.
-========================================================================== */
-
+/* Contact page (temp-contact.php). Built on the --bpg-* design tokens, same visual language as about.css. */
 .bp-contact {
 	--bct-ink: var(--bpg-ink, #072032);
 	--bct-ink-2: var(--bpg-ink-2, #41505E);
@@ -56,8 +52,7 @@ same visual language as about.css.
 .bp-contact .bct-form-card :is(a, button):focus-visible { outline-color: var(--bct-accent); }
 .bp-contact .screen-reader-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
-/* Layout
-========================================================================== */
+/* Layout */
 .bct-wrap { width: 100%; max-width: calc(var(--bct-max) + 2 * var(--bct-gutter)); margin-inline: auto; padding-inline: var(--bct-gutter); }
 .bct-section { padding-block: clamp(64px, 8vw, 112px); background: #fff; }
 .bct-section--tint { background: var(--bct-tint); }
@@ -81,8 +76,7 @@ same visual language as about.css.
 .bct-kicker--dark { color: #FFB39B; }
 .bct-lede { color: var(--bct-ink-2); font-size: 1.125rem; line-height: 1.65; }
 
-/* Buttons and links
-========================================================================== */
+/* Buttons and links */
 .bct-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 .bct-actions--center { justify-content: center; }
 .bp-contact .bct-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 22px; border: 1.5px solid transparent; border-radius: var(--bct-r-sm); font-size: 0.95rem; font-weight: 700; line-height: 1.2; text-decoration: none; transition: background-color var(--bct-speed) var(--bct-ease), border-color var(--bct-speed) var(--bct-ease), color var(--bct-speed) var(--bct-ease), transform var(--bct-speed) var(--bct-ease); }
@@ -101,8 +95,7 @@ same visual language as about.css.
 .bp-contact .bct-text-link:hover { color: var(--bct-accent-2); text-decoration-style: solid; }
 .bp-contact .bct-inline-link { color: var(--bct-accent); font-weight: 700; text-underline-offset: 3px; overflow-wrap: anywhere; }
 
-/* Hero
-========================================================================== */
+/* Hero */
 .bct-hero { padding-top: clamp(32px, 5vw, 56px); padding-bottom: clamp(120px, 12vw, 160px); }
 .bct-hero::after { content: ""; position: absolute; z-index: -1; top: -20%; left: -10%; width: min(60vw, 760px); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(37, 99, 235, 0.30) 0%, rgba(37, 99, 235, 0) 68%); pointer-events: none; }
 .bct-breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: clamp(28px, 4vw, 44px); color: var(--bct-on-deep); font-size: 0.875rem; }
@@ -128,8 +121,7 @@ same visual language as about.css.
 .bct-proof strong { color: #fff; }
 .bct-stars { color: var(--bct-coral); letter-spacing: 2px; }
 
-/* Form card: CF7 markup (form 377) restyled for a light card
-========================================================================== */
+/* Form card: CF7 markup (form 377) restyled for a light card */
 .bct-form-card { position: relative; display: flex; flex-direction: column; gap: 18px; padding: clamp(22px, 3vw, 32px); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: var(--bct-r-lg); background: #fff; color: var(--bct-ink); box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.7), 0 10px 24px -12px rgba(0, 0, 0, 0.35); scroll-margin-top: calc(var(--bpg-nav-h, 72px) + 16px); }
 .bct-form-card__head { display: flex; flex-direction: column; gap: 4px; }
 .bp-contact .bct-form-card h2 { color: var(--bct-ink); font-size: clamp(1.35rem, 2.2vw, 1.6rem); line-height: 1.25; }
@@ -170,7 +162,7 @@ same visual language as about.css.
 .bct-form-card .iti__country-list { z-index: 20; max-width: min(360px, calc(100vw - 48px)); border-radius: var(--bct-r-sm); box-shadow: var(--bct-shadow-lg); color: var(--bct-ink); white-space: normal; }
 
 .bct-form-card .wpcf7-form .w-form .form-submit-btn { margin-top: 18px; }
-.bct-form-card .wpcf7-form .w-form .form-submit-btn .theme-btn { display: block; width: 100%; min-height: 52px; padding: 0 24px; border: 0; border-radius: var(--bct-r-sm); background: var(--bct-coral); color: var(--bct-ink); font: inherit; font-size: 1rem; font-weight: 800; cursor: pointer; box-shadow: none; transition: background-color var(--bct-speed) var(--bct-ease), transform var(--bct-speed) var(--bct-ease); }
+.bct-form-card .wpcf7-form .w-form .form-submit-btn .theme-btn { display: block; width: 100%; min-height: 52px; padding: 0 24px; border: 0; border-radius: var(--bct-r-sm); background: var(--bct-coral); color: var(--bct-ink); font: inherit; font-size: 1rem; font-weight: 800; text-transform: none; cursor: pointer; box-shadow: none; transition: background-color var(--bct-speed) var(--bct-ease), transform var(--bct-speed) var(--bct-ease); }
 .bct-form-card .wpcf7-form .w-form .form-submit-btn .theme-btn:hover { background: var(--bct-coral-2); color: var(--bct-ink); transform: translateY(-1px); box-shadow: none; }
 .bct-form-card .wpcf7-form .w-form .form-submit-btn .theme-btn:focus-visible { outline: 2px solid var(--bct-accent); outline-offset: 3px; }
 .bct-form-card .wpcf7-form .w-form .form-submit-btn .theme-btn:disabled { opacity: 0.7; cursor: progress; }
@@ -186,8 +178,7 @@ same visual language as about.css.
 .bct-stat strong { background: linear-gradient(90deg, var(--bct-ink), var(--bct-accent)); -webkit-background-clip: text; background-clip: text; color: transparent; font-size: clamp(1.75rem, 3vw, 2.4rem); font-weight: 800; line-height: 1; letter-spacing: -0.02em; }
 .bct-stat span { color: var(--bct-text); font-size: 0.9rem; line-height: 1.45; }
 
-/* Cards and routes
-========================================================================== */
+/* Cards and routes */
 .bct-card { position: relative; padding: 28px; border: 1px solid var(--bct-line); border-radius: var(--bct-r-lg); background: #fff; box-shadow: var(--bct-shadow); transition: transform var(--bct-speed) var(--bct-ease), box-shadow var(--bct-speed) var(--bct-ease), border-color var(--bct-speed) var(--bct-ease); }
 .bct-card p { color: var(--bct-text); }
 .bct-icon { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: var(--bct-r-sm); background: var(--bct-coral-soft); color: var(--bct-coral-ink); }
@@ -206,8 +197,7 @@ same visual language as about.css.
 .bct-route__cta::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
 .bct-route .bct-text-link { position: relative; z-index: 1; }
 
-/* Steps
-========================================================================== */
+/* Steps */
 .bct-steps { display: flex; flex-direction: column; gap: 14px; counter-reset: bct-step; }
 .bct-steps li { position: relative; display: flex; flex-direction: column; gap: 6px; padding: 24px 24px 24px 84px; border: 1px solid var(--bct-line); border-radius: var(--bct-r-lg); background: #fff; box-shadow: var(--bct-shadow); counter-increment: bct-step; }
 .bct-steps li::before { content: counter(bct-step); position: absolute; top: 22px; left: 24px; display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: var(--bct-ink); color: #fff; font-weight: 800; }
@@ -216,8 +206,7 @@ same visual language as about.css.
 .bct-steps p { color: var(--bct-text); }
 .bp-contact .bct-steps h3 { font-size: 1.1rem; }
 
-/* Enterprise
-========================================================================== */
+/* Enterprise */
 .bct-enterprise { position: relative; isolation: isolate; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(28px, 4vw, 56px); align-items: center; padding: clamp(28px, 4.5vw, 56px); border-radius: var(--bct-r-lg); background: var(--bct-deep); color: #fff; }
 .bct-enterprise::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(420px 320px at 100% 0%, rgba(255, 126, 85, 0.22), transparent 70%), radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1.5px) 0 0 / 22px 22px; }
 .bp-contact .bct-enterprise h2 { color: #fff; }
@@ -226,8 +215,7 @@ same visual language as about.css.
 .bct-enterprise__list li { display: flex; align-items: flex-start; gap: 12px; padding: 16px 18px; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: var(--bct-r); background: rgba(255, 255, 255, 0.05); font-weight: 600; line-height: 1.45; }
 .bct-enterprise__list li > span { display: inline-flex; flex: none; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: rgba(255, 126, 85, 0.18); color: #FFB39B; }
 
-/* Company details
-========================================================================== */
+/* Company details */
 .bct-info { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
 .bct-info address { color: var(--bct-ink-2); line-height: 1.6; }
 .bct-info .bct-text-link { margin-top: auto; }
@@ -239,8 +227,7 @@ same visual language as about.css.
 .bct-faq { display: grid; grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.6fr); gap: clamp(32px, 5vw, 64px); align-items: start; }
 .bct-faq__intro { position: sticky; top: calc(var(--bpg-nav-h, 72px) + 24px); }
 
-/* Final CTA
-========================================================================== */
+/* Final CTA */
 .bct-final { padding: clamp(36px, 5vw, 64px) var(--bct-gutter) clamp(56px, 7vw, 96px); background: #fff; }
 .bct-final__inner { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%; max-width: 1200px; margin-inline: auto; padding: clamp(28px, 4vw, 52px); border: 1px solid var(--bpg-accent-line, #D0DDFF); border-radius: var(--bpg-r-xl, 28px); background: linear-gradient(135deg, #F5F9FF 0%, #FFFFFF 55%, #FFF6F2 100%); box-shadow: var(--bpg-shadow, 0 8px 24px rgba(7, 32, 50, 0.06)); text-align: center; }
 .bct-final__inner::before,
@@ -255,8 +242,7 @@ same visual language as about.css.
 .bp-contact.is-ready [data-bct-reveal] { opacity: 0; transform: translateY(16px); transition: opacity 600ms var(--bct-ease), transform 600ms var(--bct-ease); transition-delay: var(--bct-delay, 0ms); }
 .bp-contact.is-ready [data-bct-reveal].is-visible { opacity: 1; transform: none; }
 
-/* Responsive
-========================================================================== */
+/* Responsive */
 @media (max-width: 1080px) {
 	.bct-grid--hero,
 	.bct-grid--steps,
