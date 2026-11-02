@@ -12,7 +12,8 @@
  * 8. ADMIN UI
  * 9. HTTP 410 GONE HANDLING
  * 10. CF7 — DUPLICATE EMAIL GUARD (24 HOURS)
- * 11. ABOUT US PAGE — assets, FAQ data + Yoast schema (template-about.php only) */
+ * 11. ABOUT US PAGE — assets, FAQ data + Yoast schema (template-about.php only)
+ * 12. CONTACT PAGE — assets, FAQ data + Yoast schema (temp-contact.php only) */
 
 /** * 1. CONFIG + INCLUDES */
 if (!defined('CUSTOME_STORY_SLUG')) {
@@ -966,6 +967,153 @@ add_filter('wpseo_schema_graph', function ($graph, $context) {
 		'@id' => trailingslashit($page_url) . '#faq',
 		'mainEntity' => $questions,
 	);
+
+	return $graph;
+}, 20, 2);
+
+/** * 12. CONTACT PAGE — temp-contact.php only
+ * Everything in this section checks is_page_template('temp-contact.php')
+ * first, so no other page is affected.
+ * Files: temp-contact.php (theme root), assets/css/contact.css, assets/js/contact.js
+ */
+if (!defined('BOTPHONIC_CONTACT_TEMPLATE')) {
+	define('BOTPHONIC_CONTACT_TEMPLATE', 'temp-contact.php');
+}
+
+/*
+ * 12a. Assets. Priority 30 so the shared landing stylesheet and the intl-tel
+ * handles from inc/function-enqueue.php (priority 25) are already registered.
+ */
+add_action('wp_enqueue_scripts', 'botphonic_contact_enqueue_assets', 30);
+function botphonic_contact_enqueue_assets()
+{
+	if (!is_page_template(BOTPHONIC_CONTACT_TEMPLATE)) {
+		return;
+	}
+
+	$dir = get_stylesheet_directory();
+	$uri = get_stylesheet_directory_uri();
+
+	wp_enqueue_style('intl-tel');
+	if (wp_style_is('botphonic-faqs-css', 'registered')) {
+		wp_enqueue_style('botphonic-faqs-css');
+	}
+
+	if (file_exists($dir . '/assets/css/contact.css')) {
+		wp_enqueue_style(
+			'botphonic-contact',
+			$uri . '/assets/css/contact.css',
+			wp_style_is(BOTPHONIC_LANDING_STYLE, 'registered') ? array(BOTPHONIC_LANDING_STYLE) : array(),
+			(string) filemtime($dir . '/assets/css/contact.css')
+		);
+	}
+
+	if (file_exists($dir . '/assets/js/contact.js')) {
+		wp_enqueue_script(
+			'botphonic-contact',
+			$uri . '/assets/js/contact.js',
+			wp_script_is('intl-tel', 'registered') ? array('intl-tel') : array(),
+			(string) filemtime($dir . '/assets/js/contact.js'),
+			array('in_footer' => true, 'strategy' => 'defer')
+		);
+	}
+}
+
+/*
+ * 12b. FAQ data. Single source for the visible accordion in temp-contact.php;
+ * the shared renderer turns the same rows into FAQPage schema. Keep prices in
+ * step with the Pricing page and the reply time in step with $bp_contact_reply.
+ */
+if (!function_exists('botphonic_contact_faq_items')) {
+	function botphonic_contact_faq_items()
+	{
+		return array(
+			array(
+				'q' => 'How do I contact Botphonic?',
+				'a' => 'Fill in the form on this page to request a free demo, email contact@botphonic.ai, or book a 20-minute call with our team at a time that suits you. Existing customers can also find setup and integration guides at docs.botphonic.ai.',
+			),
+			array(
+				'q' => 'How quickly will I hear back?',
+				'a' => 'Our team replies within one business day, by email or phone, to agree a time for your demo.',
+			),
+			array(
+				'q' => 'Is the demo free?',
+				'a' => 'Yes. The demo is free and there is no obligation to buy. We run a Botphonic AI voice agent on your own use case, show the integrations you need and give you pricing for your call volume.',
+			),
+			array(
+				'q' => 'Can I try Botphonic without talking to sales?',
+				'a' => 'Yes. Every plan starts with a 14-day free trial that includes 20 free minutes. A $1 card verification charge is refunded within 48 hours, and you can cancel anytime before the trial ends.',
+			),
+			array(
+				'q' => 'What should I include in my message?',
+				'a' => 'The more we know, the more useful your demo will be: your monthly call volume, which calls you want to automate (for example support, lead qualification or appointment booking), the CRM, calendar or phone system you use, the languages your callers speak, and any compliance needs such as HIPAA or PCI DSS.',
+			),
+			array(
+				'q' => 'I am already a customer. Where do I get support?',
+				'a' => 'Log in to your Botphonic dashboard at app.botphonic.ai to manage agents, numbers and billing, and use the documentation at docs.botphonic.ai for setup and integration guides. For anything else, email contact@botphonic.ai from the address on your account.',
+			),
+			array(
+				'q' => 'How much does Botphonic cost?',
+				'a' => 'Starter is $12 a month billed yearly ($15 billed monthly) for 100 talk minutes and 5 concurrent calls. Pro is $36 a month billed yearly ($45 billed monthly) for 300 minutes and 10 concurrent calls. You can also pay as you go from a $75 prepaid credit wallet at $0.13 per talk minute. Enterprise pricing is based on your volume and compliance needs.',
+			),
+			array(
+				'q' => 'Do you work with agencies and resellers?',
+				'a' => 'Yes. Through the Botphonic partner program, agencies and resellers can offer AI voice agents to their clients under their own brand, with volume pricing for growing client portfolios. Apply on the Become a Partner page.',
+			),
+		);
+	}
+}
+
+/*
+ * 12c. Yoast: mark the page as a ContactPage (keeps WebPage too).
+ */
+add_filter('wpseo_schema_webpage_type', function ($type) {
+	if (!is_page_template(BOTPHONIC_CONTACT_TEMPLATE)) {
+		return $type;
+	}
+	$types = (array) $type;
+	if (!in_array('ContactPage', $types, true)) {
+		$types[] = 'ContactPage';
+	}
+	return $types;
+});
+
+/*
+ * 12d. Yoast schema graph: sales and support ContactPoints on the existing
+ * Organization node. Never overwrites a contactPoint set elsewhere.
+ */
+add_filter('wpseo_schema_graph', function ($graph, $context) {
+
+	if (!is_page_template(BOTPHONIC_CONTACT_TEMPLATE)) {
+		return $graph;
+	}
+
+	$org_id = home_url('/#organization');
+
+	foreach ($graph as $i => $node) {
+		if (($node['@id'] ?? '') !== $org_id) {
+			continue;
+		}
+		if (empty($node['contactPoint'])) {
+			$graph[$i]['contactPoint'] = array(
+				array(
+					'@type' => 'ContactPoint',
+					'contactType' => 'sales',
+					'email' => 'contact@botphonic.ai',
+					'url' => get_permalink(),
+					'availableLanguage' => 'English',
+				),
+				array(
+					'@type' => 'ContactPoint',
+					'contactType' => 'customer support',
+					'email' => 'contact@botphonic.ai',
+					'url' => 'https://docs.botphonic.ai/',
+					'availableLanguage' => 'English',
+				),
+			);
+		}
+		break;
+	}
 
 	return $graph;
 }, 20, 2);

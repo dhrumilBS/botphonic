@@ -20,7 +20,6 @@ function botphonic_modern_template_allowlist()
 		'temp-agent-studio.php',
 		'temp-ai-voice-agents.php',
 		'temp-cold-mail.php',
-		'temp-contact.php',
 		'temp-cta.php',
 		'temp-elementor-blank.php',
 		'temp-jv.php',

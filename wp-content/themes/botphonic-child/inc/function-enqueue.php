@@ -240,11 +240,6 @@ function botphonic_enqueue_modern_template_assets()
 			wp_enqueue_script('ai-voice-agents');
 			break;
 
-		case 'contact':
-			wp_enqueue_style('intl-tel');
-			wp_enqueue_script('intl-tel');
-			break;
-
 		case 'jv':
 			wp_enqueue_style('jv');
 			break;
