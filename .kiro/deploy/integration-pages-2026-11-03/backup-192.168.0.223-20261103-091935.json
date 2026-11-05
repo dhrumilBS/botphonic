@@ -1,0 +1,82 @@
+{
+    "hubspot": {
+        "ID": 4072,
+        "post_title": "Hubspot Integration",
+        "post_modified": "2026-10-30 01:51:28",
+        "post_modified_gmt": "2026-10-30 08:51:28",
+        "thumbnail_id": 417,
+        "meta": {
+            "_yoast_wpseo_title": "HubSpot Integration: AI Calls for New Contacts | Botphonic",
+            "_yoast_wpseo_metadesc": "The Botphonic HubSpot integration has an AI voice agent call new contacts, then writes the lead status, lifecycle stage and a call note back to HubSpot.",
+            "_yoast_wpseo_focuskw": "Hubspot Integration",
+            "_yoast_wpseo_opengraph-title": "Botphonic + HubSpot: Call New Contacts Automatically",
+            "_yoast_wpseo_opengraph-description": "Connect HubSpot in a few clicks. Botphonic's AI voice agent calls new contacts and writes the lead status, lifecycle stage and a call note back to HubSpot.",
+            "_yoast_wpseo_twitter-title": "HubSpot Integration: AI Calls With Automatic CRM Updates",
+            "_yoast_wpseo_twitter-description": "Botphonic calls new HubSpot contacts, or contacts that reach a lifecycle stage you pick, then updates the record for you. No code needed."
+        }
+    },
+    "salesforce": {
+        "ID": 4357,
+        "post_title": "Salesforce Integration",
+        "post_modified": "2026-10-30 01:51:20",
+        "post_modified_gmt": "2026-10-30 08:51:20",
+        "thumbnail_id": 418,
+        "meta": {
+            "_yoast_wpseo_title": "Salesforce Integration for AI Voice Agents | Botphonic",
+            "_yoast_wpseo_metadesc": "The Botphonic Salesforce integration looks up each caller's record before the agent answers, updates fields mid-call and logs the call as a task.",
+            "_yoast_wpseo_focuskw": "Salesforce Integration",
+            "_yoast_wpseo_opengraph-title": "Botphonic + Salesforce: AI Calls That Know the Record",
+            "_yoast_wpseo_opengraph-description": "Botphonic's AI voice agent can look up the Salesforce lead or contact before it answers, update records mid-call and log the outcome as a task.",
+            "_yoast_wpseo_twitter-title": "Salesforce Integration: AI Calls With Your CRM Data",
+            "_yoast_wpseo_twitter-description": "Greet returning callers by name, update Salesforce records during the call and log calls as tasks, all through the Salesforce REST API."
+        }
+    },
+    "zapier": {
+        "ID": 4423,
+        "post_title": "Zapier Integration",
+        "post_modified": "2026-10-30 01:51:53",
+        "post_modified_gmt": "2026-10-30 08:51:53",
+        "thumbnail_id": 416,
+        "meta": {
+            "_yoast_wpseo_title": "Zapier Integration: AI Phone Calls From Any Zap | Botphonic",
+            "_yoast_wpseo_metadesc": "Turn form fills and ad leads into AI phone calls. The Botphonic Zapier integration runs on Webhooks by Zapier and passes call results to other apps.",
+            "_yoast_wpseo_focuskw": "Zapier Integration",
+            "_yoast_wpseo_opengraph-title": "Botphonic + Zapier: Start AI Phone Calls From Any Zap",
+            "_yoast_wpseo_opengraph-description": "Send leads from forms, ads, sheets and booking tools to Botphonic with Webhooks by Zapier. An AI voice agent calls them and results flow back to your apps.",
+            "_yoast_wpseo_twitter-title": "Zapier Integration: Turn Any Trigger Into an AI Call",
+            "_yoast_wpseo_twitter-description": "Add a lead in any Zapier app and Botphonic's AI voice agent calls them. Then send call results to Slack, Google Sheets or your CRM with a second Zap."
+        }
+    },
+    "zoho": {
+        "ID": 4483,
+        "post_title": "Zoho Integration",
+        "post_modified": "2026-10-30 01:51:35",
+        "post_modified_gmt": "2026-10-30 08:51:35",
+        "thumbnail_id": 411,
+        "meta": {
+            "_yoast_wpseo_title": "Zoho Integration: AI Calls That Update Zoho CRM | Botphonic",
+            "_yoast_wpseo_metadesc": "The Botphonic Zoho integration recognises callers in Zoho CRM, creates or updates leads from the conversation and logs calls in the Calls module.",
+            "_yoast_wpseo_focuskw": "Zoho Integration",
+            "_yoast_wpseo_opengraph-title": "Botphonic + Zoho CRM: AI Calls That Keep Records Current",
+            "_yoast_wpseo_opengraph-description": "Recognise callers from Zoho CRM, create or update leads from the conversation and log calls in the Calls module. Zoho workflow rules can start calls too.",
+            "_yoast_wpseo_twitter-title": "Zoho Integration: AI Calls Logged in Zoho CRM",
+            "_yoast_wpseo_twitter-description": "Botphonic's AI voice agent knows returning callers, upserts leads without duplicates and logs calls in Zoho CRM. A workflow rule can trigger the call."
+        }
+    },
+    "whatsapp": {
+        "ID": 11989,
+        "post_title": "Whatsapp Integration",
+        "post_modified": "2026-10-30 01:51:45",
+        "post_modified_gmt": "2026-10-30 08:51:45",
+        "thumbnail_id": 918,
+        "meta": {
+            "_yoast_wpseo_title": "WhatsApp Integration: Automated Lead Follow-Up | Botphonic",
+            "_yoast_wpseo_metadesc": "Send an automated WhatsApp message the moment a lead submits your form, then let a Botphonic workflow handle the follow-up. No numbers copied by hand.",
+            "_yoast_wpseo_focuskw": "Whatsapp Integration",
+            "_yoast_wpseo_opengraph-title": "Botphonic + WhatsApp: Message Every New Lead Automatically",
+            "_yoast_wpseo_opengraph-description": "When someone fills in your form, Botphonic sends them a WhatsApp message and runs your follow-up workflow, so every lead hears from you fast.",
+            "_yoast_wpseo_twitter-title": "WhatsApp Integration: Automated Messages for New Leads",
+            "_yoast_wpseo_twitter-description": "Botphonic messages new leads on WhatsApp as soon as they submit your form, then follows up through your workflow."
+        }
+    }
+}

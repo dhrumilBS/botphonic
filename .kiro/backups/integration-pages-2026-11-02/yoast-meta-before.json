@@ -1,0 +1,76 @@
+{
+    "created": "2026-11-02T11:33:28+00:00",
+    "site": "http://192.168.0.223/botphonic/",
+    "pages": {
+        "4072": {
+            "slug": "hubspot-integration",
+            "_yoast_wpseo_title": "Hubspot Integration Enhancing Performance Fast | Botphonic",
+            "_yoast_wpseo_metadesc": "Discover how Hubspot Integration with Botphonic simplifies your sales and marketing operations for better efficiency.",
+            "indexable": {
+                "id": "81",
+                "title": "Hubspot Integration Enhancing Performance Fast | Botphonic",
+                "description": "Discover how Hubspot Integration with Botphonic simplifies your sales and marketing operations for better efficiency.",
+                "open_graph_title": "Hubspot Integration Enhancing Performance Fast | Botphonic",
+                "open_graph_description": "Discover how Hubspot Integration with Botphonic simplifies your sales and marketing operations for better efficiency.",
+                "twitter_title": "Hubspot Integration Enhancing Performance Fast | Botphonic",
+                "twitter_description": "Discover how Hubspot Integration with Botphonic simplifies your sales and marketing operations for better efficiency."
+            }
+        },
+        "4357": {
+            "slug": "salesforce-integration",
+            "_yoast_wpseo_title": "Salesforce Integration for Effective Lead Management | Botphonic",
+            "_yoast_wpseo_metadesc": "Transform customer experiences with Salesforce Integration. Manage leads effortlessly and make informed business decisions.",
+            "indexable": {
+                "id": "98",
+                "title": "Salesforce Integration for Effective Lead Management | Botphonic",
+                "description": "Transform customer experiences with Salesforce Integration. Manage leads effortlessly and make informed business decisions.",
+                "open_graph_title": "Salesforce Integration for Effective Lead Management | Botphonic",
+                "open_graph_description": "Transform customer experiences with Salesforce Integration. Manage leads effortlessly and make informed business decisions.",
+                "twitter_title": "Salesforce Integration for Effective Lead Management | Botphonic",
+                "twitter_description": "Transform customer experiences with Salesforce Integration. Manage leads effortlessly and make informed business decisions."
+            }
+        },
+        "4423": {
+            "slug": "zapier-integration",
+            "_yoast_wpseo_title": "Zapier Integration for a Seamless Automation Process | Botphonic",
+            "_yoast_wpseo_metadesc": "Get started with Zapier Integration to effortlessly connect applications and enhance your business productivity.",
+            "indexable": {
+                "id": "101",
+                "title": "Zapier Integration for a Seamless Automation Process | Botphonic",
+                "description": "Get started with Zapier Integration to effortlessly connect applications and enhance your business productivity.",
+                "open_graph_title": "Zapier Integration for a Seamless Automation Process | Botphonic",
+                "open_graph_description": "Get started with Zapier Integration to effortlessly connect applications and enhance your business productivity.",
+                "twitter_title": "Zapier Integration for a Seamless Automation Process | Botphonic",
+                "twitter_description": "Get started with Zapier Integration to effortlessly connect applications and enhance your business productivity."
+            }
+        },
+        "4483": {
+            "slug": "zoho-integration",
+            "_yoast_wpseo_title": "Zoho Integration for Streamlining Your Workflow | Botphonic",
+            "_yoast_wpseo_metadesc": "Enhance your business capabilities with Zoho Integration, simplifying processes and boosting productivity effectively.",
+            "indexable": {
+                "id": "104",
+                "title": "Zoho Integration for Streamlining Your Workflow | Botphonic",
+                "description": "Enhance your business capabilities with Zoho Integration, simplifying processes and boosting productivity effectively.",
+                "open_graph_title": "Zoho Integration for Streamlining Your Workflow | Botphonic",
+                "open_graph_description": "Enhance your business capabilities with Zoho Integration, simplifying processes and boosting productivity effectively.",
+                "twitter_title": "Zoho Integration for Streamlining Your Workflow | Botphonic",
+                "twitter_description": "Enhance your business capabilities with Zoho Integration, simplifying processes and boosting productivity effectively."
+            }
+        },
+        "11989": {
+            "slug": "whatsapp-integration",
+            "_yoast_wpseo_title": "Whatsapp Integration to Boost Your Service Efficiency | Botphonic",
+            "_yoast_wpseo_metadesc": "Enhance your business operations with Whatsapp Integration. Achieve efficiency and eliminate dropped calls with AI assistance.",
+            "indexable": {
+                "id": "534",
+                "title": "Whatsapp Integration to Boost Your Service Efficiency | Botphonic",
+                "description": "Enhance your business operations with Whatsapp Integration. Achieve efficiency and eliminate dropped calls with AI assistance.",
+                "open_graph_title": "Whatsapp Integration to Boost Your Service Efficiency | Botphonic",
+                "open_graph_description": "Enhance your business operations with Whatsapp Integration. Achieve efficiency and eliminate dropped calls with AI assistance.",
+                "twitter_title": "Whatsapp Integration to Boost Your Service Efficiency | Botphonic",
+                "twitter_description": "Enhance your business operations with Whatsapp Integration. Achieve efficiency and eliminate dropped calls with AI assistance."
+            }
+        }
+    }
+}

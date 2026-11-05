@@ -1,0 +1,37 @@
+Integration pages: deploy checklist (prepared 3 Nov 2026 from the local XAMPP copy)
+
+1. Upload these theme files (wp-content/themes/botphonic-child/):
+   functions.php                                 changed: loads inc/function-integration-pages.php
+   header.php                                    changed: no featured-image preload on the integration pages
+   inc/function-integration-pages.php            new
+   page-integrations.php                         new (hub, /integrations/)
+   page-hubspot-integration.php                  new
+   page-salesforce-integration.php               new
+   page-zapier-integration.php                   new
+   page-zoho-integration.php                     new
+   page-whatsapp-integration.php                 new
+   assets/css/integration-pages.css              new
+   assets/js/integration-pages.js                new
+   assets/img/twilio.svg, telnyx.svg, plivo.svg  new
+   template-parts/integrations/                  new folder, 16 files:
+     capabilities.php card.php cta.php data-table.php directory.php facts.php faq.php hero.php
+     layout.php related.php setup.php steps.php trust.php use-cases.php visual-flow.php visual-hub.php
+
+2. Then update the Botphonic Core plugin (wp-content/plugins/botPhonic/):
+   botPhonic.php                                 changed: the old integration widget is no longer registered
+   delete widgets/botphonic-integration.php
+   delete assets/css/integration.css, assets/js/integration.js
+   delete assets/integration/ (both JSON files)
+   Before deleting, confirm the old widget is unused on live (use your table prefix if it isn't wp_):
+     wp db query "SELECT post_id FROM wp_postmeta WHERE meta_key='_elementor_data' AND meta_value LIKE '%\"widgetType\":\"botphonic-integration\"%'"
+   Locally it was only on the Integrations page (1258) and one trashed page.
+
+3. Database side (titles, Yoast fields, share images): copy this folder to the server, then
+     wp eval-file deploy-integration-seo.php          dry run
+     wp eval-file deploy-integration-seo.php apply    writes, with a backup JSON next to the script
+   Undo: wp eval-file deploy-integration-seo.php rollback <backup file>
+
+4. Purge the page cache and CDN for /integrations/ and the five pages under it.
+
+5. Check after deploy: the six pages return 200, the hub directory filters, the use-case tabs and
+   FAQs open, and the Facebook Sharing Debugger shows the new share image for each page.

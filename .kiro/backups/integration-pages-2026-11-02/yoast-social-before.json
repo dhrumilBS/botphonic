@@ -1,0 +1,71 @@
+{
+    "created": "2026-11-02T11:36:50+00:00",
+    "site": "http://192.168.0.223/botphonic/",
+    "pages": {
+        "4072": {
+            "slug": "hubspot-integration",
+            "_yoast_wpseo_opengraph-title": "Hubspot Integration Enhancing Performance Fast | Botphonic",
+            "_yoast_wpseo_opengraph-description": "Discover how Hubspot Integration with Botphonic simplifies your sales and marketing operations for better efficiency.",
+            "_yoast_wpseo_twitter-title": "Hubspot Integration Enhancing Performance Fast | Botphonic",
+            "_yoast_wpseo_twitter-description": "Discover how Hubspot Integration with Botphonic simplifies your sales and marketing operations for better efficiency.",
+            "indexable": {
+                "open_graph_title": "Hubspot Integration Enhancing Performance Fast | Botphonic",
+                "open_graph_description": "Discover how Hubspot Integration with Botphonic simplifies your sales and marketing operations for better efficiency.",
+                "twitter_title": "Hubspot Integration Enhancing Performance Fast | Botphonic",
+                "twitter_description": "Discover how Hubspot Integration with Botphonic simplifies your sales and marketing operations for better efficiency."
+            }
+        },
+        "4357": {
+            "slug": "salesforce-integration",
+            "_yoast_wpseo_opengraph-title": "Salesforce Integration for Effective Lead Management | Botphonic",
+            "_yoast_wpseo_opengraph-description": "Transform customer experiences with Salesforce Integration. Manage leads effortlessly and make informed business decisions.",
+            "_yoast_wpseo_twitter-title": "Salesforce Integration for Effective Lead Management | Botphonic",
+            "_yoast_wpseo_twitter-description": "Transform customer experiences with Salesforce Integration. Manage leads effortlessly and make informed business decisions.",
+            "indexable": {
+                "open_graph_title": "Salesforce Integration for Effective Lead Management | Botphonic",
+                "open_graph_description": "Transform customer experiences with Salesforce Integration. Manage leads effortlessly and make informed business decisions.",
+                "twitter_title": "Salesforce Integration for Effective Lead Management | Botphonic",
+                "twitter_description": "Transform customer experiences with Salesforce Integration. Manage leads effortlessly and make informed business decisions."
+            }
+        },
+        "4423": {
+            "slug": "zapier-integration",
+            "_yoast_wpseo_opengraph-title": "Zapier Integration for a Seamless Automation Process | Botphonic",
+            "_yoast_wpseo_opengraph-description": "Get started with Zapier Integration to effortlessly connect applications and enhance your business productivity.",
+            "_yoast_wpseo_twitter-title": "Zapier Integration for a Seamless Automation Process | Botphonic",
+            "_yoast_wpseo_twitter-description": "Get started with Zapier Integration to effortlessly connect applications and enhance your business productivity.",
+            "indexable": {
+                "open_graph_title": "Zapier Integration for a Seamless Automation Process | Botphonic",
+                "open_graph_description": "Get started with Zapier Integration to effortlessly connect applications and enhance your business productivity.",
+                "twitter_title": "Zapier Integration for a Seamless Automation Process | Botphonic",
+                "twitter_description": "Get started with Zapier Integration to effortlessly connect applications and enhance your business productivity."
+            }
+        },
+        "4483": {
+            "slug": "zoho-integration",
+            "_yoast_wpseo_opengraph-title": "Zoho Integration for Streamlining Your Workflow | Botphonic",
+            "_yoast_wpseo_opengraph-description": "Enhance your business capabilities with Zoho Integration, simplifying processes and boosting productivity effectively.",
+            "_yoast_wpseo_twitter-title": "Zoho Integration for Streamlining Your Workflow | Botphonic",
+            "_yoast_wpseo_twitter-description": "Enhance your business capabilities with Zoho Integration, simplifying processes and boosting productivity effectively.",
+            "indexable": {
+                "open_graph_title": "Zoho Integration for Streamlining Your Workflow | Botphonic",
+                "open_graph_description": "Enhance your business capabilities with Zoho Integration, simplifying processes and boosting productivity effectively.",
+                "twitter_title": "Zoho Integration for Streamlining Your Workflow | Botphonic",
+                "twitter_description": "Enhance your business capabilities with Zoho Integration, simplifying processes and boosting productivity effectively."
+            }
+        },
+        "11989": {
+            "slug": "whatsapp-integration",
+            "_yoast_wpseo_opengraph-title": "Whatsapp Integration to Boost Your Service Efficiency | Botphonic",
+            "_yoast_wpseo_opengraph-description": "Enhance your business operations with Whatsapp Integration. Achieve efficiency and eliminate dropped calls with AI assistance.",
+            "_yoast_wpseo_twitter-title": "Whatsapp Integration to Boost Your Service Efficiency | Botphonic",
+            "_yoast_wpseo_twitter-description": "Enhance your business operations with Whatsapp Integration. Achieve efficiency and eliminate dropped calls with AI assistance.",
+            "indexable": {
+                "open_graph_title": "Whatsapp Integration to Boost Your Service Efficiency | Botphonic",
+                "open_graph_description": "Enhance your business operations with Whatsapp Integration. Achieve efficiency and eliminate dropped calls with AI assistance.",
+                "twitter_title": "Whatsapp Integration to Boost Your Service Efficiency | Botphonic",
+                "twitter_description": "Enhance your business operations with Whatsapp Integration. Achieve efficiency and eliminate dropped calls with AI assistance."
+            }
+        }
+    }
+}
