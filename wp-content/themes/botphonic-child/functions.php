@@ -25,6 +25,7 @@ if (!defined('BOTPHONIC_ALT_SLUG')) {
 
 $botphonic_includes = array(
 	'function-blog.php',
+	'acf-blog-review.php',
 	'function-blog-redirect.php',
 	'function-author.php',
 	'function-story.php',

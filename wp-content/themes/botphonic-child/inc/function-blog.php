@@ -362,6 +362,7 @@ function botphonic_blog_icon($name)
 		'close' => '<path d="M6 6l12 12M18 6L6 18"/>',
 		'arrow-right' => '<path d="M5 12h14M13 6l6 6-6 6"/>',
 		'link' => '<path d="M9.5 14.5a3.5 3.5 0 0 0 5 0l3-3a3.5 3.5 0 0 0-5-5l-1 1"/><path d="M14.5 9.5a3.5 3.5 0 0 0-5 0l-3 3a3.5 3.5 0 0 0 5 5l1-1"/>',
+		'shield-check' => '<path d="M12 3l7.5 3v5.5c0 4.6-3.1 7.9-7.5 9.5-4.4-1.6-7.5-4.9-7.5-9.5V6z"/><path d="M9 12l2 2 4-4.5"/>',
 	);
 
 	$raw = array(

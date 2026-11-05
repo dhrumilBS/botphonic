@@ -26,6 +26,7 @@ $permalink = get_permalink($post);
 $has_hero_image = has_post_thumbnail($post);
 $share_links = botphonic_blog_share_links($post);
 $hero_lede = has_excerpt($post) ? botphonic_blog_excerpt($post, 34) : '';
+$reviewer = function_exists('botphonic_blog_reviewer') ? botphonic_blog_reviewer($post) : null;
 
 ob_start();
 while (have_posts()):
@@ -75,17 +76,15 @@ $posts_page_id = (int) get_option('page_for_posts');
 					<?php endif; ?>
 
 					<div class="bpg-hero__byline">
-						<div class="bpg-author-inline">
-							<?php echo get_avatar($author_id, 88, '', esc_attr($display_name), array('loading' => 'lazy')); ?>
-							<span class="bpg-author-inline__text">
-								<a class="bpg-author-inline__name" href="<?php echo esc_url($user_posts); ?>" rel="author">
-									<?php echo esc_html($display_name); ?>
-								</a>
-								<?php if (!empty($author_position)): ?>
-									<span class="bpg-author-inline__role"><?php echo esc_html($author_position); ?></span>
-								<?php endif; ?>
-							</span>
-						</div>
+					    <?php
+						get_template_part('template-parts/byline-people', '', array(
+							'author_id' => $author_id,
+							'author_name' => (string) $display_name,
+							'author_role' => (string) $author_position,
+							'author_url' => $user_posts,
+							'reviewer' => $reviewer,
+						));
+						?>
 
 						<p class="bpg-meta">
 							<span class="bpg-meta__item">

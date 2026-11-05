@@ -56,6 +56,10 @@ $alt_toc_mixed = in_array(2, wp_list_pluck($alt['toc'], 'level'), true);
 $alt_author_id = (int) get_the_author_meta('ID');
 $alt_author_name = (string) get_the_author_meta('display_name');
 $alt_author_bio = (string) get_the_author_meta('description');
+$alt_author_role = trim((string) get_user_meta($alt_author_id, 'user_position', true));
+
+// Reviewer picked in the editor sidebar (inc/acf-blog-review.php), or null.
+$alt_reviewer = function_exists('botphonic_blog_reviewer') ? botphonic_blog_reviewer($post) : null;
 
 // Anything typed into the editor. Kept as a closing section so a writer is
 // never left with content that renders nowhere.
@@ -88,20 +92,33 @@ $alt_body = trim(apply_filters('the_content', get_the_content()));
 
 					<h1 class="bpg-alt-hero__title"><?php the_title(); ?></h1>
 
-					<p class="bpg-meta bpg-alt-hero__meta">
-						<span class="bpg-meta__item">
-							<?php echo botphonic_alt_icon('calendar'); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- inline SVG from a fixed whitelist. ?>
-							<time datetime="<?php echo esc_attr(get_the_modified_date('c')); ?>">
-								<?php
-								printf(
-									/* translators: %s: formatted date. */
-									esc_html__('Updated %s', 'botphonic'),
-									esc_html(get_the_modified_date('F j, Y'))
-								);
-								?>
-							</time>
-						</span>
-					</p>
+					<?php // Same byline as the blog: written by, reviewed by, then the date. ?>
+					<div class="bpg-hero__byline bpg-alt-hero__byline">
+						<?php
+						get_template_part('template-parts/byline-people', '', array(
+							'author_id' => $alt_author_id,
+							'author_name' => $alt_author_name,
+							'author_role' => $alt_author_role,
+							'author_url' => get_author_posts_url($alt_author_id),
+							'reviewer' => $alt_reviewer,
+						));
+						?>
+
+						<p class="bpg-meta">
+							<span class="bpg-meta__item">
+								<?php echo botphonic_alt_icon('calendar'); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- inline SVG from a fixed whitelist. ?>
+								<time datetime="<?php echo esc_attr(get_the_modified_date('c')); ?>">
+									<?php
+									printf(
+										/* translators: %s: formatted date. */
+										esc_html__('Updated %s', 'botphonic'),
+										esc_html(get_the_modified_date('F j, Y'))
+									);
+									?>
+								</time>
+							</span>
+						</p>
+					</div>
 
 				</div>
 
@@ -694,8 +711,11 @@ $alt_body = trim(apply_filters('the_content', get_the_content()));
 									<?php echo get_avatar($alt_author_id, 168, '', esc_attr($alt_author_name), array('loading' => 'lazy')); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_avatar() returns escaped markup. ?>
 								</div>
 								<div class="bpg-authorbox__ident">
-									<p class="bpg-authorbox__label"><?php esc_html_e('Reviewed by', 'botphonic'); ?></p>
+									<p class="bpg-authorbox__label"><?php esc_html_e('About the author', 'botphonic'); ?></p>
 									<h2 class="bpg-authorbox__name" id="bpg-alt-author"><?php echo esc_html($alt_author_name); ?></h2>
+									<?php if ('' !== $alt_author_role): ?>
+										<p class="bpg-authorbox__role"><?php echo esc_html($alt_author_role); ?></p>
+									<?php endif; ?>
 								</div>
 							</div>
 
