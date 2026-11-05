@@ -75,31 +75,31 @@ get_header();
 					<li><span class="pill"><img src="https://botphonic.ai/wp-content/uploads/2026/01/Telnyx.svg" alt="" width="60" height="18" loading="lazy">Telnyx</span></li>
 					<li><span class="pill"><img src="https://botphonic.ai/wp-content/uploads/2026/01/Plivo.svg" alt="" width="60" height="18" loading="lazy">Plivo</span></li>
 					<li>
-						<a class="pill" href="https://botphonic.ai/salesforce-integration/">
+						<a class="pill" href="https://botphonic.ai/integrations/salesforce-integration/">
 							<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
 								<path d="M7 3v4M13 3v4M5 7h10v4a5 5 0 0 1-10 0V7zM10 16v2" />
 							</svg>Salesforce</a>
 					</li>
 					<li>
-						<a class="pill" href="https://botphonic.ai/hubspot-integration/">
+						<a class="pill" href="https://botphonic.ai/integrations/hubspot-integration/">
 							<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
 								<path d="M7 3v4M13 3v4M5 7h10v4a5 5 0 0 1-10 0V7zM10 16v2" />
 							</svg>HubSpot</a>
 					</li>
 					<li>
-						<a class="pill" href="https://botphonic.ai/zoho-integration/">
+						<a class="pill" href="https://botphonic.ai/integrations/zoho-integration/">
 							<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
 								<path d="M7 3v4M13 3v4M5 7h10v4a5 5 0 0 1-10 0V7zM10 16v2" />
 							</svg>Zoho</a>
 					</li>
 					<li>
-						<a class="pill" href="https://botphonic.ai/whatsapp-integration/">
+						<a class="pill" href="https://botphonic.ai/integrations/whatsapp-integration/">
 							<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
 								<path d="M3 17l1.5-4A7 7 0 1 1 7 15.5L3 17z" />
 							</svg>WhatsApp</a>
 					</li>
 					<li>
-						<a class="pill" href="https://botphonic.ai/zapier-integration/">
+						<a class="pill" href="https://botphonic.ai/integrations/zapier-integration/">
 							<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
 								<path d="M11 2L4 11h6l-1 7 7-9h-6z" />
 							</svg>Zapier</a>

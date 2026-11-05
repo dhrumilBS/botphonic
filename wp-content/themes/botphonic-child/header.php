@@ -19,7 +19,10 @@ defined('ABSPATH') || exit;
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<?php
-	if (has_post_thumbnail()) {
+	// The integration templates (inc/function-integration-pages.php) never show
+	// the featured image, so it isn't preloaded there; it stays the share image.
+	$bp_hides_thumbnail = function_exists('botphonic_integration_active_key') && '' !== botphonic_integration_active_key();
+	if (has_post_thumbnail() && !$bp_hides_thumbnail) {
 		$thumb_id = get_post_thumbnail_id();
 		$image_src = wp_get_attachment_image_url($thumb_id, 'full');
 		$image_srcset = wp_get_attachment_image_srcset($thumb_id, 'full');

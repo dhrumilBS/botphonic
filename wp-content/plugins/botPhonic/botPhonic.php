@@ -332,9 +332,8 @@ function botphonic_enqueue_assets()
 	// Status Badge
 	wp_register_style('botphonic-available-badge', BOTPHONIC_URL . 'assets/css/botphonic-available-badge.css', array(), botphonic_asset_ver('assets/css/botphonic-available-badge.css'));
 
-	// Integration
-	wp_register_style('botphonic-integration-css', BOTPHONIC_URL . 'assets/css/integration.css', array(), botphonic_asset_ver('assets/css/integration.css'));
-	wp_register_script('botphonic-integration-js', BOTPHONIC_URL . 'assets/js/integration.js', array('jquery'), botphonic_asset_ver('assets/js/integration.js'), true);
+	// Integration directory: moved to the botphonic-child theme
+	// (page-integrations.php, inc/function-integration-pages.php).
 
 	// Industry Slider
 	wp_register_style('botphonic-industry-slider-css', BOTPHONIC_URL . 'assets/css/botphonic-industry-slider.css', array(), botphonic_asset_ver('assets/css/botphonic-industry-slider.css'));
@@ -375,7 +374,6 @@ function botphonic_register_widget($widgets_manager)
 
 	$widgets = array(
 		'botphonic-faqs.php',
-		'botphonic-integration.php',
 		'botphonic-audio-button.php',
 		'botphonic-audio-sample-box.php',
 		'botphonic-available-badge.php',
