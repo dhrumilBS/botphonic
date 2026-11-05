@@ -2,14 +2,6 @@
 /**
  * Template Name: Contact
  * Template Post Type: page
- *
- * Contact Botphonic: demo request form, the right route for each kind of
- * enquiry, what happens after sending, office details and FAQ.
- * FAQ content comes from botphonic_contact_faq_items() in functions.php, and
- * the shared FAQ renderer outputs the FAQPage schema.
- * Assets: assets/css/contact.css, assets/js/contact.js (functions.php §12).
- *
- * @package Botphonic
  */
 
 defined('ABSPATH') || exit;
@@ -20,7 +12,6 @@ $bp_contact_register = 'https://app.botphonic.ai/register/';
 $bp_contact_login = 'https://app.botphonic.ai/login';
 $bp_contact_docs = 'https://docs.botphonic.ai/';
 $bp_contact_form = '[contact-form-7 id="1642357" title="Contact form"]';
-// Keep in step with the "How quickly will I hear back?" FAQ answer in functions.php.
 $bp_contact_reply = 'within one business day';
 
 $bp_contact_promises = array(
@@ -118,17 +109,11 @@ get_header();
 	<main>
 		<section id="top" class="bct-section bct-section--dark bct-hero" aria-labelledby="hero-title">
 			<div class="bct-wrap">
-				<nav class="bct-breadcrumb" aria-label="Breadcrumb">
-					<a href="<?php echo esc_url(home_url('/')); ?>">Home</a>
-					<span aria-hidden="true">/</span>
-					<span aria-current="page">Contact</span>
-				</nav>
-
 				<div class="bct-grid bct-grid--hero">
 					<div class="bct-stack bct-stack--lg">
 						<p class="bct-kicker bct-kicker--dark">Contact Botphonic</p>
 						<h1 id="hero-title">Talk to our team about your calls</h1>
-						<p class="bct-hero__lede">Contact Botphonic to see how an AI voice agent would answer, book and follow up on your calls. Tell us how your business handles calls today, then send the form for a free, personalised demo, or reach us directly below.</p>
+						<p class="bct-hero__lede">Tell us how your business handles calls today, and we’ll show you how a Botphonic AI voice agent would answer, book and follow up on them. Send the form for a free, personalised demo, or reach us directly below.</p>
 
 						<ul class="bct-promises" aria-label="What you get from a demo">
 							<?php foreach ($bp_contact_promises as $bp_contact_promise) : ?>
