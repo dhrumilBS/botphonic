@@ -76,40 +76,6 @@ add_filter('wpseo_schema_graph', function ($graph, $context) {
 	}
 	unset($node);
 
-	if (is_front_page() && !is_page(23537)) {
-		$already_present = false;
-		foreach ($graph as $node) {
-			if (($node['@id'] ?? '') === home_url('/#software-home')) {
-				$already_present = true;
-				break;
-			}
-		}
-
-		if (!$already_present) {
-			$graph[] = [
-				'@type' => 'SoftwareApplication',
-				'@id' => home_url('/#software-home'),
-				'name' => 'Botphonic AI Call Assistant',
-				'applicationCategory' => 'BusinessApplication',
-				'operatingSystem' => 'All',
-				'url' => home_url('/'),
-				'description' => 'End-to-end AI call assistant that handles inbound and outbound calls, schedules appointments, qualifies leads, and closes sales with human-like voice AI at under 300ms latency.',
-				'publisher' => [
-					'@id' => home_url('/#organization'),
-				],
-				'mainEntityOfPage' => [
-					'@id' => home_url('/#webpage'),
-				],
-				'offers' => [
-					'@type' => 'AggregateOffer',
-					'priceCurrency' => 'USD',
-					'lowPrice' => '12.00', // Starter, billed yearly. Update when prices change.
-					'url' => home_url('/pricing/'),
-				],
-			];
-		}
-	}
-
 	// Founder & CEO and CTO, on every page (the Organization above points to the founder).
 	$present = array();
 	foreach ($graph as $node) {

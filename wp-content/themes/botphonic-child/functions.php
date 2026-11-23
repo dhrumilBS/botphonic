@@ -7,7 +7,7 @@
  * 3. SEO — OPEN GRAPH TYPE
  * 4. SEO / SCHEMA — VideoObject for posts with YouTube embeds
  * 5. SEO / SCHEMA — Page-specific nodes for page ID 23537 only
- * 6. SEO / SCHEMA — Page-specific nodes for page ID 2027 only
+ * 6. SEO / SCHEMA — Pricing page: see temp-pricings.php
  * 7. MEDIA / ATTACHMENT HOOKS
  * 8. ADMIN UI
  * 9. HTTP 410 GONE HANDLING
@@ -33,6 +33,7 @@ $botphonic_includes = array(
 	'acf-alternatives.php',
 	'function-solution-pages.php',
 	'function-integration-pages.php',
+	'function-hub-pages.php',
 	'function-modern-templates.php',
 	'function-enqueue.php',
 	'function-header.php',
@@ -224,7 +225,7 @@ add_filter('wpseo_schema_graph', function ($graph, $context) {
 		return $graph;
 	}
 	foreach ($graph as $node) {
-		if (($node['@id'] ?? '') === home_url('/#software')) {
+		if (($node['@id'] ?? '') === home_url('/#product')) {
 			return $graph;
 		}
 	}
@@ -234,23 +235,28 @@ add_filter('wpseo_schema_graph', function ($graph, $context) {
 		$pricing_url = home_url('/pricing/');
 	}
 
+	// SoftwareApplication needs ratings
 	$graph[] = [
-		'@type' => 'SoftwareApplication',
-		'@id' => home_url('/#software'),
+		'@type' => 'Product',
+		'@id' => home_url('/#product'),
 		'name' => 'Botphonic AI Voice Agent',
-		'applicationCategory' => 'BusinessApplication',
-		'applicationSubCategory' => 'AI answering service, AI receptionist, AI call center software',
-		'operatingSystem' => 'Web',
+		'description' => 'Botphonic picks up in under 300 ms, holds a natural conversation, books the appointment, updates your CRM and sends your team a summary. One AI phone agent for inbound answering, outbound campaigns and full call-center workloads.',
 		'url' => home_url('/'),
 		'image' => content_url('/uploads/2025/04/botPhonic-See-AI-in-action.webp'),
-		'publisher' => [
-			'@id' => home_url('/#organization'),
+		'brand' => [
+			'@type' => 'Brand',
+			'name' => 'Botphonic',
 		],
+		'category' => 'AI voice agent software',
 		'offers' => [
 			'@type' => 'Offer',
 			'price' => '0.12',
 			'priceCurrency' => 'USD',
+			'availability' => 'https://schema.org/InStock',
 			'url' => $pricing_url,
+			'seller' => [
+				'@id' => home_url('/#organization'),
+			],
 			'priceSpecification' => [
 				'@type' => 'UnitPriceSpecification',
 				'price' => '0.12',
@@ -259,14 +265,8 @@ add_filter('wpseo_schema_graph', function ($graph, $context) {
 				'unitText' => 'minute',
 			],
 		],
-		'featureList' => [
-			'Inbound AI answering service with spam screening',
-			'AI receptionist with live calendar booking',
-			'Outbound AI phone agent and batch calling',
-			'AI call center software with SIP trunking',
-			'CRM sync: Salesforce, HubSpot, Zoho',
-			'Call recording, transcripts, summaries and sentiment analysis',
-			'50+ languages, under 300 ms latency',
+		'mainEntityOfPage' => [
+			'@id' => is_object($context) && !empty($context->main_schema_id) ? (string) $context->main_schema_id : home_url('/'),
 		],
 	];
 
@@ -348,195 +348,7 @@ add_filter('wpseo_schema_graph', function ($graph, $context) {
 	return $graph;
 }, 20, 2);
 
-/** * 6. SEO / SCHEMA — Page-specific nodes for page ID 2027 only
- * Prices are typed in by hand: update them when plan prices change.
- */
-add_filter('wpseo_schema_graph', function ($graph, $context) {
-
-	if (!is_page(2027)) {
-		return $graph;
-	}
-
-	$pricing_url = get_permalink(2027);
-	if (!$pricing_url) {
-		$pricing_url = home_url('/pricing/');
-	}
-	$product_id = trailingslashit($pricing_url) . '#product';
-	$faq_id = trailingslashit($pricing_url) . '#faq';
-	$signup_url = 'https://app.botphonic.ai/register/';
-
-	foreach ($graph as $node) {
-		if (($node['@id'] ?? '') === $product_id) {
-			return $graph;
-		}
-	}
-
-	$graph[] = [
-		'@type' => 'Product',
-		'@id' => $product_id,
-		'name' => 'Botphonic AI Voice Agent',
-		'description' => 'AI voice agent platform for inbound answering, AI reception, outbound calling and call center workloads. Available on monthly or yearly subscription plans, or as a prepaid pay-as-you-go credit wallet. Enterprise plans use custom pricing.',
-		'brand' => [
-			'@type' => 'Brand',
-			'name' => 'Botphonic',
-		],
-		'url' => $pricing_url,
-		'offers' => [
-			'@type' => 'AggregateOffer',
-			'priceCurrency' => 'USD',
-			'lowPrice' => '12.00',
-			'highPrice' => '125.00',
-			'offerCount' => '4',
-			'offers' => [
-				[
-					'@type' => 'Offer',
-					'name' => 'Starter (billed yearly)',
-					'description' => '100 talk minutes per month and 5 concurrent calls. $15 per month when billed monthly.',
-					'price' => '12.00',
-					'priceCurrency' => 'USD',
-					'url' => $signup_url,
-					'availability' => 'https://schema.org/InStock',
-					'priceSpecification' => [
-						'@type' => 'UnitPriceSpecification',
-						'price' => '12.00',
-						'priceCurrency' => 'USD',
-						'billingIncrement' => 1,
-						'unitText' => 'month',
-						'billingDuration' => 12,
-					],
-				],
-				[
-					'@type' => 'Offer',
-					'name' => 'Pro (billed yearly)',
-					'description' => '300 talk minutes per month and 10 concurrent calls. $45 per month when billed monthly.',
-					'price' => '36.00',
-					'priceCurrency' => 'USD',
-					'url' => $signup_url,
-					'availability' => 'https://schema.org/InStock',
-					'priceSpecification' => [
-						'@type' => 'UnitPriceSpecification',
-						'price' => '36.00',
-						'priceCurrency' => 'USD',
-						'billingIncrement' => 1,
-						'unitText' => 'month',
-						'billingDuration' => 12,
-					],
-				],
-				[
-					'@type' => 'Offer',
-					'name' => 'Pay as you go credit wallet ($75)',
-					'description' => 'Prepaid credit wallet billed at $0.13 per talk minute with no monthly subscription.',
-					'price' => '75.00',
-					'priceCurrency' => 'USD',
-					'url' => $signup_url,
-					'availability' => 'https://schema.org/InStock',
-				],
-				[
-					'@type' => 'Offer',
-					'name' => 'Pro pay as you go credit wallet ($125)',
-					'description' => 'Prepaid credit wallet billed at $0.12 per talk minute with no monthly subscription.',
-					'price' => '125.00',
-					'priceCurrency' => 'USD',
-					'url' => $signup_url,
-					'availability' => 'https://schema.org/InStock',
-				],
-			],
-		],
-	];
-
-	if (botphonic_graph_has_type($graph, 'FAQPage')) {
-		return $graph;
-	}
-
-	$graph[] = [
-		'@type' => 'FAQPage',
-		'@id' => $faq_id,
-		'mainEntity' => [
-			[
-				'@type' => 'Question',
-				'name' => 'How much does an AI voice agent cost?',
-				'acceptedAnswer' => [
-					'@type' => 'Answer',
-					'text' => 'Botphonic subscription plans start at $12 per month on Starter billed yearly, or $15 billed monthly, which includes 100 talk minutes and 5 concurrent calls. Pro is $36 per month billed yearly, or $45 billed monthly, and includes 300 minutes and 10 concurrent calls. There is also a pay-as-you-go option: a $75 credit wallet billed at $0.13 per talk minute with no monthly commitment. Enterprise pricing is based on your minute volume, concurrency and compliance needs.',
-				],
-			],
-			[
-				'@type' => 'Question',
-				'name' => 'Is there a free trial, and do I need a credit card?',
-				'acceptedAnswer' => [
-					'@type' => 'Answer',
-					'text' => 'Every plan starts with a 14-day free trial that includes 20 free minutes. A card is required for a $1 verification charge, which is automatically refunded within 48 hours. No subscription charge is taken until day 15, and you can cancel any time before the trial ends.',
-				],
-			],
-			[
-				'@type' => 'Question',
-				'name' => 'What is pay as you go and how is it different from a plan?',
-				'acceptedAnswer' => [
-					'@type' => 'Answer',
-					'text' => 'Pay as you go is a prepaid credit wallet instead of a monthly subscription. You top up once, and talk minutes are drawn from the balance at a fixed per-minute rate. Nothing renews automatically and the credit does not expire at the end of a month, which suits seasonal or unpredictable call volume. Subscription plans work out cheaper if your monthly volume is steady.',
-				],
-			],
-			[
-				'@type' => 'Question',
-				'name' => 'Should I choose a subscription or pay as you go?',
-				'acceptedAnswer' => [
-					'@type' => 'Answer',
-					'text' => 'Choose a monthly or yearly plan if your call volume is predictable, because included minutes and yearly billing lower your effective cost. Choose pay as you go if your volume is seasonal, if you are running a one-off campaign, or if you want to avoid a recurring charge entirely. You can move between them at any time.',
-				],
-			],
-			[
-				'@type' => 'Question',
-				'name' => 'What happens if I use more minutes than my plan includes?',
-				'acceptedAnswer' => [
-					'@type' => 'Answer',
-					'text' => "Additional minutes are billed at your plan's overage rate, and you can upgrade mid-cycle paying only the difference. Pay-as-you-go wallets simply draw down the credit you have topped up, so you top up again whenever you need more minutes.",
-				],
-			],
-			[
-				'@type' => 'Question',
-				'name' => 'Can I change or cancel my plan later?',
-				'acceptedAnswer' => [
-					'@type' => 'Answer',
-					'text' => 'Yes. You can upgrade, downgrade or cancel from the dashboard at any time. Upgrades take effect immediately and are prorated; downgrades and cancellations take effect at the end of the current billing period, with no cancellation fee.',
-				],
-			],
-			[
-				'@type' => 'Question',
-				'name' => 'Do you charge per seat or per user?',
-				'acceptedAnswer' => [
-					'@type' => 'Answer',
-					'text' => 'No. Botphonic is priced on talk minutes and concurrent calls, not on the number of people in your team. Unlimited AI agents and team member invitations are included on every plan.',
-				],
-			],
-			[
-				'@type' => 'Question',
-				'name' => 'Can I pay in Indian rupees?',
-				'acceptedAnswer' => [
-					'@type' => 'Answer',
-					'text' => 'Yes. Prices can be displayed and billed in USD or INR. Indian customers are billed in rupees with GST applied where required.',
-				],
-			],
-			[
-				'@type' => 'Question',
-				'name' => 'How does Botphonic pricing compare with a human answering service?',
-				'acceptedAnswer' => [
-					'@type' => 'Answer',
-					'text' => 'A staffed answering service typically costs $1 to $2 per minute with monthly minimums and limits on how many calls can be handled at once. Botphonic is a fraction of that per minute, answers several calls at once up to your plan’s concurrency limit, and books appointments and updates your CRM rather than only taking messages.',
-				],
-			],
-			[
-				'@type' => 'Question',
-				'name' => 'Are there setup fees or long-term contracts?',
-				'acceptedAnswer' => [
-					'@type' => 'Answer',
-					'text' => 'No setup fee and no long-term contract on Starter or Pro. Yearly billing is optional and simply costs less than monthly. Enterprise agreements are tailored and can include annual terms if you prefer.',
-				],
-			],
-		],
-	];
-
-	return $graph;
-}, 20, 2);
+/** * 6. SEO / SCHEMA — Pricing page: see temp-pricings.php */
 
 /** * 7. MEDIA / ATTACHMENT HOOKS */
 

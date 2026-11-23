@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template Name: Pricing Plans
  * Botphonic pricing page (/pricing/).
@@ -121,11 +122,11 @@ foreach ($bp_plans as $bp_i => $bp_plan) {
 	array_unshift(
 		$bp_plans[$bp_i]['features'],
 		null === $bp_plan['minutes']
-		? '<b>Custom</b> minute bundle'
-		: '<b>' . number_format_i18n($bp_plan['minutes']) . ' talk minutes</b> per month',
+			? '<b>Custom</b> minute bundle'
+			: '<b>' . number_format_i18n($bp_plan['minutes']) . ' talk minutes</b> per month',
 		null === $bp_plan['concurrent']
-		? '<b>Custom concurrent calls</b>'
-		: '<b>' . number_format_i18n($bp_plan['concurrent']) . ' concurrent calls</b>'
+			? '<b>Custom concurrent calls</b>'
+			: '<b>' . number_format_i18n($bp_plan['concurrent']) . ' concurrent calls</b>'
 	);
 }
 unset($bp_i, $bp_plan);
@@ -665,12 +666,12 @@ $bp_faqs = array(
 			null === $bp_pro['minutes'] ? 'custom' : number_format($bp_pro['minutes']),
 			null === $bp_pro['concurrent'] ? 'custom' : $bp_pro['concurrent'],
 			$bp_usd_wallet
-			? sprintf(
-				' There is also a pay-as-you-go option: a %1$s credit wallet billed at %2$s with no monthly commitment.',
-				$bp_usd_wallet['wallet'],
-				$bp_usd_wallet['per_min']
-			)
-			: '',
+				? sprintf(
+					' There is also a pay-as-you-go option: a %1$s credit wallet billed at %2$s with no monthly commitment.',
+					$bp_usd_wallet['wallet'],
+					$bp_usd_wallet['per_min']
+				)
+				: '',
 			$bp_starter['name'],
 			$bp_pro['name']
 		),
@@ -984,12 +985,12 @@ add_action(
 
 		echo '<script type="application/ld+json">'
 			. wp_json_encode(
-			array(
-				'@context' => 'https://schema.org',
-				'@graph' => $graph,
-			),
-			JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
-		)
+				array(
+					'@context' => 'https://schema.org',
+					'@graph' => $graph,
+				),
+				JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+			)
 			. '</script>' . "\n";
 	},
 	20
@@ -1072,24 +1073,24 @@ if (!function_exists('bp_pricing_controls')) {
 			'INR' => 'INR ₹',
 		);
 ?>
-<div class="bpp-controls" data-bpp-controls="<?php echo esc_attr($context); ?>">
-	<div class="bpp-seg" role="group" aria-label="<?php echo esc_attr('Billing option for ' . $label); ?>">
-		<?php foreach ($views as $bp_key => $bp_text): ?>
-		<button type="button" data-bpp-view="<?php echo esc_attr($bp_key); ?>" aria-pressed="<?php echo $bp_key === $view ? 'true' : 'false'; ?>">
-			<?php echo esc_html($bp_text); ?>
-			<?php if ('monthly' !== $bp_key): ?>
-			<?php $bp_show = 'yearly' === $bp_key && $max_saving > 0; ?>
-			<span class="bpp-save" data-bpp-save="<?php echo esc_attr($bp_key); ?>" <?php echo $bp_show ? '' : ' hidden'; ?>><?php echo $bp_show ? esc_html(sprintf('save up to %d%%', $max_saving)) : ''; ?></span>
-			<?php endif; ?>
-		</button>
-		<?php endforeach; ?>
-	</div>
-	<div class="bpp-seg" role="group" aria-label="<?php echo esc_attr('Currency for ' . $label); ?>">
-		<?php foreach ($currencies as $bp_key => $bp_text): ?>
-		<button type="button" data-bpp-currency="<?php echo esc_attr($bp_key); ?>" aria-pressed="<?php echo $bp_key === $currency ? 'true' : 'false'; ?>"><?php echo esc_html($bp_text); ?></button>
-		<?php endforeach; ?>
-	</div>
-</div>
+		<div class="bpp-controls" data-bpp-controls="<?php echo esc_attr($context); ?>">
+			<div class="bpp-seg" role="group" aria-label="<?php echo esc_attr('Billing option for ' . $label); ?>">
+				<?php foreach ($views as $bp_key => $bp_text): ?>
+					<button type="button" data-bpp-view="<?php echo esc_attr($bp_key); ?>" aria-pressed="<?php echo $bp_key === $view ? 'true' : 'false'; ?>">
+						<?php echo esc_html($bp_text); ?>
+						<?php if ('monthly' !== $bp_key): ?>
+							<?php $bp_show = 'yearly' === $bp_key && $max_saving > 0; ?>
+							<span class="bpp-save" data-bpp-save="<?php echo esc_attr($bp_key); ?>" <?php echo $bp_show ? '' : ' hidden'; ?>><?php echo $bp_show ? esc_html(sprintf('save up to %d%%', $max_saving)) : ''; ?></span>
+						<?php endif; ?>
+					</button>
+				<?php endforeach; ?>
+			</div>
+			<div class="bpp-seg" role="group" aria-label="<?php echo esc_attr('Currency for ' . $label); ?>">
+				<?php foreach ($currencies as $bp_key => $bp_text): ?>
+					<button type="button" data-bpp-currency="<?php echo esc_attr($bp_key); ?>" aria-pressed="<?php echo $bp_key === $currency ? 'true' : 'false'; ?>"><?php echo esc_html($bp_text); ?></button>
+				<?php endforeach; ?>
+			</div>
+		</div>
 <?php
 	}
 }
@@ -1163,40 +1164,40 @@ get_header();
 				<div class="bpp-plans" data-bpp-grid="sub" aria-live="polite">
 					<?php
 					foreach ($bp_plans as $bp_plan):
-					$bp_is_custom = empty($bp_plan['yearly']);
-					$bp_price = 'monthly' === $bp_default_view ? $bp_plan['monthly'] : $bp_plan['yearly'];
-					$bp_cycle = 'monthly' === $bp_default_view ? 'monthly' : 'yearly';
+						$bp_is_custom = empty($bp_plan['yearly']);
+						$bp_price = 'monthly' === $bp_default_view ? $bp_plan['monthly'] : $bp_plan['yearly'];
+						$bp_cycle = 'monthly' === $bp_default_view ? 'monthly' : 'yearly';
 					?>
-					<article class="bpp-plan<?php echo $bp_plan['popular'] ? ' bpp-plan--best' : ''; ?>">
-						<?php if ($bp_plan['popular']): ?>
-						<span class="bpp-flag">Most popular</span>
-						<?php endif; ?>
-
-						<h3><?php echo esc_html($bp_plan['name']); ?></h3>
-						<p class="bpp-for"><?php echo esc_html($bp_plan['description']); ?></p>
-
-						<?php if ($bp_is_custom): ?>
-						<div class="bpp-amount bpp-amount--custom">
-							<b>Custom</b><span>volume pricing</span>
-						</div>
-						<p class="bpp-rate">Priced on volume and compliance scope</p>
-						<?php else: ?>
-						<div class="bpp-amount">
-							<b><?php echo esc_html(bp_pricing_money($bp_price)); ?></b><span>/month</span>
-							<?php if ('yearly' === $bp_default_view && $bp_plan['monthly'] > $bp_plan['yearly']): ?>
-							<span class="bpp-was"><?php echo esc_html(bp_pricing_money($bp_plan['monthly'])); ?></span>
+						<article class="bpp-plan<?php echo $bp_plan['popular'] ? ' bpp-plan--best' : ''; ?>">
+							<?php if ($bp_plan['popular']): ?>
+								<span class="bpp-flag">Most popular</span>
 							<?php endif; ?>
-						</div>
-						<p class="bpp-rate"><b><?php echo esc_html($bp_plan['minutes']); ?> minutes</b> included &middot; billed <?php echo esc_html($bp_cycle); ?></p>
-						<?php endif; ?>
 
-						<a class="bpp-btn <?php echo $bp_plan['popular'] ? 'bpp-btn--coral' : ($bp_is_custom ? 'bpp-btn--ghost' : 'bpp-btn--ink'); ?>" href="<?php echo esc_url($bp_plan['cta_url']); ?>" <?php echo $bp_is_custom ? '' : ' target="_blank" rel="noopener"'; ?>><?php echo esc_html($bp_plan['cta']); ?></a>
+							<h3><?php echo esc_html($bp_plan['name']); ?></h3>
+							<p class="bpp-for"><?php echo esc_html($bp_plan['description']); ?></p>
 
-						<?php bp_pricing_bullets($bp_plan['features']); ?>
+							<?php if ($bp_is_custom): ?>
+								<div class="bpp-amount bpp-amount--custom">
+									<b>Custom</b><span>volume pricing</span>
+								</div>
+								<p class="bpp-rate">Priced on volume and compliance scope</p>
+							<?php else: ?>
+								<div class="bpp-amount">
+									<b><?php echo esc_html(bp_pricing_money($bp_price)); ?></b><span>/month</span>
+									<?php if ('yearly' === $bp_default_view && $bp_plan['monthly'] > $bp_plan['yearly']): ?>
+										<span class="bpp-was"><?php echo esc_html(bp_pricing_money($bp_plan['monthly'])); ?></span>
+									<?php endif; ?>
+								</div>
+								<p class="bpp-rate"><b><?php echo esc_html($bp_plan['minutes']); ?> minutes</b> included &middot; billed <?php echo esc_html($bp_cycle); ?></p>
+							<?php endif; ?>
 
-						<p class="bpp-inherit"><?php echo esc_html($bp_plan['inherit']); ?></p>
-						<p class="bpp-foot"><?php echo esc_html($bp_plan['foot']); ?></p>
-					</article>
+							<a class="bpp-btn <?php echo $bp_plan['popular'] ? 'bpp-btn--coral' : ($bp_is_custom ? 'bpp-btn--ghost' : 'bpp-btn--ink'); ?>" href="<?php echo esc_url($bp_plan['cta_url']); ?>" <?php echo $bp_is_custom ? '' : ' target="_blank" rel="noopener"'; ?>><?php echo esc_html($bp_plan['cta']); ?></a>
+
+							<?php bp_pricing_bullets($bp_plan['features']); ?>
+
+							<p class="bpp-inherit"><?php echo esc_html($bp_plan['inherit']); ?></p>
+							<p class="bpp-foot"><?php echo esc_html($bp_plan['foot']); ?></p>
+						</article>
 					<?php endforeach; ?>
 				</div>
 			</div>
@@ -1208,20 +1209,20 @@ get_header();
 
 				<div class="bpp-plans" data-bpp-grid="payg" aria-live="polite">
 					<?php foreach ($bp_wallets as $bp_wallet): ?>
-					<article class="bpp-plan" data-bpp-cur="<?php echo esc_attr($bp_wallet['currency']); ?>" <?php echo $bp_wallet['currency'] === $bp_default_currency ? '' : ' hidden'; ?>>
-						<h3><?php echo esc_html($bp_wallet['name']); ?></h3>
-						<p class="bpp-for">Prepaid credit, drawn down per talk minute.</p>
-						<div class="bpp-amount">
-							<b><?php echo esc_html($bp_wallet['wallet']); ?></b><span>credit wallet</span>
-						</div>
-						<p class="bpp-rate"><span class="bpp-permin"><?php echo esc_html($bp_wallet['per_min']); ?></span></p>
-						<a class="bpp-btn bpp-btn--ink" href="<?php echo esc_url($bp_signup_url); ?>" target="_blank" rel="noopener">Top up and start</a>
+						<article class="bpp-plan" data-bpp-cur="<?php echo esc_attr($bp_wallet['currency']); ?>" <?php echo $bp_wallet['currency'] === $bp_default_currency ? '' : ' hidden'; ?>>
+							<h3><?php echo esc_html($bp_wallet['name']); ?></h3>
+							<p class="bpp-for">Prepaid credit, drawn down per talk minute.</p>
+							<div class="bpp-amount">
+								<b><?php echo esc_html($bp_wallet['wallet']); ?></b><span>credit wallet</span>
+							</div>
+							<p class="bpp-rate"><span class="bpp-permin"><?php echo esc_html($bp_wallet['per_min']); ?></span></p>
+							<a class="bpp-btn bpp-btn--ink" href="<?php echo esc_url($bp_signup_url); ?>" target="_blank" rel="noopener">Top up and start</a>
 
-						<?php bp_pricing_bullets($bp_wallet['features']); ?>
+							<?php bp_pricing_bullets($bp_wallet['features']); ?>
 
-						<p class="bpp-inherit"><?php echo $bp_wallet['estimate'] ? esc_html($bp_wallet['estimate']) : '&nbsp;'; ?></p>
-						<p class="bpp-foot"><?php echo esc_html($bp_wallet['foot']); ?></p>
-					</article>
+							<p class="bpp-inherit"><?php echo $bp_wallet['estimate'] ? esc_html($bp_wallet['estimate']) : '&nbsp;'; ?></p>
+							<p class="bpp-foot"><?php echo esc_html($bp_wallet['foot']); ?></p>
+						</article>
 					<?php endforeach; ?>
 				</div>
 
@@ -1242,11 +1243,11 @@ get_header();
 			</div>
 			<ol class="bpp-tl">
 				<?php foreach ($bp_timeline as $bp_step): ?>
-				<li>
-					<small><?php echo esc_html($bp_step['when']); ?></small>
-					<b><?php echo esc_html($bp_step['what']); ?></b>
-					<p><?php echo esc_html($bp_step['body']); ?></p>
-				</li>
+					<li>
+						<small><?php echo esc_html($bp_step['when']); ?></small>
+						<b><?php echo esc_html($bp_step['what']); ?></b>
+						<p><?php echo esc_html($bp_step['body']); ?></p>
+					</li>
 				<?php endforeach; ?>
 			</ol>
 		</div>
@@ -1261,12 +1262,12 @@ get_header();
 			</div>
 			<ul class="bpp-cost">
 				<?php foreach ($bp_cost_cards as $bp_card): ?>
-				<li<?php echo $bp_card['best'] ? ' class="bpp-best"' : ''; ?>>
-					<h3><?php echo esc_html($bp_card['title']); ?></h3>
-					<p class="bpp-fig"><?php echo esc_html($bp_card['fig']); ?></p>
-					<p><?php echo esc_html($bp_card['body']); ?></p>
-				</li>
-				<?php endforeach; ?>
+					<li<?php echo $bp_card['best'] ? ' class="bpp-best"' : ''; ?>>
+						<h3><?php echo esc_html($bp_card['title']); ?></h3>
+						<p class="bpp-fig"><?php echo esc_html($bp_card['fig']); ?></p>
+						<p><?php echo esc_html($bp_card['body']); ?></p>
+						</li>
+					<?php endforeach; ?>
 			</ul>
 			<p class="bpp-fine">Costs vary by market and provider. See the full <a class="bpp-link" href="https://botphonic.ai/ai-answering-service/">AI answering service</a> and <a class="bpp-link" href="https://botphonic.ai/ai-receptionist/">AI receptionist</a> breakdowns.</p>
 		</div>
@@ -1333,7 +1334,8 @@ get_header();
 			</div>
 			<ul>
 				<?php foreach ($bp_enterprise_points as $bp_point): ?>
-				<li><?php echo bp_pricing_tick(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?><span><?php echo esc_html($bp_point); ?></span></li>
+					<li><?php echo bp_pricing_tick(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. 
+						?><span><?php echo esc_html($bp_point); ?></span></li>
 				<?php endforeach; ?>
 			</ul>
 		</div>
@@ -1347,15 +1349,15 @@ get_header();
 			</div>
 			<ul class="bpp-ratings">
 				<?php foreach ($bp_ratings as $bp_rating): ?>
-				<li>
-					<img src="<?php echo esc_url($bp_rating['logo']); ?>" alt="<?php echo esc_attr($bp_rating['name']); ?>" width="80" height="28" loading="lazy" decoding="async">
-					<div class="bpp-score"><?php echo esc_html($bp_rating['score']); ?><small>/5</small></div>
-					<?php if ($bp_rating['url']): ?>
-					<a href="<?php echo esc_url($bp_rating['url']); ?>" target="_blank" rel="noopener nofollow"><?php echo esc_html($bp_rating['label']); ?> <span class="bpp-sr">on <?php echo esc_html($bp_rating['name']); ?></span></a>
-					<?php else: ?>
-					<span><?php echo esc_html($bp_rating['label']); ?></span>
-					<?php endif; ?>
-				</li>
+					<li>
+						<img src="<?php echo esc_url($bp_rating['logo']); ?>" alt="<?php echo esc_attr($bp_rating['name']); ?>" width="80" height="28" loading="lazy" decoding="async">
+						<div class="bpp-score"><?php echo esc_html($bp_rating['score']); ?><small>/5</small></div>
+						<?php if ($bp_rating['url']): ?>
+							<a href="<?php echo esc_url($bp_rating['url']); ?>" target="_blank" rel="noopener nofollow"><?php echo esc_html($bp_rating['label']); ?> <span class="bpp-sr">on <?php echo esc_html($bp_rating['name']); ?></span></a>
+						<?php else: ?>
+							<span><?php echo esc_html($bp_rating['label']); ?></span>
+						<?php endif; ?>
+					</li>
 				<?php endforeach; ?>
 			</ul>
 		</div>
@@ -1388,13 +1390,18 @@ get_header();
 	</section>
 
 	<!-- ══════════════════════ FINAL CTA ══════════════════════ -->
-	<section class="bpp-sec bpp-sec--ink bpp-final" aria-labelledby="bpp-h-final">
+	<section class="bpp-final" aria-labelledby="bpp-h-final">
 		<div class="bpp-wrap">
-			<h2 id="bpp-h-final">Start free, pay only when it&rsquo;s earning its keep</h2>
-			<p class="bpp-lede">Connect a number, build your agent and run 20 minutes of real calls before anything is charged.</p>
-			<div class="bpp-cta-row bpp-cta-row--center">
-				<a class="bpp-btn bpp-btn--coral" href="<?php echo esc_url($bp_signup_url); ?>" target="_blank" rel="noopener">Start 14-day free trial</a>
-				<a class="bpp-btn bpp-btn--ghost" href="<?php echo esc_url($bp_contact_url); ?>">Talk to sales</a>
+			<div class="bpp-final__inner">
+				<div class="bpp-final__copy">
+					<p class="bpp-final__eyebrow">Try it before you pay</p>
+					<h2 class="bpp-final__title" id="bpp-h-final">Start free, pay only when it&rsquo;s earning its keep</h2>
+					<p class="bpp-final__text">Connect a number, build your agent and run 20 minutes of real calls before anything is charged.</p>
+				</div>
+				<div class="bpp-cta-row bpp-final__row">
+					<a class="bpp-btn bpp-btn--coral" href="<?php echo esc_url($bp_signup_url); ?>" target="_blank" rel="noopener">Start 14-day free trial</a>
+					<a class="bpp-btn bpp-btn--ghost" href="<?php echo esc_url($bp_contact_url); ?>">Talk to sales</a>
+				</div>
 			</div>
 		</div>
 	</section>

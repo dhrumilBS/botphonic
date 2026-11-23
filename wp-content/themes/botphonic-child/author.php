@@ -129,44 +129,7 @@ botphonic_author_schema($bpa_user, $bpa_profile);
 					</ul>
 					<?php endif; ?>
 				</div>
-
 			</div>
-
-			<?php if ($bpa_first && $bpa_total) : ?>
-			<dl class="bpa-stats">
-				<?php foreach ($bpa_types as $bpa_type => $bpa_meta) :
-					if (empty($bpa_counts[$bpa_type])) {
-						continue;
-					}
-				?>
-				<div class="bpa-stat">
-					<dt><?php echo esc_html($bpa_meta['label']); ?></dt>
-					<dd><?php echo esc_html(number_format_i18n($bpa_counts[$bpa_type])); ?></dd>
-				</div>
-				<?php endforeach; ?>
-
-				<?php if ($bpa_topics) : ?>
-				<div class="bpa-stat">
-					<dt><?php esc_html_e('Topics covered', 'botphonic'); ?></dt>
-					<dd><?php echo esc_html(number_format_i18n(count($bpa_topics))); ?></dd>
-				</div>
-				<?php endif; ?>
-
-				<?php if ($bpa_range['first']) : ?>
-				<div class="bpa-stat">
-					<dt><?php esc_html_e('Writing since', 'botphonic'); ?></dt>
-					<dd><?php echo esc_html(mysql2date('M Y', $bpa_range['first'])); ?></dd>
-				</div>
-				<?php endif; ?>
-
-				<?php if ($bpa_range['latest']) : ?>
-				<div class="bpa-stat">
-					<dt><?php esc_html_e('Last published', 'botphonic'); ?></dt>
-					<dd><?php echo esc_html(mysql2date('M j, Y', $bpa_range['latest'])); ?></dd>
-				</div>
-				<?php endif; ?>
-			</dl>
-			<?php endif; ?>
 
 			<?php if ($bpa_first && $bpa_topics) : ?>
 			<div class="bpa-topics">

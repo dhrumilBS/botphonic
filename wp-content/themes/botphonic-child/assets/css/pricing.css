@@ -136,9 +136,22 @@
 	.bpp-ent { grid-template-columns: 1fr; }
 }
 .bpp-faq .bpp-lede { margin-top: 14px; }
-.bpp-final { text-align: center; }
-.bpp-final h2 { margin-bottom: 16px; font-size: var(--bpl-t-3xl); }
-.bpp-final .bpp-lede { margin: 0 auto 28px; }
+/* Final CTA — light card band, matches the blog/about .bpg-band--light */
+.bpp-final { padding: clamp(36px, 5vw, 64px) 0 clamp(44px, 6vw, 76px); background: var(--bpg-surface, #fff); }
+.bpp-final__inner { position: relative; isolation: isolate; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 22px 40px; padding: clamp(26px, 4vw, 48px); border: 1px solid var(--bpg-accent-line); border-radius: var(--bpg-r-xl); background: linear-gradient(135deg, #F5F9FF 0%, #FFFFFF 55%, #FFF6F2 100%); box-shadow: var(--bpg-shadow); overflow: hidden; }
+.bpp-final__inner::before,
+.bpp-final__inner::after { content: ""; position: absolute; z-index: -1; pointer-events: none; }
+.bpp-final__inner::before { inset: -60% 45% -60% -15%; background: radial-gradient(closest-side, rgba(37, 99, 235, 0.14), transparent 70%); }
+.bpp-final__inner::after { inset: -60% -15% -60% 55%; background: radial-gradient(closest-side, rgba(255, 126, 85, 0.16), transparent 70%); }
+.bpp-final__copy { flex: 1 1 420px; min-width: 0; }
+.bpp-final__eyebrow { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 14px; font-size: 12px; font-weight: 700; line-height: 1; letter-spacing: 0.12em; text-transform: uppercase; color: var(--bpg-accent-2); }
+.bpp-final__eyebrow::before { content: ""; width: 18px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--bpg-accent), var(--bpg-coral)); }
+.bpp .bpp-final__title { margin: 0 0 10px; font-size: clamp(23px, 3vw, 32px); font-weight: 800; line-height: 1.22; letter-spacing: -0.025em; color: var(--bpg-ink); }
+.bpp-final__text { max-width: 58ch; margin: 0; font-size: 16px; line-height: 1.7; color: var(--bpg-ink-3); }
+.bpp-final__row { align-items: center; gap: 12px; }
+@media (max-width: 600px) {
+	.bpp-final__row .bpp-btn { flex: 1 1 100%; }
+}
 @media (prefers-reduced-motion: reduce) {
 	.bpp *,
 	.bpp *::before,

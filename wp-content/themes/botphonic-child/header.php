@@ -21,7 +21,10 @@ defined('ABSPATH') || exit;
 	<?php
 	// The integration templates (inc/function-integration-pages.php) never show
 	// the featured image, so it isn't preloaded there; it stays the share image.
-	$bp_hides_thumbnail = function_exists('botphonic_integration_active_key') && '' !== botphonic_integration_active_key();
+	// The hubs (inc/function-hub-pages.php) show it with their own srcset/sizes
+	// and fetchpriority="high", so a preload here would fetch a second copy.
+	$bp_hides_thumbnail = (function_exists('botphonic_integration_active_key') && '' !== botphonic_integration_active_key())
+		|| (function_exists('botphonic_hub_active_key') && '' !== botphonic_hub_active_key());
 	if (has_post_thumbnail() && !$bp_hides_thumbnail) {
 		$thumb_id = get_post_thumbnail_id();
 		$image_src = wp_get_attachment_image_url($thumb_id, 'full');

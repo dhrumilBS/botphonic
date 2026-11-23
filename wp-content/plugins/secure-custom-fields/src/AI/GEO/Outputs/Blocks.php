@@ -139,6 +139,13 @@ class Blocks {
 			return;
 		}
 
+		if ( ! acf_get_setting( 'enable_schema' ) ) {
+			if ( $debug ) {
+				echo "<!-- SCF AI Block JSON-LD: Skipped (schema output disabled) -->\n";
+			}
+			return;
+		}
+
 		// Don't output if we don't have a block name.
 		if ( empty( $block['name'] ) ) {
 			if ( $debug ) {
@@ -151,7 +158,8 @@ class Blocks {
 			echo '<!-- SCF AI Block JSON-LD: Checking block: ' . esc_html( $block['name'] ) . " -->\n";
 		}
 
-		if ( scf_post_password_required( $post_id ) ) {
+		// Don't output field values of a password-protected post until the password has been entered.
+		if ( acf_post_password_required( $post_id ) ) {
 			if ( $debug ) {
 				echo "<!-- SCF AI Block JSON-LD: Skipped (password protected post) -->\n";
 			}
