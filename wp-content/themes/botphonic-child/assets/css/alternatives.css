@@ -289,6 +289,7 @@
 .bpg-alt .bpg-alt-profiles__title { margin-bottom: 4px; }
 .bpg-alt .bpg-alt-profile { padding: 30px 0; border-bottom: 1px solid var(--bpg-line); }
 .bpg-alt .bpg-alt-profile:last-child { border-bottom: 0; }
+.bpg-alt .bpg-alt-profiles .bpg-alt-profile:last-child { padding-bottom: 0; }
 .bpg-alt .bpg-alt-profiles__title+.bpg-alt-profile { padding-top: 18px; }
 .bpg-alt .bpg-alt-profiles:not([aria-labelledby]) { margin-top: 0; }
 .bpg-alt .bpg-alt-profiles:not([aria-labelledby])>.bpg-alt-profile:first-child { padding-top: 18px; }
