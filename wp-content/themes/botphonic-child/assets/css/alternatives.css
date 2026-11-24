@@ -79,6 +79,10 @@
 .bpg-alt .bpg-alt-compare__intro { margin-bottom: 20px; }
 .bpg-alt .bpg-alt-compare__note { margin-top: 18px; font-size: 14.5px; line-height: 1.7; color: var(--bpg-ink-3); }
 .bpg-alt .bpg-alt-compare__note :where(p) { margin: 0 0 10px; }
+.bpg-alt .bpg-alt-compare__note .bpg-alt-table table { font-size: 15px; line-height: 1.6; color: var(--bpg-ink-2); }
+.bpg-alt .bpg-alt-compare__note h2 { margin-top: var(--bpg-block); }
+.bpg-alt .bpg-alt-compare__note h2~p,
+.bpg-alt .bpg-alt-compare__note:has(.bpg-alt-table) p:not(:has(> em:only-child)) { margin: 0 0 18px; font-size: 16.5px; line-height: 1.78; color: var(--bpg-ink-2); }
 .bpg-alt .bpg-alt-matrix-wrap { border: 1px solid var(--bpg-alt-line-2); border-radius: var(--bpg-r-lg); background: #fff; box-shadow: var(--bpg-shadow-xs); overflow-x: auto; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
 .bpg-alt .bpg-alt-matrix-wrap::-webkit-scrollbar { height: 7px; }
 .bpg-alt .bpg-alt-matrix-wrap::-webkit-scrollbar-thumb { background: var(--bpg-line-2); border-radius: var(--bpg-pill); }
@@ -286,6 +290,8 @@
 .bpg-alt .bpg-alt-profile { padding: 30px 0; border-bottom: 1px solid var(--bpg-line); }
 .bpg-alt .bpg-alt-profile:last-child { border-bottom: 0; }
 .bpg-alt .bpg-alt-profiles__title+.bpg-alt-profile { padding-top: 18px; }
+.bpg-alt .bpg-alt-profiles:not([aria-labelledby]) { margin-top: 0; }
+.bpg-alt .bpg-alt-profiles:not([aria-labelledby])>.bpg-alt-profile:first-child { padding-top: 18px; }
 .bpg-alt .bpg-alt-profile__rating .bpg-alt-stars { font-size: 19px; }
 .bpg-alt .bpg-alt-profile__rating-label { font-size: 15px; font-weight: 700; color: var(--bpg-ink); }
 .bpg-alt .bpg-alt-profile__rating> span:not(.bpg-alt-stars) { font-size: 14px; font-weight: 700; color: var(--bpg-ink-2); }
@@ -472,6 +478,8 @@
 	.bpg-alt .bpg-alt-matrix__cta td { padding: 14px 10px; }
 	.bpg-alt .bpg-alt-matrix__btn { min-height: 46px; padding: 0 18px; font-size: 14px; }
 	.bpg-alt .bpg-alt-prose { font-size: 16px; }
+	.bpg-alt .bpg-alt-compare__note h2~p,
+	.bpg-alt .bpg-alt-compare__note:has(.bpg-alt-table) p:not(:has(> em:only-child)) { font-size: 16px; }
 	.bpg-alt .bpg-alt-box:not(.bpg-alt-box--lg),
 	.bpg-alt .bpg-alt-profile__bestfor,
 	.bpg-alt .bpg-alt-profile__verdict,
