@@ -92,6 +92,79 @@ add_filter('wpseo_schema_graph', function ($graph, $context) {
 	return $graph;
 }, 10, 2);
 
+/*
+ * One Person per leader. Yoast adds its own Person, under a hashed @id, for a
+ * post's author, and the reviewer filter (inc/acf-blog-review.php) writes the
+ * reviewer inline, so Bharat or Tosif could appear two or three times with
+ * different identities. Matched on the author page URL, those copies are
+ * folded into the leadership node above: the Yoast node is removed, its photo
+ * kept, and every reference to it, or inline copy, points at the leader's @id.
+ */
+add_filter('wpseo_schema_graph', function ($graph) {
+
+	$leaders = array();
+	foreach (botphonic_leadership_people() as $person) {
+		$leaders[untrailingslashit($person['url'])] = $person['@id'];
+	}
+
+	$url_of = static function ($node) {
+		return isset($node['url']) && is_string($node['url']) ? untrailingslashit($node['url']) : '';
+	};
+
+	$aliases = array();
+	$images = array();
+
+	foreach ($graph as $i => $node) {
+		$types = isset($node['@type']) ? (array) $node['@type'] : array();
+		$url = $url_of($node);
+
+		if (!in_array('Person', $types, true) || !isset($leaders[$url]) || ($node['@id'] ?? '') === $leaders[$url]) {
+			continue;
+		}
+
+		if (!empty($node['@id'])) {
+			$aliases[$node['@id']] = $leaders[$url];
+		}
+		if (!empty($node['image']) && empty($images[$leaders[$url]])) {
+			$images[$leaders[$url]] = $node['image'];
+		}
+		unset($graph[$i]);
+	}
+
+	$relink = static function ($value) use (&$relink, $aliases, $leaders, $url_of) {
+		if (!is_array($value)) {
+			return $value;
+		}
+
+		if (isset($value['@id'], $aliases[$value['@id']]) && 1 === count(array_diff(array_keys($value), array('name')))) {
+			return array('@id' => $aliases[$value['@id']]);
+		}
+
+		$types = isset($value['@type']) ? (array) $value['@type'] : array();
+		if (in_array('Person', $types, true) && empty($value['@id']) && isset($leaders[$url_of($value)])) {
+			return array('@id' => $leaders[$url_of($value)]);
+		}
+
+		foreach ($value as $key => $child) {
+			$value[$key] = $relink($child);
+		}
+
+		return $value;
+	};
+
+	foreach ($graph as $i => $node) {
+		if (isset($node['@id']) && in_array($node['@id'], $leaders, true)) {
+			if (empty($node['image']) && !empty($images[$node['@id']])) {
+				$graph[$i]['image'] = $images[$node['@id']];
+			}
+			continue;
+		}
+		$graph[$i] = $relink($node);
+	}
+
+	return array_values($graph);
+}, 20);
+
 
 add_filter('wpseo_schema_graph', function ($graph) {
 
