@@ -942,43 +942,26 @@ class UpdraftPlus_Commands {
 		
 		global $updraftplus_addons2, $updraftplus;
 
-		$options = $updraftplus_addons2->get_option(UDADDONS2_SLUG.'_options');
 		$new_options = $data['data'];
-		
-		// Check if we can make a connection if we can then we don't want to reset the options in the case where the user has removed their password from the form
-		$result = !empty($options['email']) ? $updraftplus_addons2->connection_status() : false;
-		
-		if (true !== $result) {
-			// We failed to make a connection so try the new options
-			$updraftplus_addons2->update_option(UDADDONS2_SLUG.'_options', $new_options);
-			$result = $updraftplus_addons2->connection_status();
-		}
 
-		if (true !== $result) {
-			if (is_wp_error($result)) {
-				$connection_errors = array();
-				foreach ($result->get_error_messages() as $msg) {
-					$connection_errors[] = $msg;
-				}
-			} else {
-				if (!empty($options['email']) && !empty($options['password'])) $connection_errors = array(__('An unknown error occurred when trying to connect to UpdraftPlus.Com', 'updraftplus'));
-			}
-			$result = false;
-		}
-		if ($result && isset($new_options['auto_update'])) {
+		$updraftplus_addons2->set_authentication_data($new_options);
+
+		$updraftplus_addons2->connection_status();
+		$updraftplus_addons2->initialise_addons_state();
+
+		if ($updraftplus_addons2->connected && isset($new_options['auto_update'])) {
 			$updraftplus->set_automatic_updates($new_options['auto_update']);
 		}
-		if ($result) {
+		if ($updraftplus_addons2->connected) {
 			return array(
-				'success' => true
+				'success' => true,
+				'connection_status_data' => $updraftplus_addons2->get_connection_status_template_data(),
 			);
 		} else {
-			// There was an error reset the options so that we don't get unwanted notices on the dashboard.
-			$updraftplus_addons2->update_option(UDADDONS2_SLUG.'_options', array('email' => '', 'password' => ''));
-
 			return array(
 				'error' => true,
-				'message' => $connection_errors
+				'connection_status_data' => $updraftplus_addons2->get_connection_status_template_data(),
+				'message' => $updraftplus_addons2->connection_errors
 			);
 		}
 	}

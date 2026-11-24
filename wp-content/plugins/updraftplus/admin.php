@@ -24,7 +24,7 @@ class UpdraftPlus_Admin {
 
 	private $auth_instance_ids = array('dropbox' => array(), 'pcloud' => array(), 'onedrive' => array(), 'googledrive' => array(), 'googlecloud' => array());
 
-	private $clone_php_versions = array('5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5');
+	private $clone_php_versions = array('5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5', '8.6');
 
 	private $storage_service_without_settings;
 
@@ -3663,6 +3663,9 @@ class UpdraftPlus_Admin {
 
 			echo '<input type="hidden" name="_wp_http_referer" value="'.esc_attr($referer).'" />';
 			// End of duplication of settings-fields()
+		} else {
+			$referer = add_query_arg(array('tab' => 'addons'), remove_query_arg(array('udm_refresh', 'tab')));
+			echo '<input type="hidden" name="_wp_http_referer" value="'.esc_url($referer).'" />';
 		}
 		?>
 
@@ -3675,7 +3678,7 @@ class UpdraftPlus_Admin {
 					<th><?php esc_html_e('Email', 'updraftplus'); ?></th>
 					<td>
 						<label for="<?php echo esc_attr($option_page); ?>_options_email">
-							<input id="<?php echo esc_attr($option_page); ?>_options_email" type="text" size="36" name="<?php echo esc_attr($option_page); ?>_options[email]" value="<?php echo esc_attr($options['email']); ?>" />
+							<input id="<?php echo esc_attr($option_page); ?>_options_email" type="text" size="36" name="<?php echo esc_attr($option_page); ?>_options[email]" value="<?php echo !empty($options['email']) ? esc_attr($options['email']) : ''; ?>" />
 							<?php if (!empty($further_options['under_username_link']) && !empty($further_options['under_username'])) { ?>
 								<br/>
 								<a target="_blank" href="<?php echo esc_url($further_options['under_username_link']); ?>"><?php echo esc_html($further_options['under_username']); ?></a>

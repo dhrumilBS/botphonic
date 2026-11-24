@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+Disallow: /wp-content/wp-rocket-config/
+Disallow: /cdn-cgi/
+Disallow: /*?s=
+Disallow: /*&s=
+
+Sitemap: https://botphonic.ai/sitemap_index.xml

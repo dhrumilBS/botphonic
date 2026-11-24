@@ -6,7 +6,7 @@ Plugin Name: UpdraftPlus - Backup/Restore
 Plugin URI: https://teamupdraft.com/updraftplus
 Description: Backup and restore: take backups locally, or backup to Amazon S3, Dropbox, Google Drive, Rackspace, (S)FTP, WebDAV & email, on automatic schedules.
 Author: TeamUpdraft, DavidAnderson
-Version: 1.26.14
+Version: 1.26.16
 Donate link: https://david.dw-perspective.org.uk/donate
 License: GPLv3 or later
 Text Domain: updraftplus
@@ -304,7 +304,7 @@ function updraftplus_build_mysqldump_list() {
 		return $drive_string;
 		
 	} else {
-		return "/usr/bin/mysqldump,/bin/mysqldump,/usr/local/bin/mysqldump,/usr/sfw/bin/mysqldump,/usr/xdg4/bin/mysqldump,/opt/bin/mysqldump";
+		return "/usr/bin/mariadb-dump,/bin/mariadb-dump,/usr/local/bin/mariadb-dump,/usr/bin/mysqldump,/bin/mysqldump,/usr/local/bin/mysqldump,/usr/sfw/bin/mysqldump,/usr/xdg4/bin/mysqldump,/opt/bin/mariadb-dump,/opt/bin/mysqldump";
 	}
 }
 

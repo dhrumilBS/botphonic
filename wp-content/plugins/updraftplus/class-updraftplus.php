@@ -860,30 +860,6 @@ class UpdraftPlus {
 	}
 	
 	/**
-	 * Get the character set for the current database connection
-	 *
-	 * @uses WPDB::determine_charset() - exists on WP 4.6+
-	 *
-	 * @param Object|Null $wpdb - WPDB object; if none passed, then use the global one
-	 *
-	 * @return String
-	 */
-	public function get_connection_charset($wpdb = null) {
-		if (null === $wpdb) {
-			global $wpdb;
-		}
-
-		$charset = (defined('DB_CHARSET') && DB_CHARSET) ? DB_CHARSET : 'utf8mb4';
-		
-		if (method_exists($wpdb, 'determine_charset')) {
-			$charset_collate = $wpdb->determine_charset($charset, '');
-			if (!empty($charset_collate['charset'])) $charset = $charset_collate['charset'];
-		}
-		
-		return $charset;
-	}
-	
-	/**
 	 * Runs upon the action updraftcentral_listener_pre_udrpc_action
 	 */
 	public function updraftcentral_listener_pre_udrpc_action() {
@@ -1764,6 +1740,7 @@ class UpdraftPlus {
 		global $wpdb;
 		$table_name = $wpdb->get_blog_prefix().'options';
 		$pfile = md5(time().wp_rand()).'.tmp';
+		// As at Nov 2026, mariadb-dump still processes [mysqldump] sections - https://mariadb.com/docs/server/clients-and-utilities/backup-restore-and-import-clients/mariadb-dump
 		file_put_contents($updraft_dir.'/'.$pfile, "[mysqldump]\npassword=\"".addslashes(DB_PASSWORD)."\"\n");
 
 		$result = false;
@@ -1773,20 +1750,22 @@ class UpdraftPlus {
 			
 			if ($log_it) $this->log("Testing potential mysqldump binary: $potsql");
 
+			$pre_exec = '';
+			
 			if ('win' == strtolower(substr(PHP_OS, 0, 3))) {
-				$exec = "cd ".escapeshellarg(str_replace('/', '\\', $updraft_dir))." & ";
+				$pre_exec = "cd ".escapeshellarg(str_replace('/', '\\', $updraft_dir))." & ";
 				$siteurl = "'siteurl'";
 				if (false !== strpos($potsql, ' ')) $potsql = '"'.$potsql.'"';
 			} else {
-				$exec = "cd ".escapeshellarg($updraft_dir)."; ";
+				$pre_exec = "cd ".escapeshellarg($updraft_dir)."; ";
 				$siteurl = "\\'siteurl\\'";
 				if (false !== strpos($potsql, ' ')) $potsql = "'$potsql'";
 			}
 				
 			// Allow --max_allowed_packet to be configured via constant. Experience has shown some customers with complex CMS or pagebuilder setups can have extrememly large postmeta entries.
 			$msqld_max_allowed_packet = (defined('UPDRAFTPLUS_MYSQLDUMP_MAX_ALLOWED_PACKET') && (is_int(UPDRAFTPLUS_MYSQLDUMP_MAX_ALLOWED_PACKET) || is_string(UPDRAFTPLUS_MYSQLDUMP_MAX_ALLOWED_PACKET))) ? UPDRAFTPLUS_MYSQLDUMP_MAX_ALLOWED_PACKET : '1M';
-				
-			$exec .= "$potsql --defaults-file=$pfile --max_allowed_packet=$msqld_max_allowed_packet --quote-names --add-drop-table";
+			
+			$exec = "$potsql --defaults-file=$pfile --max_allowed_packet=$msqld_max_allowed_packet --quote-names --add-drop-table";
 			
 			static $mysql_version = null;
 			if (null === $mysql_version) {
@@ -1797,7 +1776,21 @@ class UpdraftPlus {
 				$exec .= " --no-tablespaces";
 			}
 			
-			$exec .= " --skip-comments --skip-set-charset --allow-keywords --dump-date --extended-insert --where=option_name=$siteurl --user=".escapeshellarg(DB_USER)." ";
+			// No statements to SET GTID values desired
+			if (false === strpos(strtolower($mysql_version), 'mariadb')) {
+				// Suppress errors, because it might actually still be MariaDB, or something else entirely which does not have this global (e.g. older MySQL)
+				$old_suppress = $wpdb->suppress_errors(true);
+				$gtid_mode = $wpdb->get_var('SELECT @@GLOBAL.gtid_mode');
+				$wpdb->suppress_errors($old_suppress);
+				if (is_string($gtid_mode) && preg_match('/^on/i', $gtid_mode)) {
+					$exec .= ' --set-gtid-purged=OFF';
+				}
+			}
+			
+			$exec .= " --skip-comments --skip-set-charset --allow-keywords --dump-date --extended-insert --where=option_name=$siteurl ";
+			
+			// Though it shouldn't be sensitive, we choose not to log the host/user/database name
+			$log_exec = $exec;
 			
 			if (preg_match('#^(.*):(\d+)$#', DB_HOST, $matches)) {
 				// The escapeshellarg() on $matches[2] is only to avoid tripping static analysis tools
@@ -1809,6 +1802,8 @@ class UpdraftPlus {
 			}
 			
 			$exec .= DB_NAME." ".escapeshellarg($table_name);
+			
+			$exec = $pre_exec.$exec." --user=".escapeshellarg(DB_USER);
 			
 			$handle = (function_exists('popen') && function_exists('pclose')) ? popen($exec, "r") : false;
 			if ($handle) {
@@ -1829,7 +1824,7 @@ class UpdraftPlus {
 					}
 				} else {
 					if (false !== stripos($output, 'insert into')) {
-						if ($log_it) $this->log("Working binary mysqldump found: $potsql");
+						if ($log_it) $this->log("Working binary mysqldump found: $potsql, tested with $log_exec");
 						$result = $potsql;
 						break;
 					}
@@ -4029,6 +4024,11 @@ class UpdraftPlus {
 			$warnings,
 		$jobdata);
 
+		$email_body = $body;
+		if (!class_exists('UpdraftPlus_Addon_Reporting')) {
+			$email_body = nl2br(make_clickable(esc_html(trim(str_replace((string) $ws_notice, '', $body))))).'<br><br>'.$updraftplus_notices->do_notice(false, 'report', true);
+		}
+
 		$this->attachments = apply_filters('updraft_report_attachments', $attachments);
 
 		$attach_size = 0;
@@ -4072,6 +4072,7 @@ class UpdraftPlus {
 					$headers = array();
 					try {
 						$headers[] = "X-UpdraftPlus-Backup-ID: ".$this->nonce;
+						if (!class_exists('UpdraftPlus_Addon_Reporting')) $headers[] = sprintf('Content-Type: text/html; charset=%s', get_bloginfo('charset'));
 						$from_email = apply_filters('updraftplus_email_from_header', $this->get_email_from_header());
 						$from_name = apply_filters('updraftplus_email_from_name_header', $this->get_email_from_name_header());
 						$use_wp_from_name_filter = '' === $from_email;
@@ -4082,7 +4083,7 @@ class UpdraftPlus {
 							add_filter('wp_mail_from_name', array($this, 'get_email_from_name_header'), 9);
 						}
 						add_action('wp_mail_failed', array($this, 'log_email_delivery_failure'));
-						wp_mail(trim($sendmail_addr), $subject, $body, $headers, is_array($this->attachments) ? $this->attachments : array());
+						wp_mail(trim($sendmail_addr), $subject, $email_body, $headers, is_array($this->attachments) ? $this->attachments : array());
 						remove_action('wp_mail_failed', array($this, 'log_email_delivery_failure'));
 						if ($use_wp_from_name_filter) remove_filter('wp_mail_from_name', array($this, 'get_email_from_name_header'), 9);
 					} catch (Exception $e) {
@@ -5294,8 +5295,10 @@ class UpdraftPlus {
 		$db_charset_collate_scan_timeout = (defined('UPDRAFTPLUS_DB_CHARSET_COLLATE_SCAN_TIMEOUT') && is_numeric(UPDRAFTPLUS_DB_CHARSET_COLLATE_SCAN_TIMEOUT)) ? UPDRAFTPLUS_DB_CHARSET_COLLATE_SCAN_TIMEOUT : 10;
 		$charset_scan_start_time = microtime(true);
 		$db_supported_character_sets = (array) $GLOBALS['wpdb']->get_results('SHOW CHARACTER SET', OBJECT_K);
+		$db_supported_character_set_list = array_keys($db_supported_character_sets);
 		$db_supported_collations = (array) $GLOBALS['wpdb']->get_results('SHOW COLLATION', OBJECT_K);
 		$db_charsets_found = array();
+		$set_names_charsets_found = array();
 		$db_collates_found = array();
 		$db_supported_charset_related_to_unsupported_collation = false;
 		$db_supported_charsets_related_to_unsupported_collations = array();
@@ -5468,6 +5471,7 @@ class UpdraftPlus {
 
 			} elseif (preg_match('#^\s*/\*\!40\d+ SET NAMES (.*)\*\/#i', $buffer, $smatches)) {
 				$db_charsets_found[] = rtrim($smatches[1]);
+				$set_names_charsets_found[] = rtrim($smatches[1]);
 			} elseif (!$processing_routine && !$processing_create && preg_match("/^[^'\"]*create[^'\"]*(?:definer\s*=\s*(?:`.{1,17}`@`[^\s]+`|'.{1,17}'@'[^\s]+'))?.+?(?:function(?:\s\s*if\s\s*not\s\s*exists)?|procedure)\s*`([^\r\n]+)`/is", $buffer, $matches)) {
 				// ^\s*create\s\s*(?:or\s\s*replace\s\s*)?.*?(?:aggregate\s\s*function|function|procedure)\s\s*`(.+)`(?:\s\s*if\s\s*not\s\s*exists\s*|\s*)?\(
 				if (!preg_match('/END\s*(?:\*\/)?;;\s*$/is', $buffer) && !preg_match('/\;\s*;;\s*$/is', $buffer) && !preg_match('/\s*(?:\*\/)?;;\s*$/is', $buffer)) $processing_routine = true;
@@ -5536,6 +5540,23 @@ class UpdraftPlus {
 				if ((preg_match('/END\s*(?:\*\/)?;;\s*$/is', $buffer) || preg_match('/\;\s*;;\s*$/is', $buffer) || preg_match('/\s*(?:\*\/)?;;\s*$/is', $buffer)) && !preg_match('/(?:--|#).+?;;\s*$/i', $buffer)) $processing_routine = false;
 			}
 		}
+		
+		// Keep harmonised with the list in Updraft_Restorer
+		$allowed_set_name_charsets = array_intersect($db_supported_character_set_list, array('latin1', 'latin2', 'ascii', 'utf8mb4', 'utf8mb3', 'utf8', 'utf16', 'utf16le', 'utf32'));
+		
+		$set_names_found_but_not_allowed = array_diff($set_names_charsets_found, $allowed_set_name_charsets);
+		
+		if (!empty($set_names_found_but_not_allowed)) {
+			/* translators: %s: Character sets */
+			$message = sprintf(__('The database uses disallowed connection character set(s): (%s).', 'updraftplus').' '.__('If you wish to restore it, then you must set the constant UPDRAFTPLUS_ALLOW_ANY_SET_NAMES and then try again; this should only be done if the backup was created by a third-party tool which you know handles encoding correctly, to avoid corruption.', 'updraftplus'), esc_html(implode(', ', $set_names_found_but_not_allowed)));
+			
+			if (defined('UPDRAFTPLUS_ALLOW_ANY_SET_NAMES') && UPDRAFTPLUS_ALLOW_ANY_SET_NAMES) {
+				$warn[] .= __('Warning:', 'updraftplus')." $message";
+			} else {
+				$err[] .= __('Error:', 'updraftplus')." $message";
+			}
+		}
+		
 		if ($is_plain) {
 			if (!feof($dbhandle)) $db_scan_timed_out = true;
 			@fclose($dbhandle);// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged -- Silenced to suppress errors that may arise because of the function.
@@ -5558,7 +5579,7 @@ class UpdraftPlus {
 				$warn[] = sprintf(
 					/* translators: %s: Character sets */
 					_n("The database server that this WordPress site is running on doesn't support the character set (%s) which you are trying to import.", "The database server that this WordPress site is running on doesn't support the character sets (%s) which you are trying to import.", count($db_unsupported_charset_unique), 'updraftplus'),
-					implode(', ', $db_unsupported_charset_unique)
+					esc_html(implode(', ', $db_unsupported_charset_unique))
 				).' '.
 				__('You can choose another suitable character set instead and continue with the restoration at your own risk.', 'updraftplus').' <a target="_blank" href="https://teamupdraft.com/documentation/updraftplus/topics/restoration/faqs/what-are-the-implications-of-changing-a-tables-character-set/" target="_blank">'.__('Go here for more information.', 'updraftplus').'</a>';
 				$db_supported_character_sets = array_keys($db_supported_character_sets);
@@ -5598,7 +5619,7 @@ class UpdraftPlus {
 				$warn[] = sprintf(
 					/* translators: %s: Collations */
 					_n("The database server that this WordPress site is running on doesn't support the collation (%s) used in the database which you are trying to import.", "The database server that this WordPress site is running on doesn't support multiple collations (%s) used in the database which you are trying to import.", count($db_unsupported_collate_unique), 'updraftplus'),
-					implode(', ', $db_unsupported_collate_unique)
+					esc_html(implode(', ', $db_unsupported_collate_unique))
 				).' '.
 				__('You can choose another suitable collation instead and continue with the restoration (at your own risk).', 'updraftplus');
 				$similar_type_collate = '';
@@ -5705,11 +5726,11 @@ class UpdraftPlus {
 
 				if (count($missing_tables)>0) {
 					/* translators: %s: Missing WordPress tables */
-					$warn[] = sprintf(__('This database backup is missing core WordPress tables: %s', 'updraftplus'), implode(', ', $missing_tables));
+					$warn[] = sprintf(__('This database backup is missing core WordPress tables: %s', 'updraftplus'), esc_html(implode(', ', $missing_tables)));
 				}
 				if (count($skipped_tables)>0) {
 					/* translators: %s: Excluded database tables */
-					$warn[] = sprintf(__('This database backup has the following non-core WordPress database tables excluded: %s', 'updraftplus'), implode(', ', $skipped_tables));
+					$warn[] = sprintf(__('This database backup has the following non-core WordPress database tables excluded: %s', 'updraftplus'), esc_html(implode(', ', $skipped_tables)));
 				}
 			}
 		} else {
@@ -6071,6 +6092,7 @@ class UpdraftPlus {
 			'prefixed_transients' => array(
 				'ud_forgt_%',
 				'ud_rsenddck_%',
+				'udaddons_connect_%',
 				'updraftplus_%',
 			),
 			'crons' => array(

@@ -850,7 +850,7 @@ class UpdraftPlus_Onboarding {
 		$steps = array();
 		$steps[] = $this->get_intro_step();
 
-		if ($updraftplus_addons2 && true !== $updraftplus_addons2->connection_status()) $steps[] = $this->get_license_step();
+		if ($updraftplus_addons2 && true !== $updraftplus_addons2->connected) $steps[] = $this->get_license_step();
 
 		$steps[] = $this->get_backup_settings_step();
 		$steps[] = $this->get_remote_storage_step();

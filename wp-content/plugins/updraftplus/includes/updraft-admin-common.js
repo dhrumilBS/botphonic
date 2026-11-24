@@ -2525,8 +2525,15 @@ jQuery(function($) {
 		updraft_send_command('updraftplus_com_login_submit', {
 			data: options,
 		}, function (response) {
-			if (response.hasOwnProperty('success')) {
 
+			if (response.hasOwnProperty('connection_status_data') && updraftplus_udaddons_l10n) {
+				updraftplus_udaddons_l10n = response.connection_status_data;
+				var template = Handlebars.compile(jQuery('#udpraftplus-addons-connection-status-markup').html());
+				jQuery('.updraftplus-udaddons-connection-status-wrapper').empty();
+				jQuery('.updraftplus-udaddons-connection-status-wrapper').html(template(updraftplus_udaddons_l10n));
+			}
+
+			if (response.hasOwnProperty('success')) {
 				// logged in was successful, so create a key if the checkbox was checked.
 				if ($('#updraftplus-addons_options_auto_udc_connect').is(':checked')) {
 
@@ -2542,7 +2549,15 @@ jQuery(function($) {
 
 				} else {
 					updraftplus_com_login.hide_loader();
-					$('#updraft-navtab-addons-content .wrap .updraftplus_com_login').trigger('submit');
+					jQuery('html, body').animate({scrollTop: jQuery('#updraft-navtab-addons-content .updraftplus-udaddons-connection-status-wrapper').offset().top-100}, 500, function() {
+						if ($('#updraft-navtab-addons.nav-tab-active').length) {
+							var _wp_http_referer = $('#updraft-navtab-addons-content .wrap .updraftplus_com_login input[name="_wp_http_referer"]').val();
+							if (_wp_http_referer) {
+								_wp_http_referer = new URL(_wp_http_referer, window.location.origin);
+								if (_wp_http_referer.origin === window.location.origin) window.location.href = _wp_http_referer.href;
+							}
+						}
+					});
 				}
 			} else if (response.hasOwnProperty('error')) {
 				updraftplus_com_login.hide_loader();
@@ -2667,9 +2682,21 @@ jQuery(function($) {
 
 					$('#updraft-navtab-addons-content .wrap .updraftplus_com_login_status').html(updraftlion.login_successful_short).show().addClass('success');
 
-					// submit the form (to reload the page).
 					setTimeout(function() {
-						$('#updraft-navtab-addons-content .wrap form.updraftplus_com_login').trigger('submit');
+						var template = Handlebars.compile(jQuery('#udpraftplus-addons-connection-status-markup').html());
+						if (updraftplus_udaddons_l10n) {
+							jQuery('.updraftplus-udaddons-connection-status-wrapper').empty();
+							jQuery('.updraftplus-udaddons-connection-status-wrapper').html(template(updraftplus_udaddons_l10n));
+						}
+						jQuery('html, body').animate({scrollTop: jQuery('#updraft-navtab-addons-content .updraftplus-udaddons-connection-status-wrapper').offset().top-100}, 500, function() {
+							if ($('#updraft-navtab-addons.nav-tab-active').length) {
+								var _wp_http_referer = $('#updraft-navtab-addons-content .wrap .updraftplus_com_login input[name="_wp_http_referer"]').val();
+								if (_wp_http_referer) {
+									_wp_http_referer = new URL(_wp_http_referer, window.location.origin);
+									if (_wp_http_referer.origin === window.location.origin) window.location.href = _wp_http_referer.href;
+								}
+							}
+						});
 					}, 1000);
 				}
 
@@ -4713,6 +4740,40 @@ jQuery(function($) {
 				$table_body.find('tr:last td:last span').last().text(item.interval);
 			});
 		});
+	});
+
+	window.history.replaceState(
+		{},
+		document.title,
+		window.location.href.replace(/(\.php\?.*?)&?udm_refresh(?:=1|=)?&?/i, '$1')
+	)
+
+	jQuery('#updraft-navtab-backups-content, #updraft-navtab-addons-content').on('click', '.udp-connect-link', function (e) {
+		e.preventDefault();
+		jQuery('#updraft-navtab-addons').trigger('click');
+		jQuery('html, body').animate({
+			scrollTop: jQuery('#updraftplus-addons_options_email').offset().top - 100
+		}, 500);
+	});
+
+	jQuery('#updraft-navtab-backups-content, #updraft-navtab-addons-content').on('click', '.udp-unclaimed-addon-link, .udp-assigned-addon-link', function (e) {
+		e.preventDefault();
+		jQuery('#updraft-navtab-addons').trigger('click');
+		if (jQuery(this).hasClass('udp-unclaimed-addon-link')) {
+			jQuery('html, body').animate({
+				scrollTop: jQuery('.updraftplus-unclaimed-addon')
+					.first()
+					.parents('.updraftplus-addon-box')
+					.offset().top
+			}, 500);
+		} else if (jQuery(this).hasClass('udp-assigned-addon-link')) {
+			jQuery('html, body').animate({
+				scrollTop: jQuery('.updraftplus-addon-assigned-not-installed')
+					.first()
+					.parents('.updraftplus-addon-box')
+					.offset().top
+			}, 500);
+		}
 	});
 });
 

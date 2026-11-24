@@ -3,7 +3,7 @@ Contributors: Backup with UpdraftPlus, DavidAnderson, pmbaldha, DNutbourne, apor
 Tags: backup, database backup, wordpress backup, cloud backup, migration
 Requires at least: 3.9
 Tested up to: 7.1
-Stable tag: 1.26.14
+Stable tag: 1.26.16
 Author URI: https://updraftplus.com
 Donate link: https://david.dw-perspective.org.uk/donate
 License: GPLv3 or later
@@ -12,7 +12,7 @@ Backup, restore or migrate your WordPress website to another host or domain. Sch
 
 == Description ==
 
-<a href="https://updraftplus.com">The UpdraftPlus Backup & Migration Plugin</a> is trusted by the WordPress community to backup, restore and migrate their WordPress websites. UpdraftPlus is actively installed on more than 3 million websites around the world.
+<a href="https://updraftplus.com">The UpdraftPlus Backup & Migration Plugin</a> is trusted by the WordPress community to backup, restore and migrate their WordPress websites. UpdraftPlus is actively installed on more than 4 million websites around the world.
 
 = Backup with UpdraftPlus =
 
@@ -48,7 +48,7 @@ UpdraftPlus:
 * Offers a huge number of remote storage locations
 * Allows you to schedule backups, so you can ‘set and forget’
 * Is comprehensive and easy to use
-* Is proven to work on over 3 million sites.
+* Is proven to work on over 4 million sites.
 
 [vimeo https://vimeo.com/154870690]
 
@@ -106,7 +106,7 @@ UpdraftClone makes it quick and easy to create a temporary sandbox for changes y
 = The full suite of plugins from Team Updraft and friends =
 
 * <a href="https://updraftplus.com">UpdraftPlus</a>.
- <b>Backup, migrate and restore.</b> Rated 5* on the plugin directory and trusted by more than 3 million WordPress website owner
+ <b>Backup, migrate and restore.</b> Rated 5* on the plugin directory and trusted by more than 4 million WordPress website owner
 
 * <a href="https://getwpo.com">WP-Optimize</a>.
  <b>Clean the database, compress images and caching.</b> Optimize your WordPress website. 5* user rating. 1 million + active installs.
@@ -179,6 +179,29 @@ The [UpdraftPlus backup blog](https://updraftplus.com/news/) is the best place t
 
 N.B. Paid versions of UpdraftPlus Backup / Restore have a version number which is 1 higher in the first digit, and has an extra component on the end, but the changelog below still applies. i.e. changes listed for 1.16.32.x of the free version correspond to changes made in 2.16.32.x of the paid version.
 
+= 1.26.16 - 16/Nov/2026 =
+
+* SECURITY: Thanks to Jakub Herman and Wordfence for reporting further related instances of the problem patched in 1.26.9 (which could allow a low-privileged user account to manipulate a restore after inserting long controlled sequences in the database).
+* FEATURE: Search for and use mariadb-dump binaries as well as mysqldump
+* TWEAK: Search/replace of JSON sequences should not allow unwanted changes; thanks to Jakub Herman for reporting this issue. This could rise to a security issue, but only if the attacker (who would need a login) also has a further vulnerable 'gadget' on the site to exploit (none are known to exist in default WP + UpdraftPlus installs).
+* TWEAK: Pass --set-gtid-purged=OFF to mysqldump if relevant
+* TWEAK: When logging identified mysqldump, include the full command used
+* TWEAK: Updated bundled certificate authority file
+* TWEAK: Clarify search/replace message when restoring
+* TWEAK: When skipping a table during search/replace, include the table name in the log line
+* TWEAK: Set the connection character set to a UTF8 variant; abort backup upon failure
+* TWEAK: Block restoration if an incompatible connection character set is requested
+* TWEAK: Change link wording to "X/Twitter"
+* TWEAK: Upon restoration failure, log the file/line/trace in the log file without requiring a debug setting
+* TWEAK: get_sql_modes() now handles empty SQL mode session settings, thereby no longer telling the user of a restoration problem
+* TWEAK: Automatically remove the user's teamupdraft.com password from the settings (paid versions) after connecting to teamupdraft.com
+* TWEAK: Added the 2026 Black Friday promotional notices
+* TWEAK: Restore Google Drive drive.readonly scope after CASA review approval
+
+= 1.26.15 - 05/Nov/2026 =
+
+* FIX: SFTP uploads failed in 1.26.14 when a host key fingerprint was saved, because since the phpseclib3 upgrade the remote directory was not entered on the reconnected session
+
 = 1.26.14 - 26/Oct/2026 =
 
 * FEATURE: SFTP/SCP remote storage now supports modern host key algorithms like Ed25519 and also new cryptographies
@@ -215,7 +238,7 @@ N.B. Paid versions of UpdraftPlus Backup / Restore have a version number which i
 
 = 1.26.11 - 16/Oct/2026 =
 
-* SECURITY: The fix in 1.26.9 did not correctly handle NO_BACKSLASH_ESCAPES (a rare SQL server mode which is no longer supported by WordPress from WordPress 7.2 and causes various problems if set). Though your website almost   certainly does not use it, it is still best to update.
+* SECURITY: The fix in 1.26.9 did not correctly handle NO_BACKSLASH_ESCAPES (a rare SQL server mode which is no longer supported by WordPress from WordPress 7.2 and causes various problems if set). Though your website almost certainly does not use it, it is still best to update.
 * FIX: When an near-over-sized (beyond the maximum packet size) line with a specific (unlikely) construction was rejected, it could be silently dropped in 1.26.10
 * TWEAK: Re-factor set_sql_mode() to allow indicating the success of the attempt
 * TWEAK: If a backup file is invalid with trailing content which cannot be executed, then log this
@@ -2247,4 +2270,4 @@ Non-English translators are provided by volunteers, and wordpress.org does not g
 We recognise and thank those mentioned at https://updraftplus.com/acknowledgements/ for code and/or libraries used and/or modified under the terms of their open source licences.
 
 == Upgrade Notice ==
-* 1.26.14: Enhanced SFTP/SCP remote storage support for modern host key algorithms and cryptographies, and more efficient restoration of uploads entity backup file, plus various fixes and small tweaks - see the changelog for details. A recommended update for all; please update immediately.
+* 1.26.16: Improved backup compatibility, restoration, logging, and security, plus various fixes and small tweaks - see the changelog for details. A recommended update for all; please update immediately.

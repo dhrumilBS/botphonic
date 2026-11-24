@@ -1,0 +1,179 @@
+{
+	"_meta": {
+		"version": 2,
+		"rangeConvention": "usagePercent ranges are [inclusive, exclusive). null = unbounded. Example: [70, 100] means >= 70% AND < 100%.",
+		"thresholdExceeded": "Matches the plugin's own quota verdict (Cookie_Notice::threshold_exceeded()), not the counters. Required on any rule whose copy asserts that blocking has stopped: the counters can read as over quota on a usage snapshot the plugin refused to act on, and such a rule would then raise a compliance alarm about a site that is still blocking normally.",
+		"templateVariables": "{sessionTotal}, {sessionUsed}, {usagePercent} — interpolated at render time with locale-formatted numbers."
+	},
+	"rules": [
+		{
+			"id": "threshold-locked",
+			"type": "critical",
+			"priority": 100,
+			"slot": "topBar",
+			"condition": { "tier": "free", "usagePercent": [ 100, null ], "thresholdExceeded": true },
+			"title": "Action Required: Visit limit reached",
+			"description": "Your site has exceeded its free limit of {sessionTotal} visits per 30-day cycle. Cookie autoblocking is now disabled, which means tracking scripts may fire before visitors consent. Upgrade to Pro immediately to restore full compliance protection.",
+			"cta": { "label": "Upgrade to Pro \u2192", "action": "openPricingModal" },
+			"dismissible": false,
+			"icon": "error"
+		},
+		{
+			"id": "threshold-warning",
+			"type": "warning",
+			"priority": 80,
+			"slot": "topBar",
+			"condition": { "tier": "free", "usagePercent": [ 70, 100 ] },
+			"title": "Approaching your visit limit",
+			"description": "Your site is nearing its free limit for this 30-day cycle ({sessionUsed} / {sessionTotal} visits). If you exceed the limit, cookie autoblocking will be disabled. Upgrade to Pro now for unlimited coverage.",
+			"cta": { "label": "Upgrade to Pro \u2192", "action": "openPricingModal" },
+			"dismissible": true,
+			"icon": "warning"
+		},
+		{
+			"id": "generic-upsell",
+			"type": "info",
+			"priority": 20,
+			"slot": "topBar",
+			"condition": { "tier": "free" },
+			"title": "Upgrade for unlimited coverage",
+			"description": "Free protects up to {sessionTotal} visits per 30-day cycle. Upgrade to Pro for unlimited visits, geo-targeting, and full consent history.",
+			"cta": { "label": "Upgrade to Pro \u2192", "action": "openPricingModal" },
+			"dismissible": true,
+			"icon": "info"
+		},
+		{
+			"id": "sidebar-threshold",
+			"type": "warning",
+			"priority": 90,
+			"slot": "sidebar",
+			"condition": { "tier": "free", "usagePercent": [ 70, null ] },
+			"headline": "Restore protection",
+			"features": [
+				"Remove the visit limit",
+				"Geo-targeted consent",
+				"Full consent history"
+			],
+			"cta": { "label": "Upgrade to Pro \u2192", "action": "openPricingModal" }
+		},
+		{
+			"id": "sidebar-generic",
+			"type": "info",
+			"priority": 10,
+			"slot": "sidebar",
+			"condition": { "tier": "free" },
+			"headline": "Unlock unlimited compliance",
+			"features": [
+				"Unlimited visits",
+				"Geo-targeted consent",
+				"Full consent history"
+			],
+			"cta": { "label": "Upgrade to Pro \u2192", "action": "openPricingModal" }
+		},
+		{
+			"id": "dashboard-banner-only",
+			"type": "critical",
+			"priority": 50,
+			"slot": "wpDashboard",
+			"condition": { "state": "banner_only" },
+			"title": "Your banner shows \u2014 but nothing is blocked",
+			"gapLabel": "Blocking off",
+			"description": "Scripts fire before consent. Connect free to turn blocking on.",
+			"cta": { "label": "Connect free to activate protection \u2192", "action": "openWelcomeModal" },
+			"ctaSmall": "No credit card \u00b7 protects up to 1,000 visits per 30-day cycle"
+		},
+		{
+			"id": "dashboard-free-under",
+			"type": "info",
+			"priority": 20,
+			"slot": "wpDashboard",
+			"condition": { "state": "free_under" },
+			"title": "Blocking is on",
+			"gapLabel": "Free plan",
+			"description": "Script blocking is on.",
+			"cta": { "label": "Upgrade to Pro \u2192", "action": "openWelcomeModal" },
+			"ctaSmall": "Unlimited visits \u00b7 every consent mode \u00b7 full consent history"
+		},
+		{
+			"id": "dashboard-free-near",
+			"type": "warning",
+			"priority": 80,
+			"slot": "wpDashboard",
+			"condition": { "state": "free_near" },
+			"title": "You\u2019re about to lose protection",
+			"gapLabel": "{usagePercent}% used",
+			"description": "You\u2019ve used {usagePercent}% of your limit for this 30-day cycle \u2014 protection switches off at 100%.",
+			"cta": { "label": "Upgrade before you hit the limit \u2192", "action": "openWelcomeModal" },
+			"ctaSmall": "Keep protection on \u00b7 go unlimited"
+		},
+		{
+			"id": "dashboard-free-over",
+			"type": "critical",
+			"priority": 100,
+			"slot": "wpDashboard",
+			"condition": { "state": "free_over" },
+			"title": "Protection paused \u2014 limit reached",
+			"gapLabel": "{usagePercent}% used",
+			"description": "Limit reached \u2014 protection is paused. {sessionUsed} / {sessionTotal} visits used.",
+			"cta": { "label": "Upgrade to restore protection \u2192", "action": "openWelcomeModal" },
+			"ctaSmall": "Re-enable protection instantly \u00b7 go unlimited"
+		},
+		{
+			"id": "dashboard-pro",
+			"type": "success",
+			"priority": 10,
+			"slot": "wpDashboard",
+			"condition": { "state": "pro" },
+			"title": "Protection active",
+			"gapLabel": "All features on",
+			"description": "Script blocking, consent categories and consent records are on for this site. Whether your site is fully compliant also depends on your own setup and the scripts it runs.",
+			"cta": { "label": "View consent & traffic analytics \u2192", "action": "openWelcomeModal" }
+		},
+		{
+			"id": "dashboard-engine-off",
+			"type": "critical",
+			"priority": 95,
+			"slot": "wpDashboard",
+			"condition": { "state": "engine_off" },
+			"title": "Script blocking is off",
+			"gapLabel": "Nothing is held",
+			"description": "No scripts are being held for anyone, in any region, whatever a visitor\u2019s privacy signal says. Your banner still shows and still records consent.",
+			"cta": { "label": "Turn script blocking on \u2192", "action": "openWelcomeModal" },
+			"ctaSmall": "Switch the script blocking engine back on"
+		},
+		{
+			"id": "dashboard-posture-gap",
+			"type": "warning",
+			"priority": 85,
+			"slot": "wpDashboard",
+			"condition": { "state": "posture_gap" },
+			"title": "Scripts run before visitors choose",
+			"gapLabel": "Allowed by default",
+			"description": "Autoblocking is set to allow by default, and the laws you selected ask for consent first. Scripts are still held once someone declines or sends a Global Privacy Control signal.",
+			"cta": { "label": "Review your autoblocking setting \u2192", "action": "openWelcomeModal" },
+			"ctaSmall": "Required where you have selected an opt-in law"
+		},
+		{
+			"id": "dashboard-no-laws",
+			"type": "info",
+			"priority": 30,
+			"slot": "wpDashboard",
+			"condition": { "state": "no_laws" },
+			"title": "Check which laws apply",
+			"gapLabel": "Setup not finished",
+			"description": "We can\u2019t see which privacy laws your site follows. Check them so we can tell you whether your setup fits.",
+			"cta": { "label": "Check your laws \u2192", "action": "openPluginPage" }
+		},
+		{
+			"id": "dashboard-posture-allow",
+			"type": "info",
+			"priority": 25,
+			"slot": "wpDashboard",
+			"condition": { "state": "posture_allow" },
+			"title": "Scripts run until a visitor says no",
+			"gapLabel": "Allowed by default",
+			"description": "Autoblocking is off, which the laws you selected allow. Scripts are held once someone declines or sends a Global Privacy Control signal.",
+			"cta": { "label": "Review autoblocking \u2192", "action": "openPluginPage" }
+		}
+	]
+}

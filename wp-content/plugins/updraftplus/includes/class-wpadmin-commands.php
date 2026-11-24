@@ -164,7 +164,7 @@ class UpdraftPlus_WPAdmin_Commands extends UpdraftPlus_Commands {
 				$foreign_known = apply_filters('updraftplus_accept_archivename', array());
 				if (!is_array($foreign_known) || empty($foreign_known[$backups[$timestamp]['meta_foreign']])) {
 					/* translators: %s: Backup source information */
-					$err[] = sprintf(__('Backup created by unknown source (%s) - cannot be restored.', 'updraftplus'), $backups[$timestamp]['meta_foreign']);
+					$err[] = sprintf(__('Backup created by unknown source (%s) - cannot be restored.', 'updraftplus'), esc_html($backups[$timestamp]['meta_foreign']));
 				} else {
 					// For some reason, on PHP 5.5 passing by reference in a single array stopped working with apply_filters_ref_array (though not with do_action_ref_array).
 					$backupable_plus_db = apply_filters_ref_array("updraftplus_importforeign_backupable_plus_db", array($backupable_plus_db, array($foreign_known[$backups[$timestamp]['meta_foreign']], &$mess, &$warn, &$err)));
@@ -189,16 +189,16 @@ class UpdraftPlus_WPAdmin_Commands extends UpdraftPlus_Commands {
 					}
 					if (!file_exists($updraft_dir.'/'.$file)) {
 						/* translators: %s: File path */
-						$err[] = sprintf(__('File not found (you need to upload it): %s', 'updraftplus'), $updraft_dir.'/'.$file);
+						$err[] = sprintf(__('File not found (you need to upload it): %s', 'updraftplus'), esc_html($updraft_dir.'/'.$file));
 					} elseif (filesize($updraft_dir.'/'.$file) == 0) {
 						/* translators: %s: File name */
-						$err[] = sprintf(__('File was found, but is zero-sized (you need to re-upload it): %s', 'updraftplus'), $file);
+						$err[] = sprintf(__('File was found, but is zero-sized (you need to re-upload it): %s', 'updraftplus'), esc_html($file));
 					} else {
 						$itext = (0 == $index) ? '' : $index;
 						if (!empty($backups[$timestamp][$type.$itext.'-size']) && filesize($updraft_dir.'/'.$file) != $backups[$timestamp][$type.$itext.'-size']) {
 							if (empty($warn['doublecompressfixed'])) {
 								/* translators: 1: File name, 2: Actual file size, 3: Expected file size */
-								$warn[] = sprintf(__('File (%1$s) was found, but has a different size (%2$s) from what was expected (%3$s) - it may be corrupt.', 'updraftplus'), $file, filesize($updraft_dir.'/'.$file), $backups[$timestamp][$type.$itext.'-size']);
+								$warn[] = sprintf(__('File (%1$s) was found, but has a different size (%2$s) from what was expected (%3$s) - it may be corrupt.', 'updraftplus'), esc_html($file), filesize($updraft_dir.'/'.$file), esc_html($backups[$timestamp][$type.$itext.'-size']));
 							}
 						}
 						do_action_ref_array("updraftplus_checkzip_$type", array($updraft_dir.'/'.$file, &$mess, &$warn, &$err));
